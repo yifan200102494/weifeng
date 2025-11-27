@@ -14,13 +14,20 @@
         <div class="container nav-flex">
             <div class="logo"><h2>WEI FENG<span>.</span></h2></div>
             <ul class="nav-links">
-                <li><a href="index.html">首页</a></li>
-                <li><a href="about.html">关于我们</a></li>
-                <li><a href="products.html">产品中心</a></li>
-                <li><a href="news.html" class="active">新闻资讯</a></li>
-                <li><a href="gallery.html">企业形象</a></li>
-                <li><a href="contact.html" class="btn-contact">联系我们</a></li>
+                <li><a href="index.html" data-i18n="nav.home">首页</a></li>
+                <li><a href="about.html" data-i18n="nav.about">关于我们</a></li>
+                <li><a href="products.html" data-i18n="nav.products">产品中心</a></li>
+                <li><a href="news.html" class="active" data-i18n="nav.news">新闻资讯</a></li>
+                <li><a href="gallery.html" data-i18n="nav.gallery">企业形象</a></li>
+                <li><a href="contact.html" class="btn-contact" data-i18n="nav.contact">联系我们</a></li>
             </ul>
+
+            <div class="lang-switch">
+                <span class="lang-btn active" onclick="setLanguage('zh')">CN</span>
+                <span class="divider">/</span>
+                <span class="lang-btn" onclick="setLanguage('en')">EN</span>
+            </div>
+
             <div class="mobile-menu-btn"><i class="fas fa-bars"></i></div>
         </div>
     </nav>
@@ -28,8 +35,8 @@
     <header class="page-header news-header-bg">
         <div class="overlay"></div>
         <div class="container header-content">
-            <h1 class="fade-in-up">与世界联接</h1>
-            <p class="fade-in-up delay-200">致力打造纺织助剂产品领袖品牌</p>
+            <h1 class="fade-in-up" data-i18n="news.header_title">与世界联接</h1>
+            <p class="fade-in-up delay-200" data-i18n="news.header_desc">致力打造纺织助剂产品领袖品牌</p>
         </div>
     </header>
 
@@ -37,9 +44,9 @@
         <div class="container">
             
             <div class="news-tabs reveal">
-                <button class="tab-btn active" data-tab="industry">行业资讯</button>
-                <button class="tab-btn" data-tab="company">公司新闻</button>
-                <button class="tab-btn" data-tab="faq">常见问题</button>
+                <button class="tab-btn active" data-tab="industry" data-i18n="news.tab_industry">行业资讯</button>
+                <button class="tab-btn" data-tab="company" data-i18n="news.tab_company">公司新闻</button>
+                <button class="tab-btn" data-tab="faq" data-i18n="news.tab_faq">常见问题</button>
             </div>
 
             <div class="news-container">
@@ -51,8 +58,8 @@
                             <span class="day">12-24</span>
                         </div>
                         <div class="news-info">
-                            <h3><a href="#">伟丰公司俞建芳经理《新一代环保硅油的介绍》</a></h3>
-                            <p>讲解主题：新一代环保硅油的介绍。深入解析行业发展趋势与技术革新，探讨如何在环保政策日益严格的背景下，通过技术创新实现可持续发展。</p>
+                            <h3><a href="#" data-i18n="news.ind_1_title">伟丰公司俞建芳经理《新一代环保硅油的介绍》</a></h3>
+                            <p data-i18n="news.ind_1_desc">讲解主题：新一代环保硅油的介绍。深入解析行业发展趋势与技术革新，探讨如何在环保政策日益严格的背景下，通过技术创新实现可持续发展。</p>
                         </div>
                     </div>
 
@@ -62,8 +69,8 @@
                             <span class="day">11-25</span>
                         </div>
                         <div class="news-info">
-                            <h3><a href="#">纺织品印染助剂不断创新 助力纺织品行业发展</a></h3>
-                            <p>据不完全统计，2000年纺织印染助剂产量47万t，销售额约200亿元；2005年产量75万t，销售额约330亿元。预计未来我国助剂产量将继续维持增长趋势。</p>
+                            <h3><a href="#" data-i18n="news.ind_2_title">纺织品印染助剂不断创新 助力纺织品行业发展</a></h3>
+                            <p data-i18n="news.ind_2_desc">据不完全统计，2000年纺织印染助剂产量47万t，销售额约200亿元；2005年产量75万t，销售额约330亿元。预计未来我国助剂产量将继续维持增长趋势。</p>
                         </div>
                     </div>
 
@@ -73,8 +80,8 @@
                             <span class="day">11-25</span>
                         </div>
                         <div class="news-info">
-                            <h3><a href="#">印染助剂产品开发 配方还是“捷径”</a></h3>
-                            <p>纺织印染助剂作为纺织印染的重要原料之一，是用以改善纺织印染品质，提高纺织品附加值。</p>
+                            <h3><a href="#" data-i18n="news.ind_3_title">印染助剂产品开发 配方还是“捷径”</a></h3>
+                            <p data-i18n="news.ind_3_desc">纺织印染助剂作为纺织印染的重要原料之一，是用以改善纺织印染品质，提高纺织品附加值。</p>
                         </div>
                     </div>
                 </div>
@@ -86,8 +93,8 @@
                             <span class="day">09-06</span>
                         </div>
                         <div class="news-info">
-                            <h3><a href="#">浙江伟丰新材料有限公司 35kta 高端有机硅系列产品扩产项目环境影响评价信息公示</a></h3>
-                            <p>浙江伟丰新材料有限公司 35kta 高端有机硅系列产品扩产项目环境影响评价信息公示.pdf</p>
+                            <h3><a href="#" data-i18n="news.co_1_title">浙江伟丰新材料有限公司 35kta 高端有机硅系列产品扩产项目环境影响评价信息公示</a></h3>
+                            <p data-i18n="news.co_1_desc">浙江伟丰新材料有限公司 35kta 高端有机硅系列产品扩产项目环境影响评价信息公示.pdf</p>
                         </div>
                     </div>
                     <div class="news-row">
@@ -96,8 +103,8 @@
                             <span class="day">04-15</span>
                         </div>
                         <div class="news-info">
-                            <h3><a href="#">二甲基硅油，它的功能可以运用在哪里？</a></h3>
-                            <p>硅油属于不少行业使用比较多的一种，它的作用主要取到了产品中的柔和润滑。</p>
+                            <h3><a href="#" data-i18n="news.co_2_title">二甲基硅油，它的功能可以运用在哪里？</a></h3>
+                            <p data-i18n="news.co_2_desc">硅油属于不少行业使用比较多的一种，它的作用主要取到了产品中的柔和润滑。</p>
                         </div>
                     </div>
                 </div>
@@ -109,8 +116,8 @@
                             <span class="day">01</span>
                         </div>
                         <div class="news-info">
-                            <h3><a href="#">如何选择合适的硅油产品？</a></h3>
-                            <p>根据织物的材质（棉、涤纶、混纺等）以及所需的整理效果（亲水、蓬松、平滑等）来选择不同侧基改性的硅油。</p>
+                            <h3><a href="#" data-i18n="news.faq_1_title">如何选择合适的硅油产品？</a></h3>
+                            <p data-i18n="news.faq_1_desc">根据织物的材质（棉、涤纶、混纺等）以及所需的整理效果（亲水、蓬松、平滑等）来选择不同侧基改性的硅油。</p>
                         </div>
                     </div>
                 </div>
@@ -131,7 +138,7 @@
         <div class="container footer-top">
             <div class="footer-col">
                 <h3>WEI FENG.</h3>
-                <p>专注纺织助剂17年，为您提供最优质的化学品解决方案。致力于精细化工领域。</p>
+                <p data-i18n="footer.desc">专注纺织助剂17年，为您提供最优质的化学品解决方案。致力于精细化工领域。</p>
                 <div class="socials">
                     <a href="#"><i class="fab fa-weixin"></i></a>
                     <a href="#"><i class="fab fa-linkedin-in"></i></a>
@@ -139,18 +146,18 @@
                 </div>
             </div>
             <div class="footer-col">
-                <h4>快速链接</h4>
+                <h4 data-i18n="footer.links">快速链接</h4>
                 <ul>
-                    <li><a href="about.html"><i class="fas fa-chevron-right"></i> 关于我们</a></li>
-                    <li><a href="products.html"><i class="fas fa-chevron-right"></i> 产品中心</a></li>
-                    <li><a href="news.html"><i class="fas fa-chevron-right"></i> 新闻资讯</a></li>
-                    <li><a href="contact.html"><i class="fas fa-chevron-right"></i> 联系我们</a></li>
+                    <li><a href="about.html" data-i18n="nav.about"><i class="fas fa-chevron-right"></i> 关于我们</a></li>
+                    <li><a href="products.html" data-i18n="nav.products"><i class="fas fa-chevron-right"></i> 产品中心</a></li>
+                    <li><a href="news.html" data-i18n="nav.news"><i class="fas fa-chevron-right"></i> 新闻资讯</a></li>
+                    <li><a href="contact.html" data-i18n="nav.contact"><i class="fas fa-chevron-right"></i> 联系我们</a></li>
                 </ul>
             </div>
             <div class="footer-col">
-                <h4>联系方式</h4>
+                <h4 data-i18n="footer.contact">联系方式</h4>
                 <ul>
-                    <li><i class="fas fa-map-marker-alt"></i> 浙江省江山市江东工业园区兴工八二路1号</li>
+                    <li data-i18n="footer.addr"><i class="fas fa-map-marker-alt"></i> 浙江省江山市江东工业园区兴工八二路1号</li>
                     <li><i class="fas fa-phone"></i> 0570-4051365</li>
                     <li><i class="fas fa-envelope"></i> info@weifeng-material.com</li>
                 </ul>

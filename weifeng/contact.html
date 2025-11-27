@@ -14,13 +14,20 @@
         <div class="container nav-flex">
             <div class="logo"><h2>WEI FENG<span>.</span></h2></div>
             <ul class="nav-links">
-                <li><a href="index.html">首页</a></li>
-                <li><a href="about.html">关于我们</a></li>
-                <li><a href="products.html">产品中心</a></li>
-                <li><a href="news.html">新闻资讯</a></li>
-                <li><a href="gallery.html">企业形象</a></li>
-                <li><a href="contact.html" class="active btn-contact">联系我们</a></li>
+                <li><a href="index.html" data-i18n="nav.home">首页</a></li>
+                <li><a href="about.html" data-i18n="nav.about">关于我们</a></li>
+                <li><a href="products.html" data-i18n="nav.products">产品中心</a></li>
+                <li><a href="news.html" data-i18n="nav.news">新闻资讯</a></li>
+                <li><a href="gallery.html" data-i18n="nav.gallery">企业形象</a></li>
+                <li><a href="contact.html" class="active btn-contact" data-i18n="nav.contact">联系我们</a></li>
             </ul>
+
+            <div class="lang-switch">
+                <span class="lang-btn active" onclick="setLanguage('zh')">CN</span>
+                <span class="divider">/</span>
+                <span class="lang-btn" onclick="setLanguage('en')">EN</span>
+            </div>
+
             <div class="mobile-menu-btn"><i class="fas fa-bars"></i></div>
         </div>
     </nav>
@@ -28,8 +35,8 @@
     <header class="page-header contact-header-bg">
         <div class="overlay"></div>
         <div class="container header-content">
-            <h1 class="fade-in-up">真诚服务 客户至上</h1>
-            <p class="fade-in-up delay-200">以优质服务赢得客户满意 · 专业专注 · 值得信赖</p>
+            <h1 class="fade-in-up" data-i18n="contact.header_title">真诚服务 客户至上</h1>
+            <p class="fade-in-up delay-200" data-i18n="contact.header_desc">以优质服务赢得客户满意 · 专业专注 · 值得信赖</p>
         </div>
     </header>
 
@@ -39,25 +46,25 @@
                 
                 <div class="contact-info-box">
                     <div class="info-header">
-                        <h2>联系方式</h2>
+                        <h2 data-i18n="contact.info_title">联系方式</h2>
                         <div class="small-line"></div>
-                        <p>期待您与伟丰联系，我们将竭诚为您服务</p>
+                        <p data-i18n="contact.info_sub">期待您与伟丰联系，我们将竭诚为您服务</p>
                     </div>
 
                     <div class="info-list">
                         <div class="info-group">
-                            <h3><i class="fas fa-building"></i> 浙江伟丰新材料有限公司</h3>
+                            <h3><i class="fas fa-building"></i> <span data-i18n="contact.co_name">浙江伟丰新材料有限公司</span></h3>
                             <ul>
-                                <li><span class="label">电话:</span> <span class="value">0570-4051365</span></li>
-                                <li><span class="label">传真:</span> <span class="value">0570-4332762</span></li>
-                                <li><span class="label">地址:</span> <span class="value">浙江省江山市经济技术开发区兴工八二路1号</span></li>
+                                <li><span class="label" data-i18n="contact.label_tel">电话:</span> <span class="value">0570-4051365</span></li>
+                                <li><span class="label" data-i18n="contact.label_fax">传真:</span> <span class="value">0570-4332762</span></li>
+                                <li><span class="label" data-i18n="contact.label_addr">地址:</span> <span class="value" data-i18n="footer.addr_text">浙江省江山市经济技术开发区兴工八二路1号</span></li>
                             </ul>
                         </div>
                         <hr class="divider">
                         <div class="info-group">
-                            <h3><i class="fas fa-map-marked-alt"></i> 绍兴办事处</h3>
+                            <h3><i class="fas fa-map-marked-alt"></i> <span data-i18n="contact.office_name">绍兴办事处</span></h3>
                             <ul>
-                                <li><span class="label">传真:</span> <span class="value">0575-84574094</span></li>
+                                <li><span class="label" data-i18n="contact.label_fax">传真:</span> <span class="value">0575-84574094</span></li>
                             </ul>
                         </div>
                     </div>
@@ -68,8 +75,8 @@
                         <img src="https://placehold.co/800x600/e0e0e0/999?text=Map+Loading" alt="地图" class="static-map-img">
                         <div class="map-overlay-hint">
                             <i class="fas fa-map-marker-alt"></i>
-                            <p>浙江省江山市经济技术开发区兴工八二路1号</p>
-                            <a href="#" class="btn btn-primary btn-sm">查看在线地图</a>
+                            <p data-i18n="footer.addr_text">浙江省江山市经济技术开发区兴工八二路1号</p>
+                            <a href="#" class="btn btn-primary btn-sm" data-i18n="contact.btn_map">查看在线地图</a>
                         </div>
                     </div>
                 </div>
@@ -80,7 +87,35 @@
 
     <footer id="contact">
         <div class="container footer-top">
-            <div class="footer-col"><h3>WEI FENG.</h3></div>
+            <div class="footer-col">
+                <h3>WEI FENG.</h3>
+                <p data-i18n="footer.desc">专注纺织助剂17年，为您提供最优质的化学品解决方案。致力于精细化工领域。</p>
+                <div class="socials">
+                    <a href="#"><i class="fab fa-weixin"></i></a>
+                    <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                    <a href="#"><i class="fab fa-tiktok"></i></a>
+                </div>
+            </div>
+            <div class="footer-col">
+                <h4 data-i18n="footer.links">快速链接</h4>
+                <ul>
+                    <li><a href="about.html" data-i18n="nav.about"><i class="fas fa-chevron-right"></i> 关于我们</a></li>
+                    <li><a href="products.html" data-i18n="nav.products"><i class="fas fa-chevron-right"></i> 产品中心</a></li>
+                    <li><a href="news.html" data-i18n="nav.news"><i class="fas fa-chevron-right"></i> 新闻资讯</a></li>
+                    <li><a href="contact.html" data-i18n="nav.contact"><i class="fas fa-chevron-right"></i> 联系我们</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4 data-i18n="footer.contact">联系方式</h4>
+                <ul>
+                    <li><i class="fas fa-map-marker-alt"></i> <span data-i18n="footer.addr_text">浙江省江山市江东工业园区兴工八二路1号</span></li>
+                    <li><i class="fas fa-phone"></i> 0570-4051365</li>
+                    <li><i class="fas fa-envelope"></i> info@weifeng-material.com</li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 Zhejiang Wei Feng New Material Co., Ltd. All Rights Reserved. | 浙ICP备2021010917号-1</p>
         </div>
     </footer>
 

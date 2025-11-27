@@ -15,14 +15,22 @@
             <div class="logo">
                 <h2>WEI FENG<span>.</span></h2>
             </div>
+            
             <ul class="nav-links">
-                <li><a href="index.html" class="active">首页</a></li>
-                <li><a href="about.html">关于我们</a></li>
-                <li><a href="products.html">产品中心</a></li>
-                <li><a href="news.html">新闻资讯</a></li>
-                <li><a href="gallery.html">企业形象</a></li>
-                <li><a href="contact.html" class="btn-contact">联系我们</a></li>
+                <li><a href="index.html" class="active" data-i18n="nav.home">首页</a></li>
+                <li><a href="about.html" data-i18n="nav.about">关于我们</a></li>
+                <li><a href="products.html" data-i18n="nav.products">产品中心</a></li>
+                <li><a href="news.html" data-i18n="nav.news">新闻资讯</a></li>
+                <li><a href="gallery.html" data-i18n="nav.gallery">企业形象</a></li>
+                <li><a href="contact.html" class="btn-contact" data-i18n="nav.contact">联系我们</a></li>
             </ul>
+            
+            <div class="lang-switch">
+                <span class="lang-btn active" onclick="setLanguage('zh')">CN</span>
+                <span class="divider">/</span>
+                <span class="lang-btn" onclick="setLanguage('en')">EN</span>
+            </div>
+
             <div class="mobile-menu-btn">
                 <i class="fas fa-bars"></i>
             </div>
@@ -32,11 +40,11 @@
     <header class="hero" id="home">
         <div class="overlay"></div>
         <div class="container hero-content">
-            <h1 class="fade-in-up">专注纺织助剂<br>研发生产</h1>
-            <p class="fade-in-up delay-200">17年行业经验 · 科技创新 · 品质保证 · 年产18000吨</p>
+            <h1 class="fade-in-up" data-i18n="home.hero_title">专注纺织助剂<br>研发生产</h1>
+            <p class="fade-in-up delay-200" data-i18n="home.hero_desc">17年行业经验 · 科技创新 · 品质保证 · 年产18000吨</p>
             <div class="hero-btns fade-in-up delay-400">
-                <a href="products.html" class="btn btn-primary">探索产品 <i class="fas fa-arrow-right"></i></a>
-                <a href="about.html" class="btn btn-outline">了解伟丰</a>
+                <a href="products.html" class="btn btn-primary" data-i18n="home.btn_explore">探索产品 <i class="fas fa-arrow-right"></i></a>
+                <a href="about.html" class="btn btn-outline" data-i18n="home.btn_about">了解伟丰</a>
             </div>
         </div>
         <div class="scroll-down">
@@ -51,22 +59,22 @@
                 <div class="stat-card reveal">
                     <i class="fas fa-history"></i>
                     <h3 class="counter" data-target="17">0</h3>
-                    <p>年 励精图治</p>
+                    <p data-i18n="stats.years">年 励精图治</p>
                 </div>
                 <div class="stat-card reveal">
                     <i class="fas fa-flask"></i>
                     <h3 class="counter" data-target="18000">0</h3>
-                    <p>吨 助剂年产量</p>
+                    <p data-i18n="stats.ton1">吨 助剂年产量</p>
                 </div>
                 <div class="stat-card reveal">
                     <i class="fas fa-industry"></i>
                     <h3 class="counter" data-target="10000">0</h3>
-                    <p>吨 硅油年产量</p>
+                    <p data-i18n="stats.ton2">吨 硅油年产量</p>
                 </div>
                 <div class="stat-card reveal">
                     <i class="fas fa-users"></i>
                     <h3 class="counter" data-target="100">0</h3>
-                    <p>% 客户满意度</p>
+                    <p data-i18n="stats.sat">% 客户满意度</p>
                 </div>
             </div>
         </div>
@@ -78,24 +86,24 @@
                 <div class="col-text reveal">
                     <div class="section-title left-align">
                         <span>WHO WE ARE</span>
-                        <h2>公司简介</h2>
+                        <h2 data-i18n="sect.about_title">公司简介</h2>
                         <div class="line"></div>
                     </div>
                     <div class="text-content">
-                        <p>浙江伟丰新材料有限公司（原江山市伟丰化工厂）位于江山市江东工业园区，是一家专业从事环保型纺织印染助剂生产销售及有机硅材料生产销售的化工企业。</p>
-                        <p>致力于产品开发、市场开拓，力求专业化、精细化。产品基本覆盖纺织品整理的所有领域。</p>
+                        <p data-i18n="sect.about_desc1">浙江伟丰新材料有限公司（原江山市伟丰化工厂）位于江山市江东工业园区，是一家专业从事环保型纺织印染助剂生产销售及有机硅材料生产销售的化工企业。</p>
+                        <p data-i18n="sect.about_desc2">致力于产品开发、市场开拓，力求专业化、精细化。产品基本覆盖纺织品整理的所有领域。</p>
                         <ul class="features-list" style="margin-top: 20px;">
-                            <li><i class="fas fa-check-circle"></i> 环保型纺织印染助剂</li>
-                            <li><i class="fas fa-check-circle"></i> 高浓缩三元嵌段硅油</li>
-                            <li><i class="fas fa-check-circle"></i> 二甲基硅油及精细化工产品</li>
+                            <li data-i18n="sect.about_list1"><i class="fas fa-check-circle"></i> 环保型纺织印染助剂</li>
+                            <li data-i18n="sect.about_list2"><i class="fas fa-check-circle"></i> 高浓缩三元嵌段硅油</li>
+                            <li data-i18n="sect.about_list3"><i class="fas fa-check-circle"></i> 二甲基硅油及精细化工产品</li>
                         </ul>
-                        <a href="about.html" class="btn btn-dark">了解更多详情</a>
+                        <a href="about.html" class="btn btn-dark" data-i18n="btn.more">了解更多详情</a>
                     </div>
                 </div>
                 <div class="col-img reveal">
                     <div class="video-wrapper">
                         <img src="https://placehold.co/800x600/f0f0f0/333?text=Factory+Exterior" alt="公司外景">
-                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -105,7 +113,7 @@
         <div class="container">
             <div class="section-title reveal">
                 <span>OUR PRODUCTS</span>
-                <h2>核心产品系列</h2>
+                <h2 data-i18n="sect.prod_title">核心产品系列</h2>
                 <div class="line"></div>
             </div>
             
@@ -114,54 +122,54 @@
                     <div class="p-img">
                         <img src="https://placehold.co/600x400/e0e0e0/333?text=Silicone+Oil" alt="硅油系列">
                         <div class="p-overlay">
-                            <a href="products.html"><button>查看详情</button></a>
+                            <a href="products.html"><button data-i18n="btn.more">查看详情</button></a>
                         </div>
                     </div>
                     <div class="p-info">
-                        <h3>端(氨/环氧)硅油系列</h3>
-                        <p>Silicone Oil Series</p>
+                        <h3 data-i18n="prod.silicone">端(氨/环氧)硅油系列</h3>
+                        <p data-i18n="prod.silicone_sub">Silicone Oil Series</p>
                     </div>
                 </div>
                 <div class="product-item reveal">
                     <div class="p-img">
                          <img src="https://placehold.co/600x400/e0e0e0/333?text=Pre-treatment" alt="前处理">
                         <div class="p-overlay">
-                            <a href="products.html"><button>查看详情</button></a>
+                            <a href="products.html"><button data-i18n="btn.more">查看详情</button></a>
                         </div>
                     </div>
                     <div class="p-info">
-                        <h3>前处理系列</h3>
-                        <p>Pre-treatment Chemicals</p>
+                        <h3 data-i18n="prod.pre">前处理系列</h3>
+                        <p data-i18n="prod.pre_sub">Pre-treatment Chemicals</p>
                     </div>
                 </div>
                 <div class="product-item reveal">
                     <div class="p-img">
                          <img src="https://placehold.co/600x400/e0e0e0/333?text=Dyeing" alt="染色系列">
                         <div class="p-overlay">
-                            <a href="products.html"><button>查看详情</button></a>
+                            <a href="products.html"><button data-i18n="btn.more">查看详情</button></a>
                         </div>
                     </div>
                     <div class="p-info">
-                        <h3>染色系列</h3>
-                        <p>Dyeing Series</p>
+                        <h3 data-i18n="prod.dye">染色系列</h3>
+                        <p data-i18n="prod.dye_sub">Dyeing Series</p>
                     </div>
                 </div>
                 <div class="product-item reveal">
                     <div class="p-img">
                          <img src="https://placehold.co/600x400/e0e0e0/333?text=Softener" alt="软片系列">
                         <div class="p-overlay">
-                            <a href="products.html"><button>查看详情</button></a>
+                            <a href="products.html"><button data-i18n="btn.more">查看详情</button></a>
                         </div>
                     </div>
                     <div class="p-info">
-                        <h3>软片系列</h3>
-                        <p>Softener Flake Series</p>
+                        <h3 data-i18n="prod.soft">软片系列</h3>
+                        <p data-i18n="prod.soft_sub">Softener Flake Series</p>
                     </div>
                 </div>
             </div>
             
             <div style="text-align: center; margin-top: 40px;">
-                <a href="products.html" class="btn btn-outline" style="color:var(--primary-color); border-color:var(--primary-color);">查看全部产品</a>
+                <a href="products.html" class="btn btn-outline" style="color:var(--primary-color); border-color:var(--primary-color);" data-i18n="btn.view_all">查看全部产品</a>
             </div>
         </div>
     </section>
@@ -171,16 +179,16 @@
         <div class="container">
             <div class="section-title white reveal">
                 <span>WHY CHOOSE US</span>
-                <h2>选择我们的理由</h2>
-                <p style="color: rgba(255,255,255,0.7); margin-top: 10px;">人才、技术和效益是公司的核心基石</p>
+                <h2 data-i18n="sect.why_title">选择我们的理由</h2>
+                <p style="color: rgba(255,255,255,0.7); margin-top: 10px;" data-i18n="sect.why_sub">人才、技术和效益是公司的核心基石</p>
             </div>
 
             <div class="reasons-layout">
                 <div class="reason-row reveal">
                     <div class="reason-text">
                         <div class="reason-num">01</div>
-                        <h3>公司实力 — 17年专业厂家</h3>
-                        <p>17年专业纺织印染助剂厂家，产品种类齐全，涵盖各类功能整理剂。产品包括各类新型有机硅柔软剂、平滑剂等。</p>
+                        <h3 data-i18n="why.1_title">公司实力 — 17年专业厂家</h3>
+                        <p data-i18n="why.1_desc">17年专业纺织印染助剂厂家，产品种类齐全，涵盖各类功能整理剂。产品包括各类新型有机硅柔软剂、平滑剂等。</p>
                     </div>
                     <div class="reason-image">
                         <img src="https://placehold.co/600x400/004080/ffffff?text=Strength" alt="公司实力">
@@ -190,8 +198,8 @@
                 <div class="reason-row reverse reveal">
                     <div class="reason-text">
                         <div class="reason-num">02</div>
-                        <h3>专业团队 — 研发创新</h3>
-                        <p>伟丰公司专业从事环保型纺织印染助剂生产销售及有机硅材料生产。公司团队致力于产品开发、市场开拓，力求专业化、精细化。</p>
+                        <h3 data-i18n="why.2_title">专业团队 — 研发创新</h3>
+                        <p data-i18n="why.2_desc">伟丰公司专业从事环保型纺织印染助剂生产销售及有机硅材料生产。公司团队致力于产品开发、市场开拓，力求专业化、精细化。</p>
                     </div>
                     <div class="reason-image">
                         <img src="https://placehold.co/600x400/004080/ffffff?text=Team" alt="研发团队">
@@ -205,7 +213,7 @@
         <div class="container">
             <div class="section-title reveal">
                 <span>LATEST NEWS</span>
-                <h2>新闻资讯</h2>
+                <h2 data-i18n="sect.news_title">新闻资讯</h2>
             </div>
             <div class="news-wrapper">
                 <article class="news-card reveal">
@@ -219,7 +227,7 @@
                     <div class="news-content">
                         <h3>35kta 高端有机硅系列产品扩产项目公示</h3>
                         <p>浙江伟丰新材料有限公司 35kta 高端有机硅系列产品扩产项目环境影响评价信息公示...</p>
-                        <a href="news.html" class="read-more">Read More <i class="fas fa-long-arrow-alt-right"></i></a>
+                        <a href="news.html" class="read-more" data-i18n="news.read_more">Read More <i class="fas fa-long-arrow-alt-right"></i></a>
                     </div>
                 </article>
                 <article class="news-card reveal">
@@ -233,7 +241,7 @@
                     <div class="news-content">
                         <h3>伟丰公司俞建芳经理《新一代环保硅油的介绍》</h3>
                         <p>讲解主题：新一代环保硅油的介绍，深入解析行业发展趋势与技术革新...</p>
-                        <a href="news.html" class="read-more">Read More <i class="fas fa-long-arrow-alt-right"></i></a>
+                        <a href="news.html" class="read-more" data-i18n="news.read_more">Read More <i class="fas fa-long-arrow-alt-right"></i></a>
                     </div>
                 </article>
                 <article class="news-card reveal">
@@ -247,7 +255,7 @@
                     <div class="news-content">
                         <h3>浙江伟丰新材料有限公司介绍</h3>
                         <p>浙江伟丰新材料有限公司位于江山市江东工业园区，是一家专业从事环保型纺织印染助剂...</p>
-                        <a href="news.html" class="read-more">Read More <i class="fas fa-long-arrow-alt-right"></i></a>
+                        <a href="news.html" class="read-more" data-i18n="news.read_more">Read More <i class="fas fa-long-arrow-alt-right"></i></a>
                     </div>
                 </article>
             </div>
@@ -258,7 +266,7 @@
         <div class="container footer-top">
             <div class="footer-col">
                 <h3>WEI FENG.</h3>
-                <p>专注纺织助剂17年，为您提供最优质的化学品解决方案。致力于精细化工领域。</p>
+                <p data-i18n="footer.desc">专注纺织助剂17年，为您提供最优质的化学品解决方案。致力于精细化工领域。</p>
                 <div class="socials">
                     <a href="#"><i class="fab fa-weixin"></i></a>
                     <a href="#"><i class="fab fa-linkedin-in"></i></a>
@@ -266,19 +274,19 @@
                 </div>
             </div>
             <div class="footer-col">
-                <h4>快速链接</h4>
+                <h4 data-i18n="footer.links">快速链接</h4>
                 <ul>
-                    <li><a href="about.html"><i class="fas fa-chevron-right"></i> 关于我们</a></li>
-                    <li><a href="products.html"><i class="fas fa-chevron-right"></i> 产品中心</a></li>
-                    <li><a href="news.html"><i class="fas fa-chevron-right"></i> 新闻资讯</a></li>
-                    <li><a href="gallery.html"><i class="fas fa-chevron-right"></i> 企业形象</a></li>
-                    <li><a href="contact.html"><i class="fas fa-chevron-right"></i> 联系我们</a></li>
+                    <li><a href="about.html" data-i18n="nav.about"><i class="fas fa-chevron-right"></i> 关于我们</a></li>
+                    <li><a href="products.html" data-i18n="nav.products"><i class="fas fa-chevron-right"></i> 产品中心</a></li>
+                    <li><a href="news.html" data-i18n="nav.news"><i class="fas fa-chevron-right"></i> 新闻资讯</a></li>
+                    <li><a href="gallery.html" data-i18n="nav.gallery"><i class="fas fa-chevron-right"></i> 企业形象</a></li>
+                    <li><a href="contact.html" data-i18n="nav.contact"><i class="fas fa-chevron-right"></i> 联系我们</a></li>
                 </ul>
             </div>
             <div class="footer-col">
-                <h4>联系方式</h4>
+                <h4 data-i18n="footer.contact">联系方式</h4>
                 <ul>
-                    <li><i class="fas fa-map-marker-alt"></i> 浙江省江山市江东工业园区兴工八二路1号</li>
+                    <li data-i18n="footer.addr"><i class="fas fa-map-marker-alt"></i> 浙江省江山市江东工业园区兴工八二路1号</li>
                     <li><i class="fas fa-phone"></i> 0570-4051365</li>
                     <li><i class="fas fa-envelope"></i> info@weifeng-material.com</li>
                 </ul>

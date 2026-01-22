@@ -11,7 +11,7 @@ const translations = {
         'footer.desc': '专注纺织助剂17年，为您提供最优质的化学品解决方案。致力于精细化工领域。',
         'footer.links': '快速链接',
         'footer.contact': '联系方式',
-        'footer.addr_text': '浙江省江山市江东工业园区兴工八二路1号', // 为了复用地址文本
+        'footer.addr_text': '浙江省江山市江东工业园区兴工八二路1号',
 
         // --- 首页 (Home) ---
         'home.hero_title': '专注纺织助剂<br>研发生产',
@@ -394,6 +394,67 @@ document.addEventListener('DOMContentLoaded', () => {
                 });
             });
         });
+    }
+
+    // --- 首页背景轮播逻辑 (升级版：支持左右切换) ---
+    const slides = document.querySelectorAll('.hero-slide');
+    const prevBtn = document.querySelector('.prev-btn');
+    const nextBtn = document.querySelector('.next-btn');
+    
+    if (slides.length > 0) {
+        let currentSlide = 0;
+        const slideInterval = 13000; 
+        let slideTimer; // 用于存储定时器ID
+
+        // 核心切换函数
+        function switchSlide(index) {
+            // 移除当前的 active
+            slides[currentSlide].classList.remove('active');
+            
+            // 更新索引
+            currentSlide = index;
+            
+            // 循环处理：如果超过最大索引，回到0；如果小于0，去最后一张
+            if (currentSlide >= slides.length) currentSlide = 0;
+            if (currentSlide < 0) currentSlide = slides.length - 1;
+
+            // 添加新的 active
+            slides[currentSlide].classList.add('active');
+        }
+
+        // 启动自动播放
+        function startTimer() {
+            slideTimer = setInterval(() => {
+                switchSlide(currentSlide + 1);
+            }, slideInterval);
+        }
+
+        // 重置定时器 (用户手动点击后调用)
+        function resetTimer() {
+            clearInterval(slideTimer);
+            startTimer();
+        }
+
+        // --- 事件监听 ---
+        
+        // 下一张按钮
+        if (nextBtn) {
+            nextBtn.addEventListener('click', () => {
+                switchSlide(currentSlide + 1);
+                resetTimer(); // 只要手动点了，就重置倒计时
+            });
+        }
+
+        // 上一张按钮
+        if (prevBtn) {
+            prevBtn.addEventListener('click', () => {
+                switchSlide(currentSlide - 1);
+                resetTimer();
+            });
+        }
+
+        // 初始化启动
+        startTimer();
     }
 });
 

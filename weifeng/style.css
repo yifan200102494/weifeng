@@ -683,3 +683,89 @@ body.detail-page-body {
         background: rgba(0, 0, 0, 0.2); /* 手机上背景稍微深一点，防看不清 */
     }
 }
+/* --- Lightbox (图片大图预览) 样式 [修正版 - 完美居中] --- */
+.lightbox-modal {
+    display: none; /* 默认隐藏 */
+    position: fixed;
+    z-index: 2000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.95); /* 背景稍微加深一点 */
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    
+    /* 【核心】使用 Flexbox 实现垂直水平双居中 */
+    justify-content: center;
+    align-items: center;
+    flex-direction: column; /* 让图片和文字垂直排列 */
+}
+
+/* 显示状态 */
+.lightbox-modal.show {
+    opacity: 1;
+    display: flex !important; /* 强制使用 flex，确保居中生效 */
+}
+
+/* 图片内容 */
+.lightbox-content {
+    display: block;
+    /* 宽高自适应，但限制最大尺寸，给四周留出空隙 */
+    max-width: 90vw; /* 屏幕宽度的 90% */
+    max-height: 80vh; /* 屏幕高度的 80% */
+    width: auto;
+    height: auto;
+    object-fit: contain;
+    border-radius: 4px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+    animation: zoomIn 0.3s;
+}
+
+/* 文字说明 */
+#lightbox-caption {
+    margin-top: 15px;
+    width: 90%;
+    text-align: center;
+    color: #e0e0e0;
+    font-size: 16px;
+    font-weight: 300;
+    text-shadow: 1px 1px 2px black;
+}
+
+/* 关闭按钮 (×) - 绝对定位在右上角 */
+.close-btn {
+    position: absolute;
+    top: 20px;
+    right: 30px;
+    color: #fff;
+    font-size: 40px;
+    font-weight: bold;
+    cursor: pointer;
+    z-index: 2001;
+    transition: 0.3s;
+    line-height: 1; /* 防止行高影响定位 */
+}
+
+.close-btn:hover {
+    color: var(--secondary-color);
+    transform: scale(1.1);
+}
+
+/* 放大动画 */
+@keyframes zoomIn {
+    from {transform: scale(0.9); opacity: 0;} 
+    to {transform: scale(1); opacity: 1;}
+}
+
+/* 移动端微调 */
+@media only screen and (max-width: 768px) {
+    .close-btn {
+        top: 15px;
+        right: 20px;
+        font-size: 35px;
+    }
+    #lightbox-caption {
+        font-size: 14px;
+    }
+}

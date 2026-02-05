@@ -471,3 +471,182 @@ function initMap() {
     marker.addEventListener("click", function(){ map.openInfoWindow(infoWindow, point); });
     map.openInfoWindow(infoWindow, point);
 }
+// --- 纯净版分页逻辑 ---
+function initPagination() {
+    // 【设置】每页显示几条？
+    // 这里设为 3，因为你 HTML 里现在有 3 条真新闻 + 3 条假新闻 = 6条
+    // 所以结果会是：第1页显示真新闻，第2页显示假新闻
+    const itemsPerPage = 3; 
+    
+    const paginationContainer = document.querySelector('.pagination');
+    if (!paginationContainer) return;
+
+    // 核心函数：显示特定页码
+    function showPage(page) {
+        // 1. 找到当前选中的那个 Tab (行业资讯 or 公司新闻)
+        const activeList = document.querySelector('.news-list.active');
+        if (!activeList) return;
+
+        // 2. 找到这个列表下所有的新闻行
+        const items = activeList.querySelectorAll('.news-row');
+        const totalPages = Math.ceil(items.length / itemsPerPage);
+
+        // 3. 修正页码范围 (防止超出)
+        if (page < 1) page = 1;
+        if (page > totalPages && totalPages > 0) page = totalPages;
+
+        // 4. 循环判断每一条新闻是显示还是隐藏
+        items.forEach((item, index) => {
+            const start = (page - 1) * itemsPerPage;
+            const end = start + itemsPerPage;
+            
+            if (index >= start && index < end) {
+                // 在当前页范围内 -> 显示
+                item.style.display = 'flex';
+                
+                // 重置动画，制造“翻页刷新”的视觉效果
+                item.style.animation = 'none';
+                item.offsetHeight; // 触发回流(reflow)以重启动画
+                item.style.animation = 'fadeInUp 0.5s forwards';
+            } else {
+                // 不在范围内 -> 隐藏
+                item.style.display = 'none';
+            }
+        });
+
+        // 5. 更新底部的 1 2 3 按钮
+        updatePaginationButtons(page, totalPages);
+    }
+
+    // 更新按钮状态
+    function updatePaginationButtons(currentPage, totalPages) {
+        paginationContainer.innerHTML = ''; // 清空旧按钮
+
+        // 如果只有1页，就不显示分页条了
+        if (totalPages <= 1) {
+            paginationContainer.style.display = 'none';
+            return;
+        } else {
+            paginationContainer.style.display = 'flex';
+        }
+
+        // --- 生成 "上一页" (<) ---
+        if (currentPage > 1) {
+             const prevBtn = createBtn('<i class="fas fa-angle-left"></i>', currentPage - 1);
+             paginationContainer.appendChild(prevBtn);
+        }
+
+        // --- 生成数字页码 (1 2 3) ---
+        for (let i = 1; i <= totalPages; i++) {
+            const btn = createBtn(i, i);
+            if (i === currentPage) btn.classList.add('active');
+            paginationContainer.appendChild(btn);
+        }
+
+        // --- 生成 "下一页" (>) ---
+        if (currentPage < totalPages) {
+            const nextBtn = createBtn('<i class="fas fa-angle-right"></i>', currentPage + 1);
+            paginationContainer.appendChild(nextBtn);
+        }
+    }
+
+    // 辅助函数：创建按钮
+    function createBtn(content, targetPage) {
+        const btn = document.createElement('a');
+        btn.href = '#';
+        btn.innerHTML = content;
+        btn.addEventListener('click', (e) => {
+            e.preventDefault(); // 阻止页面跳到顶部
+            showPage(targetPage);
+        });
+        return btn;
+    }
+
+    // --- 监听 Tab 切换 ---
+    // 当用户从“行业资讯”点到“公司新闻”时，重置回第 1 页
+    const tabBtns = document.querySelectorAll('.tab-btn');
+    tabBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+            // 设置一点点延迟，确保 Tab 切换的 class 变化已经完成
+            setTimeout(() => {
+                showPage(1);
+            }, 50);
+        });
+    });
+
+    // --- 页面刚加载时，默认显示第 1 页 ---
+    showPage(1);
+}
+
+// 确保在页面加载完成后运行
+document.addEventListener('DOMContentLoaded', () => {
+    initPagination();
+});
+// --- Lightbox 图片预览功能 ---
+function initLightbox() {
+    const modal = document.getElementById('lightbox');
+    const modalImg = document.getElementById('lightbox-img');
+    const captionText = document.getElementById('lightbox-caption');
+    const closeBtn = document.querySelector('.close-btn');
+
+    // 1. 找到所有的图片容器
+    // 注意：我们监听 .img-wrapper，这样无论点图片哪里都能触发
+    const items = document.querySelectorAll('.gallery-item .img-wrapper');
+
+    items.forEach(item => {
+        item.addEventListener('click', function() {
+            const img = this.querySelector('img'); // 找到容器里面的 img 标签
+            const caption = this.nextElementSibling; // 找到下方的文字说明 (.gallery-caption)
+            
+            if (modal && img) {
+                modal.style.display = "flex";
+                
+                // 稍微延时一点加 show class，为了触发 CSS 的 opacity 动画
+                setTimeout(() => {
+                    modal.classList.add('show');
+                }, 10);
+
+                modalImg.src = img.src; // 把大图地址设为当前图片的地址
+                
+                // 如果有文字说明，也显示出来
+                if (caption) {
+                    captionText.innerHTML = caption.innerHTML;
+                } else {
+                    captionText.innerHTML = "";
+                }
+            }
+        });
+    });
+
+    // 2. 关闭功能的函数
+    function closeModal() {
+        modal.classList.remove('show');
+        // 等待0.3秒动画结束后再隐藏 display
+        setTimeout(() => {
+            modal.style.display = "none";
+        }, 300);
+    }
+
+    // 3. 绑定关闭事件
+    if (closeBtn) {
+        closeBtn.addEventListener('click', closeModal);
+    }
+
+    // 4. 点击背景也能关闭 (优化用户体验，尤其是手机端)
+    if (modal) {
+        modal.addEventListener('click', function(e) {
+            // 如果点击的是背景层（modal本身），而不是图片本身，则关闭
+            if (e.target === modal) {
+                closeModal();
+            }
+        });
+    }
+}
+
+// 确保页面加载完成后运行
+document.addEventListener('DOMContentLoaded', () => {
+    // ... 原有的代码 ...
+    
+    // 启动 Lightbox 功能
+    initLightbox();
+});

@@ -93,33 +93,29 @@
 
     <script type="text/javascript">
     window.onload = function() {
-        // 1. 准确的坐标（请确保这两处数字完全一致）
-        var myLngLat = [118.726677,28.812076]; // ← 把这里换成你拾取的准确经纬度
+        
+        var myLngLat = [118.726677,28.812076]; 
 
-        // 2. 初始化地图
         var map = new AMap.Map('amapContainer', {
-            zoom: 16,           // 缩放级别，16 比较合适
-            center: myLngLat,   // 地图中心点
+            zoom: 16,           
+            center: myLngLat,   
             viewMode: '3D'
         });
 
-        // 3. 创建并添加标点（这就是那个“标点”）
         var myIcon = new AMap.Icon({
-            image: 'images/logo.png',      // 1. 指向你的 logo 文件 (请确保文件存在)
-            size: new AMap.Size(40, 40),          // 2. 容器大小 (设为 40x40px)
-            imageSize: new AMap.Size(40, 40),     // 3. 图片缩放后的大小 (设为 40x40px)
-            offset: new AMap.Pixel(-20, -40)       // 4. 偏移量： half width, full height (让底部中点对齐经纬度)
+            image: 'images/logo.png',      
+            size: new AMap.Size(40, 40),          
+            imageSize: new AMap.Size(40, 40),    
+            offset: new AMap.Pixel(-20, -40)     
         });
 
-        // 创建标点并使用自定义图标
         var marker = new AMap.Marker({
-            position: myLngLat, // 标点的位置
-            map: map,           // 将标点添加到地图
-            icon: myIcon,       // 【关键】：使用上面定义的自定义图标 myIcon
-            title: '浙江伟丰新材料有限公司' // 鼠标悬停时显示的文字
+            position: myLngLat, 
+            map: map,          
+            icon: myIcon,       
+            title: '浙江伟丰新材料有限公司' 
         });
 
-        // 4. 可选：点击标点弹出一个信息卡片
         var infoWindow = new AMap.InfoWindow({
             content: '<div style="padding:10px; color:#333;"><b>浙江伟丰新材料有限公司</b><br>江山市兴工八二路1号</div>',
             offset: new AMap.Pixel(0, -30)
@@ -130,6 +126,47 @@
         });
     };
     </script>
+     <footer id="contact">
+        <div class="container footer-top">
+            <div class="footer-col">
+                <a href="index.html">
+                    <img src="images/logo.png" alt="浙江伟丰新材料有限公司 Logo">
+                </a>
+                <p>专注纺织助剂17年，为您提供最优质的化学品解决方案。致力于精细化工领域。</p>
+                <div class="socials">
+                    <a href="contact.html"><i class="fab fa-weixin"></i></a>
+                    <a href="contact.html"><i class="fab fa-linkedin-in"></i></a>
+                    <a href="contact.html"><i class="fab fa-tiktok"></i></a>
+                </div>
+            </div>
+            <div class="footer-col">
+                <h4>快速链接</h4>
+                <ul>
+                    <li><a href="about.html"><i class="fas fa-chevron-right"></i> 关于我们</a></li>
+                    <li><a href="products.html"><i class="fas fa-chevron-right"></i> 产品中心</a></li>
+                    <li><a href="news.html"><i class="fas fa-chevron-right"></i> 新闻资讯</a></li>
+                    <li><a href="contact.html"><i class="fas fa-chevron-right"></i> 联系我们</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>联系方式</h4>
+                <ul>
+                    <li><i class="fas fa-map-marker-alt"></i> 浙江省江山市江东工业园区兴工八二路1号</li>
+                    <li><i class="fas fa-phone"></i> 0570-4051365</li>
+                    <li><i class="fas fa-envelope"></i> info@weifeng-material.com</li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <div class="copyright">
+                &copy; 2025 Zhejiang Wei Feng New Material Co., Ltd. All Rights Reserved.
+            </div>
+            <div class="beian-info">
+                <a href="https://beian.miit.gov.cn/" target="_blank">浙ICP备2021010917号-1</a>
+                <a href="#" target="_blank" class="gongan">浙公网安备 33088102002621号</a>
+            </div>
+        </div>
+    </footer>
     <script src="script.js"></script>
 </body>
 </html>

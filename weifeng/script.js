@@ -650,3 +650,28 @@ document.addEventListener('DOMContentLoaded', () => {
     // 启动 Lightbox 功能
     initLightbox();
 });
+// ==========================================
+// --- 产品详情页专用 Tab 切换功能 ---
+// ==========================================
+function openProductTab(evt, tabId) {
+    // 1. 隐藏所有的产品内容区
+    var tabcontent = document.getElementsByClassName("product-tab-content");
+    for (var i = 0; i < tabcontent.length; i++) {
+        tabcontent[i].style.display = "none";
+    }
+
+    // 2. 移除所有产品选项卡按钮的 active 状态
+    var tablinks = document.getElementsByClassName("prod-tab-btn");
+    for (var i = 0; i < tablinks.length; i++) {
+        tablinks[i].className = tablinks[i].className.replace(" active", "");
+    }
+
+    // 3. 显示当前点击的这个内容区
+    var target = document.getElementById(tabId);
+    if (target) {
+        target.style.display = "block";
+    }
+    
+    // 4. 给当前点击的按钮加上 active 状态
+    evt.currentTarget.className += " active";
+}

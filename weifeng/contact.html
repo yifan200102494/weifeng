@@ -7,12 +7,23 @@
     <link rel="stylesheet" href="style.css">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700&display=swap" rel="stylesheet">
-</head>
+    
+    <script type="text/javascript">
+        window._AMapSecurityConfig = {
+            securityJsCode: '6ca8320043a5ba2754165fd4f0ebe0c5',
+        }
+    </script>
+
+    <script type="text/javascript" src="https://webapi.amap.com/maps?v=2.0&key=	20f7dd7621b0c39f47622292e1a84777"></script> </head>
 <body>
 
     <nav class="navbar" id="navbar">
         <div class="container nav-flex">
-            <div class="logo"><h2>WEI FENG<span>.</span></h2></div>
+            <div class="logo">
+                <a href="index.html">
+                    <img src="images/logo.png" alt="浙江伟丰新材料有限公司 Logo">
+                </a>
+            </div>
             <ul class="nav-links">
                 <li><a href="index.html" data-i18n="nav.home">首页</a></li>
                 <li><a href="about.html" data-i18n="nav.about">关于我们</a></li>
@@ -21,13 +32,11 @@
                 <li><a href="gallery.html" data-i18n="nav.gallery">企业形象</a></li>
                 <li><a href="contact.html" class="active btn-contact" data-i18n="nav.contact">联系我们</a></li>
             </ul>
-
             <div class="lang-switch">
                 <span class="lang-btn active" onclick="setLanguage('zh')">CN</span>
                 <span class="divider">/</span>
                 <span class="lang-btn" onclick="setLanguage('en')">EN</span>
             </div>
-
             <div class="mobile-menu-btn"><i class="fas fa-bars"></i></div>
         </div>
     </nav>
@@ -71,14 +80,8 @@
                 </div>
 
                 <div class="contact-map-box">
-                    <div id="baiduMap" class="map-container">
-                        <img src="https://placehold.co/800x600/e0e0e0/999?text=Map+Loading" alt="地图" class="static-map-img">
-                        <div class="map-overlay-hint">
-                            <i class="fas fa-map-marker-alt"></i>
-                            <p data-i18n="footer.addr_text">浙江省江山市经济技术开发区兴工八二路1号</p>
-                            <a href="#" class="btn btn-primary btn-sm" data-i18n="contact.btn_map">查看在线地图</a>
+                    <div id="amapContainer" style="width: 100%; height: 100%; min-height: 400px; border-radius: 12px; overflow: hidden;">
                         </div>
-                    </div>
                 </div>
 
             </div>
@@ -86,51 +89,47 @@
     </section>
 
     <footer id="contact">
-        <div class="container footer-top">
-            <div class="footer-col">
-                <h3>WEI FENG.</h3>
-                <p data-i18n="footer.desc">专注纺织助剂17年，为您提供最优质的化学品解决方案。致力于精细化工领域。</p>
-                <div class="socials">
-                    <a href="contact.html"><i class="fab fa-weixin"></i></a>
-                    <a href="contact.html"><i class="fab fa-linkedin-in"></i></a>
-                    <a href="contact.html"><i class="fab fa-tiktok"></i></a>
-                </div>
-            </div>
-            <div class="footer-col">
-                <h4 data-i18n="footer.links">快速链接</h4>
-                <ul>
-                    <li><a href="about.html" data-i18n="nav.about"><i class="fas fa-chevron-right"></i> 关于我们</a></li>
-                    <li><a href="products.html" data-i18n="nav.products"><i class="fas fa-chevron-right"></i> 产品中心</a></li>
-                    <li><a href="news.html" data-i18n="nav.news"><i class="fas fa-chevron-right"></i> 新闻资讯</a></li>
-                    <li><a href="contact.html" data-i18n="nav.contact"><i class="fas fa-chevron-right"></i> 联系我们</a></li>
-                </ul>
-            </div>
-            <div class="footer-col">
-                <h4 data-i18n="footer.contact">联系方式</h4>
-                <ul>
-                    <li><i class="fas fa-map-marker-alt"></i> <span data-i18n="footer.addr_text">浙江省江山市江东工业园区兴工八二路1号</span></li>
-                    <li><i class="fas fa-phone"></i> 0570-4051365</li>
-                    <li><i class="fas fa-envelope"></i> info@weifeng-material.com</li>
-                </ul>
-            </div>
-        </div>
-        <div class="footer-bottom">
-    <div class="copyright">
-        &copy; 2025 Zhejiang Wei Feng New Material Co., Ltd. All Rights Reserved.
-    </div>
-    <div class="beian-info">
-        <a href="https://beian.miit.gov.cn/" target="_blank" rel="noopener noreferrer">
-            浙ICP备2021010917号-1
-        </a>
-        
-        <a href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=33088102002621" target="_blank" rel="noopener noreferrer" class="gongan">
-            
-            浙公网安备 33088102002621号
-        </a>
-    </div>
-</div>
-    </footer>
+        </footer>
 
+    <script type="text/javascript">
+    window.onload = function() {
+        // 1. 准确的坐标（请确保这两处数字完全一致）
+        var myLngLat = [118.726677,28.812076]; // ← 把这里换成你拾取的准确经纬度
+
+        // 2. 初始化地图
+        var map = new AMap.Map('amapContainer', {
+            zoom: 16,           // 缩放级别，16 比较合适
+            center: myLngLat,   // 地图中心点
+            viewMode: '3D'
+        });
+
+        // 3. 创建并添加标点（这就是那个“标点”）
+        var myIcon = new AMap.Icon({
+            image: 'images/logo.png',      // 1. 指向你的 logo 文件 (请确保文件存在)
+            size: new AMap.Size(40, 40),          // 2. 容器大小 (设为 40x40px)
+            imageSize: new AMap.Size(40, 40),     // 3. 图片缩放后的大小 (设为 40x40px)
+            offset: new AMap.Pixel(-20, -40)       // 4. 偏移量： half width, full height (让底部中点对齐经纬度)
+        });
+
+        // 创建标点并使用自定义图标
+        var marker = new AMap.Marker({
+            position: myLngLat, // 标点的位置
+            map: map,           // 将标点添加到地图
+            icon: myIcon,       // 【关键】：使用上面定义的自定义图标 myIcon
+            title: '浙江伟丰新材料有限公司' // 鼠标悬停时显示的文字
+        });
+
+        // 4. 可选：点击标点弹出一个信息卡片
+        var infoWindow = new AMap.InfoWindow({
+            content: '<div style="padding:10px; color:#333;"><b>浙江伟丰新材料有限公司</b><br>江山市兴工八二路1号</div>',
+            offset: new AMap.Pixel(0, -30)
+        });
+
+        marker.on('click', function() {
+            infoWindow.open(map, myLngLat);
+        });
+    };
+    </script>
     <script src="script.js"></script>
 </body>
 </html>

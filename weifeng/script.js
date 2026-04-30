@@ -123,7 +123,16 @@ const translations = {
         'why.2_title': '专业团队 — 研发创新',
         'why.2_desc': '伟丰公司专业从事环保型纺织印染助剂生产销售及有机硅材料生产。公司团队致力于产品开发、市场开拓，力求专业化、精细化。',
         'why.3_title': '客户服务 — 尽心尽力为客户利益优先',
-        'why.3_desc': '公司凭借多年的研发经验尽心尽力为客户服务，选择我们等于选择实力保证。秉承优质的产品、优惠的价格、优良的售后服务与新老客户竭诚合作。'
+        'why.3_desc': '公司凭借多年的研发经验尽心尽力为客户服务，选择我们等于选择实力保证。秉承优质的产品、优惠的价格、优良的售后服务与新老客户竭诚合作。',
+
+        'sect.honor_title': '荣誉资质',
+        'sect.honor_sub': '权威认证 · 品质保障 · 行业标杆',
+        'honor.tag1_cn': '高新技术企业',
+        'honor.tag1_en': 'HIGH AND NEW TECHNOLOGY ENTERPRISES',
+        'honor.tag2_cn': '创新型中小企业',
+        'honor.tag2_en': 'INNOVATIVE SMALL AND MEDIUM-SIZED ENTERPRISES',
+        'honor.tag3_cn': '专精特新中小企业',
+        'honor.tag3_en': 'SPECIALIZED AND INNOVATIVE SMALL AND MEDIUM-SIZED ENTERPRISES'
     },
     'en': {
         // --- Navigation & Footer ---
@@ -248,7 +257,16 @@ const translations = {
         'why.2_title': 'Professional Team — R&D',
         'why.2_desc': 'Wei Feng team is committed to product development and market expansion, striving for specialization and refinement in chemical production.',
         'why.3_title': 'Customer Service — Priority',
-        'why.3_desc': 'With years of R&D experience, we serve our customers wholeheartedly. Choosing us means choosing quality assurance. We cooperate with customers with high-quality products and competitive prices.'
+        'why.3_desc': 'With years of R&D experience, we serve our customers wholeheartedly. Choosing us means choosing quality assurance. We cooperate with customers with high-quality products and competitive prices.',
+
+        'sect.honor_title': 'Honors & Certifications',
+        'sect.honor_sub': 'Authoritative certifications · Quality assured · Industry benchmark',
+        'honor.tag1_cn': 'High & New Technology Enterprise',
+        'honor.tag1_en': 'HIGH AND NEW TECHNOLOGY ENTERPRISES',
+        'honor.tag2_cn': 'Innovative SME',
+        'honor.tag2_en': 'INNOVATIVE SMALL AND MEDIUM-SIZED ENTERPRISES',
+        'honor.tag3_cn': 'Specialized & Innovative SME',
+        'honor.tag3_en': 'SPECIALIZED AND INNOVATIVE SMALL AND MEDIUM-SIZED ENTERPRISES'
     }
 };
 
@@ -675,3 +693,225 @@ function openProductTab(evt, tabId) {
     // 4. 给当前点击的按钮加上 active 状态
     evt.currentTarget.className += " active";
 }
+
+/* ========================================================== */
+/* === Honor Section: PDF.js thumbnails + Lightbox viewer === */
+/* ========================================================== */
+(function () {
+    const cards = document.querySelectorAll('.honor-card[data-cert]');
+    if (!cards.length) return;
+
+    // PDF.js worker
+    if (typeof pdfjsLib !== 'undefined') {
+        pdfjsLib.GlobalWorkerOptions.workerSrc =
+            'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
+    }
+
+    // Decode base64 -> Uint8Array (used when PDF data is embedded inline)
+    function base64ToBytes(b64) {
+        const bin = atob(b64);
+        const out = new Uint8Array(bin.length);
+        for (let i = 0; i < bin.length; i++) out[i] = bin.charCodeAt(i);
+        return out;
+    }
+
+    // Cache of loaded PDF documents (keyed by id-or-url) so we don't re-decode
+    const pdfCache = new Map();
+    async function getPdf(card) {
+        const key = card.dataset.certId || card.dataset.cert;
+        if (pdfCache.has(key)) return pdfCache.get(key);
+
+        let docParams;
+        const id = card.dataset.certId;
+        if (id && window.PDF_DATA && window.PDF_DATA[id]) {
+            // Inline base64 path (works on file:// where fetch is blocked)
+            docParams = { data: base64ToBytes(window.PDF_DATA[id]) };
+        } else {
+            // Direct URL fetch (works when served over HTTP)
+            docParams = { url: card.dataset.cert };
+        }
+        const promise = pdfjsLib.getDocument(docParams).promise;
+        pdfCache.set(key, promise);
+        return promise;
+    }
+
+    // Render the PDF's first page onto a thumbnail canvas. The canvas's drawing
+    // buffer carries the high-res pixels; CSS (object-fit: contain) handles display sizing.
+    async function renderPdfThumbnail(card, canvas, targetWidth) {
+        const pdf = await getPdf(card);
+        const page = await pdf.getPage(1);
+        const baseViewport = page.getViewport({ scale: 1 });
+        const dpr = window.devicePixelRatio || 1;
+        const scale = (targetWidth / baseViewport.width) * dpr;
+        const viewport = page.getViewport({ scale });
+        canvas.width = viewport.width;
+        canvas.height = viewport.height;
+        // Note: do NOT set canvas.style.width/height — let CSS object-fit: contain center it inside the cert-frame.
+        await page.render({ canvasContext: canvas.getContext('2d'), viewport }).promise;
+    }
+
+    // Render every page of the PDF into a scrollable wrapper for the lightbox.
+    async function renderPdfAllPages(card, container, maxWidth) {
+        const pdf = await getPdf(card);
+        const pageCount = pdf.numPages;
+        const dpr = window.devicePixelRatio || 1;
+        container.innerHTML = '';
+
+        if (pageCount > 1) {
+            const indicator = document.createElement('div');
+            indicator.className = 'pdf-page-indicator';
+            indicator.innerHTML = '<i class="fas fa-layer-group icon"></i>共 ' + pageCount + ' 页 · 上下滚动查看';
+            container.appendChild(indicator);
+        }
+
+        // Pre-create canvases sized to viewport so layout doesn't jump as pages render
+        const queue = [];
+        for (let i = 1; i <= pageCount; i++) {
+            const page = await pdf.getPage(i);
+            const baseViewport = page.getViewport({ scale: 1 });
+            const scale = (maxWidth / baseViewport.width) * dpr;
+            const viewport = page.getViewport({ scale });
+            const canvas = document.createElement('canvas');
+            canvas.className = 'pdf-page';
+            canvas.width = viewport.width;
+            canvas.height = viewport.height;
+            canvas.style.width  = (viewport.width / dpr) + 'px';
+            canvas.style.height = (viewport.height / dpr) + 'px';
+            container.appendChild(canvas);
+            queue.push({ page, canvas, viewport });
+        }
+
+        // Render sequentially so the first page appears quickly
+        for (const job of queue) {
+            await job.page.render({ canvasContext: job.canvas.getContext('2d'), viewport: job.viewport }).promise;
+        }
+    }
+
+    // ---------- Render PDF thumbnails on load ----------
+    async function renderThumbnails() {
+        if (typeof pdfjsLib === 'undefined') return;
+        for (const card of cards) {
+            if (card.dataset.type !== 'pdf') continue;
+            const frame = card.querySelector('.cert-frame');
+            const canvas = card.querySelector('canvas');
+            if (!canvas) continue;
+            try {
+                const cardWidth = card.getBoundingClientRect().width || 200;
+                await renderPdfThumbnail(card, canvas, Math.max(cardWidth * 1.8, 360));
+                if (frame) frame.classList.add('loaded');
+            } catch (err) {
+                console.warn('PDF thumbnail render failed:', card.dataset.cert, err);
+                // Fallback: show generic icon if rendering fails
+                if (frame) {
+                    frame.classList.add('loaded');
+                    const fallback = document.createElement('div');
+                    fallback.className = 'cert-fallback';
+                    fallback.innerHTML = '<i class="fas fa-file-pdf" style="font-size:48px;color:#dc2626;"></i><br><span style="display:block;margin-top:10px;color:#475569;font-size:13px;">' + (card.dataset.caption || '查看证书') + '</span>';
+                    fallback.style.cssText = 'position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:16px;background:#fff;';
+                    frame.appendChild(fallback);
+                }
+            }
+        }
+    }
+
+    // ---------- Lightbox ----------
+    const lightbox    = document.getElementById('honorLightbox');
+    const lbBody      = document.getElementById('lightboxBody');
+    const lbCaption   = document.getElementById('lightboxCaption');
+    const lbOverlay   = lightbox && lightbox.querySelector('.lightbox-overlay');
+    const lbClose     = lightbox && lightbox.querySelector('.lightbox-close');
+    const lbPrev      = lightbox && lightbox.querySelector('.lightbox-prev');
+    const lbNext      = lightbox && lightbox.querySelector('.lightbox-next');
+
+    let currentIndex = 0;
+    const cardsArr = Array.from(cards);
+
+    function showSpinner() {
+        lbBody.classList.remove('pdf-mode');
+        lbBody.innerHTML = '<div class="lightbox-spinner"><i class="fas fa-spinner fa-spin"></i></div>';
+    }
+
+    async function showCert(index) {
+        currentIndex = (index + cardsArr.length) % cardsArr.length;
+        const card = cardsArr[currentIndex];
+        const url  = card.dataset.cert;
+        const type = card.dataset.type;
+
+        lbCaption.textContent = card.dataset.caption || '';
+        showSpinner();
+
+        if (type === 'image') {
+            const img = new Image();
+            img.alt = card.dataset.caption || '';
+            img.onload = () => {
+                lbBody.classList.remove('pdf-mode');
+                lbBody.innerHTML = '';
+                lbBody.appendChild(img);
+            };
+            img.onerror = () => { lbBody.innerHTML = '<div style="padding:40px;color:#64748b;">图片加载失败</div>'; };
+            img.src = url;
+        } else if (type === 'pdf') {
+            if (typeof pdfjsLib === 'undefined') {
+                lbBody.innerHTML = '<div style="padding:40px;color:#64748b;">PDF 预览不可用</div>';
+                return;
+            }
+            try {
+                const stageMaxWidth = Math.min(window.innerWidth * 0.85, 1000);
+                lbBody.classList.add('pdf-mode');
+                lbBody.innerHTML = '';
+                const wrapper = document.createElement('div');
+                wrapper.className = 'pdf-pages';
+                lbBody.appendChild(wrapper);
+                await renderPdfAllPages(card, wrapper, stageMaxWidth);
+                lbBody.scrollTop = 0;
+            } catch (err) {
+                console.warn('PDF lightbox render failed:', err);
+                lbBody.classList.remove('pdf-mode');
+                lbBody.innerHTML = '<div style="padding:40px;color:#64748b;">PDF 加载失败</div>';
+            }
+        }
+    }
+
+    function openLightbox(index) {
+        showCert(index);
+        lightbox.classList.add('open');
+        lightbox.setAttribute('aria-hidden', 'false');
+        document.body.style.overflow = 'hidden';
+    }
+
+    function closeLightbox() {
+        lightbox.classList.remove('open');
+        lightbox.setAttribute('aria-hidden', 'true');
+        document.body.style.overflow = '';
+        setTimeout(() => {
+            lbBody.classList.remove('pdf-mode');
+            lbBody.innerHTML = '';
+        }, 300);
+    }
+
+    cardsArr.forEach((card, idx) => {
+        card.addEventListener('click', (e) => {
+            e.preventDefault();
+            openLightbox(idx);
+        });
+    });
+
+    if (lbOverlay) lbOverlay.addEventListener('click', closeLightbox);
+    if (lbClose)   lbClose.addEventListener('click', closeLightbox);
+    if (lbPrev)    lbPrev.addEventListener('click', () => showCert(currentIndex - 1));
+    if (lbNext)    lbNext.addEventListener('click', () => showCert(currentIndex + 1));
+
+    document.addEventListener('keydown', (e) => {
+        if (!lightbox.classList.contains('open')) return;
+        if (e.key === 'Escape')      closeLightbox();
+        if (e.key === 'ArrowLeft')   showCert(currentIndex - 1);
+        if (e.key === 'ArrowRight')  showCert(currentIndex + 1);
+    });
+
+    // Kick off thumbnail rendering once PDF.js is ready & DOM is laid out
+    if (document.readyState === 'complete' || document.readyState === 'interactive') {
+        setTimeout(renderThumbnails, 50);
+    } else {
+        document.addEventListener('DOMContentLoaded', () => setTimeout(renderThumbnails, 50));
+    }
+})();

@@ -184,8 +184,7 @@ img { max-width: 100%; display: block; }
 .section-title.left-align .line { margin: 15px 0 0 0; }
 
 .row-flex { display: flex; align-items: center; gap: 60px; }
-.col-text { flex: 1; }
-.col-img { flex: 1; }
+.col-text, .col-img { flex: 1; }
 .text-content p { margin-bottom: 20px; color: #555; line-height: 1.8; text-align: justify; font-size: 16px; }
 .features-list li { margin-bottom: 15px; display: flex; align-items: center; gap: 10px; font-weight: 500; }
 .features-list li i { color: var(--primary-color); font-size: 18px; }
@@ -201,10 +200,11 @@ img { max-width: 100%; display: block; }
     display: flex;
     align-items: center;
     gap: 50px;
-    background: rgba(255,255,255,0.03);
+    background: linear-gradient(135deg, rgba(255,255,255,0.10), rgba(255,255,255,0.045));
     padding: 40px;
     border-radius: 10px;
-    border: 1px solid rgba(255,255,255,0.1);
+    border: 1px solid rgba(255,255,255,0.22);
+    box-shadow: 0 18px 42px rgba(0, 10, 35, 0.36), inset 0 1px 0 rgba(255,255,255,0.08);
     backdrop-filter: blur(10px);
     position: relative;
     z-index: 1;
@@ -213,19 +213,19 @@ img { max-width: 100%; display: block; }
 /* Higher specificity than `.reveal` so its `transition: all 0.8s` can't bleed into hover.
    Reveal animation keeps its 0.8s opacity/transform; hover props get a snappier 0.2s.
    No transform on hover — would conflict with `.reveal.active`'s `translateY(0)`. */
-.reason-row.reveal {
+.reason-row.reveal,
+.reason-row.reveal.active {
     transition: opacity 0.8s ease-out, transform 0.8s ease-out,
-                background-color 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+                background 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
 }
 .reason-row:hover {
-    background: rgba(255,255,255,0.13);
+    background: linear-gradient(135deg, rgba(255,255,255,0.16), rgba(255,255,255,0.08));
     border-color: rgba(243, 156, 18, 0.85);
-    box-shadow: 0 25px 55px rgba(0, 5, 25, 0.6), 0 0 45px rgba(243, 156, 18, 0.28);
+    box-shadow: 0 25px 55px rgba(0, 5, 25, 0.6), 0 0 45px rgba(243, 156, 18, 0.28), inset 0 1px 0 rgba(255,255,255,0.12);
 }
 .reason-text { flex: 1.2; }
-.reason-image { flex: 0.8; height: 300px; border-radius: 8px; overflow: hidden; }
-.reason-image img { width: 100%; height: 100%; object-fit: cover; }
-.reason-num { font-size: 4rem; font-weight: 700; color: rgba(255,255,255,0.1); line-height: 1; margin-bottom: -20px; position: relative; z-index: 0; }
+.reason-image { flex: 0.8; height: 300px; border-radius: 8px; overflow: hidden; box-shadow: 0 14px 32px rgba(0,0,0,0.32); }
+.reason-num { font-size: 4rem; font-weight: 700; color: rgba(255,255,255,0.16); line-height: 1; margin-bottom: -20px; position: relative; z-index: 0; }
 .reason-text h3 { font-size: 1.8rem; margin-bottom: 15px; position: relative; z-index: 1; color: var(--white); }
 .reason-text p { color: rgba(255,255,255,0.8); font-size: 1rem; position: relative; z-index: 1; }
 
@@ -514,8 +514,7 @@ img { max-width: 100%; display: block; }
 .lightbox-close { top: 24px; right: 24px; }
 .lightbox-prev  { left: 24px; top: 50%; transform: translateY(-50%); }
 .lightbox-next  { right: 24px; top: 50%; transform: translateY(-50%); }
-.lightbox-prev:hover { transform: translateY(-50%) scale(1.08); }
-.lightbox-next:hover { transform: translateY(-50%) scale(1.08); }
+.lightbox-prev:hover, .lightbox-next:hover { transform: translateY(-50%) scale(1.08); }
 
 @media (max-width: 768px) {
     .lightbox-btn { width: 40px; height: 40px; font-size: 15px; }
@@ -594,7 +593,6 @@ img { max-width: 100%; display: block; }
         transform: none !important;
     }
     .honor-card:hover { transform: translateY(-8px) scale(1.03) !important; }
-    .honor-card-2:hover { transform: translateY(-8px) scale(1.03) !important; }
 
     /* Re-order so cards with the same aspect ratio sit on the same row.
        Vertical: 1, 2, 3, 6 (ISO-Q, ISO-E, OEKO, RSL).
@@ -619,32 +617,34 @@ img { max-width: 100%; display: block; }
     .honor-tag:last-child { border-bottom: none; }
     .honor-tag h3 { font-size: 18px; letter-spacing: 1px; }
     .honor-tag p { font-size: 10px; }
-    .cert-pdf strong { font-size: 14px; }
-    .cert-pdf span { font-size: 12px; }
 }
 
 /* --- Products Page --- */
-.product-intro { background-color: var(--light-bg); }
+.product-intro, .contact-section { background-color: var(--light-bg); }
 .intro-text { max-width: 900px; margin: 0 auto; text-align: center; color: #666; line-height: 1.8; font-size: 16px; }
 .category-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 40px; margin-top: 40px; }
 .cat-visual { position: relative; height: 380px; overflow: hidden; margin-bottom: 20px; border-radius: 10px; }
-.cat-visual .bg-img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.6s ease; filter: brightness(0.8); }
-.cat-item:hover .bg-img { transform: scale(1.1); }
-.cat-box { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); background: rgba(255, 255, 255, 0.95); width: 280px; height: 220px; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; padding: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.2); transition: all 0.4s ease; }
-.cat-item:hover .cat-box { transform: translate(-50%, -60%); background: #fff; box-shadow: 0 20px 50px rgba(0,0,0,0.3); }
+.reason-image img, .cat-visual .bg-img, .p-img img, .news-img img, .img-wrapper img { width: 100%; height: 100%; object-fit: cover; }
+.cat-visual .bg-img { transition: transform 0.6s ease; filter: brightness(0.8); }
+.cat-box { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); background-color: rgba(18, 18, 18, 0.94); color: var(--white); width: 280px; height: 220px; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; padding: 20px; box-shadow: 0 18px 44px rgba(0,0,0,0.34); transition: transform 0.4s ease, box-shadow 0.4s ease, background-color 0.2s ease; }
+.cat-item:hover .cat-box { transform: translate(-50%, -60%); background-color: rgba(18, 18, 18, 0.96); box-shadow: 0 24px 56px rgba(0,0,0,0.42); }
 .cat-box h3 { color: #b8860b; font-size: 18px; margin-bottom: 10px; font-weight: 500; }
+.cat-box > span:not(.view-more) { color: var(--white); }
 .small-line { width: 30px; height: 1px; background: #ddd; margin: 20px 0; transition: width 0.3s ease; }
 .cat-item:hover .small-line { width: 50px; background: var(--secondary-color); }
 .view-more { font-size: 12px; color: #b8860b; border-bottom: 1px solid transparent; transition: all 0.3s; }
 
 .product-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px; }
-.product-item { background: var(--white); border-radius: 15px; overflow: hidden; box-shadow: 0 5px 15px rgba(0,0,0,0.05); transition: var(--transition); display: block; color: inherit; text-decoration: none; cursor: pointer; }
-.product-item:hover { box-shadow: var(--shadow-hover); transform: translateY(-5px); }
-.p-img { height: 250px; position: relative; overflow: hidden; }
-.p-img img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.6s ease; }
-.product-item:hover .p-img img { transform: scale(1.1); }
-.p-overlay { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 86, 179, 0.7); display: flex; justify-content: center; align-items: center; opacity: 0; transition: var(--transition); }
-.product-item:hover .p-overlay { opacity: 1; }
+.product-item, .news-card { background: var(--white); border-radius: 15px; overflow: hidden; box-shadow: 0 12px 30px rgba(15,23,42,0.10); transition: var(--transition); color: inherit; text-decoration: none; cursor: pointer; }
+.product-item { display: block; }
+.product-item:hover, .news-card:hover, .gallery-item:hover { box-shadow: var(--shadow-hover); transform: translateY(-5px); }
+.p-img, .news-img, .img-wrapper { position: relative; overflow: hidden; }
+.p-img, .img-wrapper { height: 250px; }
+.p-img img, .img-wrapper img { transition: transform 0.6s ease; }
+.cat-item:hover .bg-img, .product-item:hover .p-img img, .news-card:hover .news-img img, .gallery-item:hover .img-wrapper img { transform: scale(1.1); }
+.p-overlay, .hover-overlay { position: absolute; top: 0; left: 0; width: 100%; height: 100%; display: flex; justify-content: center; align-items: center; opacity: 0; }
+.p-overlay { background: rgba(0, 86, 179, 0.7); transition: var(--transition); }
+.product-item:hover .p-overlay, .gallery-item:hover .hover-overlay { opacity: 1; }
 .p-overlay button, .p-overlay .p-overlay-btn { background: var(--white); color: var(--primary-color); border: none; padding: 10px 25px; border-radius: 25px; font-weight: bold; cursor: pointer; display: inline-block; }
 .p-info { padding: 25px; text-align: center; border-bottom: 3px solid transparent; transition: var(--transition); }
 .product-item:hover .p-info { border-bottom-color: var(--secondary-color); }
@@ -662,11 +662,9 @@ img { max-width: 100%; display: block; }
 .news-row:hover .news-date .year { color: var(--primary-color); }
 
 .news-wrapper { display: flex; gap: 30px; }
-.news-card { flex: 1; background: var(--white); border-radius: 15px; overflow: hidden; box-shadow: 0 5px 15px rgba(0,0,0,0.05); transition: var(--transition); display: flex; flex-direction: column; color: inherit; text-decoration: none; cursor: pointer; }
-.news-card:hover { transform: translateY(-5px); box-shadow: var(--shadow-hover); }
-.news-img { position: relative; height: 220px; overflow: hidden; }
-.news-img img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s; }
-.news-card:hover .news-img img { transform: scale(1.1); }
+.news-card { flex: 1; display: flex; flex-direction: column; }
+.news-img { height: 220px; }
+.news-img img { transition: transform 0.5s; }
 .date-badge { position: absolute; top: 15px; left: 15px; background: var(--white); padding: 8px 15px; border-radius: 8px; text-align: center; box-shadow: 0 5px 10px rgba(0,0,0,0.1); }
 .date-badge .day { display: block; font-size: 18px; font-weight: 700; color: var(--primary-color); }
 .news-content { padding: 25px; flex-grow: 1; display: flex; flex-direction: column; }
@@ -683,24 +681,16 @@ img { max-width: 100%; display: block; }
 .filter-btn { padding: 10px 30px; border: 1px solid #ddd; background: transparent; color: #666; border-radius: 50px; cursor: pointer; transition: all 0.3s ease; font-size: 15px; }
 .filter-btn:hover, .filter-btn.active { background: var(--primary-color); color: white; border-color: var(--primary-color); box-shadow: 0 5px 15px rgba(0, 86, 179, 0.3); }
 .gallery-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; }
-.gallery-item { background: #fff; border-radius: 8px; overflow: hidden; box-shadow: 0 5px 15px rgba(0,0,0,0.05); transition: all 0.4s ease; transform: scale(1); opacity: 1; }
-.img-wrapper { position: relative; overflow: hidden; height: 250px; }
-.img-wrapper img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.6s ease; }
-.hover-overlay { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 86, 179, 0.6); display: flex; justify-content: center; align-items: center; opacity: 0; transition: all 0.4s ease; cursor: pointer; }
-.gallery-item:hover { transform: translateY(-5px); box-shadow: var(--shadow-hover); }
-.gallery-item:hover .img-wrapper img { transform: scale(1.1); }
-.gallery-item:hover .hover-overlay { opacity: 1; }
+.gallery-item { background: #fff; border-radius: 8px; overflow: hidden; box-shadow: 0 12px 30px rgba(15,23,42,0.10); transition: all 0.4s ease; transform: scale(1); opacity: 1; }
+.hover-overlay { background: rgba(0, 86, 179, 0.6); transition: all 0.4s ease; cursor: pointer; }
 .gallery-caption { padding: 15px; text-align: center; font-size: 14px; color: #555; border-top: 1px solid #f0f0f0; }
 
 /* --- Contact --- */
-.contact-section { background-color: var(--light-bg); }
 .contact-wrapper { display: flex; background: #fff; border-radius: 15px; overflow: hidden; box-shadow: 0 10px 40px rgba(0,0,0,0.1); min-height: 600px; }
 .contact-info-box { flex: 1; padding: 60px 50px; background: #fff; position: relative; z-index: 2; }
 .info-header h2 { font-size: 32px; color: var(--primary-color); margin-bottom: 15px; }
 .info-group h3 { font-size: 18px; color: #333; margin-bottom: 20px; display: flex; align-items: center; gap: 10px; }
 .contact-map-box { flex: 1.5; position: relative; background: #f0f0f0; }
-.map-overlay-hint { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); background: rgba(255, 255, 255, 0.95); padding: 30px; text-align: center; border-radius: 10px; box-shadow: 0 10px 30px rgba(0,0,0,0.15); display: flex; flex-direction: column; align-items: center; gap: 15px; }
-
 /* --- Footer --- */
 footer { background: #0b1120; color: #cbd5e1; padding-top: 80px; }
 .footer-top { display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 50px; padding-bottom: 50px; border-bottom: 1px solid rgba(255,255,255,0.1); }
@@ -710,7 +700,6 @@ footer { background: #0b1120; color: #cbd5e1; padding-top: 80px; }
 .socials a:hover { background: var(--secondary-color); color: var(--white); }
 .footer-col ul li { margin-bottom: 12px; }
 .footer-col ul li a:hover { color: var(--secondary-color); padding-left: 5px; transition: 0.3s; }
-.footer-bottom { text-align: center; padding: 25px 0; font-size: 12px; color: #64748b; }
 
 /* --- Animations --- */
 @keyframes bounce { 0%, 20%, 50%, 80%, 100% { transform: translateY(0) translateX(-50%); } 40% { transform: translateY(-10px) translateX(-50%); } 60% { transform: translateY(-5px) translateX(-50%); } }
@@ -723,7 +712,7 @@ footer { background: #0b1120; color: #cbd5e1; padding-top: 80px; }
 
 /* --- 响应式 Responsive --- */
 @media (max-width: 992px) {
-    .category-grid, .contact-wrapper, .news-wrapper, .features-grid, .row-flex { flex-direction: column; }
+    .category-grid, .contact-wrapper, .news-wrapper, .row-flex { flex-direction: column; }
     .gallery-grid { grid-template-columns: repeat(2, 1fr); }
     .hero h1 { font-size: 48px; }
 }
@@ -777,6 +766,7 @@ footer { background: #0b1120; color: #cbd5e1; padding-top: 80px; }
     flex-direction: column;
     align-items: center;
     gap: 10px;
+    text-align: center;
     padding: 25px 0;
     color: #64748b;
     font-size: 12px;
@@ -820,11 +810,12 @@ body.detail-page-body {
     background-color: var(--white) !important;
     box-shadow: 0 2px 10px rgba(0,0,0,0.1);
 }
-.navbar-custom .logo h2 { color: var(--primary-color) !important; }
-.navbar-custom .nav-links li a { color: var(--text-color) !important; }
-.navbar-custom .nav-links li a:hover, 
+.navbar-custom .nav-links li a,
+.navbar-custom .lang-switch,
+.navbar-custom .mobile-menu-btn { color: var(--text-color) !important; }
+.navbar-custom .logo h2,
+.navbar-custom .nav-links li a:hover,
 .navbar-custom .nav-links li a.active { color: var(--primary-color) !important; }
-.navbar-custom .lang-switch { color: var(--text-color) !important; }
 .navbar-custom .btn-contact { 
     border-color: var(--primary-color) !important; 
     color: var(--primary-color) !important; 
@@ -833,7 +824,6 @@ body.detail-page-body {
     background-color: var(--primary-color) !important;
     color: var(--white) !important;
 }
-.navbar-custom .mobile-menu-btn { color: var(--text-color) !important; }
 
 /* --- 详情页布局容器 --- */
 .detail-wrapper {
@@ -890,25 +880,6 @@ body.detail-page-body {
 
 
 /* --- 嵌套数据表格样式 (HD-50等数据) --- */
-.inner-data {
-    width: 100%;
-    font-size: 13px;
-}
-.inner-data td {
-    padding: 4px 5px;
-    border: none;
-}
-.inner-head td {
-    font-weight: bold;
-    color: #444;
-    padding-bottom: 8px;
-}
-.note-text {
-    margin-top: 10px;
-    font-size: 12px;
-    color: #888;
-}
-
 /* --- 新版多列兼容表格样式 --- */
 .spec-table {
     width: 100%;
@@ -942,95 +913,112 @@ body.detail-page-body {
     background-color: #fafafa;
 }
 
+.table-scroll {
+    width: 100%;
+    overflow-x: auto;
+}
+
+.pretreatment-intro {
+    max-width: 980px;
+    margin: 0 auto 30px;
+    border-left: 4px solid var(--accent-color);
+}
+
+.pretreatment-table {
+    table-layout: fixed;
+    font-size: 13px;
+    min-width: 980px;
+}
+
+.pretreatment-table thead th {
+    background-color: var(--primary-color);
+    text-align: center;
+}
+
+.pretreatment-table th:nth-child(1) { width: 14%; }
+.pretreatment-table th:nth-child(2) { width: 17%; }
+.pretreatment-table th:nth-child(3) { width: 43%; }
+.pretreatment-table th:nth-child(4) { width: 18%; }
+.pretreatment-table th:nth-child(5) { width: 8%; }
+
+.pretreatment-table tbody td {
+    vertical-align: top;
+}
+
+.product-name-cell {
+    text-align: center;
+}
+
+.product-name-cell strong,
+.product-name-cell span {
+    display: block;
+}
+
+.product-name-cell strong {
+    color: var(--primary-color);
+    font-weight: 700;
+    margin-bottom: 4px;
+}
+
+.product-name-cell span {
+    color: #444;
+    font-weight: 500;
+}
+
+.cell-list li {
+    position: relative;
+    padding-left: 14px;
+    margin-bottom: 5px;
+}
+
+.cell-list li:last-child {
+    margin-bottom: 0;
+}
+
+.cell-list li::before {
+    content: '·';
+    position: absolute;
+    left: 0;
+    top: 0;
+    color: var(--primary-color);
+    font-weight: 700;
+}
+
+.empty-cell {
+    color: #bbb;
+    text-align: center;
+}
+
+.dyeing-category-row td,
+.series-category-row td {
+    background: linear-gradient(90deg, var(--primary-color), var(--accent-color)) !important;
+    color: var(--white);
+    padding: 14px 22px;
+    border-color: var(--primary-color);
+    font-size: 18px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-align: left;
+}
+
+.dyeing-category-row span,
+.series-category-row span {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.dyeing-category-row span::before,
+.series-category-row span::before {
+    content: '';
+    width: 6px;
+    height: 22px;
+    border-radius: 999px;
+    background: var(--secondary-color);
+}
+
 /* --- 移动端完美适配 (768px以下) --- */
 @media (max-width: 768px) {
-    /* =========================================
-       1. 主表格 (.spec-table) 的新版适配代码
-       ========================================= */
-    .spec-table, .spec-table tbody, .spec-table tr, .spec-table td {
-        display: block;
-        width: 100%;
-    }
-
-    .spec-table thead {
-        display: none; /* 手机端隐藏原始水平表头 */
-    }
-
-    .spec-table tr {
-        margin-bottom: 25px;
-        border: 1px solid #eee;
-        border-radius: 8px;
-        box-shadow: 0 4px 12px rgba(0,0,0,0.05);
-        overflow: hidden;
-        background: #fff;
-    }
-
-    .spec-table td {
-        text-align: right; 
-        padding: 12px 15px 12px 45%; /* 左侧留出空间给标签文字 */
-        position: relative;
-        border: none;
-        border-bottom: 1px solid #f0f0f0;
-        min-height: 45px;
-        display: flex;
-        justify-content: flex-end;
-        align-items: center;
-    }
-
-    .spec-table td:last-child {
-        border-bottom: none;
-    }
-
-    /* 生成左侧标题标签 */
-    .spec-table td::before {
-        content: attr(data-label);
-        position: absolute;
-        left: 15px;
-        top: 50%;
-        transform: translateY(-50%); /* 垂直居中对齐 */
-        width: 40%;
-        text-align: left;
-        font-weight: bold;
-        color: var(--primary-color);
-        font-size: 13px;
-    }
-
-    /* 将第一列(产品名称)高亮作为卡片头部 */
-    .spec-table td[data-label="产品名称"] {
-        background-color: #f8f9fa;
-        justify-content: center; /* 标题居中 */
-        padding: 15px;
-        font-size: 16px;
-        font-weight: bold;
-        color: var(--secondary-color);
-    }
-    
-    .spec-table td[data-label="产品名称"]::before {
-        display: none; /* 产品名称栏不需要再重复显示"产品名称"四个字 */
-    }
-
-    /* =========================================
-       2. 内部嵌套表格 (.inner-data) 的保留代码
-       ========================================= */
-    .inner-data td {
-        padding: 5px 0;
-        border-bottom: 1px dashed #eee;
-    }
-    
-    .inner-data td::before {
-        display: none; /* 内部表格不需要再显示 data-label */
-    }
-    
-    .inner-head {
-        display: none; /* 手机上隐藏内部小表头，直接看数据 */
-    }
-    
-    /* 让内部数据两列显示，避免太长 */
-    .inner-data tr {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 10px;
-    }
 }
 @keyframes heroZoomOut {
     0% {

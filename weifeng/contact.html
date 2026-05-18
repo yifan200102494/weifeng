@@ -62,18 +62,18 @@
 
                     <div class="info-list">
                         <div class="info-group">
-                            <h3><i class="fas fa-building"></i> <span data-i18n="contact.co_name">浙江伟丰新材料有限公司</span></h3>
+                            <h3><i class="fas fa-building"></i> <span data-i18n="contact.co_name">江山本部</span></h3>
                             <ul>
-                                <li><span class="label" data-i18n="contact.label_tel">电话:</span> <span class="value">0570-4051365</span></li>
-                                <li><span class="label" data-i18n="contact.label_fax">传真:</span> <span class="value">0570-4332762</span></li>
-                                <li><span class="label" data-i18n="contact.label_addr">地址:</span> <span class="value" data-i18n="footer.addr_text">浙江省江山市经济技术开发区兴工八二路1号</span></li>
+                                <li><span class="label" data-i18n="contact.label_addr">地址:</span> <span class="value" data-i18n="footer.addr_text">浙江省衢州市江山市上余镇兴工八二路一号 浙江伟丰新材料有限公司</span></li>
+                                <li><span class="label" data-i18n="contact.label_contact"><i class="fas fa-phone"></i> 联系方式:</span> <span class="value contact-phones"><span>0570-4051365</span><span data-i18n="footer.manager_wang">15924062099（王经理）</span><span data-i18n="footer.manager_mao">15957042077（毛经理）</span></span></li>
                             </ul>
                         </div>
                         <hr class="divider">
-                        <div class="info-group">
-                            <h3><i class="fas fa-map-marked-alt"></i> <span data-i18n="contact.office_name">绍兴办事处</span></h3>
+                        <div class="info-group hotline-group">
+                            <h3><i class="fas fa-headset"></i> <span data-i18n="contact.office_name">客服热线:</span></h3>
                             <ul>
-                                <li><span class="label" data-i18n="contact.label_fax">传真:</span> <span class="value">0575-84574094</span></li>
+                                <li><span class="value">17858201239（291239）</span></li>
+                                <li><span class="value">19817013896（573896）</span></li>
                             </ul>
                         </div>
                     </div>
@@ -92,8 +92,9 @@
         </footer>
 
     <script type="text/javascript">
-    window.onload = function() {
-        
+    window.addEventListener('load', function() {
+        if (typeof AMap === 'undefined') return;
+
         var myLngLat = [118.726677,28.812076]; 
 
         var map = new AMap.Map('amapContainer', {
@@ -117,14 +118,14 @@
         });
 
         var infoWindow = new AMap.InfoWindow({
-            content: '<div style="padding:10px; color:#333;"><b>浙江伟丰新材料有限公司</b><br>江山市兴工八二路1号</div>',
+            content: '<div style="padding:10px; color:#333;"><b>浙江伟丰新材料有限公司</b><br>浙江省衢州市江山市上余镇兴工八二路一号</div>',
             offset: new AMap.Pixel(0, -30)
         });
 
         marker.on('click', function() {
             infoWindow.open(map, myLngLat);
         });
-    };
+    });
     </script>
      <footer id="contact">
         <div class="container footer-top">
@@ -132,7 +133,7 @@
                 <a href="index.html">
                     <img src="images/logo.png" alt="浙江伟丰新材料有限公司 Logo">
                 </a>
-                <p>专注纺织助剂17年，为您提供最优质的化学品解决方案。致力于精细化工领域。</p>
+                <p data-i18n="footer.desc">专注纺织助剂20+年，为您提供最优质的化学品解决方案。致力于精细化工领域。</p>
                 <div class="socials">
                     <a href="contact.html"><i class="fab fa-weixin"></i></a>
                     <a href="contact.html"><i class="fab fa-linkedin-in"></i></a>
@@ -140,20 +141,35 @@
                 </div>
             </div>
             <div class="footer-col">
-                <h4>快速链接</h4>
+                <h4 data-i18n="footer.links">快速链接</h4>
                 <ul>
-                    <li><a href="about.html"><i class="fas fa-chevron-right"></i> 关于我们</a></li>
-                    <li><a href="products.html"><i class="fas fa-chevron-right"></i> 产品中心</a></li>
-                    <li><a href="news.html"><i class="fas fa-chevron-right"></i> 新闻资讯</a></li>
-                    <li><a href="contact.html"><i class="fas fa-chevron-right"></i> 联系我们</a></li>
+                    <li><a href="about.html" data-i18n="nav.about"><i class="fas fa-chevron-right"></i> 关于我们</a></li>
+                    <li><a href="products.html" data-i18n="nav.products"><i class="fas fa-chevron-right"></i> 产品中心</a></li>
+                    <li><a href="news.html" data-i18n="nav.news"><i class="fas fa-chevron-right"></i> 新闻资讯</a></li>
+                    <li><a href="contact.html" data-i18n="nav.contact"><i class="fas fa-chevron-right"></i> 联系我们</a></li>
                 </ul>
             </div>
             <div class="footer-col">
-                <h4>联系方式</h4>
+                <h4 data-i18n="footer.contact">联系方式</h4>
                 <ul>
-                    <li><i class="fas fa-map-marker-alt"></i> 浙江省江山市江东工业园区兴工八二路1号</li>
-                    <li><i class="fas fa-phone"></i> 0570-4051365</li>
-                    <li><i class="fas fa-envelope"></i> info@weifeng-material.com</li>
+                    <li data-i18n="footer.addr"><i class="fas fa-map-marker-alt"></i> 浙江省衢州市江山市上余镇兴工八二路一号 浙江伟丰新材料有限公司</li>
+                    <li class="footer-contact-block">
+                        <i class="fas fa-phone"></i>
+                        <span class="footer-contact-lines">
+                            <strong data-i18n="footer.contact_methods">联系方式:</strong>
+                            <span>0570-4051365</span>
+                            <span data-i18n="footer.manager_wang">15924062099（王经理）</span>
+                            <span data-i18n="footer.manager_mao">15957042077（毛经理）</span>
+                        </span>
+                    </li>
+                    <li class="footer-contact-block">
+                        <i class="fas fa-headset"></i>
+                        <span class="footer-contact-lines">
+                            <strong data-i18n="footer.hotline">客服热线:</strong>
+                            <span>17858201239（291239）</span>
+                            <span>19817013896（573896）</span>
+                        </span>
+                    </li>
                 </ul>
             </div>
         </div>
@@ -167,6 +183,7 @@
             </div>
         </div>
     </footer>
+    <script src="i18n.js"></script>
     <script src="script.js"></script>
 </body>
 </html>

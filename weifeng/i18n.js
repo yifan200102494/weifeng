@@ -63,6 +63,10 @@ const translations = {
         'prod.cat8_desc': '涵盖蓬松、平滑、功能及亲水硅油整理剂，适用于棉、涤纶、锦纶及多种混纺织物。',
         'prod.silicone_sub': 'SILICONE OIL SERIES',
         'prod.silicone_product_sub': 'SILICONE OIL PRODUCT SERIES',
+        'prod.search_label': '产品搜索',
+        'prod.search_placeholder': '输入产品名称或型号，如 WF-4315C',
+        'prod.search_button': '搜索',
+        'prod.search_hint': '支持按产品型号、产品名称或系列名称搜索。',
         'prod.waterproof_sub': 'WATERPROOF SERIES',
         'prod.pre_sub': 'Pre-treatment Chemicals',
         'prod.dye_sub': 'Dyeing Series',
@@ -812,6 +816,10 @@ const translations = {
         'prod.cat8_desc': 'Covers fluffy, smooth, functional, and hydrophilic silicone oil finishing agents for cotton, polyester, nylon, and blended fabrics.',
         'prod.silicone_sub': 'SILICONE OIL SERIES',
         'prod.silicone_product_sub': 'SILICONE OIL PRODUCT SERIES',
+        'prod.search_label': 'Product Search',
+        'prod.search_placeholder': 'Enter product name or model, e.g. WF-4315C',
+        'prod.search_button': 'Search',
+        'prod.search_hint': 'Search by product model, product name, or series name.',
         'prod.waterproof_sub': 'WATERPROOF SERIES',
         'prod.pre_sub': 'Pre-treatment Chemicals',
         'prod.dye_sub': 'Dyeing Series',
@@ -2290,6 +2298,12 @@ function setLanguage(lang) {
         const key = element.getAttribute('data-i18n');
         if (translations[lang] && translations[lang][key]) {
             element.innerHTML = translations[lang][key];
+        }
+    });
+    document.querySelectorAll('[data-i18n-placeholder]').forEach(element => {
+        const key = element.getAttribute('data-i18n-placeholder');
+        if (translations[lang] && translations[lang][key]) {
+            element.setAttribute('placeholder', translations[lang][key]);
         }
     });
     applyProductPageLanguage(lang);

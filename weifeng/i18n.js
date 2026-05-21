@@ -38,8 +38,11 @@ const translations = {
         'sect.about_list2': '<i class="fas fa-check-circle"></i> 高浓缩三元嵌段硅油',
         'sect.about_list3': '<i class="fas fa-check-circle"></i> 二甲基硅油及精细化工产品',
         'btn.more': '了解更多详情',
-        'about.header_title': '20+年专注纺织助剂',
+        'about.header_title': '20多年专注纺织助剂',
         'about.header_desc': '研发 · 生产 · 销售 —— 致力于成为行业领先的纺织化学品供应商',
+        'about.why_1_title': '公司实力 — 20多年专业厂家',
+        'about.why_1_desc': '20多年专业纺织印染助剂厂家，产品种类齐全，涵盖各类功能整理剂。产品包括各类新型有机硅柔软剂、平滑剂等。',
+        'about.footer_desc': '专注纺织助剂20多年，为您提供最优质的化学品解决方案。致力于精细化工领域。',
         // --- 产品中心 (Products) ---
         'prod.header_title': '认真执着 精益求精',
         'prod.header_desc': '致力于纺织助剂产品研发、力求专业化、精细化',
@@ -700,7 +703,7 @@ const translations = {
         'article.epoxy_note': '挥发份：≤3%',
         'article.epoxy_app': '各种端基反应性线性改性硅油；有机硅嵌段共聚硅油柔软剂的关键中间体原料；其二元共聚硅油制成品克服了目前普通氨基硅油的黄变、不亲水和破乳粘辊三大缺点；与端基的环氧基反应，把硅氧烷链端及有机硅特性引入有机树脂中。',
         'article.epoxy_adv': '端环氧硅油中环氧基无任何破坏，环氧保持率高，挥发份低；SiH键加成反应较完全。',
-        'news.read_more': 'Read More <i class="fas fa-long-arrow-alt-right"></i>',
+        'news.read_more': '查看更多 <i class="fas fa-long-arrow-alt-right"></i>',
 
         // --- 企业形象 (Gallery) ---
         'gallery.header_title': '因为专业，所以值得信赖',
@@ -791,8 +794,11 @@ const translations = {
         'sect.about_list2': '<i class="fas fa-check-circle"></i> High Conc. Block Silicone Oil',
         'sect.about_list3': '<i class="fas fa-check-circle"></i> Dimethyl Silicone Oil & Chemicals',
         'btn.more': 'Learn More',
-        'about.header_title': '20+ Years Focus on Auxiliaries',
+        'about.header_title': 'Over 20 Years Focus on Auxiliaries',
         'about.header_desc': 'R&D · Production · Sales — Striving to be a leading textile chemical supplier',
+        'about.why_1_title': 'Company Strength — Over 20 Years',
+        'about.why_1_desc': 'Over 20 years professional manufacturer. Complete product range including various new organic silicone softeners and smoothing agents.',
+        'about.footer_desc': 'Focusing on textile auxiliaries for over 20 years, providing you with the best chemical solutions.',
         // --- Products ---
         'prod.header_title': 'Diligent & Professional',
         'prod.header_desc': 'Committed to R&D of textile auxiliaries, striving for specialization and refinement',

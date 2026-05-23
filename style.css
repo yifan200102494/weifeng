@@ -1127,6 +1127,24 @@ footer { background: #0b1120; color: #cbd5e1; padding-top: 80px; }
     }
     .nav-links.active { opacity: 1; visibility: visible; transform: translateY(0); }
     .nav-links li a { color: var(--text-color); }
+    .navbar.scrolled:not(.navbar-custom) .nav-links {
+        background: var(--white);
+    }
+    .navbar.scrolled:not(.navbar-custom) .nav-links li a {
+        color: var(--text-color) !important;
+    }
+    .navbar.scrolled:not(.navbar-custom) .nav-links li a:hover,
+    .navbar.scrolled:not(.navbar-custom) .nav-links li a.active {
+        color: var(--text-color) !important;
+    }
+    .navbar.scrolled:not(.navbar-custom) .nav-links .btn-contact {
+        border-color: var(--primary-color);
+        color: var(--primary-color) !important;
+    }
+    .navbar.scrolled:not(.navbar-custom) .nav-links .btn-contact:hover {
+        background: var(--primary-color);
+        color: var(--white) !important;
+    }
     
     .mobile-menu-btn {
         display: flex;
@@ -1152,6 +1170,36 @@ footer { background: #0b1120; color: #cbd5e1; padding-top: 80px; }
     }
     .hero { height: auto; min-height: 100vh; padding-top: 80px; }
     .stats-section { margin-top: 0; padding-top: 40px; }
+    .reasons-blue {
+        padding: 72px 0;
+    }
+    .reasons-layout {
+        margin-top: 36px;
+        gap: 28px;
+    }
+    .reason-row,
+    .reason-row.reverse {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 24px;
+        padding: 28px;
+    }
+    .reason-text {
+        flex: none;
+    }
+    .reason-image {
+        flex: none;
+        width: 100%;
+        height: auto;
+        aspect-ratio: 16 / 10;
+        border-radius: 8px;
+    }
+    .reason-image img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: center;
+    }
 
     /* --- 修复语言按钮位置 & 颜色 --- */
     .lang-switch {

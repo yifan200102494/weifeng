@@ -4,6 +4,17 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>关于我们 | 浙江伟丰新材料有限公司</title>
+    <script>
+        (function () {
+            try {
+                var theme = localStorage.getItem('weifeng-theme');
+                if (theme === 'dark' || theme === 'light') {
+                    document.documentElement.dataset.theme = theme;
+                    document.documentElement.style.colorScheme = theme;
+                }
+            } catch (e) {}
+        })();
+    </script>
     <link rel="stylesheet" href="style.css">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700&display=swap" rel="stylesheet">
@@ -60,7 +71,7 @@
                 </div>
                 <div class="col-img reveal">
                     <div class="video-wrapper">
-                        <video preload="metadata" loop playsinline controls aria-label="公司测试视频">
+                        <video preload="metadata" playsinline controls aria-label="公司测试视频">
                             <source src="images/company-profile.mp4" type="video/mp4">
                         </video>
                         <button class="video-play-toggle" type="button" aria-label="播放视频">

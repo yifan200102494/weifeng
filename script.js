@@ -48,6 +48,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const video = wrapper.querySelector('video');
         const playButton = wrapper.querySelector('.video-play-toggle');
         if (!video || !playButton) return;
+        video.loop = false;
 
         const updatePlayState = () => {
             wrapper.classList.toggle('is-playing', !video.paused && !video.ended);
@@ -660,6 +661,78 @@ function initProductSearchTarget() {
         target.scrollIntoView({ behavior: 'smooth', block: 'center' });
     }, 120);
 }
+
+(function initThemePreference() {
+    const storageKey = 'weifeng-theme';
+    const root = document.documentElement;
+    const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
+
+    function getStoredTheme() {
+        let stored = null;
+        try {
+            stored = localStorage.getItem(storageKey);
+        } catch (error) {
+            stored = null;
+        }
+        return stored === 'dark' || stored === 'light' ? stored : null;
+    }
+
+    function getEffectiveTheme() {
+        return getStoredTheme() || (mediaQuery.matches ? 'dark' : 'light');
+    }
+
+    function applyTheme(theme) {
+        if (theme === 'dark' || theme === 'light') {
+            root.dataset.theme = theme;
+        } else {
+            delete root.dataset.theme;
+        }
+        root.style.colorScheme = getEffectiveTheme();
+        updateThemeButtons();
+    }
+
+    function updateThemeButtons() {
+        const isDark = getEffectiveTheme() === 'dark';
+        document.querySelectorAll('.theme-toggle').forEach(button => {
+            button.setAttribute('aria-label', isDark ? '切换为浅色模式' : '切换为深色模式');
+            button.setAttribute('title', isDark ? '切换为浅色模式' : '切换为深色模式');
+            button.innerHTML = `<i class="fas ${isDark ? 'fa-sun' : 'fa-moon'}" aria-hidden="true"></i>`;
+        });
+    }
+
+    function toggleTheme() {
+        const nextTheme = getEffectiveTheme() === 'dark' ? 'light' : 'dark';
+        try {
+            localStorage.setItem(storageKey, nextTheme);
+        } catch (error) {}
+        applyTheme(nextTheme);
+    }
+
+    applyTheme(getStoredTheme());
+
+    document.addEventListener('DOMContentLoaded', () => {
+        document.querySelectorAll('.nav-flex').forEach(nav => {
+            if (nav.querySelector('.theme-toggle')) return;
+            const button = document.createElement('button');
+            button.className = 'theme-toggle';
+            button.type = 'button';
+            button.addEventListener('click', toggleTheme);
+            const langSwitch = nav.querySelector('.lang-switch');
+            const mobileButton = nav.querySelector('.mobile-menu-btn');
+            nav.insertBefore(button, langSwitch || mobileButton || null);
+        });
+        updateThemeButtons();
+    });
+
+    const handleSystemThemeChange = () => {
+        if (!getStoredTheme()) applyTheme(null);
+    };
+    if (typeof mediaQuery.addEventListener === 'function') {
+        mediaQuery.addEventListener('change', handleSystemThemeChange);
+    } else if (typeof mediaQuery.addListener === 'function') {
+        mediaQuery.addListener(handleSystemThemeChange);
+    }
+})();
 
 document.addEventListener('DOMContentLoaded', () => {
     initProductSearch();

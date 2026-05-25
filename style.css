@@ -255,6 +255,7 @@ img { max-width: 100%; display: block; }
 
 /* --- Section Layouts --- */
 .section { padding: 100px 0; }
+.section.products { background-color: var(--surface-muted); }
 .section-title { text-align: center; margin-bottom: 60px; }
 .section-title span { color: var(--accent-color); font-weight: 700; letter-spacing: 2px; font-size: 14px; display: block; margin-bottom: 10px; text-transform: uppercase; }
 .section-title h2 { font-size: 36px; color: var(--text-color); position: relative; display: inline-block; font-weight: 700; }
@@ -1145,12 +1146,13 @@ footer { background: #0b1120; color: #cbd5e1; padding-top: 80px; }
 .reveal.active { opacity: 1; transform: translateY(0); }
 
 /* --- Theme surfaces --- */
-.section:not(.reasons-blue):not(.honors-section),
+.section:not(.reasons-blue):not(.honors-section):not(.products),
 .product-intro,
 .contact-section,
 body.detail-page-body {
     background-color: var(--page-bg);
 }
+.section.products,
 .product-intro,
 .contact-section {
     background-color: var(--surface-muted);

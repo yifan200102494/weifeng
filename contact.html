@@ -4,9 +4,22 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>联系我们 | 浙江伟丰新材料有限公司</title>
+    <script>
+        (function () {
+            try {
+                var theme = localStorage.getItem('weifeng-theme');
+                if (theme === 'dark' || theme === 'light') {
+                    document.documentElement.dataset.theme = theme;
+                    document.documentElement.style.colorScheme = theme;
+                }
+            } catch (e) {}
+        })();
+    </script>
     <link rel="stylesheet" href="style.css">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet" media="print" onload="this.media='all'">
+    <noscript><link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet"></noscript>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+    <noscript><link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700&display=swap" rel="stylesheet"></noscript>
     
     <script type="text/javascript">
         window._AMapSecurityConfig = {
@@ -14,7 +27,7 @@
         }
     </script>
 
-    <script type="text/javascript" src="https://webapi.amap.com/maps?v=2.0&key=	20f7dd7621b0c39f47622292e1a84777"></script> </head>
+    </head>
 <body>
 
     <nav class="navbar" id="navbar">
@@ -81,19 +94,28 @@
                     <div class="wechat-link-panel">
                         <h3><i class="fas fa-link"></i> <span data-i18n="contact.wechat_title">官方平台</span></h3>
                         <div class="wechat-link-grid">
-                            <a id="wechat-official" class="wechat-link-card" href="https://mp.weixin.qq.com/s/5fzzjkfyzbDZpCWAuZWRhA" target="_blank" rel="noopener noreferrer">
+                            <a id="wechat-official" class="wechat-link-card wechat-link-card-wide" href="https://mp.weixin.qq.com/s/5fzzjkfyzbDZpCWAuZWRhA" target="_blank" rel="noopener noreferrer">
                                 <i class="fab fa-weixin"></i>
                                 <span>
                                     <strong data-i18n="contact.wechat_official_title">微信公众号</strong>
                                     <em data-i18n="contact.wechat_official_desc">浙江伟丰</em>
                                 </span>
                             </a>
-                            <a id="wechat-video" class="wechat-link-card is-placeholder" href="#" aria-disabled="true">
+                            <a id="wechat-video" class="wechat-link-card platform-qr-card" href="images/shi_ping_hao.jpg" data-qr-modal="true">
                                 <i class="fas fa-video"></i>
                                 <span>
                                     <strong data-i18n="contact.wechat_video_title">微信视频号</strong>
-                                    <em data-i18n="contact.wechat_video_desc">待添加视频号链接</em>
+                                    <em data-i18n="contact.wechat_video_desc">扫码关注视频号</em>
                                 </span>
+                                <img class="platform-qr-image" src="images/shi_ping_hao.jpg" alt="微信视频号二维码" loading="lazy">
+                            </a>
+                            <a id="douyin-official" class="wechat-link-card platform-qr-card" href="images/douyin.jpg" data-qr-modal="true">
+                                <i class="fab fa-tiktok"></i>
+                                <span>
+                                    <strong data-i18n="contact.douyin_title">抖音号</strong>
+                                    <em data-i18n="contact.douyin_desc">扫码关注抖音</em>
+                                </span>
+                                <img class="platform-qr-image" src="images/douyin.jpg" alt="抖音二维码" loading="lazy">
                             </a>
                         </div>
                     </div>
@@ -101,6 +123,7 @@
 
                 <div class="contact-map-box">
                     <div class="map-panel">
+                        <img class="map-static-image" src="images/contact-map-static.png" alt="浙江伟丰新材料有限公司地图位置" loading="eager">
                         <div class="map-panel-header">
                             <span><i class="fas fa-location-dot"></i> <span data-i18n="contact.map_company">浙江伟丰新材料有限公司</span></span>
                             <small data-i18n="contact.map_addr">浙江省衢州市江山市上余镇兴工八二路一号</small>
@@ -113,44 +136,90 @@
         </div>
     </section>
 
+    <div id="platformQrModal" class="platform-qr-modal" aria-hidden="true" role="dialog" aria-modal="true">
+        <button class="platform-qr-modal-close" type="button" aria-label="关闭二维码预览">&times;</button>
+        <div class="platform-qr-modal-content">
+            <img id="platformQrModalImage" src="" alt="">
+            <p id="platformQrModalCaption"></p>
+        </div>
+    </div>
+
     <footer id="contact">
         </footer>
 
     <script type="text/javascript">
-    window.addEventListener('load', function() {
-        if (typeof AMap === 'undefined') return;
+    (function () {
+        var amapKey = '20f7dd7621b0c39f47622292e1a84777';
+        var myLngLat = [118.726677, 28.812076];
 
-        var myLngLat = [118.726677,28.812076]; 
+        function initAmap() {
+            var container = document.getElementById('amapContainer');
+            if (!container || typeof AMap === 'undefined') return;
 
-        var map = new AMap.Map('amapContainer', {
-            zoom: 16,           
-            center: myLngLat,   
-            viewMode: '3D'
-        });
+            try {
+                var map = new AMap.Map('amapContainer', {
+                    zoom: 16,
+                    center: myLngLat,
+                    viewMode: '3D'
+                });
 
-        var myIcon = new AMap.Icon({
-            image: 'images/logo.png',      
-            size: new AMap.Size(40, 40),          
-            imageSize: new AMap.Size(40, 40),    
-            offset: new AMap.Pixel(-20, -40)     
-        });
+                var myIcon = new AMap.Icon({
+                    image: 'images/logo.png',
+                    size: new AMap.Size(40, 40),
+                    imageSize: new AMap.Size(40, 40),
+                    offset: new AMap.Pixel(-20, -40)
+                });
 
-        var marker = new AMap.Marker({
-            position: myLngLat, 
-            map: map,          
-            icon: myIcon,       
-            title: '浙江伟丰新材料有限公司' 
-        });
+                var marker = new AMap.Marker({
+                    position: myLngLat,
+                    map: map,
+                    icon: myIcon,
+                    title: '浙江伟丰新材料有限公司'
+                });
 
-        var infoWindow = new AMap.InfoWindow({
-            content: '<div style="padding:10px; color:#333;"><b>浙江伟丰新材料有限公司</b><br>浙江省衢州市江山市上余镇兴工八二路一号</div>',
-            offset: new AMap.Pixel(0, -30)
-        });
+                var infoWindow = new AMap.InfoWindow({
+                    content: '<div style="padding:10px; color:#333;"><b>浙江伟丰新材料有限公司</b><br>浙江省衢州市江山市上余镇兴工八二路一号</div>',
+                    offset: new AMap.Pixel(0, -30)
+                });
 
-        marker.on('click', function() {
-            infoWindow.open(map, myLngLat);
-        });
-    });
+                marker.on('click', function() {
+                    infoWindow.open(map, myLngLat);
+                });
+
+                map.on('complete', function () {
+                    var panel = container.closest('.map-panel');
+                    if (panel) panel.classList.add('map-ready');
+                });
+            } catch (error) {
+                console.warn('AMap init failed:', error);
+            }
+        }
+
+        function loadAmap() {
+            if (typeof AMap !== 'undefined') {
+                initAmap();
+                return;
+            }
+
+            var script = document.createElement('script');
+            script.src = 'https://webapi.amap.com/maps?v=2.0&key=' + amapKey;
+            script.async = true;
+            script.defer = true;
+            script.onload = initAmap;
+            script.onerror = function () {
+                console.warn('AMap script failed to load.');
+            };
+            document.head.appendChild(script);
+        }
+
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', function () {
+                window.setTimeout(loadAmap, 300);
+            });
+        } else {
+            window.setTimeout(loadAmap, 300);
+        }
+    })();
     </script>
      <footer id="contact">
         <div class="container footer-top">
@@ -160,9 +229,9 @@
                 </a>
                 <p data-i18n="footer.desc">专注纺织助剂20+年，为您提供最优质的化学品解决方案。致力于精细化工领域。</p>
                 <div class="socials">
-                    <a href="contact.html"><i class="fab fa-weixin"></i></a>
+                    <a href="contact.html#wechat-official"><i class="fab fa-weixin"></i></a>
                     <a href="contact.html"><i class="fab fa-linkedin-in"></i></a>
-                    <a href="contact.html"><i class="fab fa-tiktok"></i></a>
+                    <a href="contact.html#douyin-official"><i class="fab fa-tiktok"></i></a>
                 </div>
             </div>
             <div class="footer-col">
@@ -174,6 +243,7 @@
                     <li><a href="contact.html" data-i18n="nav.contact"><i class="fas fa-chevron-right"></i> 联系我们</a></li>
                     <li><a href="contact.html#wechat-official" class="footer-social-link" data-i18n="footer.wechat_official"><i class="fab fa-weixin"></i> 微信公众号</a></li>
                     <li><a href="contact.html#wechat-video" class="footer-social-link" data-i18n="footer.wechat_video"><i class="fas fa-video"></i> 微信视频号</a></li>
+                    <li><a href="contact.html#douyin-official" class="footer-social-link" data-i18n="footer.douyin"><i class="fab fa-tiktok"></i> 抖音号</a></li>
                 </ul>
             </div>
             <div class="footer-col">

@@ -1326,10 +1326,85 @@ img { max-width: 100%; display: block; }
 .wechat-link-card span { display: flex; flex-direction: column; gap: 2px; min-width: 0; }
 .wechat-link-card strong { color: #1f2937; font-size: 15px; }
 .wechat-link-card em { color: #64748b; font-size: 13px; font-style: normal; }
+.wechat-link-card-wide { grid-column: 1 / -1; }
+.platform-qr-card { display: grid; grid-template-columns: 34px minmax(0, 1fr); align-items: center; gap: 10px 12px; }
+.platform-qr-image { grid-column: 1 / -1; width: 100%; height: 176px; object-fit: contain; padding: 8px; border: 1px solid rgba(0, 86, 179, 0.14); border-radius: 8px; background: #fff; }
+.platform-qr-modal {
+    position: fixed;
+    inset: 0;
+    z-index: 10000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 32px;
+    background: rgba(0, 0, 0, 0.86);
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transition: opacity 0.22s ease, visibility 0.22s ease;
+}
+.platform-qr-modal.show {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+}
+.platform-qr-modal-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+    max-width: min(720px, calc(100vw - 64px));
+    max-height: calc(100vh - 64px);
+}
+.platform-qr-modal-content img {
+    display: block;
+    max-width: 100%;
+    max-height: calc(100vh - 120px);
+    width: auto;
+    height: auto;
+    object-fit: contain;
+    border-radius: 4px;
+    background: #fff;
+    box-shadow: 0 24px 80px rgba(0, 0, 0, 0.5);
+}
+.platform-qr-modal-content p {
+    margin: 0;
+    color: #fff;
+    font-size: 15px;
+    line-height: 1.5;
+    text-align: center;
+}
+.platform-qr-modal-close {
+    position: fixed;
+    top: 22px;
+    right: 26px;
+    z-index: 10001;
+    width: 44px;
+    height: 44px;
+    border: 1px solid rgba(255,255,255,0.34);
+    border-radius: 50%;
+    background: rgba(15, 23, 42, 0.84);
+    color: #fff;
+    font-size: 32px;
+    line-height: 38px;
+    cursor: pointer;
+    transition: background-color 0.2s ease, border-color 0.2s ease, transform 0.2s ease;
+}
+.platform-qr-modal-close:hover,
+.platform-qr-modal-close:focus-visible {
+    background: var(--secondary-color);
+    border-color: var(--secondary-color);
+    transform: scale(1.05);
+}
+body.platform-qr-open {
+    overflow: hidden;
+}
 .wechat-link-card.is-placeholder { border-style: dashed; cursor: default; pointer-events: none; }
 .wechat-link-card.is-placeholder:hover { background: #f8fafc; transform: none; }
 .contact-map-box {
     flex: 1.5;
+    display: flex;
+    align-items: flex-start;
     position: relative;
     min-height: 620px;
     padding: 22px;
@@ -1340,13 +1415,26 @@ img { max-width: 100%; display: block; }
 .map-panel {
     position: relative;
     width: 100%;
-    height: 100%;
-    min-height: 576px;
+    height: clamp(560px, 54vw, 760px);
+    min-height: 0;
     border: 1px solid rgba(127, 176, 255, 0.22);
     border-radius: 16px;
     overflow: hidden;
     background: #111827;
     box-shadow: 0 28px 70px rgba(0,0,0,0.34);
+}
+.map-static-image {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: saturate(0.78) contrast(0.96) brightness(0.96);
+    transition: opacity 0.35s ease;
+}
+.map-panel.map-ready .map-static-image {
+    opacity: 0;
 }
 .map-panel::after {
     content: '';
@@ -1395,22 +1483,43 @@ img { max-width: 100%; display: block; }
     padding-left: 0;
 }
 .amap-container {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
     width: 100%;
     height: 100%;
-    min-height: 576px;
+    min-height: 0;
+    opacity: 0;
     filter: saturate(0.78) contrast(0.96) brightness(0.96);
+    transition: opacity 0.35s ease;
+}
+.map-panel.map-ready .amap-container {
+    opacity: 1;
 }
 @media (max-width: 768px) {
     .wechat-link-grid { grid-template-columns: 1fr; }
+    .platform-qr-image { height: 220px; }
+    .platform-qr-modal { padding: 18px; }
+    .platform-qr-modal-content { max-width: calc(100vw - 36px); }
+    .platform-qr-modal-content img { max-height: calc(100vh - 104px); }
+    .platform-qr-modal-close {
+        top: 14px;
+        right: 14px;
+        width: 40px;
+        height: 40px;
+        font-size: 30px;
+        line-height: 34px;
+    }
     .contact-map-box {
-        min-height: 460px;
+        min-height: 0;
         padding: 14px;
     }
     .map-panel {
-        min-height: 430px;
+        height: 430px;
+        min-height: 0;
     }
     .amap-container {
-        min-height: 430px;
+        min-height: 0;
     }
     .map-panel-header {
         left: 12px;

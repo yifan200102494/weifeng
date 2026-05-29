@@ -428,6 +428,66 @@ document.addEventListener('DOMContentLoaded', () => {
     // 启动 Lightbox 功能
     initLightbox();
 });
+
+function initPlatformQrModal() {
+    const modal = document.getElementById('platformQrModal');
+    const modalImg = document.getElementById('platformQrModalImage');
+    const caption = document.getElementById('platformQrModalCaption');
+    const closeBtn = modal ? modal.querySelector('.platform-qr-modal-close') : null;
+    const qrLinks = document.querySelectorAll('[data-qr-modal="true"]');
+    if (!modal || !modalImg || qrLinks.length === 0) return;
+
+    let lastTrigger = null;
+
+    function openQrModal(link) {
+        const thumb = link.querySelector('.platform-qr-image');
+        const titleEl = link.querySelector('strong');
+        const descEl = link.querySelector('em');
+        const title = titleEl ? titleEl.textContent.trim() : '';
+        const desc = descEl ? descEl.textContent.trim() : '';
+        const src = link.getAttribute('href') || (thumb ? thumb.getAttribute('src') : '');
+        if (!src) return;
+
+        lastTrigger = link;
+        modalImg.src = src;
+        modalImg.alt = thumb ? thumb.alt : title;
+        if (caption) caption.textContent = [title, desc].filter(Boolean).join(' - ');
+        modal.setAttribute('aria-hidden', 'false');
+        modal.setAttribute('aria-label', title || '二维码预览');
+        modal.classList.add('show');
+        document.body.classList.add('platform-qr-open');
+        if (closeBtn) closeBtn.focus();
+    }
+
+    function closeQrModal() {
+        modal.classList.remove('show');
+        modal.setAttribute('aria-hidden', 'true');
+        document.body.classList.remove('platform-qr-open');
+        setTimeout(() => {
+            if (!modal.classList.contains('show')) modalImg.src = '';
+        }, 220);
+        if (lastTrigger) lastTrigger.focus();
+    }
+
+    qrLinks.forEach(link => {
+        link.addEventListener('click', event => {
+            event.preventDefault();
+            openQrModal(link);
+        });
+    });
+
+    if (closeBtn) closeBtn.addEventListener('click', closeQrModal);
+    modal.addEventListener('click', event => {
+        if (event.target === modal) closeQrModal();
+    });
+    document.addEventListener('keydown', event => {
+        if (event.key === 'Escape' && modal.classList.contains('show')) {
+            closeQrModal();
+        }
+    });
+}
+
+document.addEventListener('DOMContentLoaded', initPlatformQrModal);
 // ==========================================
 // --- 产品详情页专用 Tab 切换功能 ---
 // ==========================================

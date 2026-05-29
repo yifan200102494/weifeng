@@ -12,6 +12,7 @@ const translations = {
         'footer.links': '快速链接',
         'footer.wechat_official': '<i class="fab fa-weixin"></i> 微信公众号',
         'footer.wechat_video': '<i class="fas fa-video"></i> 微信视频号',
+        'footer.douyin': '<i class="fab fa-tiktok"></i> 抖音号',
         'footer.contact': '联系方式',
         'footer.contact_methods': '联系方式:',
         'footer.hotline': '客服热线:',
@@ -737,7 +738,9 @@ const translations = {
         'contact.wechat_official_title': '微信公众号',
         'contact.wechat_official_desc': '浙江伟丰',
         'contact.wechat_video_title': '微信视频号',
-        'contact.wechat_video_desc': '待添加视频号链接',
+        'contact.wechat_video_desc': '扫码关注视频号',
+        'contact.douyin_title': '抖音号',
+        'contact.douyin_desc': '扫码关注抖音',
 
         // --- 理由 ---
         'sect.why_title': '选择我们的理由',
@@ -770,6 +773,7 @@ const translations = {
         'footer.links': 'Quick Links',
         'footer.wechat_official': '<i class="fab fa-weixin"></i> WeChat Official Account',
         'footer.wechat_video': '<i class="fas fa-video"></i> WeChat Channels',
+        'footer.douyin': '<i class="fab fa-tiktok"></i> Douyin',
         'footer.contact': 'Contact Info',
         'footer.contact_methods': 'Contact:',
         'footer.hotline': 'Customer Hotline:',
@@ -1495,7 +1499,9 @@ const translations = {
         'contact.wechat_official_title': 'WeChat Official Account',
         'contact.wechat_official_desc': 'Zhejiang Wei Feng',
         'contact.wechat_video_title': 'WeChat Channels',
-        'contact.wechat_video_desc': 'Video account link to be added',
+        'contact.wechat_video_desc': 'Scan to follow WeChat Channels',
+        'contact.douyin_title': 'Douyin',
+        'contact.douyin_desc': 'Scan to follow Douyin',
 
         // --- Reasons ---
         'sect.why_title': 'Why Choose Us',

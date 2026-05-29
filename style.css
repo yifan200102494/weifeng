@@ -29,6 +29,12 @@
     --category-card-divider: rgba(15, 23, 42, 0.08);
     --category-card-shadow: 0 16px 40px rgba(15, 23, 42, 0.12);
     --category-card-shadow-hover: 0 24px 58px rgba(15, 23, 42, 0.18);
+    --gallery-card-bg: #ffffff;
+    --gallery-card-border: rgba(15, 23, 42, 0.08);
+    --gallery-card-border-hover: rgba(243, 156, 18, 0.42);
+    --gallery-card-divider: rgba(15, 23, 42, 0.08);
+    --gallery-card-shadow: 0 16px 40px rgba(15, 23, 42, 0.12);
+    --gallery-card-shadow-hover: 0 24px 58px rgba(15, 23, 42, 0.18);
     --transition: all 0.4s ease;
     color-scheme: light;
 }
@@ -60,6 +66,12 @@
     --category-card-divider: rgba(255, 255, 255, 0.08);
     --category-card-shadow: 0 22px 54px rgba(0,0,0,0.42), inset 0 1px 0 rgba(255,255,255,0.04);
     --category-card-shadow-hover: 0 28px 68px rgba(0,0,0,0.56), 0 0 0 1px rgba(96, 165, 250, 0.10) inset;
+    --gallery-card-bg: #111827;
+    --gallery-card-border: rgba(96, 165, 250, 0.20);
+    --gallery-card-border-hover: rgba(243, 156, 18, 0.50);
+    --gallery-card-divider: rgba(255, 255, 255, 0.08);
+    --gallery-card-shadow: 0 22px 54px rgba(0,0,0,0.42), inset 0 1px 0 rgba(255,255,255,0.04);
+    --gallery-card-shadow-hover: 0 28px 68px rgba(0,0,0,0.56), 0 0 0 1px rgba(96, 165, 250, 0.10) inset;
     color-scheme: dark;
 }
 
@@ -91,6 +103,12 @@
         --category-card-divider: rgba(255, 255, 255, 0.08);
         --category-card-shadow: 0 22px 54px rgba(0,0,0,0.42), inset 0 1px 0 rgba(255,255,255,0.04);
         --category-card-shadow-hover: 0 28px 68px rgba(0,0,0,0.56), 0 0 0 1px rgba(96, 165, 250, 0.10) inset;
+        --gallery-card-bg: #111827;
+        --gallery-card-border: rgba(96, 165, 250, 0.20);
+        --gallery-card-border-hover: rgba(243, 156, 18, 0.50);
+        --gallery-card-divider: rgba(255, 255, 255, 0.08);
+        --gallery-card-shadow: 0 22px 54px rgba(0,0,0,0.42), inset 0 1px 0 rgba(255,255,255,0.04);
+        --gallery-card-shadow-hover: 0 28px 68px rgba(0,0,0,0.56), 0 0 0 1px rgba(96, 165, 250, 0.10) inset;
         color-scheme: dark;
     }
 }
@@ -1058,14 +1076,40 @@ img { max-width: 100%; display: block; }
 .filter-btn { padding: 10px 30px; border: 1px solid #ddd; background: transparent; color: #666; border-radius: 50px; cursor: pointer; transition: all 0.3s ease; font-size: 15px; }
 .filter-btn:hover, .filter-btn.active { background: var(--primary-color); color: white; border-color: var(--primary-color); box-shadow: 0 5px 15px rgba(0, 86, 179, 0.3); }
 .gallery-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; }
-.gallery-item { background: #fff; border-radius: 8px; overflow: hidden; box-shadow: 0 12px 30px rgba(15,23,42,0.10); transition: all 0.4s ease; transform: scale(1); opacity: 1; }
+.gallery-section .gallery-item {
+    padding: 10px;
+    background: var(--gallery-card-bg);
+    border: 1px solid var(--gallery-card-border);
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: var(--gallery-card-shadow);
+    transition: all 0.4s ease;
+    transform: scale(1);
+    opacity: 1;
+}
+.gallery-section .gallery-item:hover,
+.gallery-section .gallery-item.reveal.active:hover {
+    transform: translateY(-5px);
+    border-color: var(--gallery-card-border-hover);
+    box-shadow: var(--gallery-card-shadow-hover);
+}
 .gallery-item.reveal,
 .gallery-item.reveal.active {
-    transition: opacity 0.26s ease, transform 0.26s ease, box-shadow 0.35s ease;
+    transition: opacity 0.26s ease, transform 0.26s ease, box-shadow 0.35s ease, border-color 0.35s ease;
 }
 .gallery-item.hide { display: none !important; opacity: 0 !important; pointer-events: none; }
-.gallery-item .img-wrapper {
+.gallery-section .gallery-item .img-wrapper {
+    height: auto;
+    aspect-ratio: 3 / 2;
     background: var(--surface-soft);
+    border-radius: 8px;
+}
+.gallery-section .gallery-item .img-wrapper::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    box-shadow: inset 0 -1px 0 var(--gallery-card-divider);
 }
 :root[data-theme="dark"] .gallery-item img[src*="placehold.co"] {
     filter: invert(1) hue-rotate(180deg) brightness(0.78) contrast(0.9);
@@ -1076,7 +1120,20 @@ img { max-width: 100%; display: block; }
     }
 }
 .hover-overlay { background: rgba(0, 86, 179, 0.6); transition: all 0.4s ease; cursor: pointer; }
-.gallery-caption { padding: 15px; text-align: center; font-size: 14px; color: #555; border-top: 1px solid #f0f0f0; }
+.gallery-section .gallery-caption {
+    margin-top: 10px;
+    padding: 16px 12px 14px;
+    text-align: center;
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--text-color);
+    border-top: 1px solid var(--gallery-card-divider);
+}
+@media (max-width: 640px) {
+    .gallery-section .gallery-grid {
+        grid-template-columns: 1fr;
+    }
+}
 
 /* --- Contact --- */
 .contact-wrapper { display: flex; background: #fff; border-radius: 15px; overflow: hidden; box-shadow: 0 10px 40px rgba(0,0,0,0.1); min-height: 600px; }

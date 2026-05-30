@@ -477,6 +477,7 @@ function initPlatformQrModal() {
     });
 
     if (closeBtn) closeBtn.addEventListener('click', closeQrModal);
+    modalImg.addEventListener('click', closeQrModal);
     modal.addEventListener('click', event => {
         if (event.target === modal) closeQrModal();
     });

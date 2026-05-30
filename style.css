@@ -374,6 +374,11 @@ img { max-width: 100%; display: block; }
 .video-play-toggle i { margin-left: 4px; font-size: 24px; line-height: 1; }
 .video-play-toggle:hover { background: rgba(0,0,0,0.55); transform: translate(-50%, -50%) scale(1.06); }
 .video-wrapper.is-playing .video-play-toggle { opacity: 0; visibility: hidden; pointer-events: none; }
+@media (hover: none), (pointer: coarse), (max-width: 768px) {
+    .video-play-toggle {
+        display: none !important;
+    }
+}
 
 /* --- About Page --- */
 .reasons-blue { background: linear-gradient(135deg, #003366 0%, #001a33 100%); color: white; position: relative; padding: 100px 0; overflow: hidden; }

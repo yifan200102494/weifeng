@@ -227,6 +227,53 @@ img { max-width: 100%; display: block; }
     cursor: pointer;
     transition: background-color 0.25s ease, border-color 0.25s ease, color 0.25s ease, transform 0.25s ease;
     margin-left: 12px;
+    margin-right: 18px;
+}
+.theme-toggle .theme-icon {
+    display: none;
+    width: 18px;
+    height: 18px;
+    background: currentColor;
+    flex: 0 0 18px;
+    font-size: 0;
+    line-height: 0;
+    -webkit-mask-position: center;
+    mask-position: center;
+    -webkit-mask-repeat: no-repeat;
+    mask-repeat: no-repeat;
+    -webkit-mask-size: contain;
+    mask-size: contain;
+}
+.theme-toggle .theme-icon::before {
+    content: none;
+}
+.theme-toggle .theme-icon-moon {
+    -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='black' d='M21.64 13a1 1 0 0 0-1.05-.14 8.05 8.05 0 0 1-3.37.73 8.15 8.15 0 0 1-8.14-8.1 8.59 8.59 0 0 1 .25-2A1 1 0 0 0 8 2.36 10.14 10.14 0 1 0 22 14.05a1 1 0 0 0-.36-1.05z'/%3E%3C/svg%3E");
+    mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='black' d='M21.64 13a1 1 0 0 0-1.05-.14 8.05 8.05 0 0 1-3.37.73 8.15 8.15 0 0 1-8.14-8.1 8.59 8.59 0 0 1 .25-2A1 1 0 0 0 8 2.36 10.14 10.14 0 1 0 22 14.05a1 1 0 0 0-.36-1.05z'/%3E%3C/svg%3E");
+}
+.theme-toggle .theme-icon-sun {
+    -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='black' d='M11 0h2v4h-2zM11 20h2v4h-2zM0 11h4v2H0zM20 11h4v2h-4zM3.51 4.93l1.42-1.42 2.83 2.83-1.42 1.42zM16.24 17.66l1.42-1.42 2.83 2.83-1.42 1.42zM16.24 6.34l2.83-2.83 1.42 1.42-2.83 2.83zM3.51 19.07l2.83-2.83 1.42 1.42-2.83 2.83zM12 18a6 6 0 1 0 0-12 6 6 0 0 0 0 12z'/%3E%3C/svg%3E");
+    mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='black' d='M11 0h2v4h-2zM11 20h2v4h-2zM0 11h4v2H0zM20 11h4v2h-4zM3.51 4.93l1.42-1.42 2.83 2.83-1.42 1.42zM16.24 17.66l1.42-1.42 2.83 2.83-1.42 1.42zM16.24 6.34l2.83-2.83 1.42 1.42-2.83 2.83zM3.51 19.07l2.83-2.83 1.42 1.42-2.83 2.83zM12 18a6 6 0 1 0 0-12 6 6 0 0 0 0 12z'/%3E%3C/svg%3E");
+}
+.theme-toggle .theme-icon-moon,
+:root[data-theme="light"] .theme-toggle .theme-icon-moon {
+    display: inline-block;
+}
+.theme-toggle .theme-icon-sun,
+:root[data-theme="light"] .theme-toggle .theme-icon-sun,
+:root[data-theme="dark"] .theme-toggle .theme-icon-moon {
+    display: none;
+}
+:root[data-theme="dark"] .theme-toggle .theme-icon-sun {
+    display: inline-block;
+}
+@media (prefers-color-scheme: dark) {
+    :root:not([data-theme]) .theme-toggle .theme-icon-moon {
+        display: none;
+    }
+    :root:not([data-theme]) .theme-toggle .theme-icon-sun {
+        display: inline-block;
+    }
 }
 .theme-toggle:hover {
     background: rgba(255,255,255,0.18);
@@ -270,11 +317,11 @@ img { max-width: 100%; display: block; }
     background-attachment: fixed; background-position: center; background-repeat: no-repeat; background-size: cover;
     margin-top: 0;
 }
-.about-header-bg { background-image: url('https://placehold.co/1920x1080/003366/ffffff?text=About+Us+Tech'); }
-.product-header-bg { background-image: url('https://placehold.co/1920x1080/004080/ffffff?text=Products+Lab'); }
-.news-header-bg { background-image: url('https://placehold.co/1920x1080/002244/ffffff?text=Global+News'); }
-.gallery-header-bg { background-image: url('https://placehold.co/1920x1080/0f172a/ffffff?text=Factory+View'); }
-.contact-header-bg { background-image: url('https://placehold.co/1920x1080/1a1a1a/ffffff?text=Contact+Service'); }
+.about-header-bg { background-image: url('images/product-card-silicone-products.jpg'); background-position: center 48%; }
+.product-header-bg { background-image: url('images/product-card-silicone-oil.jpg'); background-position: center 52%; }
+.news-header-bg { background-image: url('images/product-card-brightener.jpg'); background-position: center 44%; }
+.gallery-header-bg { background-image: url('images/product-card-pretreatment.jpg'); background-position: center; }
+.contact-header-bg { background-image: url('images/product-card-waterproof.jpg'); background-position: center; }
 
 .overlay { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: linear-gradient(135deg, rgba(0, 86, 179, 0.8), rgba(15, 23, 42, 0.7)); }
 .header-content { z-index: 1; padding-top: 60px; }
@@ -336,6 +383,7 @@ img { max-width: 100%; display: block; }
 /* --- Section Layouts --- */
 .section { padding: 100px 0; }
 .section.products { background-color: var(--surface-muted); }
+.section.news { padding-bottom: 52px; }
 .section-title { text-align: center; margin-bottom: 60px; }
 .section-title span { color: var(--accent-color); font-weight: 700; letter-spacing: 2px; font-size: 14px; display: block; margin-bottom: 10px; text-transform: uppercase; }
 .section-title h2 { font-size: 36px; color: var(--text-color); position: relative; display: inline-block; font-weight: 700; }
@@ -809,6 +857,16 @@ img { max-width: 100%; display: block; }
 
 /* --- Products Page --- */
 .product-intro, .contact-section { background-color: var(--light-bg); }
+.product-intro {
+    padding-bottom: 44px;
+}
+.product-list-section {
+    padding-top: 36px;
+    padding-bottom: 24px;
+}
+.gallery-section {
+    padding-bottom: 48px;
+}
 .intro-text { max-width: 900px; margin: 0 auto; text-align: center; color: #666; line-height: 1.8; font-size: 16px; }
 .product-search {
     max-width: 760px;
@@ -942,7 +1000,7 @@ img { max-width: 100%; display: block; }
     0%, 100% { background-color: transparent; }
     45% { background-color: rgba(255, 165, 0, 0.16); }
 }
-.category-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 40px; margin-top: 40px; }
+.category-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 40px; margin-top: 0; }
 .cat-item {
     padding: 10px;
     background: var(--category-card-bg);
@@ -1242,6 +1300,8 @@ img { max-width: 100%; display: block; }
 
 /* --- Pagination --- */
 .pagination { display: flex; justify-content: center; align-items: center; gap: 10px; margin-top: 50px; flex-wrap: wrap; }
+.news-section { padding-bottom: 56px; }
+.news-section .pagination { margin-top: 34px; }
 .pagination a { display: inline-flex; justify-content: center; align-items: center; min-width: 44px; height: 44px; padding: 0 14px; border: 1px solid #ddd; border-radius: 8px; color: var(--text-color); text-decoration: none; font-size: 16px; font-weight: 500; transition: var(--transition); background: var(--white); }
 .pagination a:hover { background: var(--primary-color); border-color: var(--primary-color); color: var(--white); transform: translateY(-2px); box-shadow: 0 4px 12px rgba(0, 86, 179, 0.25); }
 .pagination a.active { background: var(--primary-color); border-color: var(--primary-color); color: var(--white); pointer-events: none; }
@@ -1560,6 +1620,13 @@ body.platform-qr-open {
 }
 /* --- Footer --- */
 footer { background: #0b1120; color: #cbd5e1; padding-top: 80px; }
+.section.news + footer,
+.news-section + footer,
+.product-list-section + footer,
+.gallery-section + footer,
+.detail-wrapper + footer {
+    padding-top: 44px;
+}
 .footer-top { display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 50px; padding-bottom: 50px; border-bottom: 1px solid rgba(255,255,255,0.1); }
 .footer-col > a:first-child {
     display: inline-block;
@@ -1728,7 +1795,7 @@ body.detail-page-body {
         background-position: center;
     }
     .news-header-bg {
-        background-image: linear-gradient(135deg, #3a73a8 0%, #405a75 100%);
+        background-position: center 42%;
     }
     .header-content {
         padding-top: 44px;
@@ -2253,7 +2320,7 @@ body.detail-page-body {
 }
 .news-article-content {
     max-width: 900px; /* 限制文章宽度，利于阅读 */
-    margin: 40px auto 80px 0; /* 左对齐，下边留白 */
+    margin: 40px auto 44px;
     font-size: 16px;
     line-height: 2; /* 增加行间距 */
     color: var(--text-color);
@@ -2264,6 +2331,16 @@ body.detail-page-body {
 .detail-page-body .detail-wrapper {
     background: var(--page-bg);
     color: var(--text-color);
+}
+.detail-page-body .top-meta,
+.detail-page-body .detail-wrapper > .center-header,
+.detail-page-body .news-article-content {
+    width: min(100%, 900px);
+    margin-left: auto;
+    margin-right: auto;
+}
+.detail-page-body .detail-wrapper > .center-header {
+    text-align: center !important;
 }
 .detail-page-body .top-meta a,
 .detail-page-body .center-header span {
@@ -2528,7 +2605,7 @@ body.detail-page-body {
 }
 /* --- 产品详细数据区块样式 --- */
 .product-data-section {
-    margin-bottom: 60px;
+    margin-bottom: 40px;
 }
 
 /* 表格主标题 */

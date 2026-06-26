@@ -531,54 +531,90 @@ img { max-width: 100%; display: block; }
     position: absolute;
     display: block;
     background:
-        linear-gradient(90deg, rgba(26,170,224,0.95) 0%, rgba(35,102,184,0.95) 52%, rgba(91,18,132,0.96) 100%);
-    border-radius: 50% 50% 0 0 / 58px 58px 0 0;
+        linear-gradient(180deg, rgba(255,255,255,0.16), rgba(255,255,255,0) 24%),
+        linear-gradient(90deg, rgba(19,158,216,0.96) 0%, rgba(35,102,184,0.98) 52%, rgba(84,28,139,0.98) 100%);
+    border-radius: 46% 46% 0 0 / 34px 34px 0 0;
     box-shadow:
-        inset 0 24px 34px rgba(255,255,255,0.24),
-        inset 0 -34px 55px rgba(11,20,86,0.42),
-        0 28px 52px rgba(9,25,72,0.26);
+        inset 0 22px 32px rgba(255,255,255,0.18),
+        inset 0 -34px 55px rgba(10,19,84,0.44),
+        0 26px 46px rgba(8,24,72,0.24);
 }
 .honor-podium::before {
     content: '';
     position: absolute;
     left: 0;
     right: 0;
-    top: -44px;
-    height: 88px;
+    top: -18px;
+    height: 42px;
     border-radius: 50%;
     background:
-        linear-gradient(180deg, rgba(229,255,255,0.96), rgba(122,222,247,0.62) 54%, rgba(19,129,203,0.42));
-    box-shadow: inset 0 10px 20px rgba(255,255,255,0.72), 0 16px 32px rgba(18,79,140,0.22);
+        radial-gradient(ellipse at 50% 38%, rgba(188,239,250,0.98) 0%, rgba(73,188,229,0.96) 48%, rgba(31,118,200,0.96) 76%, rgba(24,78,167,0.98) 100%);
+    box-shadow:
+        inset 0 7px 12px rgba(255,255,255,0.34),
+        inset 0 -10px 16px rgba(7,55,132,0.36);
 }
-.podium-large-left {
-    left: -8%;
-    bottom: 130px;
-    width: 48%;
-    height: 380px;
+.podium-top-left {
+    left: 2%;
+    top: 314px;
+    width: 31%;
+    height: 290px;
+    z-index: 1;
 }
-.podium-main {
-    left: 21%;
-    bottom: -18px;
-    width: 44%;
-    height: 330px;
+.podium-top-center {
+    left: 28%;
+    top: 442px;
+    width: 32%;
+    height: 310px;
+    z-index: 2;
 }
-.podium-back-right {
+.podium-top-right {
     right: 0;
-    bottom: 330px;
-    width: 39%;
+    top: 328px;
+    width: 37%;
     height: 320px;
+    z-index: 1;
+}
+.podium-mid-left {
+    left: -3%;
+    top: 652px;
+    width: 39%;
+    height: 340px;
+    z-index: 3;
+}
+.podium-mid-center {
+    left: 38%;
+    top: 632px;
+    width: 33%;
+    height: 330px;
+    z-index: 3;
+}
+.podium-mid-right {
+    right: 8%;
+    top: 680px;
+    width: 25%;
+    height: 310px;
+    z-index: 3;
 }
 .podium-front-left {
-    left: 0;
-    bottom: -6px;
-    width: 36%;
-    height: 245px;
+    left: 20%;
+    top: 968px;
+    width: 27%;
+    height: 260px;
+    z-index: 4;
+}
+.podium-front-center {
+    left: 45%;
+    top: 944px;
+    width: 26%;
+    height: 285px;
+    z-index: 4;
 }
 .podium-front-right {
-    right: -2%;
-    bottom: -8px;
-    width: 37%;
+    right: -1%;
+    top: 1006px;
+    width: 33%;
     height: 260px;
+    z-index: 4;
 }
 
 /* Certificate cards */
@@ -817,17 +853,17 @@ img { max-width: 100%; display: block; }
 }
 
 /* Exhibition-style certificate placement */
-.honor-card-1 { top: 520px; right: 19%; width: 232px; transform: none; z-index: 6; }
-.honor-card-2 { top: 510px; left: 47%; width: 232px; transform: none; z-index: 5; }
-.honor-card-3 { top: 680px; left: 31%; width: 244px; transform: none; z-index: 8; }
-.honor-card-4 { top: 500px; left: 2%; width: 390px; transform: none; z-index: 4; }
-.honor-card-5 { top: 270px; left: 19%; width: 360px; transform: none; z-index: 7; }
-.honor-card-6 { top: 760px; right: 4%; width: 300px; transform: none; z-index: 6; }
-.honor-card-7 { top: 88px; right: 1%; width: 420px; transform: none; z-index: 7; }
-.honor-card-8 { top: 430px; left: 56%; width: 340px; transform: none; z-index: 4; }
-.honor-card-9 { top: 112px; left: 7%; width: 365px; transform: none; z-index: 5; }
+.honor-card-1 { top: 435px; right: 11%; width: 190px; transform: none; z-index: 6; }
+.honor-card-2 { top: 700px; left: 52%; width: 190px; transform: none; z-index: 5; }
+.honor-card-3 { top: 705px; left: 28%; width: 205px; transform: none; z-index: 8; }
+.honor-card-4 { top: 445px; left: 3%; width: 320px; transform: none; z-index: 4; }
+.honor-card-5 { top: 245px; left: 32%; width: 305px; transform: none; z-index: 7; }
+.honor-card-6 { top: 705px; right: 5%; width: 235px; transform: none; z-index: 6; }
+.honor-card-7 { top: 100px; right: 3%; width: 350px; transform: none; z-index: 7; }
+.honor-card-8 { top: 435px; left: 43%; width: 300px; transform: none; z-index: 4; }
+.honor-card-9 { top: 112px; left: 5%; width: 310px; transform: none; z-index: 5; }
 
-.honor-card:hover { transform: translateY(-14px) scale(1.045) !important; }
+.honor-card:hover { transform: translateY(-10px) scale(1.035) !important; }
 
 /* Bottom honor tags bar — full width, edge to edge */
 .honor-tags-bar {

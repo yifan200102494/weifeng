@@ -471,137 +471,189 @@ img { max-width: 100%; display: block; }
 
 /* --- Honors / Certifications Section --- */
 .honors-section {
-    background: linear-gradient(135deg, #0a4d8c 0%, #1e3a8a 45%, #0c2d6b 100%);
+    background:
+        linear-gradient(145deg, rgba(255,255,255,0.42) 0%, rgba(255,255,255,0) 34%),
+        linear-gradient(155deg, #b9e5ff 0%, #1aa7df 31%, #2460b7 66%, #5c0f78 100%);
     color: white;
     position: relative;
-    padding: 100px 0 0;
+    padding: 96px 0 0;
     overflow: hidden;
 }
-.honors-section .bg-pattern { opacity: 0.4; }
+.honors-section .bg-pattern {
+    opacity: 0.14;
+    background-size: 42px 42px;
+}
 .honor-glow {
-    position: absolute;
-    border-radius: 50%;
-    filter: blur(80px);
-    pointer-events: none;
-    z-index: 0;
-}
-.honor-glow-1 {
-    width: 500px; height: 500px;
-    background: radial-gradient(circle, rgba(0, 168, 255, 0.35) 0%, transparent 70%);
-    top: -100px; right: -100px;
-}
-.honor-glow-2 {
-    width: 600px; height: 600px;
-    background: radial-gradient(circle, rgba(0, 168, 255, 0.2) 0%, transparent 70%);
-    bottom: 100px; left: -150px;
+    display: none;
 }
 
 .honors-stage {
     position: relative;
-    margin: 80px auto 0;
-    height: 720px;
-    max-width: 1150px;
+    margin: 46px auto 0;
+    height: 1040px;
+    max-width: 1220px;
     z-index: 2;
+    isolation: isolate;
 }
 
-/* Stepped pedestals at the bottom */
-.honor-pedestals {
+.honor-stage-backdrop {
     position: absolute;
-    bottom: 0;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 95%;
-    height: 280px;
-    display: flex;
-    justify-content: center;
-    align-items: flex-end;
-    gap: 0;
+    inset: 0;
+    overflow: hidden;
+    border-radius: 0;
+    background:
+        linear-gradient(120deg, rgba(255,255,255,0.24), rgba(255,255,255,0) 30%),
+        linear-gradient(155deg, rgba(210,241,255,0.9) 0%, rgba(31,169,222,0.75) 34%, rgba(38,88,178,0.74) 68%, rgba(92,13,124,0.74) 100%);
     z-index: 1;
     pointer-events: none;
 }
-.pedestal {
-    background: linear-gradient(180deg,
-        rgba(0, 168, 255, 0.55) 0%,
-        rgba(30, 64, 169, 0.55) 50%,
-        rgba(12, 45, 107, 0.6) 100%);
-    width: 32%;
-    position: relative;
-    border-top-left-radius: 50% 40px;
-    border-top-right-radius: 50% 40px;
-    box-shadow: inset 0 8px 20px rgba(255,255,255,0.15),
-                inset 0 -10px 30px rgba(0,0,0,0.3);
-}
-.pedestal::before {
+.honor-stage-backdrop::before {
     content: '';
     position: absolute;
-    top: -1px; left: 0; right: 0;
-    height: 24px;
-    background: linear-gradient(180deg, rgba(255,255,255,0.25), rgba(0,168,255,0.4));
-    border-radius: 50%;
+    inset: 0;
+    background:
+        linear-gradient(105deg, transparent 0 52%, rgba(255,255,255,0.13) 52.4%, transparent 58%),
+        linear-gradient(118deg, transparent 0 18%, rgba(255,255,255,0.12) 18.3%, transparent 25%),
+        linear-gradient(100deg, transparent 0 72%, rgba(255,255,255,0.11) 72.5%, transparent 78%);
+    opacity: 0.58;
 }
-.pedestal-low { height: 90px; }
-.pedestal-mid { height: 170px; }
-.pedestal-high { height: 250px; }
+.honor-stage-backdrop::after {
+    content: '';
+    position: absolute;
+    left: -8%;
+    right: -8%;
+    bottom: -44px;
+    height: 170px;
+    background: linear-gradient(90deg, rgba(14,124,208,0.2), rgba(203,246,255,0.52), rgba(83,20,136,0.25));
+    border-radius: 50% 50% 0 0 / 70% 70% 0 0;
+}
+.honor-podium {
+    position: absolute;
+    display: block;
+    background:
+        linear-gradient(90deg, rgba(26,170,224,0.95) 0%, rgba(35,102,184,0.95) 52%, rgba(91,18,132,0.96) 100%);
+    border-radius: 50% 50% 0 0 / 58px 58px 0 0;
+    box-shadow:
+        inset 0 24px 34px rgba(255,255,255,0.24),
+        inset 0 -34px 55px rgba(11,20,86,0.42),
+        0 28px 52px rgba(9,25,72,0.26);
+}
+.honor-podium::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: -44px;
+    height: 88px;
+    border-radius: 50%;
+    background:
+        linear-gradient(180deg, rgba(229,255,255,0.96), rgba(122,222,247,0.62) 54%, rgba(19,129,203,0.42));
+    box-shadow: inset 0 10px 20px rgba(255,255,255,0.72), 0 16px 32px rgba(18,79,140,0.22);
+}
+.podium-large-left {
+    left: -8%;
+    bottom: 130px;
+    width: 48%;
+    height: 380px;
+}
+.podium-main {
+    left: 21%;
+    bottom: -18px;
+    width: 44%;
+    height: 330px;
+}
+.podium-back-right {
+    right: 0;
+    bottom: 330px;
+    width: 39%;
+    height: 320px;
+}
+.podium-front-left {
+    left: 0;
+    bottom: -6px;
+    width: 36%;
+    height: 245px;
+}
+.podium-front-right {
+    right: -2%;
+    bottom: -8px;
+    width: 37%;
+    height: 260px;
+}
 
 /* Certificate cards */
 .honor-cards {
     position: absolute;
     inset: 0;
-    z-index: 2;
+    z-index: 3;
 }
 .honor-card {
     position: absolute;
-    background: linear-gradient(180deg, #ffffff 0%, #f1f5f9 100%);
-    padding: 10px;
-    border-radius: 4px;
+    background:
+        linear-gradient(135deg, rgba(255,255,255,0.74), rgba(173,220,246,0.42) 38%, rgba(255,255,255,0.86));
+    padding: 13px;
+    border-radius: 6px;
+    border: 1px solid rgba(21, 99, 163, 0.52);
     box-shadow:
-        0 20px 40px rgba(0, 10, 40, 0.45),
-        0 6px 12px rgba(0, 10, 40, 0.3),
-        inset 0 0 0 1px rgba(255, 255, 255, 0.6);
-    transition: transform 0.4s ease, box-shadow 0.4s ease;
+        0 24px 38px rgba(5, 35, 88, 0.42),
+        0 8px 14px rgba(8, 21, 56, 0.28),
+        inset 0 0 0 1px rgba(255,255,255,0.72);
+    transition: transform 0.35s ease, box-shadow 0.35s ease, filter 0.35s ease;
     cursor: pointer;
     display: block;
     text-decoration: none;
     color: inherit;
+    transform-origin: center center;
 }
 .honor-card::after {
     content: '';
     position: absolute;
-    inset: 4px;
-    border: 1px solid rgba(0, 86, 179, 0.15);
+    inset: 5px;
+    border: 1px solid rgba(255,255,255,0.48);
     pointer-events: none;
-    border-radius: 2px;
+    border-radius: 4px;
+    background:
+        radial-gradient(circle at 8px 8px, #e6eef3 0 3px, #7d8b98 4px, transparent 5px),
+        radial-gradient(circle at calc(100% - 8px) 8px, #e6eef3 0 3px, #7d8b98 4px, transparent 5px),
+        radial-gradient(circle at 8px calc(100% - 8px), #e6eef3 0 3px, #7d8b98 4px, transparent 5px),
+        radial-gradient(circle at calc(100% - 8px) calc(100% - 8px), #e6eef3 0 3px, #7d8b98 4px, transparent 5px);
 }
 .honor-card:hover {
-    transform: translateY(-12px) scale(1.06);
+    filter: saturate(1.05);
     box-shadow:
-        0 35px 60px rgba(0, 10, 40, 0.6),
-        0 10px 20px rgba(0, 10, 40, 0.4),
-        inset 0 0 0 1px rgba(255, 255, 255, 0.8);
+        0 36px 70px rgba(5, 28, 72, 0.56),
+        0 10px 18px rgba(8, 21, 56, 0.32),
+        inset 0 0 0 1px rgba(255,255,255,0.88);
     z-index: 10;
 }
 
 .cert-frame {
     position: relative;
     overflow: hidden;
-    border-radius: 2px;
+    border-radius: 3px;
     aspect-ratio: 4 / 5.2;
     background: #fff;
     display: flex;
     align-items: center;
     justify-content: center;
+    padding: 10px;
 }
 .honor-card.horizontal .cert-frame {
     aspect-ratio: 5 / 3;
 }
 .cert-frame > img,
 .cert-frame > canvas {
-    max-width: 100%;
-    max-height: 100%;
-    width: auto;
-    height: auto;
+    width: 100%;
+    height: 100%;
     object-fit: contain;
     display: block;
+}
+.cert-frame::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(115deg, rgba(255,255,255,0.42), rgba(255,255,255,0) 32%, rgba(255,255,255,0.32) 68%, rgba(255,255,255,0));
+    pointer-events: none;
 }
 .cert-loading {
     position: absolute;
@@ -764,24 +816,18 @@ img { max-width: 100%; display: block; }
     .lightbox-caption { font-size: 13px; }
 }
 
-/* Individual positions — 3 tiers staircase, 9 cards total */
-/* Top tier (3 vertical certs) */
-.honor-card-1 { top: 0;    left: 8%;    width: 170px; transform: rotate(-1.5deg); }
-.honor-card-2 { top: 30px; left: 50%;   width: 175px; transform: translateX(-50%) rotate(1deg); }
-.honor-card-3 { top: 0;    right: 8%;   width: 175px; transform: rotate(-1deg); }
+/* Exhibition-style certificate placement */
+.honor-card-1 { top: 520px; right: 19%; width: 232px; transform: none; z-index: 6; }
+.honor-card-2 { top: 510px; left: 47%; width: 232px; transform: none; z-index: 5; }
+.honor-card-3 { top: 680px; left: 31%; width: 244px; transform: none; z-index: 8; }
+.honor-card-4 { top: 500px; left: 2%; width: 390px; transform: none; z-index: 4; }
+.honor-card-5 { top: 270px; left: 19%; width: 360px; transform: none; z-index: 7; }
+.honor-card-6 { top: 760px; right: 4%; width: 300px; transform: none; z-index: 6; }
+.honor-card-7 { top: 88px; right: 1%; width: 420px; transform: none; z-index: 7; }
+.honor-card-8 { top: 430px; left: 56%; width: 340px; transform: none; z-index: 4; }
+.honor-card-9 { top: 112px; left: 7%; width: 365px; transform: none; z-index: 5; }
 
-/* Middle tier — card-4/5 are landscape SME honor certs, card-6 is the (portrait) RSL report */
-.honor-card-4 { top: 275px; left: 2%;   width: 230px; transform: rotate(1deg); }
-.honor-card-5 { top: 295px; left: 33%;  width: 230px; transform: rotate(-1deg); }
-.honor-card-6 { top: 235px; right: 2%;  width: 195px; transform: rotate(1deg); }
-
-/* Bottom tier (2 horizontal plaques + 1 vertical) */
-.honor-card-7 { top: 470px; left: 4%;   width: 230px; transform: rotate(-1deg); }
-.honor-card-8 { top: 480px; left: 36%;  width: 230px; transform: rotate(1deg); }
-.honor-card-9 { top: 520px; right: 4%;  width: 230px; transform: rotate(-1deg); }
-
-.honor-card:hover { transform: translateY(-12px) scale(1.06) rotate(0deg) !important; }
-.honor-card-2:hover { transform: translate(-50%, -12px) scale(1.06) rotate(0deg) !important; }
+.honor-card:hover { transform: translateY(-14px) scale(1.045) !important; }
 
 /* Bottom honor tags bar — full width, edge to edge */
 .honor-tags-bar {
@@ -818,8 +864,13 @@ img { max-width: 100%; display: block; }
 }
 
 @media (max-width: 992px) {
-    .honors-stage { height: auto; min-height: 0; padding: 0; }
-    .honor-pedestals { display: none; }
+    .honors-stage {
+        height: auto;
+        min-height: 0;
+        padding: 0;
+        margin-top: 34px;
+    }
+    .honor-stage-backdrop { display: none; }
     .honor-cards {
         position: relative;
         display: grid;
@@ -831,6 +882,7 @@ img { max-width: 100%; display: block; }
         top: auto !important; left: auto !important; right: auto !important;
         width: 100% !important;
         transform: none !important;
+        padding: 10px;
     }
     .honor-card:hover { transform: translateY(-8px) scale(1.03) !important; }
 
@@ -852,11 +904,15 @@ img { max-width: 100%; display: block; }
 @media (max-width: 768px) {
     .honors-section { padding: 70px 0 0; }
     .honor-cards { gap: 14px; }
+    .cert-frame { padding: 8px; }
     .honor-tags-grid { grid-template-columns: 1fr; }
     .honor-tag { border-right: none; border-bottom: 1px solid rgba(255,255,255,0.12); padding: 24px 20px; }
     .honor-tag:last-child { border-bottom: none; }
     .honor-tag h3 { font-size: 18px; letter-spacing: 1px; }
     .honor-tag p { font-size: 10px; }
+}
+@media (max-width: 560px) {
+    .honor-cards { grid-template-columns: 1fr; }
 }
 
 /* --- Products Page --- */

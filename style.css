@@ -1391,6 +1391,8 @@ img { max-width: 100%; display: block; }
 }
 
 /* --- Contact --- */
+.contact-page .contact-section { padding-bottom: 48px; }
+.contact-page > footer { padding-top: 48px; }
 .contact-wrapper { display: flex; background: #fff; border-radius: 15px; overflow: hidden; box-shadow: 0 10px 40px rgba(0,0,0,0.1); min-height: 600px; }
 .contact-info-box { flex: 1; padding: 60px 50px; background: #fff; position: relative; z-index: 2; }
 .info-header h2 { font-size: 32px; color: var(--primary-color); margin-bottom: 15px; }
@@ -2668,7 +2670,10 @@ body.detail-page-body {
 /* 化学式内容特殊处理 (居中显示图片) */
 .formula-content {
     display: flex;
+    flex-direction: column;
+    align-items: center;
     justify-content: center;
+    gap: 14px;
     padding: 20px 0;
 }
 
@@ -2765,5 +2770,23 @@ body.detail-page-body {
     .series-category-row td::before,
     .empty-cell::before {
         content: none !important;
+    }
+}
+
+.formula-cas {
+    margin: 0;
+    color: #0056b3;
+    font-size: 18px;
+    font-weight: 800;
+    letter-spacing: 0;
+}
+
+:root[data-theme="dark"] .formula-cas {
+    color: #fbbf24;
+}
+
+@media (prefers-color-scheme: dark) {
+    :root:not([data-theme]) .formula-cas {
+        color: #fbbf24;
     }
 }

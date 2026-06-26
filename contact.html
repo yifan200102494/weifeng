@@ -28,7 +28,7 @@
     </script>
 
     </head>
-<body>
+<body class="contact-page">
 
     <nav class="navbar" id="navbar">
         <div class="container nav-flex">
@@ -45,6 +45,11 @@
                 <li><a href="gallery.html" data-i18n="nav.gallery">企业形象</a></li>
                 <li><a href="contact.html" class="active btn-contact" data-i18n="nav.contact">联系我们</a></li>
             </ul>
+            <button class="theme-toggle" type="button" aria-label="切换深浅色模式" title="切换深浅色模式">
+                <i class="fas fa-moon theme-icon theme-icon-moon" aria-hidden="true"></i>
+                <i class="fas fa-sun theme-icon theme-icon-sun" aria-hidden="true"></i>
+            </button>
+
             <div class="lang-switch">
                 <span class="lang-btn active" onclick="setLanguage('zh')">CN</span>
                 <span class="divider">/</span>
@@ -135,9 +140,6 @@
             <p id="platformQrModalCaption"></p>
         </div>
     </div>
-
-    <footer id="contact">
-        </footer>
 
     <script type="text/javascript">
     (function () {

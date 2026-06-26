@@ -42,7 +42,7 @@
     --news-list-card-shadow-hover: 0 22px 52px rgba(15, 23, 42, 0.16);
     --news-date-bg: #f3f7fd;
     --news-date-border: rgba(0, 86, 179, 0.12);
-    --transition: all 0.4s ease;
+    --transition: color 0.3s ease, background-color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease, transform 0.3s ease, opacity 0.3s ease;
     color-scheme: light;
 }
 
@@ -143,9 +143,9 @@ img { max-width: 100%; display: block; }
 .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; position: relative; }
 
 /* --- 导航栏 Navbar --- */
-.navbar { position: fixed; top: 0; width: 100%; padding: 20px 0; z-index: 1000; transition: var(--transition); background: transparent; }
+.navbar { position: fixed; top: 0; width: 100%; padding: 20px 0; z-index: 1000; transition: background-color 0.25s ease, padding 0.25s ease, box-shadow 0.25s ease; background: transparent; }
 .navbar.scrolled,
-.navbar-detail-solid { background: rgba(12, 12, 12, 0.96); padding: 15px 0; box-shadow: 0 10px 28px rgba(0,0,0,0.28); backdrop-filter: blur(10px); }
+.navbar-detail-solid { background: rgba(12, 12, 12, 0.98); padding: 15px 0; box-shadow: 0 8px 22px rgba(0,0,0,0.22); }
 
 .nav-flex { 
     display: flex; 
@@ -314,7 +314,7 @@ img { max-width: 100%; display: block; }
     height: 70vh; min-height: 500px; position: relative;
     display: flex; align-items: center; justify-content: center;
     color: var(--white); text-align: center; overflow: hidden;
-    background-attachment: fixed; background-position: center; background-repeat: no-repeat; background-size: cover;
+    background-attachment: scroll; background-position: center; background-repeat: no-repeat; background-size: cover;
     margin-top: 0;
 }
 .about-header-bg { background-image: url('images/product-card-silicone-products.jpg'); background-position: center 48%; }
@@ -356,7 +356,7 @@ img { max-width: 100%; display: block; }
     
     /* 【核心修改】：同时对 opacity 和 transform 进行过渡 */
     /* 当 active 被移除时，图片会用 1.5秒 的时间平滑地从当前大小慢慢变回 1.2，而不是瞬间跳回去 */
-    transition: opacity 1.5s ease-in-out, transform 600s linear;
+    transition: opacity 1.2s ease-in-out;
     
     z-index: -1;
 }
@@ -366,6 +366,11 @@ img { max-width: 100%; display: block; }
     opacity: 1;
     /* 应用缩放动画：时间20秒，从 1.2 缩放到 1.0 */
     animation: heroZoomOut 10s ease-in-out forwards;
+    will-change: transform, opacity;
+}
+
+.hero.is-paused .hero-slide.active {
+    animation-play-state: paused;
 }
 
 
@@ -441,7 +446,6 @@ img { max-width: 100%; display: block; }
     border-radius: 10px;
     border: 1px solid rgba(255,255,255,0.22);
     box-shadow: 0 18px 42px rgba(0, 10, 35, 0.36), inset 0 1px 0 rgba(255,255,255,0.08);
-    backdrop-filter: blur(10px);
     position: relative;
     z-index: 1;
 }
@@ -1672,8 +1676,43 @@ footer { background: #0b1120; color: #cbd5e1; padding-top: 80px; }
 .fade-in-up { opacity: 0; transform: translateY(30px); animation: fadeInUp 0.8s forwards; }
 .delay-200 { animation-delay: 0.2s; }
 .delay-400 { animation-delay: 0.4s; }
-.reveal { opacity: 0; transform: translateY(50px); transition: all 0.8s ease-out; }
+.reveal { opacity: 0; transform: translateY(50px); transition: opacity 0.8s ease-out, transform 0.8s ease-out; }
 .reveal.active { opacity: 1; transform: translateY(0); }
+
+@supports (content-visibility: auto) {
+    .section,
+    footer,
+    .detail-wrapper > .product-data-section,
+    .detail-wrapper > .news-article-content,
+    .news-row,
+    .product-item,
+    .news-card,
+    .gallery-item,
+    .cat-item,
+    .article-product-block {
+        content-visibility: auto;
+        contain-intrinsic-size: auto 520px;
+    }
+
+    .news-row,
+    .product-item,
+    .news-card,
+    .gallery-item,
+    .cat-item {
+        contain-intrinsic-size: auto 300px;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.001ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.001ms !important;
+    }
+}
 
 /* --- Theme surfaces --- */
 .section:not(.reasons-blue):not(.honors-section):not(.products),

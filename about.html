@@ -25,7 +25,7 @@
         <div class="container nav-flex">
             <div class="logo">
                 <a href="index.html">
-                    <img src="images/logo.png" alt="浙江伟丰新材料有限公司 Logo">
+                    <img src="images/logo.png" alt="浙江伟丰新材料有限公司 Logo" decoding="async">
                 </a>
             </div>
             <ul class="nav-links">
@@ -36,6 +36,11 @@
                 <li><a href="gallery.html" data-i18n="nav.gallery">企业形象</a></li>
                 <li><a href="contact.html" class="btn-contact" data-i18n="nav.contact">联系我们</a></li>
             </ul>
+
+            <button class="theme-toggle" type="button" aria-label="切换深浅色模式" title="切换深浅色模式">
+                <i class="fas fa-moon theme-icon theme-icon-moon" aria-hidden="true"></i>
+                <i class="fas fa-sun theme-icon theme-icon-sun" aria-hidden="true"></i>
+            </button>
 
             <div class="lang-switch">
                 <span class="lang-btn active" onclick="setLanguage('zh')">CN</span>
@@ -99,7 +104,7 @@
                         <p data-i18n="about.why_1_desc">20多年专业纺织印染助剂厂家，产品种类齐全，涵盖各类功能整理剂。产品包括各类新型有机硅柔软剂、平滑剂等。</p>
                     </div>
                     <div class="reason-image">
-                        <img src="https://images.unsplash.com/photo-1563968743333-044cef800494?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="公司实力工厂背景">
+                        <img src="https://images.unsplash.com/photo-1563968743333-044cef800494?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="公司实力工厂背景" decoding="async" loading="lazy">
                     </div>
                 </div>
                 <div class="reason-row reverse">
@@ -109,7 +114,7 @@
                         <p data-i18n="why.2_desc">伟丰公司专业从事环保型纺织印染助剂生产销售及有机硅材料生产销售的化工企业。公司团队致力于产品开发、市场开拓，力求专业化、精细化。</p>
                     </div>
                     <div class="reason-image">
-                        <img src="https://images.unsplash.com/photo-1532094349884-543bc11b234d?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="研发团队实验室">
+                        <img src="https://images.unsplash.com/photo-1532094349884-543bc11b234d?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="研发团队实验室" decoding="async" loading="lazy">
                     </div>
                 </div>
                 <div class="reason-row">
@@ -119,7 +124,7 @@
                         <p data-i18n="why.3_desc">公司凭借多年的研发经验尽心尽力为客户服务，选择我们等于选择实力保证。秉承优质的产品、优惠的价格、优良的售后服务与新老客户竭诚合作。</p>
                     </div>
                     <div class="reason-image">
-                        <img src="https://images.unsplash.com/photo-1556761175-5973dc0f32e7?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="商务合作握手">
+                        <img src="https://images.unsplash.com/photo-1556761175-5973dc0f32e7?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="商务合作握手" decoding="async" loading="lazy">
                     </div>
                 </div>
             </div>
@@ -148,52 +153,64 @@
                     <a class="honor-card honor-card-1" href="images/伟丰-Q中文.pdf"
                        data-cert="images/伟丰-Q中文.pdf" data-cert-id="cert-quality" data-type="pdf"
                        data-caption="质量管理体系认证证书 · ISO 9001:2015">
-                        <div class="cert-frame"><canvas></canvas><span class="cert-loading"><i class="fas fa-spinner fa-spin"></i></span></div>
+                        <div class="cert-frame loaded">
+                            <img src="images/thumbs/cert-quality.webp" alt="质量管理体系认证证书缩略图" decoding="async" loading="lazy">
+                        </div>
                     </a>
                     <a class="honor-card honor-card-2" href="images/伟丰-E中文.pdf"
                        data-cert="images/伟丰-E中文.pdf" data-cert-id="cert-environment" data-type="pdf"
                        data-caption="环境管理体系认证证书 · ISO 14001:2015">
-                        <div class="cert-frame"><canvas></canvas><span class="cert-loading"><i class="fas fa-spinner fa-spin"></i></span></div>
+                        <div class="cert-frame loaded">
+                            <img src="images/thumbs/cert-environment.webp" alt="环境管理体系认证证书缩略图" decoding="async" loading="lazy">
+                        </div>
                     </a>
                     <a class="honor-card honor-card-3" href="images/21.0.61626-en.pdf"
                        data-cert="images/21.0.61626-en.pdf" data-cert-id="cert-oeko" data-type="pdf"
                        data-caption="OEKO-TEX ECO PASSPORT · 21.0.61626">
-                        <div class="cert-frame"><canvas></canvas><span class="cert-loading"><i class="fas fa-spinner fa-spin"></i></span></div>
+                        <div class="cert-frame loaded">
+                            <img src="images/thumbs/cert-oeko.webp" alt="OEKO-TEX ECO PASSPORT 缩略图" decoding="async" loading="lazy">
+                        </div>
                     </a>
                     <a class="honor-card honor-card-4 horizontal" href="images/浙江省专精特新中小企业荣誉证书.pdf"
                        data-cert="images/浙江省专精特新中小企业荣誉证书.pdf" data-cert-id="cert-honor-1" data-type="pdf"
                        data-caption="浙江省专精特新中小企业荣誉证书">
-                        <div class="cert-frame"><canvas></canvas><span class="cert-loading"><i class="fas fa-spinner fa-spin"></i></span></div>
+                        <div class="cert-frame loaded">
+                            <img src="images/thumbs/cert-honor-1.webp" alt="浙江省专精特新中小企业荣誉证书缩略图" decoding="async" loading="lazy">
+                        </div>
                     </a>
                     <a class="honor-card honor-card-5 horizontal" href="images/浙江省创新型中小企业荣誉证书.pdf"
                        data-cert="images/浙江省创新型中小企业荣誉证书.pdf" data-cert-id="cert-honor-2" data-type="pdf"
                        data-caption="浙江省创新型中小企业荣誉证书">
-                        <div class="cert-frame"><canvas></canvas><span class="cert-loading"><i class="fas fa-spinner fa-spin"></i></span></div>
+                        <div class="cert-frame loaded">
+                            <img src="images/thumbs/cert-honor-2.webp" alt="浙江省创新型中小企业荣誉证书缩略图" decoding="async" loading="lazy">
+                        </div>
                     </a>
                     <a class="honor-card honor-card-6" href="images/Zhejiang Weifeng New Materials Co., Ltd_ChemCheckSummary_27-09-2025.pdf"
                        data-cert="images/Zhejiang Weifeng New Materials Co., Ltd_ChemCheckSummary_27-09-2025.pdf" data-cert-id="cert-rsl" data-type="pdf"
                        data-caption="RSL Report · ChemCheck Summary (OEKO-TEX 2025)">
-                        <div class="cert-frame"><canvas></canvas><span class="cert-loading"><i class="fas fa-spinner fa-spin"></i></span></div>
+                        <div class="cert-frame loaded">
+                            <img src="images/thumbs/cert-rsl.webp" alt="RSL Report 缩略图" decoding="async" loading="lazy">
+                        </div>
                     </a>
                     <a class="honor-card honor-card-7 horizontal" href="images/微信图片_20260430024521.jpg"
                        data-cert="images/微信图片_20260430024521.jpg" data-type="image"
                        data-caption="衢州市博士创新站">
                         <div class="cert-frame">
-                            <img src="images/微信图片_20260430024521.jpg" alt="衢州市博士创新站">
+                            <img src="images/thumbs/honor-station.webp" alt="衢州市博士创新站" decoding="async" loading="lazy">
                         </div>
                     </a>
                     <a class="honor-card honor-card-8 horizontal" href="images/微信图片_20260430024525.jpg"
                        data-cert="images/微信图片_20260430024525.jpg" data-type="image"
                        data-caption="衢州市工程技术研发中心">
                         <div class="cert-frame">
-                            <img src="images/微信图片_20260430024525.jpg" alt="衢州市工程技术研发中心">
+                            <img src="images/thumbs/honor-rd-center.webp" alt="衢州市工程技术研发中心" decoding="async" loading="lazy">
                         </div>
                     </a>
                     <a class="honor-card honor-card-9 horizontal" href="images/微信图片_20260430024529.jpg"
                        data-cert="images/微信图片_20260430024529.jpg" data-type="image"
                        data-caption="中国氟硅有机材料工业协会 · 第八届理事会会员单位">
                         <div class="cert-frame">
-                            <img src="images/微信图片_20260430024529.jpg" alt="中国氟硅有机材料工业协会会员">
+                            <img src="images/thumbs/honor-association.webp" alt="中国氟硅有机材料工业协会会员" decoding="async" loading="lazy">
                         </div>
                     </a>
                 </div>
@@ -222,7 +239,7 @@
         <div class="container footer-top">
             <div class="footer-col">
                 <a href="index.html">
-                    <img src="images/logo.png" alt="浙江伟丰新材料有限公司 Logo">
+                    <img src="images/logo.png" alt="浙江伟丰新材料有限公司 Logo" decoding="async">
                 </a>
                 <p data-i18n="about.footer_desc">专注纺织助剂20多年，为您提供最优质的化学品解决方案。致力于精细化工领域。</p>
             </div>
@@ -291,14 +308,6 @@
         </div>
     </div>
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
-    <script>
-        // Only load the heavy base64 PDF blob when running from file:// (preview mode).
-        // On a real HTTP server, PDF.js fetches PDFs directly from images/ and we skip the 5+ MB JS.
-        if (location.protocol === 'file:') {
-            document.write('<scr' + 'ipt src="pdfdata.js"></scr' + 'ipt>');
-        }
-    </script>
     <script src="i18n.js"></script>
     <script src="script.js"></script>
 </body>

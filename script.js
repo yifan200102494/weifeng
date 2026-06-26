@@ -3,12 +3,25 @@
 document.addEventListener('DOMContentLoaded', () => {
     // 1. 导航栏滚动效果
     const navbar = document.getElementById('navbar');
-    const updateNavbarState = () => {
+    let navbarScrolled = null;
+    let navbarFrame = null;
+    const applyNavbarState = () => {
         if (!navbar) return;
-        navbar.classList.toggle('scrolled', window.scrollY > 50);
+        const shouldBeScrolled = window.scrollY > 50;
+        if (shouldBeScrolled === navbarScrolled) return;
+        navbarScrolled = shouldBeScrolled;
+        navbar.classList.toggle('scrolled', shouldBeScrolled);
     };
-    updateNavbarState();
-    window.addEventListener('scroll', updateNavbarState, { passive: true });
+    const requestNavbarState = () => {
+        if (navbarFrame) return;
+        navbarFrame = window.requestAnimationFrame(() => {
+            navbarFrame = null;
+            applyNavbarState();
+        });
+    };
+    applyNavbarState();
+    window.addEventListener('scroll', requestNavbarState, { passive: true });
+    window.addEventListener('resize', requestNavbarState);
 
     // 2. 移动端菜单切换
     const mobileBtn = document.querySelector('.mobile-menu-btn');
@@ -90,19 +103,14 @@ document.addEventListener('DOMContentLoaded', () => {
         const target = +counterElement.getAttribute('data-target');
         const suffix = counterElement.getAttribute('data-suffix') || '';
         const duration = 2000;
-        const frameDuration = 1000 / 60; 
-        const totalFrames = Math.round(duration / frameDuration);
-        const increment = target / totalFrames;
-        let currentCount = 0;
-        const timer = setInterval(() => {
-            currentCount += increment;
-            if (currentCount >= target) {
-                counterElement.innerText = `${target}${suffix}`;
-                clearInterval(timer);
-            } else {
-                counterElement.innerText = Math.ceil(currentCount);
-            }
-        }, frameDuration);
+        const startTime = window.performance.now();
+        const tick = (now) => {
+            const progress = Math.min((now - startTime) / duration, 1);
+            const currentCount = Math.ceil(target * progress);
+            counterElement.innerText = progress >= 1 ? `${target}${suffix}` : currentCount;
+            if (progress < 1) window.requestAnimationFrame(tick);
+        };
+        window.requestAnimationFrame(tick);
     }
 
     // Tab 切换逻辑
@@ -187,6 +195,7 @@ document.addEventListener('DOMContentLoaded', () => {
         let currentSlide = 0;
         const slideInterval = 13000; 
         let slideTimer; // 用于存储定时器ID
+        const hero = document.querySelector('.hero');
 
         // 核心切换函数
         function switchSlide(index) {
@@ -206,6 +215,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         // 启动自动播放
         function startTimer() {
+            clearInterval(slideTimer);
             slideTimer = setInterval(() => {
                 switchSlide(currentSlide + 1);
             }, slideInterval);
@@ -237,6 +247,24 @@ document.addEventListener('DOMContentLoaded', () => {
 
         // 初始化启动
         startTimer();
+
+        if (hero && 'IntersectionObserver' in window) {
+            const heroObserver = new IntersectionObserver(entries => {
+                const isVisible = entries.some(entry => entry.isIntersecting);
+                hero.classList.toggle('is-paused', !isVisible || document.hidden);
+            }, { threshold: 0 });
+            heroObserver.observe(hero);
+        }
+
+        document.addEventListener('visibilitychange', () => {
+            if (document.hidden) {
+                clearInterval(slideTimer);
+                if (hero) hero.classList.add('is-paused');
+            } else {
+                startTimer();
+                if (hero) hero.classList.remove('is-paused');
+            }
+        });
     }
 });
 
@@ -384,7 +412,8 @@ function initLightbox() {
                     modal.classList.add('show');
                 }, 10);
 
-                modalImg.src = img.src; // 把大图地址设为当前图片的地址
+                const fullSrc = img.dataset.fullSrc || item.dataset.fullSrc || img.currentSrc || img.src;
+                modalImg.src = fullSrc; // 缩略图可通过 data-full-src 指向原图
                 
                 // 如果有文字说明，也显示出来
                 if (caption) {
@@ -752,12 +781,29 @@ function initProductSearchTarget() {
         updateThemeButtons();
     }
 
+    function ensureThemeButtonIcons(button) {
+        if (button.querySelector('.theme-icon-moon') && button.querySelector('.theme-icon-sun')) return;
+
+        button.textContent = '';
+
+        const moonIcon = document.createElement('i');
+        moonIcon.className = 'fas fa-moon theme-icon theme-icon-moon';
+        moonIcon.setAttribute('aria-hidden', 'true');
+
+        const sunIcon = document.createElement('i');
+        sunIcon.className = 'fas fa-sun theme-icon theme-icon-sun';
+        sunIcon.setAttribute('aria-hidden', 'true');
+
+        button.append(moonIcon, sunIcon);
+    }
+
     function updateThemeButtons() {
         const isDark = getEffectiveTheme() === 'dark';
         document.querySelectorAll('.theme-toggle').forEach(button => {
+            ensureThemeButtonIcons(button);
+            button.classList.toggle('is-dark', isDark);
             button.setAttribute('aria-label', isDark ? '切换为浅色模式' : '切换为深色模式');
             button.setAttribute('title', isDark ? '切换为浅色模式' : '切换为深色模式');
-            button.innerHTML = `<i class="fas ${isDark ? 'fa-sun' : 'fa-moon'}" aria-hidden="true"></i>`;
         });
     }
 
@@ -773,14 +819,17 @@ function initProductSearchTarget() {
 
     document.addEventListener('DOMContentLoaded', () => {
         document.querySelectorAll('.nav-flex').forEach(nav => {
-            if (nav.querySelector('.theme-toggle')) return;
-            const button = document.createElement('button');
-            button.className = 'theme-toggle';
+            let button = nav.querySelector('.theme-toggle');
+            if (!button) {
+                button = document.createElement('button');
+                button.className = 'theme-toggle';
+                const langSwitch = nav.querySelector('.lang-switch');
+                const mobileButton = nav.querySelector('.mobile-menu-btn');
+                nav.insertBefore(button, langSwitch || mobileButton || null);
+            }
             button.type = 'button';
+            ensureThemeButtonIcons(button);
             button.addEventListener('click', toggleTheme);
-            const langSwitch = nav.querySelector('.lang-switch');
-            const mobileButton = nav.querySelector('.mobile-menu-btn');
-            nav.insertBefore(button, langSwitch || mobileButton || null);
         });
         updateThemeButtons();
     });
@@ -807,10 +856,62 @@ document.addEventListener('DOMContentLoaded', () => {
     const cards = document.querySelectorAll('.honor-card[data-cert]');
     if (!cards.length) return;
 
-    // PDF.js worker
-    if (typeof pdfjsLib !== 'undefined') {
-        pdfjsLib.GlobalWorkerOptions.workerSrc =
-            'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
+    const pdfJsUrl = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js';
+    const pdfWorkerUrl = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
+    let pdfJsPromise = null;
+    let pdfDataPromise = null;
+
+    function loadScriptOnce(src) {
+        const existing = document.querySelector(`script[src="${src}"]`);
+        if (existing) {
+            return new Promise((resolve, reject) => {
+                const alreadyReady =
+                    existing.dataset.loaded === 'true' ||
+                    (src === pdfJsUrl && typeof pdfjsLib !== 'undefined') ||
+                    (src === 'pdfdata.js' && !!window.PDF_DATA);
+                if (alreadyReady) {
+                    resolve();
+                    return;
+                }
+                existing.addEventListener('load', resolve, { once: true });
+                existing.addEventListener('error', reject, { once: true });
+            });
+        }
+
+        return new Promise((resolve, reject) => {
+            const script = document.createElement('script');
+            script.src = src;
+            script.async = true;
+            script.onload = () => {
+                script.dataset.loaded = 'true';
+                resolve();
+            };
+            script.onerror = reject;
+            document.head.appendChild(script);
+        });
+    }
+
+    async function ensurePdfJs() {
+        if (typeof pdfjsLib !== 'undefined') {
+            pdfjsLib.GlobalWorkerOptions.workerSrc = pdfWorkerUrl;
+            return pdfjsLib;
+        }
+        if (!pdfJsPromise) {
+            pdfJsPromise = loadScriptOnce(pdfJsUrl).then(() => {
+                if (typeof pdfjsLib === 'undefined') throw new Error('PDF.js failed to load');
+                pdfjsLib.GlobalWorkerOptions.workerSrc = pdfWorkerUrl;
+                return pdfjsLib;
+            });
+        }
+        return pdfJsPromise;
+    }
+
+    async function ensurePdfData(force = false) {
+        if ((!force && window.location.protocol !== 'file:') || window.PDF_DATA) return;
+        if (!pdfDataPromise) {
+            pdfDataPromise = loadScriptOnce('pdfdata.js');
+        }
+        await pdfDataPromise;
     }
 
     // Decode base64 -> Uint8Array (used when PDF data is embedded inline)
@@ -826,6 +927,8 @@ document.addEventListener('DOMContentLoaded', () => {
     async function getPdf(card) {
         const key = card.dataset.certId || card.dataset.cert;
         if (pdfCache.has(key)) return pdfCache.get(key);
+        const pdfLib = await ensurePdfJs();
+        await ensurePdfData();
 
         let docParams;
         const id = card.dataset.certId;
@@ -836,7 +939,14 @@ document.addEventListener('DOMContentLoaded', () => {
             // Direct URL fetch (works when served over HTTP)
             docParams = { url: card.dataset.cert };
         }
-        const promise = pdfjsLib.getDocument(docParams).promise;
+        const promise = pdfLib.getDocument(docParams).promise.catch(async error => {
+            if (!id) throw error;
+            await ensurePdfData(true);
+            if (window.PDF_DATA && window.PDF_DATA[id]) {
+                return pdfLib.getDocument({ data: base64ToBytes(window.PDF_DATA[id]) }).promise;
+            }
+            throw error;
+        });
         pdfCache.set(key, promise);
         return promise;
     }
@@ -895,9 +1005,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // ---------- Render PDF thumbnails on load ----------
     async function renderThumbnails() {
-        if (typeof pdfjsLib === 'undefined') return;
-        for (const card of cards) {
-            if (card.dataset.type !== 'pdf') continue;
+        const canvasCards = Array.from(cards).filter(card => (
+            card.dataset.type === 'pdf' && card.querySelector('canvas')
+        ));
+        if (!canvasCards.length) return;
+        await ensurePdfJs();
+        for (const card of canvasCards) {
             const frame = card.querySelector('.cert-frame');
             const canvas = card.querySelector('canvas');
             if (!canvas) continue;
@@ -917,6 +1030,33 @@ document.addEventListener('DOMContentLoaded', () => {
                     frame.appendChild(fallback);
                 }
             }
+        }
+    }
+
+    function scheduleThumbnailRender() {
+        let started = false;
+        const start = () => {
+            if (started) return;
+            started = true;
+            const run = () => renderThumbnails();
+            if ('requestIdleCallback' in window) {
+                window.requestIdleCallback(run, { timeout: 1800 });
+            } else {
+                window.setTimeout(run, 350);
+            }
+        };
+
+        const section = document.querySelector('.honors-section') || cards[0];
+        if ('IntersectionObserver' in window && section) {
+            const observer = new IntersectionObserver(entries => {
+                if (entries.some(entry => entry.isIntersecting)) {
+                    observer.disconnect();
+                    start();
+                }
+            }, { rootMargin: '600px 0px' });
+            observer.observe(section);
+        } else {
+            start();
         }
     }
 
@@ -957,11 +1097,8 @@ document.addEventListener('DOMContentLoaded', () => {
             img.onerror = () => { lbBody.innerHTML = '<div style="padding:40px;color:#64748b;">图片加载失败</div>'; };
             img.src = url;
         } else if (type === 'pdf') {
-            if (typeof pdfjsLib === 'undefined') {
-                lbBody.innerHTML = '<div style="padding:40px;color:#64748b;">PDF 预览不可用</div>';
-                return;
-            }
             try {
+                await ensurePdfJs();
                 const stageMaxWidth = Math.min(window.innerWidth * 0.85, 1000);
                 lbBody.classList.add('pdf-mode');
                 lbBody.innerHTML = '';
@@ -1016,9 +1153,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Kick off thumbnail rendering once PDF.js is ready & DOM is laid out
     if (document.readyState === 'complete' || document.readyState === 'interactive') {
-        setTimeout(renderThumbnails, 50);
+        setTimeout(scheduleThumbnailRender, 50);
     } else {
-        document.addEventListener('DOMContentLoaded', () => setTimeout(renderThumbnails, 50));
+        document.addEventListener('DOMContentLoaded', () => setTimeout(scheduleThumbnailRender, 50));
     }
 })();
 

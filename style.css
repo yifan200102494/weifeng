@@ -1874,30 +1874,6 @@ footer { background: #0b1120; color: #cbd5e1; padding-top: 80px; }
 .reveal { opacity: 0; transform: translateY(50px); transition: opacity 0.8s ease-out, transform 0.8s ease-out; }
 .reveal.active { opacity: 1; transform: translateY(0); }
 
-@supports (content-visibility: auto) {
-    .section,
-    footer,
-    .detail-wrapper > .product-data-section,
-    .detail-wrapper > .news-article-content,
-    .news-row,
-    .product-item,
-    .news-card,
-    .gallery-item,
-    .cat-item,
-    .article-product-block {
-        content-visibility: auto;
-        contain-intrinsic-size: auto 520px;
-    }
-
-    .news-row,
-    .product-item,
-    .news-card,
-    .gallery-item,
-    .cat-item {
-        contain-intrinsic-size: auto 300px;
-    }
-}
-
 @media (prefers-reduced-motion: reduce) {
     html { scroll-behavior: auto; }
     *,

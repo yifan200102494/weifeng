@@ -544,9 +544,9 @@ img { max-width: 100%; display: block; }
     position: absolute;
     left: 0;
     right: 0;
-    top: -18px;
-    height: 42px;
-    border-radius: 50%;
+    top: 0;
+    height: 68px;
+    border-radius: 46% / 50%;
     background:
         radial-gradient(ellipse at 50% 38%, rgba(188,239,250,0.98) 0%, rgba(73,188,229,0.96) 48%, rgba(31,118,200,0.96) 76%, rgba(24,78,167,0.98) 100%);
     box-shadow:
@@ -622,6 +622,7 @@ img { max-width: 100%; display: block; }
     position: absolute;
     inset: 0;
     z-index: 3;
+    transform: translateY(37px);
 }
 .honor-card {
     position: absolute;
@@ -853,15 +854,15 @@ img { max-width: 100%; display: block; }
 }
 
 /* Exhibition-style certificate placement */
-.honor-card-1 { top: 435px; right: 11%; width: 190px; transform: none; z-index: 6; }
-.honor-card-2 { top: 700px; left: 52%; width: 190px; transform: none; z-index: 5; }
-.honor-card-3 { top: 705px; left: 28%; width: 205px; transform: none; z-index: 8; }
-.honor-card-4 { top: 445px; left: 3%; width: 320px; transform: none; z-index: 4; }
-.honor-card-5 { top: 245px; left: 32%; width: 305px; transform: none; z-index: 7; }
-.honor-card-6 { top: 705px; right: 5%; width: 235px; transform: none; z-index: 6; }
-.honor-card-7 { top: 100px; right: 3%; width: 350px; transform: none; z-index: 7; }
-.honor-card-8 { top: 435px; left: 43%; width: 300px; transform: none; z-index: 4; }
-.honor-card-9 { top: 112px; left: 5%; width: 310px; transform: none; z-index: 5; }
+.honor-card-1 { top: 435px; left: calc(79.5% - 95px); width: 190px; transform: none; z-index: 6; }
+.honor-card-2 { top: 700px; left: calc(58% - 95px); width: 190px; transform: none; z-index: 5; }
+.honor-card-3 { top: 705px; left: calc(33.5% - 102.5px); width: 205px; transform: none; z-index: 8; }
+.honor-card-4 { top: 445px; left: calc(16.5% - 160px); width: 320px; transform: none; z-index: 4; }
+.honor-card-5 { top: 245px; left: calc(44% - 152.5px); width: 305px; transform: none; z-index: 7; }
+.honor-card-6 { top: 705px; left: calc(84.5% - 117.5px); width: 235px; transform: none; z-index: 6; }
+.honor-card-7 { top: 100px; left: calc(81.5% - 175px); width: 350px; transform: none; z-index: 7; }
+.honor-card-8 { top: 435px; left: calc(54.5% - 150px); width: 300px; transform: none; z-index: 4; }
+.honor-card-9 { top: 112px; left: calc(17.5% - 155px); width: 310px; transform: none; z-index: 5; }
 
 .honor-card:hover { transform: translateY(-10px) scale(1.035) !important; }
 
@@ -912,6 +913,7 @@ img { max-width: 100%; display: block; }
         display: grid;
         grid-template-columns: repeat(2, 1fr);
         gap: 20px;
+        transform: none;
     }
     .honor-card {
         position: relative;

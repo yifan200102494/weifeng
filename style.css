@@ -965,9 +965,9 @@ img { max-width: 100%; display: block; }
 .gallery-section {
     padding-bottom: 48px;
 }
-.intro-text { max-width: 900px; margin: 0 auto; text-align: center; color: #666; line-height: 1.8; font-size: 16px; }
+.intro-text { max-width: 980px; margin: 0 auto; text-align: center; color: #666; line-height: 1.8; font-size: 16px; }
 .product-search {
-    max-width: 760px;
+    max-width: 980px;
     margin: 34px auto 0;
     position: relative;
     z-index: 3;
@@ -2476,6 +2476,15 @@ body.detail-page-body {
 }
 .detail-page-body .detail-wrapper > .center-header {
     text-align: center !important;
+}
+.product-detail-page .top-meta,
+.product-detail-page .detail-wrapper > .center-header,
+.product-detail-page .detail-wrapper > .desc-box,
+.product-detail-page .pretreatment-intro {
+    width: min(100%, 980px);
+    max-width: 980px;
+    margin-left: auto;
+    margin-right: auto;
 }
 .detail-page-body .top-meta a,
 .detail-page-body .center-header span {

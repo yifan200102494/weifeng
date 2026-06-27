@@ -349,6 +349,20 @@ img { max-width: 100%; display: block; }
 }
 .stat-card i { font-size: 40px; color: var(--secondary-color); margin-bottom: 20px; }
 .stat-card h3 { font-size: 42px; color: var(--primary-color); font-weight: 700; margin-bottom: 5px; }
+.stat-value {
+    display: inline-flex;
+    align-items: flex-start;
+    justify-content: center;
+    line-height: 1;
+}
+.stat-unit {
+    margin-top: 3px;
+    margin-left: 6px;
+    font-size: 0.36em;
+    line-height: 1;
+    font-weight: 700;
+    white-space: nowrap;
+}
 .stat-card p { color: var(--text-light); font-size: 14px; text-transform: uppercase; letter-spacing: 1px; font-weight: 600; }
 
 /* --- Hero & Header Settings --- */

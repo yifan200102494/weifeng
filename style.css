@@ -7,13 +7,25 @@
     --light-bg: #f8f9fa;      
     --text-color: #333;
     --text-light: #55606f;
-    --page-bg: #ffffff;
+    /* Keep all standard page sections on one continuous canvas. */
+    --page-bg: #f8f9fa;
     --surface-bg: #ffffff;
     --surface-muted: #f8f9fa;
     --surface-soft: #f5f5f5;
     --border-color: #e5e7eb;
     --nav-mobile-bg: #ffffff;
     --input-bg: #ffffff;
+    --footer-bg: #edf4fb;
+    --footer-text: #42526a;
+    --footer-heading: #17324d;
+    --footer-border: rgba(15, 23, 42, 0.12);
+    --footer-muted: #5f6f82;
+    --honor-tags-bg-start: var(--page-bg);
+    --honor-tags-bg-mid: var(--page-bg);
+    --honor-tags-bg-end: var(--page-bg);
+    --honor-tags-heading: #17324d;
+    --honor-tags-text: #4a5b70;
+    --honor-tags-border: rgba(23, 50, 77, 0.16);
     --white: #ffffff;
     --shadow: 0 10px 30px rgba(0,0,0,0.1);
     --shadow-hover: 0 20px 50px rgba(0,0,0,0.2);
@@ -42,8 +54,8 @@
     --news-list-card-shadow-hover: 0 22px 52px rgba(15, 23, 42, 0.16);
     --news-date-bg: #f3f7fd;
     --news-date-border: rgba(0, 86, 179, 0.12);
-    --reasons-bg-start: #f2f8ff;
-    --reasons-bg-end: #dcecff;
+    --reasons-bg-start: #f8f9fa;
+    --reasons-bg-end: #f8f9fa;
     --reasons-pattern-dot: rgba(0, 86, 179, 0.12);
     --reason-number-color: rgba(0, 86, 179, 0.22);
     --map-shell-glow: rgba(0, 168, 255, 0.12);
@@ -68,11 +80,22 @@
     --text-light: #b6c2d2;
     --page-bg: #0b1120;
     --surface-bg: #111827;
-    --surface-muted: #0f172a;
+    --surface-muted: #0b1120;
     --surface-soft: #172033;
     --border-color: #283548;
     --nav-mobile-bg: #101722;
     --input-bg: #0b1220;
+    --footer-bg: #0b1120;
+    --footer-text: #cbd5e1;
+    --footer-heading: #ffffff;
+    --footer-border: rgba(255, 255, 255, 0.12);
+    --footer-muted: #94a3b8;
+    --honor-tags-bg-start: var(--page-bg);
+    --honor-tags-bg-mid: var(--page-bg);
+    --honor-tags-bg-end: var(--page-bg);
+    --honor-tags-heading: #f8fafc;
+    --honor-tags-text: #b8c7d9;
+    --honor-tags-border: rgba(255, 255, 255, 0.14);
     --shadow: 0 12px 32px rgba(0,0,0,0.34);
     --shadow-hover: 0 22px 56px rgba(0,0,0,0.48);
     --home-product-card-bg: #111827;
@@ -100,8 +123,8 @@
     --news-list-card-shadow-hover: 0 26px 64px rgba(0,0,0,0.50), 0 0 0 1px rgba(96, 165, 250, 0.08) inset;
     --news-date-bg: rgba(96, 165, 250, 0.08);
     --news-date-border: rgba(96, 165, 250, 0.18);
-    --reasons-bg-start: #003366;
-    --reasons-bg-end: #001a33;
+    --reasons-bg-start: #0b1120;
+    --reasons-bg-end: #0b1120;
     --reasons-pattern-dot: rgba(255,255,255,0.05);
     --reason-number-color: rgba(255,255,255,0.16);
     --map-shell-glow: rgba(0, 168, 255, 0.18);
@@ -126,11 +149,22 @@
         --text-light: #b6c2d2;
         --page-bg: #0b1120;
         --surface-bg: #111827;
-        --surface-muted: #0f172a;
+        --surface-muted: #0b1120;
         --surface-soft: #172033;
         --border-color: #283548;
         --nav-mobile-bg: #101722;
         --input-bg: #0b1220;
+        --footer-bg: #0b1120;
+        --footer-text: #cbd5e1;
+        --footer-heading: #ffffff;
+        --footer-border: rgba(255, 255, 255, 0.12);
+        --footer-muted: #94a3b8;
+        --honor-tags-bg-start: var(--page-bg);
+        --honor-tags-bg-mid: var(--page-bg);
+        --honor-tags-bg-end: var(--page-bg);
+        --honor-tags-heading: #f8fafc;
+        --honor-tags-text: #b8c7d9;
+        --honor-tags-border: rgba(255, 255, 255, 0.14);
         --shadow: 0 12px 32px rgba(0,0,0,0.34);
         --shadow-hover: 0 22px 56px rgba(0,0,0,0.48);
         --home-product-card-bg: #111827;
@@ -158,8 +192,8 @@
         --news-list-card-shadow-hover: 0 26px 64px rgba(0,0,0,0.50), 0 0 0 1px rgba(96, 165, 250, 0.08) inset;
         --news-date-bg: rgba(96, 165, 250, 0.08);
         --news-date-border: rgba(96, 165, 250, 0.18);
-        --reasons-bg-start: #003366;
-        --reasons-bg-end: #001a33;
+        --reasons-bg-start: #0b1120;
+        --reasons-bg-end: #0b1120;
         --reasons-pattern-dot: rgba(255,255,255,0.05);
         --reason-number-color: rgba(255,255,255,0.16);
         --map-shell-glow: rgba(0, 168, 255, 0.18);
@@ -493,8 +527,14 @@ img { max-width: 100%; display: block; }
 /* --- About Page --- */
 .reasons-blue { background: linear-gradient(135deg, var(--reasons-bg-start) 0%, var(--reasons-bg-end) 100%); color: var(--text-color); position: relative; padding: 100px 0; overflow: hidden; }
 .bg-pattern { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background-image: radial-gradient(rgba(255,255,255,0.05) 1px, transparent 1px); background-size: 30px 30px; opacity: 0.5; pointer-events: none; }
-.reasons-blue .bg-pattern { background-image: radial-gradient(var(--reasons-pattern-dot) 1px, transparent 1px); }
+.reasons-blue .bg-pattern {
+    background-image: none;
+    opacity: 0;
+}
 .reasons-blue .section-title.white h2 { color: var(--text-color); }
+.reasons-blue .section-title .section-subtitle {
+    color: var(--text-light);
+}
 .reasons-layout { margin-top: 60px; display: flex; flex-direction: column; gap: 60px; }
 .reason-row {
     display: flex;
@@ -530,17 +570,24 @@ img { max-width: 100%; display: block; }
 
 /* --- Honors / Certifications Section --- */
 .honors-section {
-    background:
-        linear-gradient(145deg, rgba(255,255,255,0.42) 0%, rgba(255,255,255,0) 34%),
-        linear-gradient(155deg, #b9e5ff 0%, #1aa7df 31%, #2460b7 66%, #5c0f78 100%);
-    color: white;
+    background: var(--page-bg);
+    color: var(--text-color);
     position: relative;
-    padding: 96px 0 0;
+    padding: 24px 0 0;
     overflow: hidden;
 }
 .honors-section .bg-pattern {
-    opacity: 0.14;
+    opacity: 0;
     background-size: 42px 42px;
+}
+.honors-section .section-title {
+    margin-bottom: 64px;
+}
+.honors-section .section-title.white h2 {
+    color: var(--text-color);
+}
+.honors-section .section-title p {
+    color: var(--text-light) !important;
 }
 .honor-glow {
     display: none;
@@ -548,7 +595,7 @@ img { max-width: 100%; display: block; }
 
 .honors-stage {
     position: relative;
-    margin: 46px auto 0;
+    margin: 0 auto;
     height: 1040px;
     max-width: 1220px;
     z-index: 2;
@@ -560,9 +607,7 @@ img { max-width: 100%; display: block; }
     inset: 0;
     overflow: hidden;
     border-radius: 0;
-    background:
-        linear-gradient(120deg, rgba(255,255,255,0.24), rgba(255,255,255,0) 30%),
-        linear-gradient(155deg, rgba(210,241,255,0.9) 0%, rgba(31,169,222,0.75) 34%, rgba(38,88,178,0.74) 68%, rgba(92,13,124,0.74) 100%);
+    background: transparent;
     z-index: 1;
     pointer-events: none;
 }
@@ -570,11 +615,7 @@ img { max-width: 100%; display: block; }
     content: '';
     position: absolute;
     inset: 0;
-    background:
-        linear-gradient(105deg, transparent 0 52%, rgba(255,255,255,0.13) 52.4%, transparent 58%),
-        linear-gradient(118deg, transparent 0 18%, rgba(255,255,255,0.12) 18.3%, transparent 25%),
-        linear-gradient(100deg, transparent 0 72%, rgba(255,255,255,0.11) 72.5%, transparent 78%);
-    opacity: 0.58;
+    display: none;
 }
 .honor-stage-backdrop::after {
     content: '';
@@ -583,12 +624,13 @@ img { max-width: 100%; display: block; }
     right: -8%;
     bottom: -44px;
     height: 170px;
-    background: linear-gradient(90deg, rgba(14,124,208,0.2), rgba(203,246,255,0.52), rgba(83,20,136,0.25));
+    display: none;
     border-radius: 50% 50% 0 0 / 70% 70% 0 0;
 }
 .honor-podium {
     position: absolute;
     display: block;
+    transform: translateY(-74px);
     background:
         linear-gradient(180deg, rgba(255,255,255,0.16), rgba(255,255,255,0) 24%),
         linear-gradient(90deg, rgba(19,158,216,0.96) 0%, rgba(35,102,184,0.98) 52%, rgba(84,28,139,0.98) 100%);
@@ -681,7 +723,7 @@ img { max-width: 100%; display: block; }
     position: absolute;
     inset: 0;
     z-index: 3;
-    transform: translateY(37px);
+    transform: translateY(-37px);
 }
 .honor-card {
     position: absolute;
@@ -925,13 +967,71 @@ img { max-width: 100%; display: block; }
 
 .honor-card:hover { transform: translateY(-10px) scale(1.035) !important; }
 
+/* Clean certificate gallery: consistent with the site's card-based visual language. */
+.honors-section .honors-stage {
+    height: auto;
+    padding-bottom: 56px;
+}
+.honors-section .honor-stage-backdrop {
+    display: none;
+}
+.honors-section .honor-cards {
+    position: relative;
+    inset: auto;
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 28px;
+    transform: none;
+}
+.honors-section .honor-card {
+    position: relative;
+    top: auto;
+    left: auto;
+    right: auto;
+    width: 100%;
+    z-index: 1;
+    padding: 14px;
+    transform: none;
+    background: var(--surface-bg);
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    box-shadow: var(--shadow);
+}
+.honors-section .honor-card::after,
+.honors-section .cert-frame::before {
+    display: none;
+}
+.honors-section .honor-card:hover {
+    z-index: 2;
+    filter: none;
+    transform: translateY(-6px) !important;
+    border-color: rgba(0, 168, 255, 0.36);
+    box-shadow: var(--shadow-hover);
+}
+.honors-section .cert-frame,
+.honors-section .honor-card.horizontal .cert-frame {
+    width: 100%;
+    height: min(300px, 70vw);
+    aspect-ratio: auto;
+    padding: 10px;
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    background: var(--surface-soft);
+}
+
 /* Bottom honor tags bar — full width, edge to edge */
 .honor-tags-bar {
-    margin-top: 60px;
-    background: linear-gradient(90deg, #0a2d5e 0%, #0e3a73 50%, #0a2d5e 100%);
+    margin-top: 0;
+    background: linear-gradient(
+        90deg,
+        var(--honor-tags-bg-start) 0%,
+        var(--honor-tags-bg-mid) 50%,
+        var(--honor-tags-bg-end) 100%
+    );
     border-top: 3px solid var(--accent-color);
     position: relative;
     z-index: 2;
+    transition: background 0.3s ease, border-color 0.3s ease;
 }
 .honor-tags-grid {
     display: grid;
@@ -941,20 +1041,20 @@ img { max-width: 100%; display: block; }
 .honor-tag {
     padding: 36px 20px;
     text-align: center;
-    border-right: 1px solid rgba(255,255,255,0.12);
+    border-right: 1px solid var(--honor-tags-border);
     position: relative;
 }
 .honor-tag:last-child { border-right: none; }
 .honor-tag h3 {
     font-size: 22px;
     font-weight: 700;
-    color: var(--white);
+    color: var(--honor-tags-heading);
     margin-bottom: 8px;
     letter-spacing: 2px;
 }
 .honor-tag p {
     font-size: 11px;
-    color: rgba(255,255,255,0.5);
+    color: var(--honor-tags-text);
     letter-spacing: 1.5px;
     line-height: 1.5;
 }
@@ -963,18 +1063,18 @@ img { max-width: 100%; display: block; }
     .honors-stage {
         height: auto;
         min-height: 0;
-        padding: 0;
+        padding: 0 0 36px;
         margin-top: 34px;
     }
     .honor-stage-backdrop { display: none; }
-    .honor-cards {
+    .honors-section .honor-cards {
         position: relative;
         display: grid;
         grid-template-columns: repeat(2, 1fr);
         gap: 20px;
         transform: none;
     }
-    .honor-card {
+    .honors-section .honor-card {
         position: relative;
         top: auto !important; left: auto !important; right: auto !important;
         width: 100% !important;
@@ -999,17 +1099,17 @@ img { max-width: 100%; display: block; }
     .honor-card-9 { order: 9; }
 }
 @media (max-width: 768px) {
-    .honors-section { padding: 70px 0 0; }
-    .honor-cards { gap: 14px; }
+    .honors-section { padding: 40px 0 0; }
+    .honors-section .honor-cards { gap: 14px; }
     .cert-frame { padding: 8px; }
     .honor-tags-grid { grid-template-columns: 1fr; }
-    .honor-tag { border-right: none; border-bottom: 1px solid rgba(255,255,255,0.12); padding: 24px 20px; }
+    .honor-tag { border-right: none; border-bottom: 1px solid var(--honor-tags-border); padding: 24px 20px; }
     .honor-tag:last-child { border-bottom: none; }
     .honor-tag h3 { font-size: 18px; letter-spacing: 1px; }
     .honor-tag p { font-size: 10px; }
 }
 @media (max-width: 560px) {
-    .honor-cards { grid-template-columns: 1fr; }
+    .honors-section .honor-cards { grid-template-columns: 1fr; }
 }
 
 /* --- Products Page --- */
@@ -1834,7 +1934,12 @@ body.platform-qr-open {
     }
 }
 /* --- Footer --- */
-footer { background: #0b1120; color: #cbd5e1; padding-top: 80px; }
+footer {
+    background: var(--footer-bg);
+    color: var(--footer-text);
+    padding-top: 80px;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
 .section.news + footer,
 .news-section + footer,
 .product-list-section + footer,
@@ -1842,7 +1947,7 @@ footer { background: #0b1120; color: #cbd5e1; padding-top: 80px; }
 .detail-wrapper + footer {
     padding-top: 44px;
 }
-.footer-top { display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 50px; padding-bottom: 50px; border-bottom: 1px solid rgba(255,255,255,0.1); }
+.footer-top { display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 50px; padding-bottom: 50px; border-bottom: 1px solid var(--footer-border); }
 .footer-col > a:first-child {
     display: inline-block;
     margin-bottom: 20px;
@@ -1851,8 +1956,8 @@ footer { background: #0b1120; color: #cbd5e1; padding-top: 80px; }
     margin-top: 0;
     margin-bottom: 20px;
 }
-.footer-col h3 { color: var(--white); font-size: 24px; margin-bottom: 20px; }
-.footer-col h4 { color: var(--white); font-size: 18px; margin-bottom: 20px; }
+.footer-col h3 { color: var(--footer-heading); font-size: 24px; margin-bottom: 20px; }
+.footer-col h4 { color: var(--footer-heading); font-size: 18px; margin-bottom: 20px; }
 .footer-col ul li { margin-bottom: 12px; }
 .footer-col ul li a:hover { color: var(--secondary-color); padding-left: 5px; transition: 0.3s; }
 .footer-contact-block {
@@ -1871,7 +1976,7 @@ footer { background: #0b1120; color: #cbd5e1; padding-top: 80px; }
     gap: 2px;
 }
 .footer-contact-lines strong {
-    color: var(--white);
+    color: var(--footer-heading);
     font-weight: 700;
 }
 .footer-contact-lines span {
@@ -2292,7 +2397,7 @@ body.detail-page-body {
     gap: 10px;
     text-align: center;
     padding: 25px 0;
-    color: #64748b;
+    color: var(--footer-muted);
     font-size: 12px;
 }
 
@@ -2306,7 +2411,7 @@ body.detail-page-body {
 
 .beian-info a {
     text-decoration: none;
-    color: #64748b; /* 默认灰色 */
+    color: var(--footer-muted); /* 默认灰色 */
     transition: all 0.3s ease;
     display: flex;
     align-items: center; /* 让图标和文字垂直居中 */

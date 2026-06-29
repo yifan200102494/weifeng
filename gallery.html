@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
+    <link rel="icon" href="images/favicon.svg?v=2" type="image/svg+xml">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>企业形象 | 浙江伟丰新材料有限公司</title>
@@ -25,7 +26,7 @@
         <div class="container nav-flex">
             <div class="logo">
                 <a href="index.html">
-                    <img src="images/logo.png" alt="浙江伟丰新材料有限公司 Logo">
+                    <img src="images/logo.png" alt="浙江伟丰新材料有限公司 Logo" decoding="async">
                 </a>
             </div>
             <ul class="nav-links">
@@ -36,6 +37,11 @@
                 <li><a href="gallery.html" class="active" data-i18n="nav.gallery">企业形象</a></li>
                 <li><a href="contact.html" class="btn-contact" data-i18n="nav.contact">联系我们</a></li>
             </ul>
+
+            <button class="theme-toggle" type="button" aria-label="切换深浅色模式" title="切换深浅色模式">
+                <i class="fas fa-moon theme-icon theme-icon-moon" aria-hidden="true"></i>
+                <i class="fas fa-sun theme-icon theme-icon-sun" aria-hidden="true"></i>
+            </button>
 
             <div class="lang-switch">
                 <span class="lang-btn active" onclick="setLanguage('zh')">CN</span>
@@ -69,7 +75,7 @@
                 
                 <div class="gallery-item env reveal">
                     <div class="img-wrapper">
-                        <img src="https://placehold.co/600x400/eee/333?text=Environment+1+(Gate)" alt="厂门">
+                        <img src="https://placehold.co/600x400/eee/333?text=Environment+1+(Gate)" alt="厂门" decoding="async" loading="lazy">
                         <div class="hover-overlay"><i class="fas fa-search-plus"></i></div>
                     </div>
                     <div class="gallery-caption" data-i18n="gallery.cap_gate">厂区大门实景</div>
@@ -77,7 +83,7 @@
 
                 <div class="gallery-item env reveal">
                     <div class="img-wrapper">
-                        <img src="https://placehold.co/600x400/eee/333?text=Environment+2+(Garden)" alt="厂区环境">
+                        <img src="https://placehold.co/600x400/eee/333?text=Environment+2+(Garden)" alt="厂区环境" decoding="async" loading="lazy">
                         <div class="hover-overlay"><i class="fas fa-search-plus"></i></div>
                     </div>
                     <div class="gallery-caption" data-i18n="gallery.cap_garden">花园式厂区一角</div>
@@ -85,7 +91,7 @@
 
                 <div class="gallery-item env reveal">
                     <div class="img-wrapper">
-                        <img src="https://placehold.co/600x400/eee/333?text=Environment+3+(Building)" alt="办公楼">
+                        <img src="https://placehold.co/600x400/eee/333?text=Environment+3+(Building)" alt="办公楼" decoding="async" loading="lazy">
                         <div class="hover-overlay"><i class="fas fa-search-plus"></i></div>
                     </div>
                     <div class="gallery-caption" data-i18n="gallery.cap_building">综合办公大楼</div>
@@ -93,14 +99,14 @@
 
                 <div class="gallery-item workshop reveal">
                     <div class="img-wrapper">
-                        <img src="https://placehold.co/600x400/ddd/333?text=Workshop+1+(Tanks)" alt="反应釜">
+                        <img src="https://placehold.co/600x400/ddd/333?text=Workshop+1+(Tanks)" alt="反应釜" decoding="async" loading="lazy">
                         <div class="hover-overlay"><i class="fas fa-search-plus"></i></div>
                     </div>
                     <div class="gallery-caption" data-i18n="gallery.cap_tank">大型反应釜设备</div>
                 </div>
                 <div class="gallery-item lab reveal">
                     <div class="img-wrapper">
-                        <img src="https://placehold.co/600x400/f9f9f9/333?text=Lab+1+(Testing)" alt="研发测试">
+                        <img src="https://placehold.co/600x400/f9f9f9/333?text=Lab+1+(Testing)" alt="研发测试" decoding="async" loading="lazy">
                         <div class="hover-overlay"><i class="fas fa-search-plus"></i></div>
                     </div>
                     <div class="gallery-caption" data-i18n="gallery.cap_lab">产品研发中心</div>
@@ -114,7 +120,7 @@
         <div class="container footer-top">
             <div class="footer-col">
                 <a href="index.html">
-                    <img src="images/logo.png" alt="浙江伟丰新材料有限公司 Logo">
+                    <img src="images/logo.png" alt="浙江伟丰新材料有限公司 Logo" decoding="async">
                 </a>
                 <p data-i18n="footer.desc">专注纺织助剂17年，为您提供最优质的化学品解决方案。致力于精细化工领域。</p>
             </div>
@@ -172,7 +178,7 @@
     </footer>
     <div id="lightbox" class="lightbox-modal">
         <span class="close-btn">&times;</span>
-        <img class="lightbox-content" id="lightbox-img">
+        <img class="lightbox-content" id="lightbox-img" decoding="async">
         <div id="lightbox-caption"></div>
     </div>
     <script src="i18n.js"></script>

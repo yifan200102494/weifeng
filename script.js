@@ -554,6 +554,47 @@ function normalizeProductSearchText(text) {
         .replace(/[：:，,。.\s\-_/（）()·]/g, '');
 }
 
+function fuzzyProductSearchScore(text, query) {
+    if (!text || !query || query.length < 2 || query.length > text.length) return 0;
+
+    let queryIndex = 0;
+    let firstMatch = -1;
+    let lastMatch = -1;
+    let consecutive = 0;
+    let longestConsecutive = 0;
+
+    for (let textIndex = 0; textIndex < text.length && queryIndex < query.length; textIndex += 1) {
+        if (text[textIndex] !== query[queryIndex]) continue;
+
+        if (firstMatch === -1) firstMatch = textIndex;
+        consecutive = lastMatch === textIndex - 1 ? consecutive + 1 : 1;
+        longestConsecutive = Math.max(longestConsecutive, consecutive);
+        lastMatch = textIndex;
+        queryIndex += 1;
+    }
+
+    if (queryIndex !== query.length) return 0;
+
+    const span = lastMatch - firstMatch + 1;
+    const density = query.length / span;
+    return Math.round(20 + density * 20 + longestConsecutive * 3 + Math.min(query.length, 8));
+}
+
+function compoundProductSearchScore(fields, query) {
+    if (!query || query.length < 4) return 0;
+
+    const bigrams = [];
+    for (let index = 0; index < query.length - 1; index += 1) {
+        bigrams.push(query.slice(index, index + 2));
+    }
+
+    const matches = bigrams.filter(pair => fields.some(field => field.includes(pair))).length;
+    const ratio = matches / bigrams.length;
+    if (matches < 2 || ratio < 0.5) return 0;
+
+    return Math.round(28 + ratio * 24);
+}
+
 function extractProductCode(name) {
     const matches = (name || '').match(/[A-Z]{1,5}-?\d+[A-Z0-9]*(?:\/\d+)?(?:系列)?|\b\d{3,4}[A-Z]?\b/gi);
     return matches ? matches[matches.length - 1] : '';
@@ -635,6 +676,27 @@ function scoreProductSearchEntry(entry, rawQuery) {
     if (name.includes(query) || nameEn.includes(query)) return 76;
     if (series.includes(query) || seriesEn.includes(query)) return entry.type === 'series' ? 70 : 52;
     if (keywords.includes(query)) return entry.type === 'series' ? 46 : 38;
+
+    const compoundScore = compoundProductSearchScore(
+        [name, nameEn, target, series, seriesEn, keywords],
+        query
+    );
+    if (compoundScore) return entry.type === 'series' ? 38 + Math.min(compoundScore, 16) : 42 + Math.min(compoundScore, 18);
+
+    const fuzzyName = Math.max(
+        fuzzyProductSearchScore(name, query),
+        fuzzyProductSearchScore(nameEn, query)
+    );
+    if (fuzzyName) return 44 + Math.min(fuzzyName, 14);
+
+    const fuzzySeries = Math.max(
+        fuzzyProductSearchScore(series, query),
+        fuzzyProductSearchScore(seriesEn, query)
+    );
+    if (fuzzySeries) return entry.type === 'series' ? 42 + Math.min(fuzzySeries, 14) : 26 + Math.min(fuzzySeries, 12);
+
+    const fuzzyKeywords = fuzzyProductSearchScore(keywords, query);
+    if (fuzzyKeywords) return entry.type === 'series' ? 28 : 20;
     return 0;
 }
 
@@ -717,6 +779,19 @@ function initProductSearch() {
         if (!event.target.closest('.product-search')) {
             closeResults();
         }
+    });
+}
+
+function initProductCategoryCards() {
+    document.querySelectorAll('.category-grid .cat-item').forEach(card => {
+        const primaryLink = card.querySelector('.cat-visual[href]');
+        if (!primaryLink) return;
+
+        card.classList.add('cat-item-clickable');
+        card.addEventListener('click', event => {
+            if (event.target.closest('a, button, input, select, textarea')) return;
+            window.location.href = primaryLink.href;
+        });
     });
 }
 
@@ -846,6 +921,7 @@ function initProductSearchTarget() {
 
 document.addEventListener('DOMContentLoaded', () => {
     initProductSearch();
+    initProductCategoryCards();
     initProductSearchTarget();
 });
 

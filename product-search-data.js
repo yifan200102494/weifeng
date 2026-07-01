@@ -1,9 +1,9 @@
 window.PRODUCT_SEARCH_GROUPS = [
     {
-        series: '端(氨/环氧/聚醚环氧) 硅油系列',
-        seriesEn: 'Silicone Oil Series',
+        series: '端（含氢/环氧/聚醚环氧）硅油系列',
+        seriesEn: 'Terminal Hydrogen / Epoxy / Polyether Epoxy Silicone Oil Series',
         href: 'product-detail.html',
-        keywords: 'terminal hydrogen epoxy polyether silicone oil HD HDY JML',
+        keywords: '端含氢 端环氧 聚醚环氧 terminal hydrogen epoxy polyether silicone oil HD HDY JML',
         products: [
             'HD-5K',
             'HD-6K',
@@ -28,7 +28,7 @@ window.PRODUCT_SEARCH_GROUPS = [
         series: '硅油产品系列',
         seriesEn: 'Silicone Oil Product Series',
         href: 'product-silicone-products.html',
-        keywords: 'silicone oil soft smooth fluffy hydrophilic finishing',
+        keywords: '硅油 silicone oil soft smooth fluffy hydrophilic finishing',
         products: [
             '松弹整理剂 WF-8206A',
             '蓬松整理剂 WF-8104A',
@@ -69,7 +69,7 @@ window.PRODUCT_SEARCH_GROUPS = [
         series: '前处理系列',
         seriesEn: 'Pre-treatment Series',
         href: 'product-pretreatment.html',
-        keywords: 'pretreatment scouring detergent oil removing enzyme chelating dispersing defoamer',
+        keywords: '前处理 pretreatment scouring detergent oil removing enzyme chelating dispersing defoamer',
         products: [
             '强力去油剂 WF-4315C',
             '强力乳化去油剂 WF-4315CA',
@@ -95,7 +95,7 @@ window.PRODUCT_SEARCH_GROUPS = [
         series: '染色系列',
         seriesEn: 'Dyeing Series',
         href: 'product-dyeing.html',
-        keywords: 'dyeing leveling soaping fixing defoaming repair color fastness',
+        keywords: '染色 dyeing leveling soaping fixing defoaming repair color fastness',
         products: [
             '高效修补剂 WF-4016A',
             '高温匀染剂 WF-4011D',
@@ -127,7 +127,7 @@ window.PRODUCT_SEARCH_GROUPS = [
         series: '防水系列',
         seriesEn: 'Waterproof Series',
         href: 'product-high-conc.html',
-        keywords: 'waterproof water repellent fluorine-free C6 crosslinker',
+        keywords: '防水 waterproof water repellent fluorine-free C6 crosslinker',
         products: [
             '无氟防水剂 WF-7120系列',
             '无氟防水剂 WF-7121系列',
@@ -145,7 +145,7 @@ window.PRODUCT_SEARCH_GROUPS = [
         series: '功能系列',
         seriesEn: 'Functional Agent Series',
         href: 'product-functional.html',
-        keywords: 'functional antistatic moisture wicking ultraviolet fragrance flame retardant antibacterial APEO NPEO',
+        keywords: '功能 functional antistatic moisture wicking ultraviolet fragrance flame retardant antibacterial APEO NPEO',
         products: [
             '非离子抗静电剂 WF-6480A',
             '阳离子抗静电剂 WF-6418A',
@@ -168,7 +168,7 @@ window.PRODUCT_SEARCH_GROUPS = [
         series: '软片系列',
         seriesEn: 'Softener Flake Series',
         href: 'product-softener.html',
-        keywords: 'softener flake softening oil textile finishing',
+        keywords: '软片 softener flake softening oil textile finishing',
         products: [
             '片状柔软剂 WF-6156',
             '片状柔软剂 WF-6155',
@@ -179,7 +179,7 @@ window.PRODUCT_SEARCH_GROUPS = [
         series: '增白剂系列',
         seriesEn: 'Brightening Series',
         href: 'product-brightener.html',
-        keywords: 'brightener whitening fluorescent optical brightener',
+        keywords: '增白剂 brightener whitening fluorescent optical brightener',
         products: [
             '荧光增白剂 WF-901',
             '荧光增白剂 WF-902',

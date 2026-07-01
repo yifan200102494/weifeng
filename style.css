@@ -3704,11 +3704,12 @@ html.employee-entry-unlocked::after {
 }
 
 .employee-topbar {
-    width: min(1280px, calc(100% - 40px));
+    width: 100%;
+    max-width: 1200px;
     height: auto;
     min-height: 76px;
     margin: 0 auto;
-    padding: 13px 0;
+    padding: 13px 20px;
     border-bottom: 1px solid var(--border-color);
 }
 
@@ -3718,7 +3719,7 @@ html.employee-entry-unlocked::after {
 }
 
 .employee-brand img {
-    width: 178px;
+    width: 190px;
     height: auto;
 }
 
@@ -4151,13 +4152,13 @@ a.employee-system-card:hover {
 
 @media (max-width: 680px) {
     .employee-topbar {
-        width: calc(100% - 28px);
+        width: 100%;
         min-height: 74px;
-        padding: 13px 0;
+        padding: 13px 14px;
     }
 
     .employee-brand img {
-        width: 138px;
+        width: 142px;
     }
 
     .employee-private-label {

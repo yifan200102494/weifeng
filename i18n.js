@@ -19,6 +19,9 @@ const translations = {
         'footer.manager_mao': '15957042077（毛经理）',
         'footer.addr': '<i class="fas fa-map-marker-alt"></i> 浙江省衢州市江山市上余镇兴工八二路一号 浙江伟丰新材料有限公司',
         'footer.addr_text': '浙江省衢州市江山市上余镇兴工八二路一号 浙江伟丰新材料有限公司',
+        'footer.privacy': '隐私政策',
+        'footer.b2b_privacy': 'B2B隐私协议',
+        'footer.legal': '法律声明',
 
         // --- 首页 (Home) ---
         'home.hero_title': '专注纺织助剂<br>研发生产',
@@ -786,6 +789,9 @@ const translations = {
         'footer.manager_mao': '15957042077 (Manager Mao)',
         'footer.addr': '<i class="fas fa-map-marker-alt"></i> Zhejiang Wei Feng New Material Co., Ltd., No. 1 Xinggong 82nd Rd, Shangyu Town, Jiangshan, Quzhou, Zhejiang',
         'footer.addr_text': 'Zhejiang Wei Feng New Material Co., Ltd., No. 1 Xinggong 82nd Rd, Shangyu Town, Jiangshan, Quzhou, Zhejiang',
+        'footer.privacy': 'Privacy Policy',
+        'footer.b2b_privacy': 'B2B Privacy',
+        'footer.legal': 'Legal Notice',
 
         // --- Home ---
         'home.hero_title': 'Focus on Textile Auxiliaries<br>R&D and Production',

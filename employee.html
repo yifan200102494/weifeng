@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <link rel="icon" href="images/favicon.svg?v=2" type="image/svg+xml">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="noindex,nofollow,noarchive">
+    <meta name="description" content="浙江伟丰新材料有限公司员工系统导航。">
+    <title>员工工作台 | 浙江伟丰新材料有限公司</title>
+    <script>
+        (function () {
+            try {
+                var theme = localStorage.getItem('weifeng-theme');
+                if (theme === 'dark' || theme === 'light') {
+                    document.documentElement.dataset.theme = theme;
+                    document.documentElement.style.colorScheme = theme;
+                }
+            } catch (e) {}
+        })();
+    </script>
+    <link rel="stylesheet" href="style.css?v=20260701-8">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet" media="print" onload="this.media='all'">
+    <noscript><link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet"></noscript>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;600;700&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+    <noscript><link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;600;700&display=swap" rel="stylesheet"></noscript>
+</head>
+<body class="employee-portal-page">
+    <div class="employee-page-shell">
+        <header class="employee-topbar nav-flex">
+            <div class="employee-brand" aria-label="浙江伟丰新材料有限公司">
+                <img src="images/logo.png" alt="浙江伟丰新材料有限公司 Logo" decoding="async">
+            </div>
+            <div class="employee-topbar-actions">
+                <span class="employee-private-label"><i class="fas fa-user-shield" aria-hidden="true"></i> 员工入口</span>
+                <button class="theme-toggle" type="button" aria-label="切换深浅色模式" title="切换深浅色模式">
+                    <i class="fas fa-moon theme-icon theme-icon-moon" aria-hidden="true"></i>
+                    <i class="fas fa-sun theme-icon theme-icon-sun" aria-hidden="true"></i>
+                </button>
+                <a class="employee-home-link" href="index.html"><i class="fas fa-arrow-left" aria-hidden="true"></i> 返回官网</a>
+            </div>
+        </header>
+
+        <main class="employee-main">
+            <section class="employee-hero-panel">
+                <div class="employee-hero-copy">
+                    <span class="employee-eyebrow">WEI FENG SYSTEM HUB</span>
+                    <h1>员工工作台</h1>
+                    <p>一个入口，快速到达日常工作系统。</p>
+                </div>
+                <form id="employeeSearchForm" class="employee-search" role="search">
+                    <i class="fas fa-magnifying-glass" aria-hidden="true"></i>
+                    <label class="sr-only" for="employeeSystemSearch">搜索系统名称或用途</label>
+                    <input id="employeeSystemSearch" type="search" placeholder="搜索系统名称或用途" autocomplete="off">
+                    <button type="submit">搜索</button>
+                </form>
+                <div class="employee-hero-meta">
+                    <span id="employeeConfiguredCount">0/0 已配置</span>
+                    <span><i class="fas fa-circle-info" aria-hidden="true"></i> 系统链接由管理员统一维护</span>
+                </div>
+            </section>
+
+            <section class="employee-systems-section" aria-labelledby="employeeSystemsTitle">
+                <div class="employee-section-head">
+                    <div>
+                        <span class="employee-section-kicker">SYSTEM DIRECTORY</span>
+                        <h2 id="employeeSystemsTitle">系统导航</h2>
+                    </div>
+                    <span id="employeeResultCount" class="employee-result-count">0 个入口</span>
+                </div>
+
+                <div id="employeeCategories" class="employee-categories" aria-label="系统分类"></div>
+                <div id="employeeSystemsGrid" class="employee-systems-grid"></div>
+                <div id="employeeSystemsEmpty" class="employee-systems-empty" hidden>
+                    <i class="fas fa-magnifying-glass" aria-hidden="true"></i>
+                    <h3>没有找到相关系统</h3>
+                    <p>试试其他关键词或切换分类。</p>
+                </div>
+            </section>
+
+            <aside class="employee-security-note">
+                <i class="fas fa-shield-halved" aria-hidden="true"></i>
+                <div>
+                    <strong>安全提示</strong>
+                    <p>本页面仅提供入口导航，不代表访问授权。请通过公司网络或 VPN 使用内部系统，不要在共享设备保存密码或验证码。</p>
+                </div>
+            </aside>
+        </main>
+
+        <footer class="employee-page-footer">
+            <span>&copy; 2025 Zhejiang Wei Feng New Material Co., Ltd.</span>
+            <span>仅供员工工作导航使用</span>
+        </footer>
+    </div>
+
+    <script src="employee-systems.js?v=20260701-8"></script>
+    <script src="employee-portal.js?v=20260701-8"></script>
+    <script src="script.js?v=20260701-6"></script>
+</body>
+</html>

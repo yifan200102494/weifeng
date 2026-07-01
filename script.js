@@ -1,5 +1,94 @@
 ﻿// 页面交互与动画效果
 
+// 所有页面共用同一组页脚隐私入口，避免多页面副本出现遗漏。
+(function ensureFooterPrivacyLinks() {
+    const footerBottom = document.querySelector('.footer-bottom');
+    if (!footerBottom || footerBottom.querySelector('.footer-legal-links')) return;
+
+    const isEnglish = localStorage.getItem('preferredLang') === 'en';
+    const legalLinks = document.createElement('div');
+    legalLinks.className = 'footer-legal-links';
+
+    [
+        {
+            className: 'footer-privacy-link',
+            href: 'privacy.html',
+            key: 'footer.privacy',
+            zh: '隐私政策',
+            en: 'Privacy Policy'
+        },
+        {
+            className: 'footer-b2b-privacy-link',
+            href: 'b2b-privacy.html',
+            key: 'footer.b2b_privacy',
+            zh: 'B2B隐私协议',
+            en: 'B2B Privacy'
+        },
+        {
+            className: 'footer-legal-link',
+            href: 'legal.html',
+            key: 'footer.legal',
+            zh: '法律声明',
+            en: 'Legal Notice'
+        }
+    ].forEach(item => {
+        const link = document.createElement('a');
+        link.className = item.className;
+        link.href = item.href;
+        link.setAttribute('data-i18n', item.key);
+        link.textContent = isEnglish ? item.en : item.zh;
+        legalLinks.appendChild(link);
+    });
+
+    footerBottom.appendChild(legalLinks);
+})();
+
+// 隐藏员工入口：在任意公开页面连续点击导航栏 Logo 5 次进入员工工作台。
+(function initEmployeePortalShortcut() {
+    document.addEventListener('DOMContentLoaded', () => {
+        if (document.body.classList.contains('employee-portal-page')) return;
+
+        document.querySelectorAll('.logo a').forEach(logoLink => {
+            let clickCount = 0;
+            let resetTimer = null;
+            let singleClickTimer = null;
+
+            const resetSequence = () => {
+                clickCount = 0;
+                window.clearTimeout(resetTimer);
+                resetTimer = null;
+            };
+
+            logoLink.addEventListener('click', event => {
+                if (event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
+
+                event.preventDefault();
+                window.clearTimeout(singleClickTimer);
+                window.clearTimeout(resetTimer);
+                clickCount += 1;
+
+                if (clickCount >= 5) {
+                    resetSequence();
+                    document.documentElement.classList.add('employee-entry-unlocked');
+                    window.setTimeout(() => window.location.assign('employee.html'), 140);
+                    return;
+                }
+
+                resetTimer = window.setTimeout(resetSequence, 1800);
+
+                // 保留 Logo 的普通返回首页功能，只增加一个很短的单击判断窗口。
+                if (clickCount === 1) {
+                    singleClickTimer = window.setTimeout(() => {
+                        const target = logoLink.getAttribute('href') || 'index.html';
+                        resetSequence();
+                        window.location.assign(target);
+                    }, 520);
+                }
+            });
+        });
+    });
+})();
+
 document.addEventListener('DOMContentLoaded', () => {
     // 1. 导航栏滚动效果
     const navbar = document.getElementById('navbar');
@@ -86,13 +175,22 @@ document.addEventListener('DOMContentLoaded', () => {
     const revealOnScroll = new IntersectionObserver((entries, observer) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
-                entry.target.classList.add('active');
-                const counter = entry.target.querySelector('.counter');
-                if (counter && !counter.classList.contains('counted')) {
-                    animateCounter(counter);
-                    counter.classList.add('counted'); 
-                }
-                observer.unobserve(entry.target); 
+                // 首页数据卡位于首屏边缘。若逐张判断，浏览器在部分缩放比例下
+                // 可能只判定其中一张进入视口，造成单张卡片先出现。
+                // 因此任意数据卡触发时，统一显示整组数据卡。
+                const revealTargets = entry.target.classList.contains('stat-card')
+                    ? (entry.target.closest('.stats-grid')?.querySelectorAll('.stat-card') || [entry.target])
+                    : [entry.target];
+
+                revealTargets.forEach(target => {
+                    target.classList.add('active');
+                    const counter = target.querySelector('.counter');
+                    if (counter && !counter.classList.contains('counted')) {
+                        counter.classList.add('counted');
+                        animateCounter(counter);
+                    }
+                    observer.unobserve(target);
+                });
             }
         });
     }, { threshold: 0.1, rootMargin: "0px 0px -50px 0px" });

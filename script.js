@@ -43,52 +43,6 @@
     footerBottom.appendChild(legalLinks);
 })();
 
-// 隐藏员工入口：在任意公开页面连续点击导航栏 Logo 5 次进入员工工作台。
-(function initEmployeePortalShortcut() {
-    document.addEventListener('DOMContentLoaded', () => {
-        if (document.body.classList.contains('employee-portal-page')) return;
-
-        document.querySelectorAll('.logo a').forEach(logoLink => {
-            let clickCount = 0;
-            let resetTimer = null;
-            let singleClickTimer = null;
-
-            const resetSequence = () => {
-                clickCount = 0;
-                window.clearTimeout(resetTimer);
-                resetTimer = null;
-            };
-
-            logoLink.addEventListener('click', event => {
-                if (event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
-
-                event.preventDefault();
-                window.clearTimeout(singleClickTimer);
-                window.clearTimeout(resetTimer);
-                clickCount += 1;
-
-                if (clickCount >= 5) {
-                    resetSequence();
-                    document.documentElement.classList.add('employee-entry-unlocked');
-                    window.setTimeout(() => window.location.assign('employee.html'), 140);
-                    return;
-                }
-
-                resetTimer = window.setTimeout(resetSequence, 1800);
-
-                // 保留 Logo 的普通返回首页功能，只增加一个很短的单击判断窗口。
-                if (clickCount === 1) {
-                    singleClickTimer = window.setTimeout(() => {
-                        const target = logoLink.getAttribute('href') || 'index.html';
-                        resetSequence();
-                        window.location.assign(target);
-                    }, 520);
-                }
-            });
-        });
-    });
-})();
-
 document.addEventListener('DOMContentLoaded', () => {
     // 1. 导航栏滚动效果
     const navbar = document.getElementById('navbar');

@@ -13,7 +13,7 @@
     --surface-muted: #f8f9fa;
     --surface-soft: #f5f5f5;
     --border-color: #e5e7eb;
-    --nav-mobile-bg: #ffffff;
+    --nav-mobile-bg: linear-gradient(135deg, rgba(0, 86, 179, 0.97), rgba(15, 23, 42, 0.98));
     --nav-scrolled-bg: rgba(255, 255, 255, 0.96);
     --nav-scrolled-text: #334155;
     --nav-scrolled-hover: #0056b3;
@@ -96,7 +96,7 @@
     --surface-muted: #0b1120;
     --surface-soft: #172033;
     --border-color: #283548;
-    --nav-mobile-bg: #101722;
+    --nav-mobile-bg: linear-gradient(135deg, rgba(0, 66, 138, 0.98), rgba(8, 15, 29, 0.99));
     --nav-scrolled-bg: rgba(12, 12, 12, 0.98);
     --nav-scrolled-text: rgba(255, 255, 255, 0.92);
     --nav-scrolled-hover: #ffffff;
@@ -174,7 +174,7 @@
         --surface-muted: #0b1120;
         --surface-soft: #172033;
         --border-color: #283548;
-        --nav-mobile-bg: #101722;
+        --nav-mobile-bg: linear-gradient(135deg, rgba(0, 66, 138, 0.98), rgba(8, 15, 29, 0.99));
         --nav-scrolled-bg: rgba(12, 12, 12, 0.98);
         --nav-scrolled-text: rgba(255, 255, 255, 0.92);
         --nav-scrolled-hover: #ffffff;
@@ -2299,6 +2299,136 @@ body.detail-page-body {
     .hero h1 { font-size: 48px; }
 }
 
+/* The full desktop navigation no longer fits cleanly in the tablet range.
+   Switch only the navigation to its compact pattern while leaving tablet
+   content grids and typography at their existing breakpoints. */
+@media (min-width: 769px) and (max-width: 1140px) {
+    .navbar {
+        left: 0;
+        right: 0;
+        width: 100vw;
+        max-width: 100vw;
+        overflow-x: clip;
+        padding: 15px 0;
+    }
+    .navbar:not(.scrolled):not(.navbar-detail-solid) {
+        background: transparent;
+        border-bottom-color: transparent;
+        box-shadow: none;
+    }
+    .navbar > .container {
+        width: 100%;
+        max-width: 100%;
+        padding: 0 20px;
+    }
+    .nav-flex {
+        width: 100%;
+        min-width: 0;
+        gap: 10px;
+    }
+    .logo {
+        flex: 0 1 auto;
+        min-width: 0;
+    }
+    .logo img {
+        width: 160px;
+        max-width: 30vw;
+        height: auto;
+    }
+    .nav-links {
+        position: fixed;
+        top: 80px;
+        left: 0;
+        right: 0;
+        width: 100vw;
+        flex-direction: column;
+        gap: 15px;
+        margin: 0;
+        padding: 20px;
+        background: var(--nav-mobile-bg);
+        border-bottom: 1px solid rgba(255,255,255,0.12);
+        backdrop-filter: blur(14px);
+        -webkit-backdrop-filter: blur(14px);
+        box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        opacity: 0;
+        visibility: hidden;
+        transform: translateY(-20px);
+        transition: var(--transition);
+    }
+    .nav-links.active {
+        opacity: 1;
+        visibility: visible;
+        transform: translateY(0);
+    }
+    .nav-links li a {
+        color: rgba(255,255,255,0.94) !important;
+    }
+    .navbar.scrolled .nav-links,
+    .navbar-detail-solid .nav-links {
+        background: var(--nav-scrolled-bg);
+        border-bottom-color: var(--nav-scrolled-border);
+    }
+    .navbar.scrolled .nav-links li a,
+    .navbar-detail-solid .nav-links li a {
+        color: var(--nav-scrolled-text) !important;
+    }
+    .navbar.scrolled .nav-links .btn-contact,
+    .navbar-detail-solid .nav-links .btn-contact {
+        border-color: var(--nav-scrolled-accent);
+        color: var(--nav-scrolled-accent) !important;
+    }
+    .navbar.scrolled .nav-links .btn-contact:hover,
+    .navbar-detail-solid .nav-links .btn-contact:hover {
+        background: var(--nav-scrolled-accent);
+        color: var(--nav-scrolled-button-text) !important;
+    }
+    .mobile-menu-btn {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex: 0 0 32px;
+        order: 4;
+        width: 32px;
+        height: 32px;
+        color: rgba(255, 255, 255, 0.92);
+    }
+    .mobile-menu-btn i { display: none; }
+    .mobile-menu-btn::before {
+        content: '☰';
+        font-size: 26px;
+        line-height: 1;
+        font-weight: 700;
+    }
+    .mobile-menu-btn.active::before {
+        content: '×';
+        font-size: 30px;
+    }
+    .theme-toggle {
+        order: 3;
+        width: 32px;
+        height: 32px;
+        margin: 0 5px;
+        border-color: rgba(255, 255, 255, 0.38);
+        background: rgba(255, 255, 255, 0.08);
+        color: rgba(255, 255, 255, 0.92);
+    }
+    .lang-switch {
+        flex: 0 0 auto;
+        order: 2;
+        min-width: 62px;
+        margin-left: auto;
+        color: rgba(255, 255, 255, 0.9);
+    }
+    .lang-btn { padding: 4px 3px; }
+    .lang-switch .divider { margin: 0 3px; }
+    .navbar.scrolled .lang-switch,
+    .navbar-detail-solid .lang-switch,
+    .navbar.scrolled .mobile-menu-btn,
+    .navbar-detail-solid .mobile-menu-btn {
+        color: var(--nav-scrolled-text);
+    }
+}
+
 @media (max-width: 768px) {
     :root {
         --section-space: 60px;
@@ -2326,9 +2456,14 @@ body.detail-page-body {
         width: 100vw;
         max-width: 100vw;
         overflow-x: clip;
-        background: var(--nav-mobile-bg);
         padding: 15px 0;
-        box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    }
+    /* Match the desktop hero treatment: only image-header pages stay
+       transparent before scrolling; detail/article pages remain solid. */
+    .navbar:not(.scrolled):not(.navbar-detail-solid) {
+        background: transparent;
+        border-bottom-color: transparent;
+        box-shadow: none;
     }
     .navbar > .container {
         width: 100%;
@@ -2355,6 +2490,9 @@ body.detail-page-body {
         position: fixed; 
         top: 80px; left: 0; right: 0; width: 100vw; 
         background: var(--nav-mobile-bg); 
+        border-bottom: 1px solid rgba(255,255,255,0.12);
+        backdrop-filter: blur(14px);
+        -webkit-backdrop-filter: blur(14px);
         flex-direction: column; 
         padding: 20px; gap: 15px; 
         box-shadow: 0 10px 20px rgba(0,0,0,0.1); 
@@ -2364,30 +2502,31 @@ body.detail-page-body {
         margin: 0; 
     }
     .nav-links.active { opacity: 1; visibility: visible; transform: translateY(0); }
-    .nav-links li a { color: var(--text-color); }
+    .nav-links li a { color: rgba(255,255,255,0.94); }
     .navbar.scrolled .nav-links,
     .navbar-detail-solid .nav-links {
-        background: var(--nav-mobile-bg);
+        background: var(--nav-scrolled-bg);
+        border-bottom-color: var(--nav-scrolled-border);
     }
     .navbar.scrolled .nav-links li a,
     .navbar-detail-solid .nav-links li a {
-        color: var(--text-color) !important;
+        color: var(--nav-scrolled-text) !important;
     }
     .navbar.scrolled .nav-links li a:hover,
     .navbar.scrolled .nav-links li a.active,
     .navbar-detail-solid .nav-links li a:hover,
     .navbar-detail-solid .nav-links li a.active {
-        color: var(--text-color) !important;
+        color: var(--nav-scrolled-hover) !important;
     }
     .navbar.scrolled .nav-links .btn-contact,
     .navbar-detail-solid .nav-links .btn-contact {
-        border-color: var(--primary-color);
-        color: var(--primary-color) !important;
+        border-color: var(--nav-scrolled-accent);
+        color: var(--nav-scrolled-accent) !important;
     }
     .navbar.scrolled .nav-links .btn-contact:hover,
     .navbar-detail-solid .nav-links .btn-contact:hover {
-        background: var(--primary-color);
-        color: var(--white) !important;
+        background: var(--nav-scrolled-accent);
+        color: var(--nav-scrolled-button-text) !important;
     }
     
     .mobile-menu-btn {
@@ -2398,7 +2537,7 @@ body.detail-page-body {
         order: 4;
         width: 32px;
         height: 32px;
-        color: var(--text-color);
+        color: rgba(255, 255, 255, 0.92);
     }
     .theme-toggle {
         order: 3;
@@ -2406,9 +2545,9 @@ body.detail-page-body {
         height: 30px;
         margin-left: 4px;
         margin-right: 4px;
-        border-color: rgba(0, 86, 179, 0.22);
-        background: rgba(0, 86, 179, 0.06);
-        color: var(--primary-color);
+        border-color: rgba(255, 255, 255, 0.38);
+        background: rgba(255, 255, 255, 0.08);
+        color: rgba(255, 255, 255, 0.92);
     }
     .mobile-menu-btn i {
         display: none;
@@ -2456,9 +2595,9 @@ body.detail-page-body {
         object-position: center;
     }
 
-    /* --- 修复语言按钮位置 & 颜色 --- */
+    /* Keep the compact mobile layout while inheriting the desktop hero colors. */
     .lang-switch {
-        color: var(--text-color); /* 强制深色，避免白色背景下看不清 */
+        color: rgba(255, 255, 255, 0.9);
         flex: 0 0 auto;
         order: 2;
         margin-left: auto;
@@ -2469,8 +2608,15 @@ body.detail-page-body {
     }
     .lang-btn { padding: 4px 3px; }
     .lang-switch .divider { margin: 0 3px; }
-    /* 移除移动端悬浮变蓝的效果 */
     .lang-btn:hover { color: inherit; }
+
+    /* Scrolled and article/detail navigation uses the same solid theme as PC. */
+    .navbar.scrolled .lang-switch,
+    .navbar-detail-solid .lang-switch,
+    .navbar.scrolled .mobile-menu-btn,
+    .navbar-detail-solid .mobile-menu-btn {
+        color: var(--nav-scrolled-text);
+    }
 
     /* --- 移动端分页按钮加大点击区域 --- */
     .pagination { gap: 8px; margin-top: 30px; }

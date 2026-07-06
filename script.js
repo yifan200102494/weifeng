@@ -88,7 +88,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     navItems.forEach(item => {
         item.addEventListener('click', () => {
-            if (window.innerWidth <= 768) {
+            if (window.innerWidth <= 1140) {
                 navLinks.classList.remove('active');
                 if (mobileBtn) mobileBtn.classList.remove('active');
                 if (mobileBtn) {

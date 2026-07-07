@@ -71,31 +71,27 @@ document.addEventListener('DOMContentLoaded', () => {
     const navLinks = document.querySelector('.nav-links');
     const navItems = document.querySelectorAll('.nav-links li a');
 
-    if (mobileBtn) {
+    const setMobileMenuOpen = (isOpen) => {
+        if (!mobileBtn || !navLinks) return;
+        navLinks.classList.toggle('active', isOpen);
+        mobileBtn.classList.toggle('active', isOpen);
+
+        const icon = mobileBtn.querySelector('i');
+        if (!icon) return;
+        icon.classList.toggle('fa-bars', !isOpen);
+        icon.classList.toggle('fa-times', isOpen);
+    };
+
+    if (mobileBtn && navLinks) {
         mobileBtn.addEventListener('click', () => {
-            navLinks.classList.toggle('active');
-            mobileBtn.classList.toggle('active', navLinks.classList.contains('active'));
-            const icon = mobileBtn.querySelector('i');
-            if (navLinks.classList.contains('active')) {
-                icon.classList.remove('fa-bars');
-                icon.classList.add('fa-times');
-            } else {
-                icon.classList.remove('fa-times');
-                icon.classList.add('fa-bars');
-            }
+            setMobileMenuOpen(!navLinks.classList.contains('active'));
         });
     }
 
     navItems.forEach(item => {
         item.addEventListener('click', () => {
             if (window.innerWidth <= 1140) {
-                navLinks.classList.remove('active');
-                if (mobileBtn) mobileBtn.classList.remove('active');
-                if (mobileBtn) {
-                    const icon = mobileBtn.querySelector('i');
-                    icon.classList.remove('fa-times');
-                    icon.classList.add('fa-bars');
-                }
+                setMobileMenuOpen(false);
             }
         });
     });
@@ -224,9 +220,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 const filterValue = btn.getAttribute('data-filter');
 
                 galleryItems.forEach(item => {
-                    clearTimeout(item._galleryShowTimer);
-                    clearTimeout(item._galleryHideTimer);
-
                     const shouldShow = filterValue === 'all' || item.classList.contains(filterValue);
                     item.classList.toggle('hide', !shouldShow);
                     item.style.display = shouldShow ? '' : 'none';
@@ -273,19 +266,13 @@ document.addEventListener('DOMContentLoaded', () => {
             }, slideInterval);
         }
 
-        // 重置定时器 (用户手动点击后调用)
-        function resetTimer() {
-            clearInterval(slideTimer);
-            startTimer();
-        }
-
         // --- 事件监听 ---
         
         // 下一张按钮
         if (nextBtn) {
             nextBtn.addEventListener('click', () => {
                 switchSlide(currentSlide + 1);
-                resetTimer(); // 只要手动点了，就重置倒计时
+                startTimer(); // 只要手动点了，就重置倒计时
             });
         }
 
@@ -293,7 +280,7 @@ document.addEventListener('DOMContentLoaded', () => {
         if (prevBtn) {
             prevBtn.addEventListener('click', () => {
                 switchSlide(currentSlide - 1);
-                resetTimer();
+                startTimer();
             });
         }
 
@@ -318,29 +305,17 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
     }
+
+    initPagination();
+    initLightbox();
+    initPlatformQrModal();
 });
 
-function initMap() {
-    if (typeof BMap === 'undefined') return;
-    var map = new BMap.Map("baiduMap");
-    var point = new BMap.Point(118.629, 28.745); 
-    map.centerAndZoom(point, 17);
-    map.enableScrollWheelZoom(true);
-    var marker = new BMap.Marker(point);
-    map.addOverlay(marker);
-    var opts = { width : 250, height: 80, title : "浙江伟丰新材料有限公司" }
-    var infoWindow = new BMap.InfoWindow("地址：浙江省衢州市江山市上余镇兴工八二路一号 浙江伟丰新材料有限公司", opts);
-    marker.addEventListener("click", function(){ map.openInfoWindow(infoWindow, point); });
-    map.openInfoWindow(infoWindow, point);
-}
 // --- 纯净版分页逻辑 ---
 function initPagination() {
     const paginationContainer = document.querySelector('.pagination');
     if (!paginationContainer) return;
-
-    function getItemsPerPage(list) {
-        return 5;
-    }
+    const itemsPerPage = 5;
 
     // 核心函数：显示特定页码
     function showPage(page) {
@@ -350,7 +325,6 @@ function initPagination() {
 
         // 2. 找到这个列表下所有的新闻行
         const items = activeList.querySelectorAll('.news-row');
-        const itemsPerPage = getItemsPerPage(activeList);
         const totalPages = Math.ceil(items.length / itemsPerPage);
 
         // 3. 修正页码范围 (防止超出)
@@ -436,10 +410,6 @@ function initPagination() {
     showPage(1);
 }
 
-// 确保在页面加载完成后运行
-document.addEventListener('DOMContentLoaded', () => {
-    initPagination();
-});
 // --- Lightbox 图片预览功能 ---
 function initLightbox() {
     const modal = document.getElementById('lightbox');
@@ -502,14 +472,6 @@ function initLightbox() {
     }
 }
 
-// 确保页面加载完成后运行
-document.addEventListener('DOMContentLoaded', () => {
-    // ... 原有的代码 ...
-    
-    // 启动 Lightbox 功能
-    initLightbox();
-});
-
 function initPlatformQrModal() {
     const modal = document.getElementById('platformQrModal');
     const modalImg = document.getElementById('platformQrModalImage');
@@ -569,7 +531,6 @@ function initPlatformQrModal() {
     });
 }
 
-document.addEventListener('DOMContentLoaded', initPlatformQrModal);
 // ==========================================
 // --- 产品详情页专用 Tab 切换功能 ---
 // ==========================================

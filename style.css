@@ -705,10 +705,7 @@ img { max-width: 100%; display: block; }
     mask-image: linear-gradient(to bottom, transparent, #000 16%, #000 84%, transparent);
 }
 .footprint-layout {
-    display: grid;
-    grid-template-columns: minmax(0, 1.75fr) minmax(290px, 0.75fr);
-    gap: 24px;
-    align-items: stretch;
+    display: block;
 }
 .footprint-map-card {
     min-width: 0;
@@ -762,7 +759,8 @@ img { max-width: 100%; display: block; }
     box-shadow: 0 0 0 4px color-mix(in srgb, currentColor 14%, transparent);
 }
 .legend-dot.factory { color: #f39c12; background: #f39c12; }
-.legend-dot.office { color: #00a8ff; background: #00a8ff; }
+.legend-dot.rd { color: #0ea5e9; background: #0ea5e9; }
+.legend-dot.office { color: #ef476f; background: #ef476f; }
 .legend-dot.warehouse { color: #8b5cf6; background: #8b5cf6; }
 .legend-dot.customer { color: #16a085; background: #16a085; }
 .world-map { width: 100%; }
@@ -789,10 +787,14 @@ img { max-width: 100%; display: block; }
 }
 .map-point { color: #16a085; }
 .map-point.point-factory { color: #f39c12; }
-.map-point.point-office { color: #00a8ff; }
 .map-point.point-warehouse { color: #8b5cf6; }
+.map-point.point-combined-global { color: #8b5cf6; }
 .map-point .point-pulse { fill: currentColor; opacity: 0.14; transform-box: fill-box; transform-origin: center; animation: footprintPulse 2.5s ease-out infinite; }
 .map-point .point-core { fill: currentColor; stroke: var(--surface-bg); stroke-width: 3; }
+.map-point .point-layer { stroke: var(--surface-bg); stroke-width: 2.6; }
+.map-point .point-layer-warehouse { fill: #8b5cf6; }
+.map-point .point-layer-customer { fill: #16a085; stroke-width: 2; }
+.map-point .point-ring { fill: none; stroke: currentColor; stroke-width: 3; }
 .map-point text { fill: var(--text-color); font-size: 13px; font-weight: 700; paint-order: stroke; stroke: var(--surface-bg); stroke-width: 4px; }
 .map-point:nth-child(2) .point-pulse { animation-delay: 0.3s; }
 .map-point:nth-child(3) .point-pulse { animation-delay: 0.7s; }
@@ -812,13 +814,147 @@ img { max-width: 100%; display: block; }
     font-size: 12px;
 }
 .footprint-map-note i { color: var(--accent-color); }
-.footprint-site-list { display: grid; grid-template-rows: repeat(3, 1fr); gap: 16px; }
+.domestic-network-head {
+    display: flex;
+    align-items: baseline;
+    gap: 14px;
+    margin: 28px 4px 14px;
+}
+.domestic-network-head span {
+    color: var(--accent-color);
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: 1.6px;
+}
+.domestic-network-head h3 { color: var(--text-color); font-size: 22px; }
+.china-map-card {
+    position: relative;
+    min-width: 0;
+    margin-bottom: 18px;
+    padding: 26px 28px 18px;
+    overflow: hidden;
+    border: 1px solid rgba(0, 86, 179, 0.16);
+    border-radius: 22px;
+    background:
+        radial-gradient(circle at 78% 52%, color-mix(in srgb, #16a085 10%, transparent), transparent 32%),
+        linear-gradient(145deg, var(--surface-bg), color-mix(in srgb, var(--primary-color) 4%, var(--surface-soft)));
+    box-shadow: 0 20px 54px rgba(15, 23, 42, 0.10);
+}
+.china-map-head {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 24px;
+}
+.china-map-head h3 {
+    color: var(--text-color);
+    font-size: 22px;
+    line-height: 1.35;
+}
+.china-map-legend { max-width: 430px; }
+.china-map {
+    width: 100%;
+    max-width: 1160px;
+    margin: -14px auto -10px;
+    color: var(--primary-color);
+}
+.china-map svg { display: block; width: 100%; height: auto; overflow: visible; }
+.china-grid path {
+    fill: none;
+    stroke: color-mix(in srgb, var(--border-color) 82%, transparent);
+    stroke-width: 0.8;
+    stroke-dasharray: 3 8;
+}
+.china-provinces { color: var(--primary-color); }
+.china-province {
+    fill: rgba(0, 86, 179, 0.08);
+    fill: color-mix(in srgb, var(--primary-color) 9%, var(--surface-bg));
+    stroke: rgba(0, 86, 179, 0.34);
+    stroke: color-mix(in srgb, var(--primary-color) 38%, transparent);
+    stroke-width: 0.85;
+    stroke-linejoin: round;
+    vector-effect: non-scaling-stroke;
+    transition: fill 0.25s ease, stroke 0.25s ease;
+}
+.china-map-card:hover .china-province {
+    fill: rgba(0, 86, 179, 0.12);
+    fill: color-mix(in srgb, var(--primary-color) 13%, var(--surface-bg));
+    stroke: rgba(0, 86, 179, 0.48);
+    stroke: color-mix(in srgb, var(--primary-color) 52%, transparent);
+}
+.customer-zone path {
+    fill: none;
+    stroke: rgba(22, 160, 133, 0.34);
+    stroke-width: 1.2;
+    stroke-dasharray: 6 7;
+}
+.china-customer-points circle {
+    fill: #16a085;
+    stroke: var(--surface-bg);
+    stroke-width: 2.5;
+    opacity: 0.85;
+}
+.china-point { color: #16a085; }
+.china-point.point-factory { color: #f39c12; }
+.china-point.point-rd { color: #0ea5e9; }
+.china-point.point-office { color: #ef476f; }
+.china-point.point-warehouse { color: #8b5cf6; }
+.china-point.combined-shaoxing { color: #ef476f; }
+.china-point.combined-quzhou { color: #f39c12; }
+.china-point .point-pulse {
+    fill: currentColor;
+    opacity: 0.14;
+    transform-box: fill-box;
+    transform-origin: center;
+    animation: footprintPulse 2.5s ease-out infinite;
+}
+.china-point .point-core {
+    fill: currentColor;
+    stroke: var(--surface-bg);
+    stroke-width: 3;
+}
+.china-point .point-pulse-warehouse { fill: #8b5cf6; }
+.china-point .point-pulse-factory { fill: #f39c12; }
+.china-point .point-layer {
+    stroke: var(--surface-bg);
+    stroke-width: 3;
+}
+.china-point .point-layer-factory { fill: #f39c12; }
+.china-point .point-layer-warehouse { fill: #8b5cf6; }
+.china-point .point-layer-office { fill: #ef476f; stroke-width: 2.4; }
+.china-point .point-leader {
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 1.25;
+    stroke-linecap: round;
+}
+.china-point text {
+    fill: var(--text-color);
+    font-size: 14px;
+    font-weight: 800;
+    paint-order: stroke;
+    stroke: var(--surface-bg);
+    stroke-width: 5px;
+    stroke-linejoin: round;
+}
+.china-point:nth-of-type(2) .point-pulse { animation-delay: 0.35s; }
+.china-point:nth-of-type(3) .point-pulse { animation-delay: 0.7s; }
+.china-point:nth-of-type(4) .point-pulse { animation-delay: 1.05s; }
+.china-point:nth-of-type(5) .point-pulse { animation-delay: 1.4s; }
+.china-map-note { position: relative; z-index: 2; }
+.footprint-site-list {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 16px;
+}
 .footprint-site-card {
     display: flex;
     align-items: center;
     gap: 17px;
-    min-height: 138px;
-    padding: 22px;
+    min-height: 150px;
+    padding: 20px;
     border: 1px solid var(--border-color);
     border-radius: 18px;
     background: var(--surface-bg);
@@ -827,7 +963,8 @@ img { max-width: 100%; display: block; }
 }
 .footprint-site-card:hover { transform: translateY(-4px); box-shadow: var(--shadow); }
 .factory-card:hover { border-color: rgba(243, 156, 18, 0.55); }
-.office-card:hover { border-color: rgba(0, 168, 255, 0.55); }
+.rd-card:hover { border-color: rgba(0, 168, 255, 0.55); }
+.office-card:hover { border-color: rgba(239, 71, 111, 0.55); }
 .warehouse-card:hover { border-color: rgba(139, 92, 246, 0.55); }
 .site-card-icon {
     flex: 0 0 52px;
@@ -840,11 +977,12 @@ img { max-width: 100%; display: block; }
     font-size: 21px;
 }
 .factory-card .site-card-icon { background: linear-gradient(135deg, #f5b041, #e67e22); box-shadow: 0 10px 24px rgba(243, 156, 18, 0.24); }
-.office-card .site-card-icon { background: linear-gradient(135deg, #38bdf8, #0056b3); box-shadow: 0 10px 24px rgba(0, 86, 179, 0.22); }
+.rd-card .site-card-icon { background: linear-gradient(135deg, #38bdf8, #0056b3); box-shadow: 0 10px 24px rgba(0, 86, 179, 0.22); }
+.office-card .site-card-icon { background: linear-gradient(135deg, #fb7185, #be123c); box-shadow: 0 10px 24px rgba(190, 18, 60, 0.20); }
 .warehouse-card .site-card-icon { background: linear-gradient(135deg, #a78bfa, #6d28d9); box-shadow: 0 10px 24px rgba(109, 40, 217, 0.20); }
 .site-card-copy { min-width: 0; }
 .site-card-copy > span { color: var(--text-light); font-size: 12px; font-weight: 700; }
-.site-card-copy h3 { margin: 2px 0 6px; color: var(--text-color); font-size: 22px; line-height: 1.3; }
+.site-card-copy h3 { margin: 2px 0 6px; color: var(--text-color); font-size: clamp(17px, 1.4vw, 20px); line-height: 1.3; }
 .site-card-copy p { color: var(--text-light); font-size: 13px; line-height: 1.6; }
 .site-card-copy p i { margin-right: 5px; color: var(--accent-color); }
 .customer-coverage {
@@ -889,18 +1027,31 @@ img { max-width: 100%; display: block; }
     color: color-mix(in srgb, var(--accent-color) 76%, var(--text-color));
     background: color-mix(in srgb, var(--accent-color) 9%, var(--surface-bg));
 }
+@media (max-width: 1280px) {
+    .footprint-site-list { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
 @media (max-width: 992px) {
-    .footprint-layout { grid-template-columns: 1fr; }
-    .footprint-site-list { grid-template-columns: repeat(3, 1fr); grid-template-rows: none; }
-    .footprint-site-card { align-items: flex-start; flex-direction: column; }
+    .china-map-head { flex-direction: column; gap: 14px; }
+    .china-map-legend { justify-content: flex-start; max-width: none; }
+    .china-map { margin-top: 0; }
+    .footprint-site-list { grid-template-columns: repeat(2, 1fr); grid-template-rows: none; }
+    .footprint-site-card { align-items: center; flex-direction: row; }
     .customer-coverage { grid-template-columns: 1fr; }
 }
 @media (max-width: 700px) {
     .footprint-map-card { padding: 22px 16px 16px; border-radius: 16px; }
     .footprint-map-head { flex-direction: column; gap: 14px; }
     .footprint-legend { justify-content: flex-start; max-width: none; }
-    .world-map { margin: 8px 0; overflow-x: auto; }
-    .world-map svg { min-width: 620px; }
+    .world-map { margin: 8px 0; overflow: visible; }
+    .world-map svg { min-width: 0; }
+    .world-map .map-point text { display: none; }
+    .domestic-network-head { align-items: flex-start; flex-direction: column; gap: 2px; margin-top: 22px; }
+    .china-map-card { padding: 22px 16px 16px; border-radius: 16px; }
+    .china-map-head h3 { font-size: 19px; }
+    .china-map { margin: 8px 0 0; overflow: hidden; }
+    .china-map svg { width: 122%; transform: translateX(-9%); }
+    .china-point text { font-size: 16px; }
+    .china-customer-points circle { r: 5; }
     .footprint-site-list { grid-template-columns: 1fr; }
     .footprint-site-card { min-height: 0; flex-direction: row; align-items: center; padding: 20px; }
     .customer-coverage { padding: 24px 20px; }

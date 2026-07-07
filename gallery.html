@@ -16,7 +16,7 @@
             } catch (e) {}
         })();
     </script>
-    <link rel="stylesheet" href="style.css?v=20260706-8">
+    <link rel="stylesheet" href="style.css?v=20260706-9">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700&display=swap" rel="stylesheet">
 </head>
@@ -58,29 +58,77 @@
         <div class="overlay"></div>
         <div class="container header-content">
             <h1 class="fade-in-up" data-i18n="gallery.header_title">因为专业，所以值得信赖</h1>
-            <p class="fade-in-up delay-200" data-i18n="gallery.header_desc">深入了解我们的生产环境和设备</p>
+            <p class="fade-in-up delay-200" data-i18n="gallery.header_desc">以部分影像记录伟丰的工作日常与成长足迹</p>
         </div>
     </header>
 
     <section class="section gallery-section">
         <div class="container">
+
+            <div class="section-title gallery-intro reveal">
+                <span data-i18n="gallery.intro_label">企业影像</span>
+                <h2 data-i18n="gallery.intro_title">工作与成长的片段</h2>
+                <p class="section-subtitle" data-i18n="gallery.intro_desc">以下为公司环境、研发生产与行业交流的部分影像记录。随着企业不断发展，我们将持续更新更多精彩片段。</p>
+                <div class="line"></div>
+            </div>
             
             <div class="filter-controls reveal">
-                <button class="filter-btn active" data-filter="all" data-i18n="gallery.filter_all">全部展示</button>
-                <button class="filter-btn" data-filter="env" data-i18n="gallery.filter_env">企业环境</button>
-                <button class="filter-btn" data-filter="office" data-i18n="gallery.filter_office">办公室</button>
-                <button class="filter-btn" data-filter="workshop" data-i18n="gallery.filter_workshop">生产车间</button>
-                <button class="filter-btn" data-filter="lab" data-i18n="gallery.filter_lab">实验室</button>
+                <button class="filter-btn active" data-filter="all" data-i18n="gallery.filter_all">影像选辑</button>
+                <button class="filter-btn" data-filter="event" data-i18n="gallery.filter_event">活动剪影</button>
+                <button class="filter-btn" data-filter="env" data-i18n="gallery.filter_env">厂区掠影</button>
+                <button class="filter-btn" data-filter="office" data-i18n="gallery.filter_office">办公日常</button>
+                <button class="filter-btn" data-filter="workshop" data-i18n="gallery.filter_workshop">生产现场</button>
+                <button class="filter-btn" data-filter="lab" data-i18n="gallery.filter_lab">研发日常</button>
             </div>
 
             <div class="gallery-grid">
+
+                <div class="gallery-item event reveal">
+                    <div class="img-wrapper">
+                        <img src="images/A3.jpg" alt="伟丰新材料展会展台全景" decoding="async" loading="lazy">
+                        <div class="hover-overlay"><i class="fas fa-search-plus"></i></div>
+                    </div>
+                    <div class="gallery-caption" data-i18n="gallery.cap_event_booth">展会现场剪影</div>
+                </div>
+
+                <div class="gallery-item event reveal">
+                    <div class="img-wrapper">
+                        <img src="images/A6.jpg" alt="伟丰新材料参展团队合影" decoding="async" loading="lazy">
+                        <div class="hover-overlay"><i class="fas fa-search-plus"></i></div>
+                    </div>
+                    <div class="gallery-caption" data-i18n="gallery.cap_event_team">参展团队风采</div>
+                </div>
+
+                <div class="gallery-item event reveal">
+                    <div class="img-wrapper">
+                        <img src="images/A1.jpg" alt="伟丰新材料展会现场客户交流" decoding="async" loading="lazy">
+                        <div class="hover-overlay"><i class="fas fa-search-plus"></i></div>
+                    </div>
+                    <div class="gallery-caption" data-i18n="gallery.cap_event_exchange">客户交流现场</div>
+                </div>
+
+                <div class="gallery-item event reveal">
+                    <div class="img-wrapper">
+                        <img src="images/A2.jpg" alt="伟丰新材料国际客户业务洽谈" decoding="async" loading="lazy">
+                        <div class="hover-overlay"><i class="fas fa-search-plus"></i></div>
+                    </div>
+                    <div class="gallery-caption" data-i18n="gallery.cap_event_business">国际业务交流</div>
+                </div>
+
+                <div class="gallery-item event reveal">
+                    <div class="img-wrapper">
+                        <img src="images/A5.jpg" alt="伟丰新材料展台产品与方案展示" decoding="async" loading="lazy">
+                        <div class="hover-overlay"><i class="fas fa-search-plus"></i></div>
+                    </div>
+                    <div class="gallery-caption" data-i18n="gallery.cap_event_display">产品方案展示一角</div>
+                </div>
                 
                 <div class="gallery-item env reveal">
                     <div class="img-wrapper">
                         <img src="https://placehold.co/600x400/eee/333?text=Environment+1+(Gate)" alt="厂门" decoding="async" loading="lazy">
                         <div class="hover-overlay"><i class="fas fa-search-plus"></i></div>
                     </div>
-                    <div class="gallery-caption" data-i18n="gallery.cap_gate">厂区大门实景</div>
+                    <div class="gallery-caption" data-i18n="gallery.cap_gate">厂区环境掠影</div>
                 </div>
 
                 <div class="gallery-item env reveal">
@@ -88,7 +136,7 @@
                         <img src="https://placehold.co/600x400/eee/333?text=Environment+2+(Garden)" alt="厂区环境" decoding="async" loading="lazy">
                         <div class="hover-overlay"><i class="fas fa-search-plus"></i></div>
                     </div>
-                    <div class="gallery-caption" data-i18n="gallery.cap_garden">花园式厂区一角</div>
+                    <div class="gallery-caption" data-i18n="gallery.cap_garden">厂区绿化一角</div>
                 </div>
 
                 <div class="gallery-item env reveal">
@@ -96,7 +144,7 @@
                         <img src="https://placehold.co/600x400/eee/333?text=Environment+3+(Building)" alt="办公楼" decoding="async" loading="lazy">
                         <div class="hover-overlay"><i class="fas fa-search-plus"></i></div>
                     </div>
-                    <div class="gallery-caption" data-i18n="gallery.cap_building">综合办公大楼</div>
+                    <div class="gallery-caption" data-i18n="gallery.cap_building">办公区域外景</div>
                 </div>
 
                 <div class="gallery-item office reveal">
@@ -104,7 +152,7 @@
                         <img src="images/17.jpg" alt="办公会议区域" decoding="async" loading="lazy">
                         <div class="hover-overlay"><i class="fas fa-search-plus"></i></div>
                     </div>
-                    <div class="gallery-caption" data-i18n="gallery.cap_office">办公会议区域</div>
+                    <div class="gallery-caption" data-i18n="gallery.cap_office">办公会议环境</div>
                 </div>
 
                 <div class="gallery-item office reveal">
@@ -112,7 +160,7 @@
                         <img src="images/18.jpg" alt="现代化办公工位" decoding="async" loading="lazy">
                         <div class="hover-overlay"><i class="fas fa-search-plus"></i></div>
                     </div>
-                    <div class="gallery-caption" data-i18n="gallery.cap_office_workspace">现代化办公工位</div>
+                    <div class="gallery-caption" data-i18n="gallery.cap_office_workspace">办公空间一角</div>
                 </div>
 
                 <div class="gallery-item office reveal">
@@ -120,7 +168,7 @@
                         <img src="images/19.jpg" alt="开放办公空间" decoding="async" loading="lazy">
                         <div class="hover-overlay"><i class="fas fa-search-plus"></i></div>
                     </div>
-                    <div class="gallery-caption" data-i18n="gallery.cap_office_open">明亮开放办公空间</div>
+                    <div class="gallery-caption" data-i18n="gallery.cap_office_open">日常办公环境</div>
                 </div>
 
                 <div class="gallery-item workshop reveal">
@@ -128,14 +176,14 @@
                         <img src="https://placehold.co/600x400/ddd/333?text=Workshop+1+(Tanks)" alt="反应釜" decoding="async" loading="lazy">
                         <div class="hover-overlay"><i class="fas fa-search-plus"></i></div>
                     </div>
-                    <div class="gallery-caption" data-i18n="gallery.cap_tank">大型反应釜设备</div>
+                    <div class="gallery-caption" data-i18n="gallery.cap_tank">生产设备一角</div>
                 </div>
                 <div class="gallery-item lab reveal">
                     <div class="img-wrapper">
                         <img src="images/21.jpg" alt="产品研发中心" decoding="async" loading="lazy">
                         <div class="hover-overlay"><i class="fas fa-search-plus"></i></div>
                     </div>
-                    <div class="gallery-caption" data-i18n="gallery.cap_lab">产品研发中心</div>
+                    <div class="gallery-caption" data-i18n="gallery.cap_lab">研发环境掠影</div>
                 </div>
 
                 <div class="gallery-item lab reveal">
@@ -143,7 +191,7 @@
                         <img src="images/22.jpg" alt="研发实验平台" decoding="async" loading="lazy">
                         <div class="hover-overlay"><i class="fas fa-search-plus"></i></div>
                     </div>
-                    <div class="gallery-caption" data-i18n="gallery.cap_lab_bench">研发实验平台</div>
+                    <div class="gallery-caption" data-i18n="gallery.cap_lab_bench">研发实验一角</div>
                 </div>
 
                 <div class="gallery-item lab reveal">
@@ -151,7 +199,7 @@
                         <img src="images/8.jpg" alt="产品样品陈列" decoding="async" loading="lazy">
                         <div class="hover-overlay"><i class="fas fa-search-plus"></i></div>
                     </div>
-                    <div class="gallery-caption" data-i18n="gallery.cap_lab_samples">产品样品陈列</div>
+                    <div class="gallery-caption" data-i18n="gallery.cap_lab_samples">样品展示一角</div>
                 </div>
 
             </div>
@@ -176,7 +224,6 @@
                     <li><a href="contact.html" data-i18n="nav.contact"><i class="fas fa-chevron-right"></i> 联系我们</a></li>
                     <li><a href="contact.html#wechat-official" class="footer-social-link" data-i18n="footer.wechat_official"><i class="fab fa-weixin"></i> 微信公众号</a></li>
                     <li><a href="contact.html#wechat-video" class="footer-social-link" data-i18n="footer.wechat_video"><i class="fas fa-video"></i> 微信视频号</a></li>
-                    <li><a href="contact.html#douyin-official" class="footer-social-link" data-i18n="footer.douyin"><i class="fab fa-tiktok"></i> 抖音号</a></li>
                 </ul>
             </div>
             <div class="footer-col">
@@ -224,7 +271,7 @@
         <img class="lightbox-content" id="lightbox-img" decoding="async">
         <div id="lightbox-caption"></div>
     </div>
-    <script src="i18n.js?v=20260706-3"></script>
+    <script src="i18n.js?v=20260706-5"></script>
     <script src="script.js?v=20260706-1"></script>
 </body>
 </html>

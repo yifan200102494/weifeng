@@ -274,6 +274,80 @@
             </div>
         </div>
     </footer>
+    <script>
+        (function centerPlatformQrFromHash() {
+            const platformIds = new Set(['wechat-official', 'wechat-video']);
+
+            function centerCurrentPlatform(behavior) {
+                const targetId = decodeURIComponent(window.location.hash.slice(1));
+                if (!platformIds.has(targetId)) return;
+
+                const target = document.getElementById(targetId);
+                if (!target) return;
+
+                const revealContainer = target.closest('.reveal');
+                if (revealContainer && !revealContainer.classList.contains('active')) {
+                    revealContainer.style.transition = 'none';
+                    revealContainer.classList.add('active');
+                    window.requestAnimationFrame(function () {
+                        revealContainer.style.removeProperty('transition');
+                    });
+                }
+
+                function centerTarget() {
+                    window.requestAnimationFrame(function () {
+                        const rect = target.getBoundingClientRect();
+                        const targetCenter = window.scrollY + rect.top + rect.height / 2;
+                        const maxScroll = document.documentElement.scrollHeight - window.innerHeight;
+                        const centeredTop = Math.max(0, Math.min(maxScroll, targetCenter - window.innerHeight / 2));
+
+                        window.scrollTo({
+                            top: centeredTop,
+                            behavior: behavior || 'smooth'
+                        });
+                    });
+                }
+
+                const qrImage = target.querySelector('.platform-qr-image');
+                if (qrImage && !qrImage.complete) {
+                    qrImage.addEventListener('load', centerTarget, { once: true });
+                }
+
+                centerTarget();
+
+                if (document.fonts && document.fonts.ready) {
+                    document.fonts.ready.then(centerTarget);
+                }
+            }
+
+            window.addEventListener('load', function () {
+                window.setTimeout(function () {
+                    centerCurrentPlatform('smooth');
+                }, 80);
+            });
+
+            window.addEventListener('hashchange', function () {
+                centerCurrentPlatform('smooth');
+            });
+
+            document.addEventListener('click', function (event) {
+                const link = event.target.closest('a.footer-social-link');
+                if (!link) return;
+
+                const destination = new URL(link.href, window.location.href);
+                const targetId = decodeURIComponent(destination.hash.slice(1));
+                if (destination.pathname !== window.location.pathname || !platformIds.has(targetId)) return;
+
+                event.preventDefault();
+                if (window.location.hash !== destination.hash) {
+                    window.history.pushState(null, '', destination.hash);
+                }
+                centerCurrentPlatform('smooth');
+            });
+
+            centerCurrentPlatform('auto');
+        })();
+    </script>
     <script src="i18n.js?v=20260706-3"></script>
     <script src="script.js?v=20260706-1"></script>
 </body>

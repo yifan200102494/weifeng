@@ -192,6 +192,7 @@ document.addEventListener('DOMContentLoaded', () => {
         if (shouldUpdateUrl && window.history && window.history.replaceState) {
             const url = new URL(window.location.href);
             url.searchParams.set('tab', targetTab);
+            url.searchParams.delete('page');
             if (newsTabIds.includes(url.hash.replace('#', ''))) {
                 url.hash = '';
             }
@@ -209,26 +210,73 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // 筛选逻辑
+    // 图库按批次插入页面，避免未来图片数量增长时拖慢首次渲染和图片解码。
     const filterBtns = document.querySelectorAll('.filter-btn');
-    const galleryItems = document.querySelectorAll('.gallery-item');
-    if (filterBtns.length > 0) {
+    const galleryGrid = document.querySelector('.gallery-grid');
+    const galleryLoadMore = document.querySelector('.gallery-load-more');
+    const gallerySentinel = document.querySelector('.gallery-load-sentinel');
+    if (filterBtns.length > 0 && galleryGrid) {
+        const galleryItems = Array.from(galleryGrid.querySelectorAll('.gallery-item'));
+        const galleryPageSize = 6;
+        let activeFilter = 'all';
+        let renderedCount = 0;
+
+        function matchingGalleryItems() {
+            return galleryItems.filter(item => activeFilter === 'all' || item.classList.contains(activeFilter));
+        }
+
+        function hydrateGalleryItem(item) {
+            const image = item.querySelector('img[data-src]');
+            if (image && !image.getAttribute('src')) image.src = image.dataset.src;
+        }
+
+        function updateGalleryControls() {
+            const hasMore = renderedCount < matchingGalleryItems().length;
+            if (galleryLoadMore) galleryLoadMore.hidden = !hasMore;
+            if (gallerySentinel) gallerySentinel.hidden = !hasMore;
+        }
+
+        function renderGalleryBatch(reset = false) {
+            const items = matchingGalleryItems();
+            if (reset) {
+                galleryGrid.replaceChildren();
+                renderedCount = 0;
+            }
+
+            const nextItems = items.slice(renderedCount, renderedCount + galleryPageSize);
+            nextItems.forEach(item => {
+                item.classList.remove('hide');
+                item.removeAttribute('style');
+                hydrateGalleryItem(item);
+                galleryGrid.appendChild(item);
+            });
+            renderedCount += nextItems.length;
+            updateGalleryControls();
+        }
+
         filterBtns.forEach(btn => {
             btn.addEventListener('click', () => {
-                filterBtns.forEach(b => b.classList.remove('active'));
-                btn.classList.add('active');
-                const filterValue = btn.getAttribute('data-filter');
-
-                galleryItems.forEach(item => {
-                    const shouldShow = filterValue === 'all' || item.classList.contains(filterValue);
-                    item.classList.toggle('hide', !shouldShow);
-                    item.style.display = shouldShow ? '' : 'none';
-                    item.style.pointerEvents = shouldShow ? '' : 'none';
-                    item.style.opacity = '';
-                    item.style.transform = '';
-                });
+                activeFilter = btn.getAttribute('data-filter') || 'all';
+                filterBtns.forEach(button => button.classList.toggle('active', button === btn));
+                renderGalleryBatch(true);
             });
         });
+
+        if (galleryLoadMore) galleryLoadMore.addEventListener('click', () => renderGalleryBatch());
+
+        if ('IntersectionObserver' in window && gallerySentinel) {
+            const observer = new IntersectionObserver(entries => {
+                if (entries.some(entry => entry.isIntersecting)) renderGalleryBatch();
+            }, { rootMargin: '160px 0px' });
+
+            const startAutoLoad = () => {
+                observer.observe(gallerySentinel);
+                window.removeEventListener('scroll', startAutoLoad);
+            };
+            window.addEventListener('scroll', startAutoLoad, { passive: true });
+        }
+
+        renderGalleryBatch(true);
     }
 
     // --- 首页背景轮播逻辑 (升级版：支持左右切换) ---
@@ -307,6 +355,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     initPagination();
+    initArticleBackLinks();
     initLightbox();
     initPlatformQrModal();
 });
@@ -316,9 +365,109 @@ function initPagination() {
     const paginationContainer = document.querySelector('.pagination');
     if (!paginationContainer) return;
     const itemsPerPage = 5;
+    const returnStateKey = 'weifeng-news-return-state';
+
+    function getInitialPage() {
+        const pageParam = Number.parseInt(new URLSearchParams(window.location.search).get('page'), 10);
+        return Number.isFinite(pageParam) && pageParam > 0 ? pageParam : 1;
+    }
+
+    function syncPageToUrl(page) {
+        if (!window.history || !window.history.replaceState) return;
+
+        const activeList = document.querySelector('.news-list.active');
+        if (!activeList || !activeList.id) return;
+
+        const url = new URL(window.location.href);
+        url.searchParams.set('tab', activeList.id);
+        if (page > 1) {
+            url.searchParams.set('page', page);
+        } else {
+            url.searchParams.delete('page');
+        }
+        window.history.replaceState({}, '', url.toString());
+    }
+
+    function annotateReturnLinks(activeList, page) {
+        const allItems = Array.from(activeList.querySelectorAll('.news-row[href]'));
+
+        allItems.forEach((item, index) => {
+            const originalHref = item.dataset.originalHref || item.getAttribute('href');
+            if (!originalHref) return;
+
+            item.dataset.originalHref = originalHref;
+            item.dataset.returnTab = activeList.id;
+            item.dataset.returnPage = page;
+            item.dataset.returnIndex = index;
+
+            if (!item.dataset.returnStateBound) {
+                item.addEventListener('click', () => {
+                    try {
+                        window.sessionStorage.setItem(returnStateKey, JSON.stringify({
+                            tab: item.dataset.returnTab,
+                            page: Number.parseInt(item.dataset.returnPage, 10) || 1,
+                            index: Number.parseInt(item.dataset.returnIndex, 10),
+                            scrollY: window.scrollY,
+                            time: Date.now()
+                        }));
+                    } catch (error) {
+                        // Browsers may block sessionStorage for local files; URL params still carry the fallback.
+                    }
+                });
+                item.dataset.returnStateBound = 'true';
+            }
+
+            try {
+                const targetUrl = new URL(originalHref, window.location.href);
+                if (!/\.html$/i.test(targetUrl.pathname)) return;
+
+                targetUrl.searchParams.set('fromTab', activeList.id);
+                targetUrl.searchParams.set('fromPage', page);
+                targetUrl.searchParams.set('fromIndex', index);
+                item.setAttribute('href', `${targetUrl.pathname.split('/').pop()}${targetUrl.search}${targetUrl.hash}`);
+            } catch (error) {
+                // Keep the original link if it cannot be parsed as a normal URL.
+            }
+        });
+    }
+
+    function restoreReturnPosition() {
+        const activeList = document.querySelector('.news-list.active');
+        if (!activeList) return;
+
+        const params = new URLSearchParams(window.location.search);
+        let targetIndex = Number.parseInt(params.get('focusIndex'), 10);
+        let targetScrollY = Number.parseInt(params.get('scrollY'), 10);
+
+        try {
+            const stored = JSON.parse(window.sessionStorage.getItem(returnStateKey) || 'null');
+            const storedIsFresh = stored && Date.now() - stored.time < 10 * 60 * 1000;
+            if (storedIsFresh && stored.tab === activeList.id) {
+                targetIndex = Number.parseInt(stored.index, 10);
+                targetScrollY = Number.parseInt(stored.scrollY, 10);
+            }
+            window.sessionStorage.removeItem(returnStateKey);
+        } catch (error) {
+            // If storage is unavailable, the URL focusIndex fallback below still works.
+        }
+
+        window.requestAnimationFrame(() => {
+            const items = Array.from(activeList.querySelectorAll('.news-row'));
+            const target = Number.isFinite(targetIndex) ? items[targetIndex] : null;
+
+            if (target && getComputedStyle(target).display !== 'none') {
+                target.scrollIntoView({ block: 'center' });
+                return;
+            }
+
+            if (Number.isFinite(targetScrollY)) {
+                window.scrollTo({ top: Math.max(0, targetScrollY), left: 0 });
+            }
+        });
+    }
 
     // 核心函数：显示特定页码
-    function showPage(page) {
+    function showPage(page, shouldUpdateUrl = false) {
         // 1. 找到当前选中的那个 Tab (行业资讯 or 公司新闻)
         const activeList = document.querySelector('.news-list.active');
         if (!activeList) return;
@@ -348,6 +497,8 @@ function initPagination() {
 
         // 5. 更新底部的 1 2 3 按钮
         updatePaginationButtons(page, totalPages);
+        annotateReturnLinks(activeList, page);
+        if (shouldUpdateUrl) syncPageToUrl(page);
     }
 
     // 更新按钮状态
@@ -389,7 +540,7 @@ function initPagination() {
         btn.innerHTML = content;
         btn.addEventListener('click', (e) => {
             e.preventDefault(); // 阻止页面跳到顶部
-            showPage(targetPage);
+            showPage(targetPage, true);
         });
         return btn;
     }
@@ -401,13 +552,55 @@ function initPagination() {
         btn.addEventListener('click', () => {
             // 设置一点点延迟，确保 Tab 切换的 class 变化已经完成
             setTimeout(() => {
-                showPage(1);
+                showPage(1, true);
             }, 50);
         });
     });
 
-    // --- 页面刚加载时，默认显示第 1 页 ---
-    showPage(1);
+    // --- 页面刚加载时，按照地址栏 page 参数恢复分页 ---
+    showPage(getInitialPage(), true);
+    restoreReturnPosition();
+}
+
+// 文章详情页从新闻列表进入时，返回按钮应回到来时的 tab 和分页位置。
+function initArticleBackLinks() {
+    const backLinks = document.querySelectorAll('.detail-page-body .top-meta > a[href^="news.html"]');
+    if (!backLinks.length) return;
+
+    const params = new URLSearchParams(window.location.search);
+    const fromTab = params.get('fromTab');
+    const fromPage = Number.parseInt(params.get('fromPage'), 10);
+    const fromIndex = Number.parseInt(params.get('fromIndex'), 10);
+
+    backLinks.forEach(link => {
+        if (fromTab) {
+            const fallbackParams = new URLSearchParams({ tab: fromTab });
+            if (Number.isFinite(fromPage) && fromPage > 1) {
+                fallbackParams.set('page', fromPage);
+            }
+            if (Number.isFinite(fromIndex)) {
+                fallbackParams.set('focusIndex', fromIndex);
+            }
+            link.setAttribute('href', `news.html?${fallbackParams.toString()}`);
+        }
+
+        link.addEventListener('click', (event) => {
+            if (!document.referrer || window.history.length <= 1) return;
+
+            try {
+                const referrer = new URL(document.referrer);
+                const sameOrigin = referrer.origin === window.location.origin
+                    || (referrer.protocol === 'file:' && window.location.protocol === 'file:');
+                const isNewsList = sameOrigin && /\/news\.html$/i.test(referrer.pathname.replace(/\\/g, '/'));
+                if (!isNewsList) return;
+
+                event.preventDefault();
+                window.history.back();
+            } catch (error) {
+                // URL parsing can fail for unusual referrers; in that case the link href is the fallback.
+            }
+        });
+    });
 }
 
 // --- Lightbox 图片预览功能 ---
@@ -417,35 +610,24 @@ function initLightbox() {
     const captionText = document.getElementById('lightbox-caption');
     const closeBtn = document.querySelector('.close-btn');
 
-    // 1. 找到所有的图片容器
-    // 注意：我们监听 .img-wrapper，这样无论点图片哪里都能触发
-    const items = document.querySelectorAll('.gallery-item .img-wrapper');
+    const galleryGrid = document.querySelector('.gallery-grid');
+    if (galleryGrid) {
+        // 使用事件委托，让后续按批次插入的图片也能直接打开预览。
+        galleryGrid.addEventListener('click', event => {
+            const item = event.target.closest('.gallery-item .img-wrapper');
+            if (!item || !galleryGrid.contains(item)) return;
 
-    items.forEach(item => {
-        item.addEventListener('click', function() {
-            const img = this.querySelector('img'); // 找到容器里面的 img 标签
-            const caption = this.nextElementSibling; // 找到下方的文字说明 (.gallery-caption)
-            
-            if (modal && img) {
-                modal.style.display = "flex";
-                
-                // 稍微延时一点加 show class，为了触发 CSS 的 opacity 动画
-                setTimeout(() => {
-                    modal.classList.add('show');
-                }, 10);
+            const img = item.querySelector('img');
+            const caption = item.nextElementSibling;
+            if (!modal || !img || !img.currentSrc) return;
 
-                const fullSrc = img.dataset.fullSrc || item.dataset.fullSrc || img.currentSrc || img.src;
-                modalImg.src = fullSrc; // 缩略图可通过 data-full-src 指向原图
-                
-                // 如果有文字说明，也显示出来
-                if (caption) {
-                    captionText.innerHTML = caption.innerHTML;
-                } else {
-                    captionText.innerHTML = "";
-                }
-            }
+            modal.style.display = "flex";
+            setTimeout(() => modal.classList.add('show'), 10);
+
+            modalImg.src = img.dataset.fullSrc || item.dataset.fullSrc || img.currentSrc;
+            captionText.innerHTML = caption ? caption.innerHTML : "";
         });
-    });
+    }
 
     // 2. 关闭功能的函数
     function closeModal() {

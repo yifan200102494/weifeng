@@ -1,0 +1,29 @@
+.gallery-progress {
+    display: grid;
+    justify-items: center;
+    min-height: 56px;
+    margin-top: 34px;
+}
+
+.gallery-load-more {
+    min-width: 156px;
+    min-height: 44px;
+    padding: 0 22px;
+    border: 1px solid var(--primary-color);
+    border-radius: 6px;
+    background: transparent;
+    color: var(--primary-color);
+    cursor: pointer;
+    font: inherit;
+    transition: var(--transition);
+}
+
+.gallery-load-more:hover {
+    background: var(--primary-color);
+    color: var(--white);
+}
+
+.gallery-load-sentinel {
+    width: 100%;
+    height: 1px;
+}

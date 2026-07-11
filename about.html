@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="zh-CN">
 <head>
     <link rel="icon" href="images/favicon.svg?v=2" type="image/svg+xml">
@@ -16,9 +16,12 @@
             } catch (e) {}
         })();
     </script>
-    <link rel="stylesheet" href="style.css?v=20260706-9">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css?v=20260711-6">
+    <link rel="stylesheet" href="performance.css?v=2">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet" media="print" onload="this.media='all'">
+    <noscript><link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet"></noscript>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+    <noscript><link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700&display=swap" rel="stylesheet"></noscript>
 </head>
 <body>
 
@@ -91,7 +94,6 @@
     </section>
 
     <section class="section global-footprint" aria-labelledby="footprint-title">
-        <div class="footprint-grid-lines" aria-hidden="true"></div>
         <div class="container">
             <div class="section-title reveal">
                 <span>GLOBAL FOOTPRINT</span>
@@ -129,8 +131,11 @@
                                 <path d="M728 171Q686 154 637 181" />
                             </g>
                             <g class="map-points">
-                                <g class="map-point point-factory" transform="translate(728 171)">
-                                    <circle class="point-pulse" r="20" /><circle class="point-core" r="8" />
+                                <g class="map-point point-factory point-combined-quzhou" transform="translate(728 171)">
+                                    <title data-i18n="footprint.quzhou_combined">衢州 · 工厂与仓库</title>
+                                    <circle class="point-pulse" r="20" />
+                                    <circle class="point-layer point-layer-factory" r="10" />
+                                    <circle class="point-layer point-layer-warehouse" r="5" />
                                     <text x="14" y="-12" data-i18n="footprint.factory_city">衢州</text>
                                 </g>
                                 <g class="map-point point-combined-global" transform="translate(533 140)">
@@ -161,7 +166,7 @@
                 </div>
 
                 <div class="domestic-network-head reveal">
-                    <span data-i18n="footprint.domestic_network_eyebrow">CHINA OPERATIONS</span>
+                    <span class="footprint-eyebrow" data-i18n="footprint.domestic_network_eyebrow">CHINA OPERATIONS</span>
                     <h3 id="domestic-network-title" data-i18n="footprint.domestic_network_title">国内运营网络</h3>
                 </div>
                 <div class="china-map-card reveal" aria-labelledby="china-map-title">
@@ -190,6 +195,10 @@
                                     <feDropShadow dx="0" dy="10" stdDeviation="12" flood-color="#0f172a" flood-opacity=".12" />
                                 </filter>
                             </defs>
+                            <g class="china-grid">
+                                <path d="M0 104H900M0 208H900M0 312H900M0 416H900" />
+                                <path d="M150 0V520M300 0V520M450 0V520M600 0V520M750 0V520" />
+                            </g>
                             <!-- CHINA_MAP_GEOMETRY_START -->
                             <g class="china-provinces">
                                 <path class="china-province" data-province="北京市" d="M613.2,199.2L606.3,198.6L603.2,196.1L602.3,194.3L601.7,195.3L599.9,195.2L600.2,196.2L598.5,195.9L599.9,197.9L597.3,197.6L596.2,199.2L591.1,200.7L593.8,204.1L592.3,205.5L587.4,207.0L587.0,208.0L588.8,209.6L587.2,210.0L587.7,211.7L591.8,213.4L593.1,212.3L596.7,212.5L599.7,214.3L599.2,213.2L600.8,212.4L604.1,212.4L606.1,210.1L604.0,208.7L604.0,206.9L611.1,205.7L611.6,204.5L609.6,202.8L609.4,201.2Z" />
@@ -228,20 +237,57 @@
                                 <path class="china-province" data-province="澳门特别行政区" d="M563.5,428.9L564.2,428.6L563.8,427.9L563.6,427.6L563.3,427.7L563.3,428.1L563.5,428.5ZM563.9,427.8L563.8,427.8L563.8,427.9Z" />
                             </g>
                             <!-- CHINA_MAP_GEOMETRY_END -->
-                            <g class="china-point point-customer" transform="translate(640 343)">
-                                <title data-i18n="footprint.customer_jinhua">客户 · 金华</title>
-                                <circle class="point-pulse" r="15" /><circle class="point-core" r="6" />
-                                <path class="point-leader" d="M-5 -5L-38 -29" />
-                                <text x="-44" y="-32" text-anchor="end" data-i18n="footprint.city_jinhua">金华</text>
-                            </g>
                             <g class="china-point point-customer" transform="translate(560 416)">
                                 <title data-i18n="footprint.customer_guangzhou">客户 · 广州</title>
                                 <circle class="point-pulse" r="16" /><circle class="point-core" r="7" />
                                 <path class="point-leader" d="M7 4L34 19" />
                                 <text x="40" y="25" data-i18n="footprint.city_guangzhou">广州</text>
                             </g>
+                            <g class="china-point point-customer" transform="translate(445 323)">
+                                <title data-i18n="footprint.customer_chengdu">客户 · 成都</title>
+                                <circle class="point-pulse" r="15" /><circle class="point-core" r="6" />
+                                <path class="point-leader" d="M-7 2L-40 17" />
+                                <text x="-46" y="23" text-anchor="end" data-i18n="footprint.city_chengdu">成都</text>
+                            </g>
+                            <g class="china-point point-customer" transform="translate(609 219)">
+                                <title data-i18n="footprint.customer_tianjin">客户 · 天津</title>
+                                <circle class="point-pulse" r="15" /><circle class="point-core" r="6" />
+                                <path class="point-leader" d="M-7 4L-36 15" />
+                                <text x="-42" y="20" text-anchor="end" data-i18n="footprint.city_tianjin">天津</text>
+                            </g>
+                            <g class="china-point point-customer" transform="translate(664 222)">
+                                <title data-i18n="footprint.customer_dalian">客户 · 大连</title>
+                                <circle class="point-pulse" r="15" /><circle class="point-core" r="6" />
+                                <path class="point-leader" d="M7 2L35 14" />
+                                <text x="41" y="20" data-i18n="footprint.city_dalian">大连</text>
+                            </g>
+                            <g class="china-point point-customer" transform="translate(239 161)">
+                                <title data-i18n="footprint.customer_urumqi">客户 · 乌鲁木齐</title>
+                                <circle class="point-pulse" r="15" /><circle class="point-core" r="6" />
+                                <path class="point-leader" d="M-7 1L-38 12" />
+                                <text x="-44" y="18" text-anchor="end" data-i18n="footprint.city_urumqi">乌鲁木齐</text>
+                            </g>
+                            <g class="china-point point-customer" transform="translate(375 211)">
+                                <title data-i18n="footprint.customer_jiuquan">客户 · 酒泉</title>
+                                <circle class="point-pulse" r="15" /><circle class="point-core" r="6" />
+                                <path class="point-leader" d="M-7 3L-36 18" />
+                                <text x="-42" y="24" text-anchor="end" data-i18n="footprint.city_jiuquan">酒泉</text>
+                            </g>
+                            <g class="china-point point-customer" transform="translate(540 198)">
+                                <title data-i18n="footprint.customer_hohhot">客户 · 呼和浩特</title>
+                                <circle class="point-pulse" r="15" /><circle class="point-core" r="6" />
+                                <path class="point-leader" d="M-6 -5L-34 -31" />
+                                <text x="-40" y="-35" text-anchor="end" data-i18n="footprint.city_hohhot">呼和浩特</text>
+                            </g>
+                            <g class="china-point point-customer" transform="translate(760 112)">
+                                <title data-i18n="footprint.customer_heilongjiang">客户 · 黑龙江</title>
+                                <circle class="point-pulse" r="15" /><circle class="point-core" r="6" />
+                                <path class="point-leader" d="M-7 2L-36 13" />
+                                <text x="-42" y="19" text-anchor="end" data-i18n="footprint.region_heilongjiang">黑龙江</text>
+                            </g>
                             <g class="china-point point-rd" transform="translate(599 209)">
                                 <circle class="point-pulse" r="18" /><circle class="point-core" r="7" />
+                                <path class="point-leader" d="M7 -4L11 -8" />
                                 <text x="14" y="-11" data-i18n="footprint.city_beijing">北京</text>
                             </g>
                             <g class="china-point point-office" transform="translate(656 307)">
@@ -259,25 +305,17 @@
                                 <path class="point-leader" d="M7 5L52 25" />
                                 <text x="58" y="30" data-i18n="footprint.city_hangzhou">杭州</text>
                             </g>
-                            <g class="china-point point-combined combined-shaoxing" transform="translate(652 331)">
-                                <title data-i18n="footprint.shaoxing_combined">绍兴 · 办事处与仓库</title>
-                                <circle class="point-pulse point-pulse-warehouse" r="18" />
-                                <circle class="point-layer point-layer-warehouse" r="10" />
-                                <circle class="point-layer point-layer-office" r="5" />
-                                <path class="point-leader" d="M5 5L44 46" />
-                                <text x="50" y="52" data-i18n="footprint.city_shaoxing">绍兴</text>
-                            </g>
                             <g class="china-point point-combined combined-quzhou" transform="translate(630 344)">
                                 <title data-i18n="footprint.quzhou_combined">衢州 · 工厂与仓库</title>
                                 <circle class="point-pulse point-pulse-factory" r="20" />
                                 <circle class="point-layer point-layer-factory" r="11" />
                                 <circle class="point-layer point-layer-warehouse" r="5.5" />
-                                <path class="point-leader" d="M-7 4L-52 33" />
-                                <text x="-58" y="39" text-anchor="end" data-i18n="footprint.factory_city">衢州</text>
+                                <path class="point-leader" d="M-7 4L-35 22" />
+                                <text x="-41" y="28" text-anchor="end" data-i18n="footprint.factory_city">衢州</text>
                             </g>
                         </svg>
                     </div>
-                    <p class="footprint-map-note china-map-note"><i class="fas fa-circle-info" aria-hidden="true"></i><span data-i18n="footprint.china_map_note">国内重点客户主要分布于绍兴、金华与广州</span></p>
+                    <p class="footprint-map-note china-map-note"><i class="fas fa-circle-info" aria-hidden="true"></i><span data-i18n="footprint.china_map_note">国内客户主要覆盖浙江、江苏、广东、四川等地</span></p>
                 </div>
                 <div class="footprint-site-list reveal">
                     <article class="footprint-site-card factory-card">
@@ -292,8 +330,8 @@
                         <div class="site-card-icon"><i class="fas fa-flask" aria-hidden="true"></i></div>
                         <div class="site-card-copy">
                             <span data-i18n="footprint.rd_label">研发中心</span>
-                            <h3 data-i18n="footprint.rd_cities">北京 · 杭州</h3>
-                            <p><i class="fas fa-location-dot" aria-hidden="true"></i> <span data-i18n="footprint.rd_presence">北京与杭州均设有研发中心</span></p>
+                            <h3 data-i18n="footprint.rd_cities">北京 · 杭州 · 衢州</h3>
+                            <p><i class="fas fa-location-dot" aria-hidden="true"></i> <span data-i18n="footprint.rd_presence">北京、杭州与衢州均设有研发中心</span></p>
                         </div>
                     </article>
                     <article class="footprint-site-card office-card">
@@ -325,11 +363,13 @@
                 </div>
                 <div class="coverage-groups">
                     <div class="coverage-group">
-                        <span class="coverage-group-label" data-i18n="footprint.domestic">国内城市</span>
+                        <span class="coverage-group-label" data-i18n="footprint.domestic">国内主要城市</span>
                         <div class="coverage-tags">
                             <span data-i18n="footprint.city_shaoxing">绍兴</span>
                             <span data-i18n="footprint.city_jinhua">金华</span>
                             <span data-i18n="footprint.city_guangzhou">广州</span>
+                            <span data-i18n="footprint.city_chengdu">成都</span>
+                            <span data-i18n="footprint.city_tianjin">天津</span>
                         </div>
                     </div>
                     <div class="coverage-divider" aria-hidden="true"></div>
@@ -573,7 +613,7 @@
         </div>
     </div>
 
-    <script src="i18n.js?v=20260706-4"></script>
+    <script src="i18n.js?v=20260711-2"></script>
     <script src="script.js?v=20260706-1"></script>
 </body>
 </html>

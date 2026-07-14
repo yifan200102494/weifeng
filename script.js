@@ -44,6 +44,49 @@
 })();
 
 document.addEventListener('DOMContentLoaded', () => {
+    // 资料下载页：将 PDF 读取为 Blob 后触发保存，避免被浏览器 PDF 查看器当作普通链接打开。
+    document.querySelectorAll('a.download-button[download]').forEach(link => {
+        link.addEventListener('click', async event => {
+            if (event.button !== 0 || event.ctrlKey || event.metaKey || event.shiftKey || event.altKey) return;
+
+            event.preventDefault();
+            if (link.dataset.downloading === 'true') return;
+            link.dataset.downloading = 'true';
+            link.setAttribute('aria-busy', 'true');
+
+            try {
+                const response = await fetch(link.href, { credentials: 'same-origin' });
+                if (!response.ok) throw new Error(`HTTP ${response.status}`);
+
+                const blobUrl = URL.createObjectURL(await response.blob());
+                const saveLink = document.createElement('a');
+                saveLink.href = blobUrl;
+                saveLink.download = link.getAttribute('download');
+                saveLink.hidden = true;
+                document.body.appendChild(saveLink);
+                saveLink.click();
+                saveLink.remove();
+                window.setTimeout(() => URL.revokeObjectURL(blobUrl), 1000);
+            } catch (error) {
+                console.warn('File download failed:', error);
+                if (window.location.protocol === 'file:') {
+                    window.alert('浏览器限制了本地文件模式下的直接下载。请通过网站地址访问本页面后再下载。');
+                } else {
+                    const fallbackLink = document.createElement('a');
+                    fallbackLink.href = link.href;
+                    fallbackLink.download = link.getAttribute('download');
+                    fallbackLink.hidden = true;
+                    document.body.appendChild(fallbackLink);
+                    fallbackLink.click();
+                    fallbackLink.remove();
+                }
+            } finally {
+                delete link.dataset.downloading;
+                link.removeAttribute('aria-busy');
+            }
+        });
+    });
+
     // 1. 导航栏滚动效果
     const navbar = document.getElementById('navbar');
     let navbarScrolled = null;
@@ -210,73 +253,36 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // 图库按批次插入页面，避免未来图片数量增长时拖慢首次渲染和图片解码。
+    // 图库卡片从一开始就保留在布局中，避免快速滚动触底时追加卡片、
+    // 突然改变页面高度并触发滚动锚点校正。图片仍由 loading="lazy"
+    // 控制网络加载和解码，因此稳定布局不会等同于一次性加载全部图片。
     const filterBtns = document.querySelectorAll('.filter-btn');
     const galleryGrid = document.querySelector('.gallery-grid');
-    const galleryLoadMore = document.querySelector('.gallery-load-more');
-    const gallerySentinel = document.querySelector('.gallery-load-sentinel');
     if (filterBtns.length > 0 && galleryGrid) {
         const galleryItems = Array.from(galleryGrid.querySelectorAll('.gallery-item'));
-        const galleryPageSize = 6;
-        let activeFilter = 'all';
-        let renderedCount = 0;
-
-        function matchingGalleryItems() {
-            return galleryItems.filter(item => activeFilter === 'all' || item.classList.contains(activeFilter));
-        }
 
         function hydrateGalleryItem(item) {
             const image = item.querySelector('img[data-src]');
             if (image && !image.getAttribute('src')) image.src = image.dataset.src;
         }
 
-        function updateGalleryControls() {
-            const hasMore = renderedCount < matchingGalleryItems().length;
-            if (galleryLoadMore) galleryLoadMore.hidden = !hasMore;
-            if (gallerySentinel) gallerySentinel.hidden = !hasMore;
-        }
-
-        function renderGalleryBatch(reset = false) {
-            const items = matchingGalleryItems();
-            if (reset) {
-                galleryGrid.replaceChildren();
-                renderedCount = 0;
-            }
-
-            const nextItems = items.slice(renderedCount, renderedCount + galleryPageSize);
-            nextItems.forEach(item => {
-                item.classList.remove('hide');
-                item.removeAttribute('style');
-                hydrateGalleryItem(item);
-                galleryGrid.appendChild(item);
+        function applyGalleryFilter(activeFilter) {
+            galleryItems.forEach(item => {
+                const isVisible = activeFilter === 'all' || item.classList.contains(activeFilter);
+                item.classList.toggle('hide', !isVisible);
             });
-            renderedCount += nextItems.length;
-            updateGalleryControls();
         }
 
         filterBtns.forEach(btn => {
             btn.addEventListener('click', () => {
-                activeFilter = btn.getAttribute('data-filter') || 'all';
+                const activeFilter = btn.getAttribute('data-filter') || 'all';
                 filterBtns.forEach(button => button.classList.toggle('active', button === btn));
-                renderGalleryBatch(true);
+                applyGalleryFilter(activeFilter);
             });
         });
 
-        if (galleryLoadMore) galleryLoadMore.addEventListener('click', () => renderGalleryBatch());
-
-        if ('IntersectionObserver' in window && gallerySentinel) {
-            const observer = new IntersectionObserver(entries => {
-                if (entries.some(entry => entry.isIntersecting)) renderGalleryBatch();
-            }, { rootMargin: '160px 0px' });
-
-            const startAutoLoad = () => {
-                observer.observe(gallerySentinel);
-                window.removeEventListener('scroll', startAutoLoad);
-            };
-            window.addEventListener('scroll', startAutoLoad, { passive: true });
-        }
-
-        renderGalleryBatch(true);
+        galleryItems.forEach(hydrateGalleryItem);
+        applyGalleryFilter('all');
     }
 
     // --- 首页背景轮播逻辑 (升级版：支持左右切换) ---
@@ -562,18 +568,25 @@ function initPagination() {
     restoreReturnPosition();
 }
 
-// 文章详情页从新闻列表进入时，返回按钮应回到来时的 tab 和分页位置。
+// 文章详情页应回到实际入口：首页进入回首页，新闻列表进入则恢复 tab 和分页位置。
 function initArticleBackLinks() {
     const backLinks = document.querySelectorAll('.detail-page-body .top-meta > a[href^="news.html"]');
     if (!backLinks.length) return;
 
     const params = new URLSearchParams(window.location.search);
+    const from = params.get('from');
     const fromTab = params.get('fromTab');
     const fromPage = Number.parseInt(params.get('fromPage'), 10);
     const fromIndex = Number.parseInt(params.get('fromIndex'), 10);
 
     backLinks.forEach(link => {
-        if (fromTab) {
+        if (from === 'home') {
+            link.setAttribute('href', 'index.html#news');
+            link.setAttribute('data-i18n', 'article.back_home');
+            link.innerHTML = document.documentElement.lang === 'en'
+                ? '<i class="fas fa-arrow-left"></i> Back to Home'
+                : '<i class="fas fa-arrow-left"></i> 返回首页';
+        } else if (fromTab) {
             const fallbackParams = new URLSearchParams({ tab: fromTab });
             if (Number.isFinite(fromPage) && fromPage > 1) {
                 fallbackParams.set('page', fromPage);
@@ -591,8 +604,11 @@ function initArticleBackLinks() {
                 const referrer = new URL(document.referrer);
                 const sameOrigin = referrer.origin === window.location.origin
                     || (referrer.protocol === 'file:' && window.location.protocol === 'file:');
-                const isNewsList = sameOrigin && /\/news\.html$/i.test(referrer.pathname.replace(/\\/g, '/'));
-                if (!isNewsList) return;
+                const referrerPath = referrer.pathname.replace(/\\/g, '/');
+                const expectedSource = from === 'home'
+                    ? /\/index\.html$/i.test(referrerPath)
+                    : /\/news\.html$/i.test(referrerPath);
+                if (!sameOrigin || !expectedSource) return;
 
                 event.preventDefault();
                 window.history.back();
@@ -612,7 +628,7 @@ function initLightbox() {
 
     const galleryGrid = document.querySelector('.gallery-grid');
     if (galleryGrid) {
-        // 使用事件委托，让后续按批次插入的图片也能直接打开预览。
+        // 使用事件委托，让筛选后的图片也能直接打开原图预览。
         galleryGrid.addEventListener('click', event => {
             const item = event.target.closest('.gallery-item .img-wrapper');
             if (!item || !galleryGrid.contains(item)) return;
@@ -990,6 +1006,92 @@ function initProductCategoryCards() {
     });
 }
 
+// 产品详情按进入来源返回：首页卡片回首页产品区，产品中心卡片回对应分类。
+function initProductReturnPosition() {
+    const cards = Array.from(document.querySelectorAll('.category-grid .cat-item'));
+    const returnLinks = document.querySelectorAll('.product-detail-page .detail-back-link[href^="products.html"]');
+    const params = new URLSearchParams(window.location.search);
+
+    if (cards.length) {
+        cards.forEach((card, index) => {
+            card.querySelectorAll('a[href$=".html"]').forEach(link => {
+                const originalHref = link.dataset.productOriginalHref || link.getAttribute('href');
+                if (!originalHref || !/^product-[^?#]+\.html(?:[?#]|$)/i.test(originalHref)) return;
+
+                link.dataset.productOriginalHref = originalHref;
+                try {
+                    const targetUrl = new URL(originalHref, window.location.href);
+                    targetUrl.searchParams.set('fromProduct', index);
+                    link.setAttribute('href', `${targetUrl.pathname.split('/').pop()}${targetUrl.search}${targetUrl.hash}`);
+                } catch (error) {
+                    // Keep the original product link if its URL is unusual.
+                }
+            });
+        });
+
+        const focusIndex = Number.parseInt(params.get('focusProduct'), 10);
+        const target = Number.isFinite(focusIndex) ? cards[focusIndex] : null;
+        if (target) {
+            window.setTimeout(() => {
+                target.scrollIntoView({ block: 'center' });
+                target.classList.add('product-return-target');
+                window.setTimeout(() => target.classList.remove('product-return-target'), 2200);
+            }, 80);
+        }
+    }
+
+    returnLinks.forEach(link => {
+        if (params.get('from') === 'home') {
+            link.setAttribute('href', 'index.html#products');
+            link.setAttribute('data-i18n', 'article.back_home_products');
+
+            const savedLang = localStorage.getItem('preferredLang') || 'zh';
+            link.innerHTML = savedLang === 'en'
+                ? '<i class="fas fa-arrow-left"></i> Back to Home Products'
+                : '<i class="fas fa-arrow-left"></i> 返回首页产品区';
+
+            link.addEventListener('click', event => {
+                if (!document.referrer || window.history.length <= 1) return;
+
+                try {
+                    const referrer = new URL(document.referrer);
+                    const sameOrigin = referrer.origin === window.location.origin
+                        || (referrer.protocol === 'file:' && window.location.protocol === 'file:');
+                    const isHomePage = /\/(?:index\.html)?$/i.test(referrer.pathname.replace(/\\/g, '/'));
+                    if (!sameOrigin || !isHomePage) return;
+
+                    event.preventDefault();
+                    window.history.back();
+                } catch (error) {
+                    // index.html#products remains a reliable fallback.
+                }
+            });
+            return;
+        }
+
+        const fromProduct = Number.parseInt(params.get('fromProduct'), 10);
+        if (!Number.isFinite(fromProduct)) return;
+
+        link.setAttribute('href', `products.html?focusProduct=${fromProduct}`);
+        link.addEventListener('click', event => {
+            if (!document.referrer || window.history.length <= 1) return;
+
+            try {
+                const referrer = new URL(document.referrer);
+                const sameOrigin = referrer.origin === window.location.origin
+                    || (referrer.protocol === 'file:' && window.location.protocol === 'file:');
+                const isProductsPage = /\/products\.html$/i.test(referrer.pathname.replace(/\\/g, '/'));
+                if (!sameOrigin || !isProductsPage) return;
+
+                event.preventDefault();
+                window.history.back();
+            } catch (error) {
+                // The href above remains a reliable fallback when referrer parsing fails.
+            }
+        });
+    });
+}
+
 function activateProductTabForTarget(target) {
     const tab = target.closest('.product-tab-content');
     if (!tab) return;
@@ -1116,6 +1218,7 @@ function initProductSearchTarget() {
 
 document.addEventListener('DOMContentLoaded', () => {
     initProductSearch();
+    initProductReturnPosition();
     initProductCategoryCards();
     initProductSearchTarget();
 });

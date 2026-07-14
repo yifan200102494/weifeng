@@ -513,7 +513,7 @@ img { max-width: 100%; display: block; }
 /* --- Section Layouts --- */
 .section { padding: var(--section-space) 0; }
 .section.products { background-color: var(--surface-muted); }
-.section.news { padding-bottom: 52px; }
+.section.news { padding-top: 48px; padding-bottom: 52px; }
 .section-title { text-align: center; margin-bottom: var(--section-heading-gap); }
 .section-title span { color: var(--accent-color); font-weight: 700; letter-spacing: 2px; font-size: 14px; display: block; margin-bottom: 10px; text-transform: uppercase; }
 .section-title h2 { font-size: 36px; color: var(--text-color); position: relative; display: inline-block; font-weight: 700; }
@@ -1814,6 +1814,10 @@ img { max-width: 100%; display: block; }
 .product-item, .news-card { background: var(--white); border-radius: 15px; overflow: hidden; box-shadow: 0 12px 30px rgba(15,23,42,0.10); transition: var(--transition); color: inherit; text-decoration: none; cursor: pointer; }
 .product-item { display: block; }
 .product-item:hover, .news-card:hover, .gallery-item:hover { box-shadow: var(--shadow-hover); transform: translateY(-5px); }
+.category-grid .cat-item.product-return-target {
+    border-color: var(--secondary-color);
+    box-shadow: 0 0 0 4px rgba(243, 156, 18, 0.22), var(--shadow-hover);
+}
 .section.products .product-item {
     padding: 10px;
     background: var(--home-product-card-bg);
@@ -2670,6 +2674,12 @@ body.detail-page-body {
         background: linear-gradient(135deg, rgba(96, 165, 250, 0.30), rgba(243, 156, 18, 0.26));
     }
 }
+/* 未完成的素材与备案信息暂不展示，补齐真实内容后移除对应 class 即可恢复。 */
+.content-placeholder-hidden,
+.gongan {
+    display: none !important;
+}
+
 /* --- 响应式 Responsive --- */
 @media (max-width: 992px) {
     .contact-wrapper, .news-wrapper, .row-flex { flex-direction: column; }
@@ -3257,7 +3267,7 @@ body.detail-page-body {
 }
 
 .spec-table thead th {
-    background-color: #a9a9a9; 
+    background-color: var(--primary-color);
     color: var(--white);
     padding: 15px;
     text-align: left;
@@ -3506,7 +3516,8 @@ body.detail-page-body {
 }
 
 .article-table-wrap {
-    margin: 12px 0 18px;
+    width: 100%;
+    margin: 30px 0;
     overflow-x: auto;
 }
 
@@ -3514,29 +3525,44 @@ body.detail-page-body {
     width: 100%;
     min-width: 620px;
     border-collapse: collapse;
-    color: #f4f8ff;
-    background: #171717;
+    table-layout: auto;
+    color: var(--text-color);
+    background: var(--surface-bg);
+    font-size: 14px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.02);
 }
 
 .article-data-table caption {
-    text-align: left;
-    padding: 0 0 8px;
-    color: #7fb0ff;
-    font-weight: 600;
-}
-
-.article-data-table th,
-.article-data-table td {
-    padding: 8px 12px;
-    border: 1px solid rgba(255, 255, 255, 0.18);
+    caption-side: top;
+    padding: 0 0 20px;
+    color: var(--primary-color);
     text-align: center;
-    vertical-align: middle;
+    font-size: 22px;
+    font-weight: 700;
 }
 
 .article-data-table th {
-    color: #ffffff;
-    background: rgba(0, 114, 206, 0.4);
-    font-weight: 700;
+    padding: 15px;
+    border: 1px solid var(--border-color);
+    color: var(--white);
+    background: var(--primary-color);
+    text-align: left;
+    font-weight: 500;
+    white-space: nowrap;
+}
+
+.article-data-table td {
+    padding: 15px;
+    border: 1px solid var(--border-color);
+    color: var(--text-color);
+    background: var(--surface-bg);
+    text-align: left;
+    vertical-align: middle;
+    line-height: 1.6;
+}
+
+.article-data-table tbody tr:nth-child(even) td {
+    background: var(--surface-soft);
 }
 
 .article-product-list {
@@ -3762,11 +3788,35 @@ body.detail-page-body {
 
 /* 表格底部附注 */
 .table-note {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    padding: 14px 18px;
+    border: 1px solid color-mix(in srgb, var(--primary-color) 16%, var(--border-color));
+    border-left: 4px solid var(--primary-color);
+    border-radius: 0 10px 10px 0;
+    background: color-mix(in srgb, var(--primary-color) 6%, var(--surface-bg));
+    color: var(--text-color);
     font-size: 14px;
-    color: var(--primary-color);
-    font-weight: 500;
-    margin-top: -15px; /* 拉近与表格的距离 */
+    line-height: 1.75;
+    margin-top: -15px;
     margin-bottom: 40px;
+}
+
+.table-note-label {
+    flex: 0 0 auto;
+    padding: 3px 10px;
+    border-radius: 999px;
+    background: var(--primary-color);
+    color: var(--white);
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    line-height: 1.6;
+}
+
+.table-note-copy {
+    min-width: 0;
 }
 
 /* 详情信息块容器 */
@@ -3938,9 +3988,10 @@ body.detail-page-body {
         content: none !important;
     }
     .table-note {
+        align-items: center;
         margin-top: 0;
         margin-bottom: 30px;
-        padding: 0 2px;
+        padding: 14px 16px;
         line-height: 1.7;
     }
 }

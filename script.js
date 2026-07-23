@@ -325,23 +325,44 @@ document.addEventListener('DOMContentLoaded', () => {
     if (slides.length > 0) {
         let currentSlide = 0;
         const slideInterval = 13000; 
+        const crossfadeDuration = 1200;
         let slideTimer; // 用于存储定时器ID
+        const slideCleanupTimers = new WeakMap();
         const hero = document.querySelector('.hero');
 
         // 核心切换函数
         function switchSlide(index) {
-            // 移除当前的 active
-            slides[currentSlide].classList.remove('active');
-            
-            // 更新索引
-            currentSlide = index;
-            
             // 循环处理：如果超过最大索引，回到0；如果小于0，去最后一张
-            if (currentSlide >= slides.length) currentSlide = 0;
-            if (currentSlide < 0) currentSlide = slides.length - 1;
+            let nextSlide = index;
+            if (nextSlide >= slides.length) nextSlide = 0;
+            if (nextSlide < 0) nextSlide = slides.length - 1;
+            if (nextSlide === currentSlide) return;
 
-            // 添加新的 active
-            slides[currentSlide].classList.add('active');
+            const outgoingSlide = slides[currentSlide];
+            const incomingSlide = slides[nextSlide];
+            const pendingCleanup = slideCleanupTimers.get(incomingSlide);
+            if (pendingCleanup) window.clearTimeout(pendingCleanup);
+
+            incomingSlide.classList.remove('leaving');
+            incomingSlide.style.removeProperty('transform');
+            incomingSlide.style.removeProperty('animation');
+            incomingSlide.classList.add('active');
+
+            // 冻结淡出图点击瞬间的缩放值，避免移除 active 后动画进度被
+            // 浏览器重算，产生“快速缩放完成后才换图”的跳跃感。
+            outgoingSlide.style.transform = window.getComputedStyle(outgoingSlide).transform;
+            outgoingSlide.style.animation = 'none';
+            outgoingSlide.classList.add('leaving');
+            outgoingSlide.classList.remove('active');
+            const cleanupTimer = window.setTimeout(() => {
+                outgoingSlide.classList.remove('leaving');
+                outgoingSlide.style.removeProperty('transform');
+                outgoingSlide.style.removeProperty('animation');
+                slideCleanupTimers.delete(outgoingSlide);
+            }, crossfadeDuration);
+            slideCleanupTimers.set(outgoingSlide, cleanupTimer);
+
+            currentSlide = nextSlide;
         }
 
         // 启动自动播放

@@ -492,7 +492,13 @@ img { max-width: 100%; display: block; }
 .hero-slide.active {
     opacity: 1;
     /* 应用缩放动画：时间20秒，从 1.2 缩放到 1.0 */
-    animation: heroZoomOut 10s ease-in-out forwards;
+    animation: heroZoomOut 13s linear forwards;
+    will-change: transform, opacity;
+}
+
+/* 旧图的缩放值由脚本冻结，只做淡出；新图同时淡入并开始缓慢缩放。 */
+.hero-slide.leaving {
+    opacity: 0;
     will-change: transform, opacity;
 }
 

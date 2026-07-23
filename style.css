@@ -1102,6 +1102,7 @@ img { max-width: 100%; display: block; }
 .reason-num { font-size: 4rem; font-weight: 700; color: var(--reason-number-color); line-height: 1; margin-bottom: -20px; position: relative; z-index: 0; }
 .reason-text h3 { font-size: 1.8rem; margin-bottom: 18px; position: relative; z-index: 1; color: var(--text-color); }
 .reason-text p { color: var(--text-light); font-size: 1rem; position: relative; z-index: 1; }
+.reason-text .reason-desc + .reason-desc { margin-top: 12px; }
 
 /* --- Honors / Certifications Section --- */
 .honors-section {
@@ -3288,6 +3289,14 @@ body.detail-page-body {
     background-color: var(--surface-soft);
 }
 
+/* 简短参数表在桌面端整体居中，移动端仍使用便于阅读的左对齐卡片布局 */
+@media (min-width: 769px) {
+    .product-tab-content .spec-table thead th,
+    .product-tab-content .spec-table tbody td {
+        text-align: center;
+    }
+}
+
 .table-scroll {
     width: 100%;
     overflow-x: auto;
@@ -3330,6 +3339,18 @@ body.detail-page-body {
     display: inline-block;
     margin: 0 auto;
     text-align: left;
+}
+
+/* 应用及工艺列采用统一的阅读起点，避免内容随长度居中漂移 */
+.pretreatment-table tbody td:nth-child(3) {
+    text-align: left;
+}
+
+.pretreatment-table tbody td:nth-child(3) .cell-list {
+    display: block;
+    width: 100%;
+    margin: 0;
+    padding-left: 0;
 }
 
 .product-name-cell strong,
@@ -3754,6 +3775,44 @@ body.detail-page-body {
     transform: scale(1.1);
 }
 
+.close-btn,
+.gallery-lightbox-nav {
+    border: 0;
+    background: transparent;
+    font-family: inherit;
+}
+
+.gallery-lightbox-nav {
+    position: absolute;
+    top: 50%;
+    z-index: 2001;
+    width: 54px;
+    height: 54px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid rgba(255, 255, 255, 0.35);
+    border-radius: 50%;
+    background: rgba(0, 0, 0, 0.48);
+    color: #fff;
+    font-size: 22px;
+    cursor: pointer;
+    transform: translateY(-50%);
+    transition: color 0.2s ease, background-color 0.2s ease, transform 0.2s ease;
+}
+
+.gallery-lightbox-prev { left: 28px; }
+.gallery-lightbox-next { right: 28px; }
+
+.gallery-lightbox-nav:hover,
+.gallery-lightbox-nav:focus-visible {
+    color: var(--secondary-color);
+    background: rgba(0, 0, 0, 0.78);
+    transform: translateY(-50%) scale(1.08);
+    outline: 2px solid var(--secondary-color);
+    outline-offset: 3px;
+}
+
 /* 放大动画 */
 @keyframes zoomIn {
     from {transform: scale(0.9); opacity: 0;} 
@@ -3767,6 +3826,13 @@ body.detail-page-body {
         right: 20px;
         font-size: 35px;
     }
+    .gallery-lightbox-nav {
+        width: 44px;
+        height: 44px;
+        font-size: 17px;
+    }
+    .gallery-lightbox-prev { left: 8px; }
+    .gallery-lightbox-next { right: 8px; }
     #lightbox-caption {
         font-size: 14px;
     }
@@ -3789,7 +3855,7 @@ body.detail-page-body {
 /* 表格底部附注 */
 .table-note {
     display: flex;
-    align-items: flex-start;
+    align-items: center;
     gap: 12px;
     padding: 14px 18px;
     border: 1px solid color-mix(in srgb, var(--primary-color) 16%, var(--border-color));

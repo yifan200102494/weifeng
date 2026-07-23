@@ -656,33 +656,64 @@ function initLightbox() {
     const modal = document.getElementById('lightbox');
     const modalImg = document.getElementById('lightbox-img');
     const captionText = document.getElementById('lightbox-caption');
-    const closeBtn = document.querySelector('.close-btn');
+    const closeBtn = modal ? modal.querySelector('.close-btn') : null;
+    const prevBtn = modal ? modal.querySelector('.gallery-lightbox-prev') : null;
+    const nextBtn = modal ? modal.querySelector('.gallery-lightbox-next') : null;
+    let currentItem = null;
 
     const galleryGrid = document.querySelector('.gallery-grid');
+    if (!modal || !modalImg || !captionText || !galleryGrid) return;
+
+    function getVisibleItems() {
+        return Array.from(galleryGrid.querySelectorAll('.gallery-item')).filter(item => {
+            return window.getComputedStyle(item).display !== 'none';
+        });
+    }
+
+    function showItem(item) {
+        const img = item ? item.querySelector('.img-wrapper img') : null;
+        const caption = item ? item.querySelector('.gallery-caption') : null;
+        if (!img || !img.currentSrc) return;
+
+        currentItem = item;
+        modalImg.src = img.dataset.fullSrc || item.dataset.fullSrc || img.currentSrc;
+        modalImg.alt = img.alt || '';
+        captionText.innerHTML = caption ? caption.innerHTML : '';
+    }
+
+    function changeImage(direction) {
+        const visibleItems = getVisibleItems();
+        if (!visibleItems.length) return;
+
+        const currentIndex = visibleItems.indexOf(currentItem);
+        const nextIndex = (Math.max(currentIndex, 0) + direction + visibleItems.length) % visibleItems.length;
+        showItem(visibleItems[nextIndex]);
+    }
+
     if (galleryGrid) {
         // 使用事件委托，让筛选后的图片也能直接打开原图预览。
         galleryGrid.addEventListener('click', event => {
             const item = event.target.closest('.gallery-item .img-wrapper');
             if (!item || !galleryGrid.contains(item)) return;
 
-            const img = item.querySelector('img');
-            const caption = item.nextElementSibling;
-            if (!modal || !img || !img.currentSrc) return;
+            const galleryItem = item.closest('.gallery-item');
+            if (!galleryItem) return;
 
             modal.style.display = "flex";
+            modal.setAttribute('aria-hidden', 'false');
             setTimeout(() => modal.classList.add('show'), 10);
-
-            modalImg.src = img.dataset.fullSrc || item.dataset.fullSrc || img.currentSrc;
-            captionText.innerHTML = caption ? caption.innerHTML : "";
+            showItem(galleryItem);
         });
     }
 
     // 2. 关闭功能的函数
     function closeModal() {
         modal.classList.remove('show');
+        modal.setAttribute('aria-hidden', 'true');
         // 等待0.3秒动画结束后再隐藏 display
         setTimeout(() => {
             modal.style.display = "none";
+            if (!modal.classList.contains('show')) modalImg.src = '';
         }, 300);
     }
 
@@ -690,6 +721,9 @@ function initLightbox() {
     if (closeBtn) {
         closeBtn.addEventListener('click', closeModal);
     }
+
+    if (prevBtn) prevBtn.addEventListener('click', () => changeImage(-1));
+    if (nextBtn) nextBtn.addEventListener('click', () => changeImage(1));
 
     // 4. 点击背景也能关闭 (优化用户体验，尤其是手机端)
     if (modal) {
@@ -700,6 +734,14 @@ function initLightbox() {
             }
         });
     }
+
+    document.addEventListener('keydown', event => {
+        if (!modal.classList.contains('show')) return;
+
+        if (event.key === 'ArrowLeft') changeImage(-1);
+        if (event.key === 'ArrowRight') changeImage(1);
+        if (event.key === 'Escape') closeModal();
+    });
 }
 
 function initPlatformQrModal() {

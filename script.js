@@ -168,6 +168,14 @@ document.addEventListener('DOMContentLoaded', () => {
     const revealOnScroll = new IntersectionObserver((entries, observer) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
+                // 核心产品首行的图片体积差异较大。等同一行图片全部完成加载和
+                // 解码后再显示整个网格，避免体积最小的中间图片看起来先出现。
+                if (entry.target.matches('.section.products .product-grid')) {
+                    observer.unobserve(entry.target);
+                    revealProductGrid(entry.target);
+                    return;
+                }
+
                 // 首页数据卡位于首屏边缘。若逐张判断，浏览器在部分缩放比例下
                 // 可能只判定其中一张进入视口，造成单张卡片先出现。
                 // 因此任意数据卡触发时，统一显示整组数据卡。
@@ -189,6 +197,30 @@ document.addEventListener('DOMContentLoaded', () => {
     }, { threshold: 0.1, rootMargin: "0px 0px -50px 0px" });
 
     reveals.forEach(element => revealOnScroll.observe(element));
+
+    async function revealProductGrid(grid) {
+        const cards = Array.from(grid.querySelectorAll('.product-item'));
+        const firstRowTop = cards[0]?.offsetTop;
+        const firstRowImages = cards
+            .filter(card => Math.abs(card.offsetTop - firstRowTop) < 2)
+            .map(card => card.querySelector('img'))
+            .filter(Boolean);
+
+        await Promise.all(firstRowImages.map(image => {
+            const decodeImage = () => typeof image.decode === 'function'
+                ? image.decode().catch(() => {})
+                : Promise.resolve();
+
+            if (image.complete) return decodeImage();
+
+            return new Promise(resolve => {
+                image.addEventListener('load', () => decodeImage().then(resolve), { once: true });
+                image.addEventListener('error', resolve, { once: true });
+            });
+        }));
+
+        window.requestAnimationFrame(() => grid.classList.add('active'));
+    }
 
     function animateCounter(counterElement) {
         const target = +counterElement.getAttribute('data-target');

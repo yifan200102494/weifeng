@@ -2681,9 +2681,8 @@ body.detail-page-body {
         background: linear-gradient(135deg, rgba(96, 165, 250, 0.30), rgba(243, 156, 18, 0.26));
     }
 }
-/* 未完成的素材与备案信息暂不展示，补齐真实内容后移除对应 class 即可恢复。 */
-.content-placeholder-hidden,
-.gongan {
+/* 未完成的素材暂不展示，补齐真实内容后移除对应 class 即可恢复。 */
+.content-placeholder-hidden {
     display: none !important;
 }
 
@@ -3169,6 +3168,8 @@ body.detail-page-body {
 .beian-info .gongan img {
     width: 20px;
     height: 20px;
+    object-fit: contain;
+    flex: 0 0 20px;
 }
 body.detail-page-body {
     background-color: var(--page-bg);

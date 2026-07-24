@@ -43,6 +43,25 @@
     footerBottom.appendChild(legalLinks);
 })();
 
+// 所有页面统一使用已通过审核的公安备案信息。
+(function ensurePublicSecurityRecord() {
+    const recordLink = document.querySelector('.beian-info .gongan');
+    if (!recordLink) return;
+
+    recordLink.href = 'https://beian.mps.gov.cn/#/query/webSearch?code=33088102002691';
+    recordLink.target = '_blank';
+    recordLink.rel = 'noopener noreferrer';
+    recordLink.replaceChildren();
+
+    const emblem = document.createElement('img');
+    emblem.src = 'images/guohui.png';
+    emblem.alt = '';
+    emblem.width = 20;
+    emblem.height = 20;
+
+    recordLink.append(emblem, '浙公网安备33088102002691号');
+})();
+
 document.addEventListener('DOMContentLoaded', () => {
     // 资料下载页：将 PDF 读取为 Blob 后触发保存，避免被浏览器 PDF 查看器当作普通链接打开。
     document.querySelectorAll('a.download-button[download]').forEach(link => {

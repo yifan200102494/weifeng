@@ -43,6 +43,188 @@
     footerBottom.appendChild(legalLinks);
 })();
 
+// Full-screen map viewer for small screens and touch devices.
+(() => {
+    function initMapViewer() {
+        const viewer = document.getElementById('mapViewer');
+        const sources = Array.from(document.querySelectorAll('.world-map, .china-map'));
+        if (!viewer || !sources.length) return;
+
+        const viewport = viewer.querySelector('.map-viewer-viewport');
+        const canvas = viewer.querySelector('.map-viewer-canvas');
+        const closeButtons = viewer.querySelectorAll('[data-map-viewer-close]');
+        const zoomInButton = viewer.querySelector('[data-map-zoom-in]');
+        const zoomOutButton = viewer.querySelector('[data-map-zoom-out]');
+        const resetButton = viewer.querySelector('[data-map-zoom-reset]');
+        const mobileQuery = window.matchMedia('(max-width: 700px), (hover: none), (pointer: coarse)');
+        const pointers = new Map();
+
+        let scale = 1.7;
+        let initialScale = 1.7;
+        let translateX = 0;
+        let translateY = 0;
+        let dragStart = null;
+        let pinchStartDistance = 0;
+        let pinchStartScale = 1;
+        let lastFocusedElement = null;
+
+        const clamp = (value, min, max) => Math.min(max, Math.max(min, value));
+
+        function renderTransform(animate = false) {
+            canvas.style.transition = animate ? 'transform 0.18s ease' : 'none';
+            canvas.style.transform = `translate3d(${translateX}px, ${translateY}px, 0) scale(${scale})`;
+        }
+
+        function resetView(animate = false) {
+            scale = initialScale;
+            translateX = 0;
+            translateY = 0;
+            renderTransform(animate);
+        }
+
+        function changeScale(nextScale) {
+            scale = clamp(nextScale, 1, 4.5);
+            if (scale === 1) {
+                translateX = 0;
+                translateY = 0;
+            }
+            renderTransform(true);
+        }
+
+        function openViewer(source) {
+            const svg = source.querySelector('svg');
+            if (!svg) return;
+
+            lastFocusedElement = document.activeElement;
+            canvas.innerHTML = '';
+            canvas.appendChild(svg.cloneNode(true));
+            canvas.setAttribute('role', 'img');
+            canvas.setAttribute('aria-label', source.getAttribute('aria-label') || '');
+            canvas.classList.toggle('showing-china-map', source.classList.contains('china-map'));
+            initialScale = source.classList.contains('china-map') ? 1.55 : 1.7;
+            resetView();
+
+            viewer.classList.add('open');
+            viewer.setAttribute('aria-hidden', 'false');
+            document.body.classList.add('map-viewer-open');
+            const closeButton = viewer.querySelector('.map-viewer-close');
+            if (closeButton) closeButton.focus();
+        }
+
+        function closeViewer() {
+            if (!viewer.classList.contains('open')) return;
+            viewer.classList.remove('open');
+            viewer.setAttribute('aria-hidden', 'true');
+            document.body.classList.remove('map-viewer-open');
+            pointers.clear();
+            viewport.classList.remove('dragging');
+            window.setTimeout(() => {
+                canvas.innerHTML = '';
+                if (lastFocusedElement && typeof lastFocusedElement.focus === 'function') {
+                    lastFocusedElement.focus();
+                }
+            }, 220);
+        }
+
+        sources.forEach(source => {
+            const trigger = source.querySelector('.map-zoom-trigger');
+            if (trigger) {
+                trigger.addEventListener('click', event => {
+                    event.preventDefault();
+                    event.stopPropagation();
+                    openViewer(source);
+                });
+            }
+
+            source.addEventListener('click', () => {
+                if (mobileQuery.matches) openViewer(source);
+            });
+        });
+
+        closeButtons.forEach(button => button.addEventListener('click', closeViewer));
+        if (zoomInButton) zoomInButton.addEventListener('click', () => changeScale(scale + 0.4));
+        if (zoomOutButton) zoomOutButton.addEventListener('click', () => changeScale(scale - 0.4));
+        if (resetButton) resetButton.addEventListener('click', () => resetView(true));
+
+        viewport.addEventListener('pointerdown', event => {
+            event.preventDefault();
+            viewport.setPointerCapture(event.pointerId);
+            pointers.set(event.pointerId, { x: event.clientX, y: event.clientY });
+            viewport.classList.add('dragging');
+
+            if (pointers.size === 1) {
+                dragStart = {
+                    pointerX: event.clientX,
+                    pointerY: event.clientY,
+                    translateX,
+                    translateY
+                };
+            } else if (pointers.size === 2) {
+                const [first, second] = Array.from(pointers.values());
+                pinchStartDistance = Math.hypot(second.x - first.x, second.y - first.y);
+                pinchStartScale = scale;
+                dragStart = null;
+            }
+        });
+
+        viewport.addEventListener('pointermove', event => {
+            if (!pointers.has(event.pointerId)) return;
+            pointers.set(event.pointerId, { x: event.clientX, y: event.clientY });
+
+            if (pointers.size === 2) {
+                const [first, second] = Array.from(pointers.values());
+                const distance = Math.hypot(second.x - first.x, second.y - first.y);
+                if (pinchStartDistance > 0) {
+                    scale = clamp(pinchStartScale * (distance / pinchStartDistance), 1, 4.5);
+                    renderTransform();
+                }
+            } else if (pointers.size === 1 && dragStart) {
+                translateX = dragStart.translateX + event.clientX - dragStart.pointerX;
+                translateY = dragStart.translateY + event.clientY - dragStart.pointerY;
+                renderTransform();
+            }
+        });
+
+        function releasePointer(event) {
+            pointers.delete(event.pointerId);
+            if (!pointers.size) {
+                dragStart = null;
+                viewport.classList.remove('dragging');
+                return;
+            }
+
+            const [remaining] = Array.from(pointers.values());
+            dragStart = {
+                pointerX: remaining.x,
+                pointerY: remaining.y,
+                translateX,
+                translateY
+            };
+        }
+
+        viewport.addEventListener('pointerup', releasePointer);
+        viewport.addEventListener('pointercancel', releasePointer);
+
+        viewport.addEventListener('wheel', event => {
+            event.preventDefault();
+            changeScale(scale + (event.deltaY < 0 ? 0.25 : -0.25));
+        }, { passive: false });
+
+        document.addEventListener('keydown', event => {
+            if (!viewer.classList.contains('open')) return;
+            if (event.key === 'Escape') closeViewer();
+            if (event.key === '+' || event.key === '=') changeScale(scale + 0.4);
+            if (event.key === '-') changeScale(scale - 0.4);
+        });
+    }
+
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', initMapViewer);
+    } else {
+        initMapViewer();
+    }
+})();
+
 // 所有页面统一使用已通过审核的公安备案信息。
 (function ensurePublicSecurityRecord() {
     const recordLink = document.querySelector('.beian-info .gongan');

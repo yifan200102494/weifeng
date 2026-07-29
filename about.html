@@ -16,7 +16,7 @@
             } catch (e) {}
         })();
     </script>
-    <link rel="stylesheet" href="style.css?v=20260714-2">
+    <link rel="stylesheet" href="style.css?v=20260729-3">
     <link rel="stylesheet" href="performance.css?v=2">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet" media="print" onload="this.media='all'">
     <noscript><link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet"></noscript>
@@ -231,6 +231,11 @@
                                 </g>
                             </g>
                         </svg>
+                        <button class="map-zoom-trigger" type="button" data-map-target="world"
+                            aria-label="点击放大全球地图" data-i18n-aria-label="footprint.open_world_map">
+                            <i class="fas fa-magnifying-glass-plus" aria-hidden="true"></i>
+                            <span data-i18n="footprint.map_open_hint">点击放大</span>
+                        </button>
                     </div>
                     <p class="footprint-map-note"><i class="fas fa-circle-info" aria-hidden="true"></i><span data-i18n="footprint.map_note">海外客户覆盖欧洲、俄罗斯、土耳其、巴基斯坦、沙特阿拉伯、印度、越南、东南亚及日本等市场；国内运营网络见下方</span></p>
                 </div>
@@ -457,6 +462,11 @@
                                 <text x="52" y="36" data-i18n="footprint.factory_city">衢州</text>
                             </g>
                         </svg>
+                        <button class="map-zoom-trigger" type="button" data-map-target="china"
+                            aria-label="点击放大中国地图" data-i18n-aria-label="footprint.open_china_map">
+                            <i class="fas fa-magnifying-glass-plus" aria-hidden="true"></i>
+                            <span data-i18n="footprint.map_open_hint">点击放大</span>
+                        </button>
                     </div>
                     <p class="footprint-map-note china-map-note"><i class="fas fa-circle-info" aria-hidden="true"></i><span data-i18n="footprint.china_map_note">国内客户覆盖全国各地</span></p>
                 </div>
@@ -779,7 +789,39 @@
         </div>
     </div>
 
-    <script src="i18n.js?v=20260714-2"></script>
-    <script src="script.js?v=20260706-1"></script>
+    <div class="map-viewer" id="mapViewer" role="dialog" aria-modal="true" aria-hidden="true"
+        aria-labelledby="mapViewerTitle">
+        <div class="map-viewer-backdrop" data-map-viewer-close></div>
+        <div class="map-viewer-panel">
+            <header class="map-viewer-header">
+                <div>
+                    <h2 id="mapViewerTitle" data-i18n="footprint.map_viewer_title">地图放大查看</h2>
+                    <p data-i18n="footprint.map_viewer_hint">双指缩放或拖动地图查看细节</p>
+                </div>
+                <button class="map-viewer-close" type="button" data-map-viewer-close
+                    aria-label="关闭地图" data-i18n-aria-label="footprint.close_map">
+                    <i class="fas fa-times" aria-hidden="true"></i>
+                    <span data-i18n="footprint.close_map">关闭</span>
+                </button>
+            </header>
+            <div class="map-viewer-viewport">
+                <div class="map-viewer-canvas"></div>
+            </div>
+            <div class="map-viewer-controls" aria-label="地图缩放控制">
+                <button type="button" data-map-zoom-out aria-label="缩小" data-i18n-aria-label="footprint.zoom_out">
+                    <i class="fas fa-minus" aria-hidden="true"></i>
+                    <span data-i18n="footprint.zoom_out">缩小</span>
+                </button>
+                <button type="button" data-map-zoom-reset data-i18n="footprint.zoom_reset">还原</button>
+                <button type="button" data-map-zoom-in aria-label="放大" data-i18n-aria-label="footprint.zoom_in">
+                    <i class="fas fa-plus" aria-hidden="true"></i>
+                    <span data-i18n="footprint.zoom_in">放大</span>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script src="i18n.js?v=20260729-2"></script>
+    <script src="script.js?v=20260729-1"></script>
 </body>
 </html>

@@ -4515,3 +4515,251 @@ html[lang="en"] .privacy-page .privacy-language-en {
 }
 
 /* 员工工作台样式已迁移至 employee/employee.css。 */
+
+/* --- Mobile map zoom viewer --- */
+.world-map,
+.china-map {
+    position: relative;
+}
+
+.map-zoom-trigger {
+    display: none;
+    position: absolute;
+    right: 10px;
+    bottom: 10px;
+    z-index: 5;
+    align-items: center;
+    gap: 8px;
+    padding: 11px 16px;
+    border: 2px solid #fff;
+    border-radius: 999px;
+    color: #fff !important;
+    background: linear-gradient(135deg, #008ee6, #005eb8);
+    box-shadow:
+        0 0 0 4px rgba(14, 165, 233, 0.22),
+        0 10px 28px rgba(0, 54, 108, 0.42);
+    font: inherit;
+    font-size: 14px;
+    font-weight: 800;
+    cursor: zoom-in;
+    backdrop-filter: blur(8px);
+    animation: mapZoomCue 2.2s ease-in-out infinite;
+}
+
+.map-zoom-trigger i {
+    font-size: 15px;
+}
+
+@keyframes mapZoomCue {
+    0%, 100% {
+        box-shadow:
+            0 0 0 4px rgba(14, 165, 233, 0.18),
+            0 10px 28px rgba(0, 54, 108, 0.42);
+    }
+    50% {
+        box-shadow:
+            0 0 0 9px rgba(14, 165, 233, 0.06),
+            0 12px 34px rgba(0, 54, 108, 0.52);
+    }
+}
+
+.map-viewer {
+    position: fixed;
+    inset: 0;
+    z-index: 10000;
+    display: flex;
+    align-items: stretch;
+    justify-content: stretch;
+    visibility: hidden;
+    opacity: 0;
+    transition: opacity 0.22s ease, visibility 0.22s ease;
+}
+
+.map-viewer.open {
+    visibility: visible;
+    opacity: 1;
+}
+
+.map-viewer-backdrop {
+    position: absolute;
+    inset: 0;
+    background: rgba(2, 8, 23, 0.84);
+    backdrop-filter: blur(10px);
+}
+
+.map-viewer-panel {
+    --text-color: #f8fbff;
+    --text-light: #b9d8f5;
+    --page-bg: #071426;
+    --surface-bg: #0d2039;
+    --surface-soft: #102946;
+    --border-color: #315a82;
+    --primary-color: #87bff2;
+    --accent-color: #27b5ff;
+    position: relative;
+    z-index: 1;
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    width: 100%;
+    min-width: 0;
+    height: 100vh;
+    height: 100dvh;
+    color: #f8fbff;
+    background:
+        radial-gradient(circle at 50% 45%, rgba(39, 181, 255, 0.14), transparent 44%),
+        #071426;
+    color-scheme: dark;
+}
+
+.map-viewer-header {
+    display: flex;
+    flex: 0 0 auto;
+    align-items: center;
+    justify-content: space-between;
+    gap: 18px;
+    padding: max(14px, env(safe-area-inset-top)) 16px 12px;
+    border-bottom: 1px solid #24527c;
+    background: rgba(8, 27, 49, 0.96);
+    box-shadow: 0 8px 26px rgba(0, 0, 0, 0.2);
+}
+
+.map-viewer-header h2 {
+    color: #fff !important;
+    font-size: 20px;
+    line-height: 1.3;
+}
+
+.map-viewer-header p {
+    margin-top: 2px;
+    color: #b9d8f5 !important;
+    font-size: 13px;
+}
+
+.map-viewer-close,
+.map-viewer-controls button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 52px;
+    height: 50px;
+    border: 1px solid #72c9ff;
+    border-radius: 13px;
+    color: #fff !important;
+    background: #087ac7;
+    box-shadow: 0 8px 24px rgba(0, 54, 108, 0.32);
+    font: inherit;
+    font-weight: 800;
+    cursor: pointer;
+}
+
+.map-viewer-close {
+    gap: 7px;
+    min-width: 82px;
+    padding: 0 14px;
+    border-color: #ffb0b4;
+    background: #d9363e;
+    box-shadow:
+        0 0 0 3px rgba(217, 54, 62, 0.18),
+        0 8px 24px rgba(80, 0, 6, 0.35);
+}
+
+.map-viewer-close i {
+    font-size: 17px;
+}
+
+.map-viewer-viewport {
+    position: relative;
+    display: flex;
+    flex: 1 1 auto;
+    min-height: 0;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    cursor: grab;
+    touch-action: none;
+    user-select: none;
+}
+
+.map-viewer-viewport.dragging {
+    cursor: grabbing;
+}
+
+.map-viewer-canvas {
+    width: min(900px, 100vw);
+    transform-origin: center center;
+    will-change: transform;
+}
+
+.map-viewer-canvas svg {
+    display: block;
+    width: 100%;
+    height: auto;
+    overflow: visible;
+}
+
+.map-viewer-controls {
+    position: absolute;
+    right: 50%;
+    bottom: max(18px, env(safe-area-inset-bottom));
+    z-index: 3;
+    display: flex;
+    gap: 9px;
+    padding: 9px;
+    border: 2px solid #38bdf8;
+    border-radius: 19px;
+    background: #06111f;
+    box-shadow:
+        0 0 0 4px rgba(56, 189, 248, 0.12),
+        0 18px 42px rgba(0, 0, 0, 0.46);
+    transform: translateX(50%);
+    backdrop-filter: blur(12px);
+}
+
+.map-viewer-controls button {
+    gap: 7px;
+    min-width: 82px;
+    padding: 0 13px;
+    font-size: 14px;
+}
+
+.map-viewer-controls button[data-map-zoom-reset] {
+    min-width: 78px;
+    padding: 0 16px;
+    color: #075c9d !important;
+    background: #fff;
+    border-color: #fff;
+    font-size: 14px;
+}
+
+.map-viewer-close:focus-visible,
+.map-viewer-controls button:focus-visible,
+.map-zoom-trigger:focus-visible {
+    outline: 3px solid #fbbf24;
+    outline-offset: 3px;
+}
+
+body.map-viewer-open {
+    overflow: hidden;
+}
+
+@media (max-width: 700px), (hover: none), (pointer: coarse) {
+    .map-zoom-trigger {
+        display: inline-flex;
+    }
+
+    .world-map,
+    .china-map {
+        cursor: zoom-in;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .map-viewer {
+        transition: none;
+    }
+
+    .map-zoom-trigger {
+        animation: none;
+    }
+}

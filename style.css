@@ -443,7 +443,7 @@ img { max-width: 100%; display: block; }
     background-attachment: scroll; background-position: center; background-repeat: no-repeat; background-size: cover;
     margin-top: 0;
 }
-.about-header-bg { background-image: url('images/product-card-silicone-products.jpg'); background-position: center 48%; }
+.about-header-bg { background-image: url('images/about-hero-hd.webp'); background-position: center 48%; }
 .product-header-bg { background-image: url('images/product-card-silicone-oil.jpg'); background-position: center 52%; }
 .news-header-bg { background-image: url('images/product-card-brightener.jpg'); background-position: center 44%; }
 .gallery-header-bg { background-image: url('images/product-card-pretreatment.jpg'); background-position: center; }
@@ -785,10 +785,12 @@ img { max-width: 100%; display: block; }
 }
 .map-route path {
     fill: none;
-    stroke: rgba(0, 168, 255, 0.52);
-    stroke: color-mix(in srgb, var(--accent-color) 52%, transparent);
-    stroke-width: 1.4;
-    stroke-dasharray: 5 7;
+    stroke: #55b8f5;
+    stroke-width: 1.05;
+    stroke-linecap: round;
+    stroke-dasharray: 4 6;
+    opacity: 0.72;
+    vector-effect: non-scaling-stroke;
 }
 .map-point { color: #16a085; }
 .map-point.point-factory { color: #f39c12; }
@@ -799,13 +801,21 @@ img { max-width: 100%; display: block; }
     display: inline;
     animation: footprintPulse 2.5s ease-out infinite;
 }
-.map-point .point-core { fill: currentColor; stroke: var(--surface-bg); stroke-width: 3; }
-.map-point .point-layer { stroke: var(--surface-bg); stroke-width: 2.6; }
+.map-point .point-core { fill: currentColor; stroke: var(--surface-bg); stroke-width: 2; }
+.map-point .point-layer { stroke: var(--surface-bg); stroke-width: 1.8; }
 .map-point .point-layer-factory { fill: #f39c12; }
 .map-point .point-layer-warehouse { fill: #8b5cf6; }
-.map-point .point-layer-customer { fill: #16a085; stroke-width: 2; }
+.map-point .point-layer-customer { fill: #16a085; stroke-width: 1.7; }
 .map-point .point-ring { fill: none; stroke: currentColor; stroke-width: 3; }
-.map-point text { fill: var(--text-color); font-size: 13px; font-weight: 700; paint-order: stroke; stroke: var(--surface-bg); stroke-width: 4px; }
+.map-point text { fill: var(--text-color); font-size: 9.2px; font-weight: 650; paint-order: stroke; stroke: var(--surface-bg); stroke-width: 2.6px; stroke-linejoin: round; }
+.world-map .point-customer .point-core { r: 3.6px; }
+.world-map .point-warehouse .point-core { r: 4.6px; }
+.world-map .point-combined-global .point-pulse { r: 11px; }
+.world-map .point-combined-global .point-layer-warehouse { r: 5.5px; }
+.world-map .point-combined-global .point-layer-customer { r: 2.5px; }
+.world-map .point-factory .point-pulse { r: 14px; }
+.world-map .point-factory .point-layer-factory { r: 7px; }
+.world-map .point-factory .point-layer-warehouse { r: 3.5px; }
 @keyframes footprintPulse {
     0%, 32% { transform: scale(0.55); opacity: 0.25; }
     75%, 100% { transform: scale(1.15); opacity: 0; }
@@ -944,6 +954,17 @@ img { max-width: 100%; display: block; }
     stroke-width: 5px;
     stroke-linejoin: round;
 }
+.china-point.point-customer .point-core {
+    r: 4.5px;
+    stroke-width: 2.2;
+}
+.china-point.point-customer .point-leader {
+    display: none;
+}
+.china-point.point-customer text {
+    font-size: 10.5px;
+    stroke-width: 3px;
+}
 .china-map-note { position: relative; z-index: 2; }
 .footprint-site-list {
     display: grid;
@@ -1048,8 +1069,8 @@ img { max-width: 100%; display: block; }
     .world-map svg { min-width: 0; }
     .world-map .map-point text {
         display: block;
-        font-size: 22px;
-        stroke-width: 6px;
+        font-size: 14.5px;
+        stroke-width: 3.8px;
         stroke-linejoin: round;
     }
     .domestic-network-head { align-items: flex-start; flex-direction: column; gap: 2px; margin-top: 22px; }

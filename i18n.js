@@ -2356,7 +2356,7 @@ const productPagePhraseTranslations = [
     ['松软整理剂', 'Soft Finishing Agent'],
     ['松软硅油', 'Soft Silicone Oil'],
     ['家纺蓬松剂', 'Home-textile Fluffy Agent'],
-    ['免毛蓬松剂', 'Wool-free Fluffy Agent'],
+    ['兔毛蓬松剂', 'Rabbit Fur Fluffy Agent'],
     ['滑弹整理剂', 'Smooth Elastic Finishing Agent'],
     ['平滑整理剂', 'Smoothing Agent'],
     ['冰感硅油', 'Cooling Silicone Oil'],
@@ -2374,7 +2374,7 @@ const productPagePhraseTranslations = [
     ['家纺平滑剂', 'Home-textile Smoothing Agent'],
     ['丝滑整理剂', 'Silky Smoothing Agent'],
     ['特柔滑硅油', 'Special Soft Smooth Silicone Oil'],
-    ['免毛平滑剂', 'Wool-free Smoothing Agent'],
+    ['兔毛平滑剂', 'Rabbit Fur Smoothing Agent'],
 
     ['无氟防水剂', 'Fluorine-free Waterproofing Agent'],
     ['C6防水防油剂', 'C6 Water and Oil Repellent'],

@@ -1,4 +1,19 @@
-﻿// 页面交互与动画效果
+// 页面交互与动画效果
+
+// 每次打开页面时读取当前年份，所有页面共用。
+(function initCopyrightYear() {
+    function updateCopyrightYear() {
+        const year = String(new Date().getFullYear());
+        document.querySelectorAll('[data-copyright-year]').forEach(element => {
+            element.textContent = year;
+        });
+    }
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', updateCopyrightYear, { once: true });
+    } else {
+        updateCopyrightYear();
+    }
+})();
 
 // 所有页面共用同一组页脚隐私入口，避免多页面副本出现遗漏。
 (function ensureFooterPrivacyLinks() {
@@ -1137,6 +1152,7 @@ function buildProductSearchEntries() {
     groups.forEach(group => {
         entries.push({
             type: 'series',
+            englishOnly: !!group.englishOnly,
             name: group.series,
             nameEn: group.seriesEn || group.series,
             series: group.series,
@@ -1151,11 +1167,14 @@ function buildProductSearchEntries() {
             const target = code || product;
             entries.push({
                 type: 'product',
+                englishOnly: !!group.englishOnly,
                 name: product,
-                nameEn: product,
+                nameEn: typeof translateProductPageText === 'function'
+                    ? (translateProductPageText(product.replace(code, '').trim()) + (code ? ' ' + code.replace(/系列$/, ' Series') : '')).trim()
+                    : product,
                 series: group.series,
                 seriesEn: group.seriesEn || group.series,
-                href: `${group.href}?product=${encodeURIComponent(target)}`,
+                href: (group.productLinks && group.productLinks[target]) || `${group.href}?product=${encodeURIComponent(target)}`,
                 target,
                 keywords: [product, code, group.series, group.seriesEn, group.keywords].filter(Boolean).join(' ')
             });
@@ -1177,6 +1196,8 @@ function scoreProductSearchEntry(entry, rawQuery) {
     const keywords = normalizeProductSearchText(entry.keywords);
 
     if (target && target === query) return 100;
+    // A model entered without the WF prefix must outrank suffixed variants.
+    if (target && target.replace(/^wf/, '') === query.replace(/^wf/, '')) return 100;
     if (name === query || nameEn === query) return 96;
     if (target && target.startsWith(query)) return 92;
     if (name.startsWith(query) || nameEn.startsWith(query)) return 86;
@@ -1208,6 +1229,7 @@ function scoreProductSearchEntry(entry, rawQuery) {
 }
 
 function initProductSearch() {
+    if (window.PRODUCT_FINDER_DATA) return;
     const form = document.getElementById('productSearchForm');
     const input = document.getElementById('productSearchInput');
     const resultsBox = document.getElementById('productSearchResults');
@@ -1241,7 +1263,7 @@ function initProductSearch() {
 
         currentResults = entries
             .map(entry => ({ entry, score: scoreProductSearchEntry(entry, query) }))
-            .filter(item => item.score > 0)
+            .filter(item => item.score > 0 && (!item.entry.englishOnly || productSearchLang() === 'en'))
             .sort((a, b) => b.score - a.score || (a.entry.type === 'series' ? -1 : 1))
             .slice(0, 10)
             .map(item => item.entry);
@@ -1256,8 +1278,8 @@ function initProductSearch() {
         resultsBox.innerHTML = currentResults.map((entry, index) => `
             <button class="product-search-result" type="button" data-index="${index}">
                 <span>
-                    <strong>${entry.name}</strong>
-                    <span>${entry.type === 'series' ? productSearchText('go') : entry.series}</span>
+                    <strong>${productSearchLang() === 'en' ? entry.nameEn : entry.name}</strong>
+                    <span>${entry.type === 'series' ? productSearchText('go') : (productSearchLang() === 'en' ? entry.seriesEn : entry.series)}</span>
                 </span>
                 <em>${resultLabel(entry)}</em>
             </button>
@@ -1269,6 +1291,9 @@ function initProductSearch() {
 
     input.addEventListener('input', renderResults);
     input.addEventListener('focus', renderResults);
+    document.addEventListener('languagechange', () => {
+        if (resultsBox.classList.contains('active')) renderResults();
+    });
 
     resultsBox.addEventListener('click', event => {
         const button = event.target.closest('.product-search-result');
@@ -1304,6 +1329,15 @@ function initProductCategoryCards() {
 
 // 产品详情按进入来源返回：首页卡片回首页产品区，产品中心卡片回对应分类。
 function initProductReturnPosition() {
+    if (new URLSearchParams(window.location.search).get('fromFinder') === '1') {
+        document.querySelectorAll('.detail-back-link').forEach(link => {
+            link.href = 'products.html?restoreFinder=1';
+            link.setAttribute('data-i18n', 'article.back_products');
+            const english = document.documentElement.lang.startsWith('en');
+            link.innerHTML = '<i class="fas fa-arrow-left" aria-hidden="true"></i> ' + (english ? 'Back to Products' : '返回产品中心');
+        });
+        return;
+    }
     const cards = Array.from(document.querySelectorAll('.category-grid .cat-item'));
     const returnLinks = document.querySelectorAll('.product-detail-page .detail-back-link[href^="products.html"]');
     const params = new URLSearchParams(window.location.search);
@@ -1470,10 +1504,14 @@ function initProductSearchTarget() {
         document.querySelectorAll('.theme-toggle').forEach(button => {
             ensureThemeButtonIcons(button);
             button.classList.toggle('is-dark', isDark);
-            button.setAttribute('aria-label', isDark ? '切换为浅色模式' : '切换为深色模式');
-            button.setAttribute('title', isDark ? '切换为浅色模式' : '切换为深色模式');
+            const isEnglish = localStorage.getItem('preferredLang') === 'en';
+            const label = isEnglish ? (isDark ? 'Switch to light mode' : 'Switch to dark mode') : (isDark ? '切换为浅色模式' : '切换为深色模式');
+            button.setAttribute('aria-label', label);
+            button.setAttribute('title', label);
         });
     }
+
+    document.addEventListener('languagechange', updateThemeButtons);
 
     function toggleTheme() {
         const nextTheme = getEffectiveTheme() === 'dark' ? 'light' : 'dark';
@@ -1829,3 +1867,30 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 })();
 
+
+// Restore product-list anchors after translated text and fonts settle.
+(() => {
+    if (!document.querySelector('.detail-page-body [id^="model-"]')) return;
+    const root = document.documentElement;
+    function updateOffset() {
+        const bottoms = ['.navbar', '.detail-back-link'].map(selector => {
+            const element = document.querySelector(selector);
+            if (!element || getComputedStyle(element).position !== 'fixed') return 0;
+            return element.getBoundingClientRect().bottom;
+        });
+        root.style.setProperty('--product-anchor-offset', Math.ceil(Math.max(...bottoms) + 20) + 'px');
+    }
+    function alignProduct() {
+        updateOffset();
+        if (!location.hash.startsWith('#model-')) return;
+        const target = document.getElementById(location.hash.slice(1));
+        if (target) target.scrollIntoView({ block: 'start', behavior: 'instant' });
+    }
+    updateOffset();
+    window.addEventListener('load', alignProduct, { once: true });
+    window.addEventListener('hashchange', alignProduct);
+    window.addEventListener('pageshow', alignProduct);
+    window.addEventListener('resize', updateOffset);
+    document.addEventListener('languagechange', () => requestAnimationFrame(alignProduct));
+    if (document.fonts) document.fonts.ready.then(alignProduct);
+})();

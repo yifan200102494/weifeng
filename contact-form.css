@@ -1,0 +1,112 @@
+.contact-right-column { flex: 1.5; min-width: 0; }
+.contact-right-column .contact-map-box { width: 100%; }
+.inquiry-card { margin: 12px 22px 36px; padding: 24px 36px; border: 1px solid #dce5ef; border-radius: 16px; background: #fff; color: #29445e; }
+.inquiry-eyebrow { font-size: 12px; font-weight: 700; letter-spacing: .18em; color: #b47a08; }
+.inquiry-card h2 { margin: 8px 0 12px; font-size: 30px; }
+.inquiry-intro { color: #6b7d90; line-height: 1.8; margin-bottom: 16px; }
+.inquiry-fields { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: 16px 28px; }
+.inquiry-fields label { display: flex; flex-direction: column; gap: 6px; font-size: 15px; }
+.inquiry-fields b { color: #ac7100; }
+.inquiry-fields input,.inquiry-fields textarea { width: 100%; min-width: 0; border: 0; border-bottom: 1px solid #becbd7; border-radius: 0; padding: 6px 2px; background: transparent; color: inherit; font: inherit; transition: border-color .2s; }
+.inquiry-fields input:focus,.inquiry-fields textarea:focus { outline: 2px solid #2978c5; outline-offset: 4px; border-color: transparent; }
+.inquiry-fields textarea { resize: vertical; height: 110px; min-height: 110px; max-height: 500px; }
+.inquiry-message { grid-column: 1 / -1; }
+.inquiry-actions { display: flex; align-items: center; justify-content: space-between; gap: 16px; margin-top: 22px; }
+.inquiry-actions > span { font-size: 13px; color: #6b7d90; }
+.inquiry-actions button { border: 0; border-radius: 8px; background: #1674c8; color: #fff; font: inherit; font-weight: 600; padding: 14px 28px; cursor: pointer; }
+.inquiry-actions button:hover { background: #105ba0; }
+.inquiry-actions button:focus-visible,.inquiry-email:focus-visible { outline: 2px solid #2978c5; outline-offset: 4px; }
+.inquiry-preview { margin: 24px 0 6px; font-size: 13px; color: #6b7d90; line-height: 1.7; }
+.inquiry-email { color: #1674c8; overflow-wrap: anywhere; }
+.inquiry-status { margin-top: 20px; padding: 12px 16px; border-radius: 6px; background: #fff5db; color: #785000; line-height: 1.7; }
+html[data-theme="dark"] .inquiry-card { background: #152437; border-color: #35465b; color: #e0eaf4; }
+html[data-theme="dark"] .inquiry-intro,html[data-theme="dark"] .inquiry-preview,html[data-theme="dark"] .inquiry-actions > span { color: #a9bbce; }
+html[data-theme="dark"] .inquiry-email { color: #7bbcff; }
+html[data-theme="dark"] .inquiry-eyebrow,html[data-theme="dark"] .inquiry-fields b { color: #f4c65e; }
+@media(max-width: 992px) { .contact-right-column { width: 100%; } }
+@media(max-width: 600px) { .inquiry-card { margin: 12px 14px 24px; padding: 24px 20px; } .inquiry-fields { grid-template-columns: 1fr; gap: 22px; } .inquiry-card h2 { font-size: 26px; } .inquiry-actions button { padding: 13px 20px; } }
+/* Keep the page surface consistent and both desktop columns aligned. */
+.contact-right-column {
+    background: var(--surface-bg);
+}
+.contact-right-column .contact-map-box { background: transparent; flex: none; }
+.inquiry-card { border-color: var(--map-panel-border); background: var(--surface-bg); }
+html[data-theme="dark"] .inquiry-card { background: var(--surface-bg); border-color: var(--map-panel-border); }
+@media (min-width: 993px) {
+    .contact-wrapper { align-items: stretch; }
+    .contact-info-box { display: flex; flex-direction: column; }
+    .contact-info-box .wechat-link-panel { flex: 1; display: flex; flex-direction: column; }
+    .contact-info-box .wechat-link-grid { flex: 1; }
+    .contact-right-column { display: flex; flex-direction: column; }
+    .inquiry-card { flex: 1; display: flex; flex-direction: column; margin-bottom: 60px; }
+    #inquiry-form { flex: 1; display: flex; flex-direction: column; }
+    .inquiry-fields { flex: 1; grid-template-rows: auto auto 1fr; }
+    .inquiry-message textarea { flex: 1; }
+}
+
+/* Remove only the shadow spilling below the contact map. */
+.contact-page .contact-right-column .map-panel { box-shadow: none; }
+/* A softly tinted writing surface, echoing the blue and gold platform cards. */
+.contact-page .inquiry-card {
+    background: linear-gradient(135deg, rgba(41, 120, 197, .055), transparent 55%),
+        linear-gradient(320deg, rgba(218, 173, 67, .075), transparent 50%), var(--surface-bg);
+    border-color: rgba(83, 128, 178, .24);
+    box-shadow: 0 12px 30px rgba(32, 60, 90, .07);
+}
+.contact-page .inquiry-card h2 { position: relative; width: fit-content; max-width: 100%; padding-bottom: 12px; }
+.contact-page .inquiry-card h2::after {
+    content: ""; position: absolute; bottom: 0; left: 0;
+    width: 100%; height: 3px; border-radius: 3px;
+    background: linear-gradient(90deg, #d6ad46, #edcf83);
+}
+.contact-page .inquiry-intro { font-size: 15px; margin-bottom: 22px; }
+.contact-page .inquiry-fields { gap: 18px 22px; }
+.contact-page .inquiry-fields label { gap: 8px; font-size: 14px; font-weight: 600; }
+.contact-page .inquiry-fields input,
+.contact-page .inquiry-fields textarea {
+    border: 1px solid #d9e2ec; border-radius: 8px; padding: 11px 13px;
+    background: rgba(255, 255, 255, .85); font-weight: 400;
+    transition: border-color .2s, box-shadow .2s, background .2s;
+}
+.contact-page .inquiry-fields input { height: 44px; }
+.contact-page .inquiry-fields textarea { min-height: 130px; line-height: 1.7; }
+.contact-page .inquiry-fields input:hover,
+.contact-page .inquiry-fields textarea:hover { border-color: #a7bdd4; }
+.contact-page .inquiry-fields input:focus,
+.contact-page .inquiry-fields textarea:focus {
+    outline: 2px solid #2978c5; outline-offset: 2px;
+    border-color: #7ba4cf; background: #fff; box-shadow: 0 0 0 4px rgba(41, 120, 197, .08);
+}
+.contact-page .inquiry-actions { padding-top: 18px; border-top: 1px solid rgba(122, 149, 177, .18); }
+.contact-page .inquiry-actions button {
+    background: linear-gradient(120deg, #397fc4, #245d9b);
+    box-shadow: 0 5px 12px rgba(36, 93, 155, .18);
+    transition: background .2s, box-shadow .2s;
+}
+.contact-page .inquiry-actions button:hover { background: #245d9b; box-shadow: 0 6px 16px rgba(36, 93, 155, .26); }
+.contact-page .inquiry-actions button:disabled { opacity: .65; cursor: default; box-shadow: none; }
+html[data-theme="dark"] .contact-page .inquiry-card { background: linear-gradient(135deg, rgba(96, 165, 250, .07), transparent 65%), var(--surface-bg); border-color: #35465b; }
+html[data-theme="dark"] .contact-page .inquiry-fields input,
+html[data-theme="dark"] .contact-page .inquiry-fields textarea { background: rgba(15, 23, 42, .4); border-color: #42556b; }
+html[data-theme="dark"] .contact-page .inquiry-fields input:focus,
+html[data-theme="dark"] .contact-page .inquiry-fields textarea:focus { border-color: #7bbcff; background: #18283a; }
+/* Pair the contact details/map and platforms/form in shared desktop rows. */
+@media (min-width: 993px) {
+    .contact-page .contact-wrapper {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) minmax(0, 1.4fr);
+        gap: 32px 72px;
+        padding: 60px 22px 60px 50px;
+    }
+    .contact-page .contact-info-box,
+    .contact-page .contact-right-column { display: contents; }
+    .contact-page .contact-details { grid-column: 1; grid-row: 1; }
+    .contact-page .contact-map-box { grid-column: 2; grid-row: 1; padding: 0; margin-top: 12px; height: calc(100% - 12px); min-height: 418px; align-self: stretch; }
+    .contact-page .map-panel { height: 100%; }
+    .contact-page .wechat-link-panel { grid-column: 1; grid-row: 2; margin: 0; padding: 24px 0 0; border-top: 0; }
+    /* Match the platform panel's 24px padding, 42px heading and 14px heading gap. */
+    .contact-page .inquiry-card { grid-column: 2; grid-row: 2; margin: 80px 0 0; padding-top: 15px; }
+    .contact-page .inquiry-eyebrow { display: none; }
+    .contact-page .inquiry-card h2 { margin-top: 0; line-height: 1.4; }
+    .contact-page .wechat-link-panel h3 { line-height: 42px; }
+}

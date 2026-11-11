@@ -1,0 +1,97 @@
+/* Shared product detail body treatment. */
+.product-body-polished .hd-page #applications .hd-cards { gap: 16px; }
+.product-body-polished .hd-page #applications .hd-cards article {
+    padding: 22px;
+    border: 1px solid var(--border-color);
+    border-top: 3px solid #8bb0ce;
+    border-radius: 10px;
+    background: var(--surface-muted);
+}
+.product-body-polished .hd-page #documents .hd-cards article { display: flex; flex-direction: column; align-items: flex-start; }
+.product-body-polished .hd-page #documents .hd-cards article > p { flex: 1; }
+.product-body-polished .process-grid-preparation > :first-child { grid-column: 1 / -1; }
+.product-body-polished .hd-page #method > p:not(.hd-note) { padding: 18px 22px; background: var(--surface-muted); border-radius: 8px; margin-bottom: 12px; }
+.product-body-polished .hd-page .hd-article { padding: 18px 22px; border: 1px solid var(--border-color); border-radius: 8px; background: var(--surface-muted); }
+.product-body-polished .hd-page .hd-content { display: grid; gap: 22px; }
+.product-body-polished .hd-page .hd-section {
+    padding: 28px;
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    background: var(--surface-bg);
+    box-shadow: 0 5px 20px #143c6006;
+}
+.product-body-polished .hd-page .hd-section h2 { margin-bottom: 24px; font-size: 21px; }
+.product-body-polished .hd-page .hd-section h2:before { display: none; }
+.product-body-polished .hd-page .hd-section-number {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+    padding: 0;
+    border: 0;
+    border-radius: 8px;
+    background: var(--surface-muted);
+    color: var(--primary-color);
+    font-size: 12px;
+    letter-spacing: 0;
+}
+.product-body-polished #uses ul { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; list-style: none; padding: 0; margin: 0; }
+.product-body-polished #uses li { padding: 16px 18px; border-left: 3px solid #d9b337; background: var(--surface-muted); border-radius: 0 8px 8px 0; font-size: 14px; line-height: 1.85; }
+.product-body-polished #applications > p { margin: 0; padding: 20px 24px; border-radius: 8px; background: var(--surface-muted); border-left: 3px solid #8bb0ce; }
+.product-body-polished .process-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+.product-body-polished .process-card { padding: 22px; background: var(--surface-muted); border: 1px solid var(--border-color); border-radius: 10px; }
+.product-body-polished .process-card h3 { font-size: 17px; margin: 0 0 14px; color: var(--primary-color); }
+.product-body-polished .process-card p { margin: 0; }
+.product-body-polished .hd-page #method .hd-note { margin: 18px 0 0; padding: 12px 16px; border-left: 3px solid #d9b337; background: var(--surface-muted); border-radius: 0 6px 6px 0; }
+.product-body-polished .hd-page .hd-storage { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px; margin: 0; }
+.product-body-polished .storage-item { padding: 20px; background: var(--surface-muted); border-radius: 8px; }
+.product-body-polished .hd-page .storage-item dt { font-size: 12px; margin-bottom: 10px; }
+.product-body-polished .hd-page .storage-item dd { font-size: 15px; font-weight: 500; line-height: 1.7; }
+.product-body-polished .hd-page .hd-inquiry { margin-top: 0; padding: 26px 22px; border-radius: 12px; box-shadow: 0 8px 24px #143c6009; }
+.product-body-polished .hd-page .hd-inquiry h2 { font-size: 20px; }
+.product-body-polished .hd-page .hd-inquiry .hd-button { border-radius: 7px; min-height: 46px; }
+.product-body-polished .hd-page #documents .hd-cards { gap: 16px; }
+.product-body-polished .hd-page #documents .hd-cards article { padding: 22px; border: 1px solid var(--border-color); border-radius: 10px; }
+.product-body-polished .hd-page .hd-specs { border: 1px solid var(--border-color); }
+@media (max-width: 900px) {
+    .product-body-polished .hd-page .hd-layout { grid-template-columns: minmax(0, 1fr); gap: 22px; }
+    .product-body-polished .hd-page .hd-inquiry { position: static; }
+}
+@media (max-width: 650px) {
+    .product-body-polished .hd-page .hd-section { padding: 22px 18px; }
+    .product-body-polished .process-grid,
+    .product-body-polished #uses ul,
+    .product-body-polished .hd-page .hd-storage { grid-template-columns: 1fr; }
+    .product-body-polished .hd-page .hd-section h2 { font-size: 19px; }
+}
+
+
+.product-body-polished .emulsion-steps { padding-left: 20px; margin: 0; font-size: 14px; line-height: 1.9; }
+.product-body-polished .emulsion-steps li + li { margin-top: 12px; }
+
+/* Separate navigation, sections and feature tiles with a consistent rhythm. */
+.product-body-polished .hd-page .hd-layout { margin-top: 28px; }
+.product-body-polished .hd-page .hd-content { gap: 28px; }
+.product-body-polished #uses ul { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 18px; }
+.product-body-polished #uses li { padding: 20px 22px; }
+.product-body-polished #uses li:last-child:nth-child(odd) { grid-column: 1 / -1; }
+@media (max-width: 650px) {
+    .product-body-polished .hd-page .hd-layout { margin-top: 22px; }
+    .product-body-polished .hd-page .hd-content { gap: 22px; }
+    .product-body-polished #uses ul { grid-template-columns: minmax(0, 1fr); gap: 14px; }
+    .product-body-polished #uses li { padding: 18px; }
+}
+
+/* Feature copy follows the same restrained treatment as silicone product uses. */
+.product-body-polished .hd-page #uses ul { display: grid; grid-template-columns: minmax(0, 1fr); gap: 0; }
+.product-body-polished .hd-page #uses li { position: relative; padding: 14px 0 14px 18px; border: 0; border-radius: 0; background: transparent; }
+.product-body-polished .hd-page #uses li + li { border-top: 1px solid var(--border-color); }
+.product-body-polished .hd-page #uses li::before { content: ''; position: absolute; left: 0; top: 25px; width: 5px; height: 5px; border-radius: 50%; background: #d9b337; }
+.product-body-polished .hd-page #uses li:first-child { padding-top: 0; }
+.product-body-polished .hd-page #uses li:first-child::before { top: 11px; }
+.product-body-polished .hd-page #uses li:last-child { padding-bottom: 0; }
+.product-body-polished .hd-page #uses .feature-groups li { padding-left: 0; }
+.product-body-polished .hd-page #uses .feature-groups li::before { display: none; }
+.product-body-polished .hd-page #uses .feature-groups h3 { font-size: 15px; line-height: 1.6; color: var(--primary-color); margin: 0 0 6px; }
+.product-body-polished .hd-page #uses .feature-groups p { margin: 0; font-size: 14px; line-height: 1.85; }

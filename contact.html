@@ -1,9 +1,10 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-    <link rel="icon" href="images/favicon.svg?v=2" type="image/svg+xml">
+    <link rel="icon" href="images/favicon.svg" type="image/svg+xml">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preload" as="image" href="images/hero-contact-v3.webp" type="image/webp" fetchpriority="high">
     <title>浙江伟丰新材料有限公司</title>
     <script>
         (function () {
@@ -16,7 +17,7 @@
             } catch (e) {}
         })();
     </script>
-    <link rel="stylesheet" href="style.css?v=20260711-6">
+    <link rel="stylesheet" href="style.css">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet" media="print" onload="this.media='all'">
     <noscript><link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet"></noscript>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
@@ -28,7 +29,8 @@
         }
     </script>
 
-    </head>
+    <link rel="stylesheet" href="contact-form.css">
+</head>
 <body class="contact-page">
 
     <nav class="navbar" id="navbar">
@@ -74,6 +76,7 @@
             <div class="contact-wrapper reveal">
                 
                 <div class="contact-info-box">
+                    <div class="contact-details">
                     <div class="info-header">
                         <h2 data-i18n="contact.info_title">联系方式</h2>
                         <div class="small-line"></div>
@@ -81,7 +84,7 @@
                     </div>
 
                     <div class="info-list">
-                        <div class="info-group">
+                        <div class="info-group" id="sample-contact" style="scroll-margin-top: 120px;">
                             <h3><i class="fas fa-building"></i> <span data-i18n="contact.co_name">江山本部</span></h3>
                             <ul>
                                 <li><span class="label" data-i18n="contact.label_addr">地址:</span> <span class="value" data-i18n="footer.addr_text">浙江省衢州市江山市上余镇兴工八二路一号 浙江伟丰新材料有限公司</span></li>
@@ -89,7 +92,7 @@
                             </ul>
                         </div>
                         <hr class="divider">
-                        <div class="info-group hotline-group">
+                        <div class="info-group hotline-group" id="technical-contact" style="scroll-margin-top: 120px;">
                             <h3><i class="fas fa-headset"></i> <span data-i18n="contact.office_name">客服热线:</span></h3>
                             <ul>
                                 <li><span class="value">17858201239（291239）</span></li>
@@ -98,6 +101,7 @@
                         </div>
                     </div>
 
+                    </div>
                     <div class="wechat-link-panel">
                         <h3><i class="fas fa-link"></i> <span data-i18n="contact.wechat_title">官方平台</span></h3>
                         <div class="wechat-link-grid">
@@ -120,26 +124,63 @@
                     </div>
                 </div>
 
+                <div class="contact-right-column">
                 <div class="contact-map-box">
                     <div class="map-panel">
-                        <img class="map-static-image" src="images/contact-map-static.png" alt="浙江伟丰新材料有限公司地图位置" loading="eager" decoding="async">
+                        <svg class="map-static-image" viewBox="0 0 1482 1135" role="img" aria-label="浙江伟丰新材料有限公司地图位置">
+                            <defs>
+                                <image id="map-overview" href="images/contact-map-overview.webp" width="1482" height="1135"/>
+                                <clipPath id="map-preview-button">
+                                    <rect x="1084" y="973" width="351" height="111" rx="18"/>
+                                </clipPath>
+                                <filter id="map-preview-button-black" color-interpolation-filters="sRGB">
+                                    <feColorMatrix type="saturate" values="0"/>
+                                    <feComponentTransfer>
+                                        <feFuncR type="linear" slope="1.3" intercept="-0.3"/>
+                                        <feFuncG type="linear" slope="1.3" intercept="-0.3"/>
+                                        <feFuncB type="linear" slope="1.3" intercept="-0.3"/>
+                                    </feComponentTransfer>
+                                </filter>
+                            </defs>
+                            <use href="#map-overview"/>
+                            <g clip-path="url(#map-preview-button)">
+                                <use href="#map-overview" filter="url(#map-preview-button-black)"/>
+                            </g>
+                        </svg>
                         <div class="map-panel-header">
                             <span><i class="fas fa-location-dot"></i> <span data-i18n="contact.map_company">浙江伟丰新材料有限公司</span></span>
                             <small data-i18n="contact.map_addr">浙江省衢州市江山市上余镇兴工八二路一号</small>
                         </div>
                         <div id="amapContainer" class="amap-container"></div>
-                        <a class="map-external-link" href="https://uri.amap.com/marker?position=118.726677,28.812076&amp;name=%E6%B5%99%E6%B1%9F%E4%BC%9F%E4%B8%B0%E6%96%B0%E6%9D%90%E6%96%99%E6%9C%89%E9%99%90%E5%85%AC%E5%8F%B8&amp;src=weifeng-website&amp;coordinate=gaode&amp;callnative=1" target="_blank" rel="noopener noreferrer" aria-label="在高德地图中查看浙江伟丰新材料有限公司">
+                        <a class="map-external-link" href="https://uri.amap.com/marker?position=118.726677,28.812076&amp;name=%E6%B5%99%E6%B1%9F%E4%BC%9F%E4%B8%B0%E6%96%B0%E6%9D%90%E6%96%99%E6%9C%89%E9%99%90%E5%85%AC%E5%8F%B8&amp;src=weifeng-website&amp;coordinate=gaode&amp;callnative=1" target="_blank" rel="noopener noreferrer" aria-label="在高德地图中查看浙江伟丰新材料有限公司" data-i18n-aria-label="ui.accessible_9">
                             <span class="map-external-link-label"><i class="fas fa-arrow-up-right-from-square" aria-hidden="true"></i> <span data-i18n="contact.btn_map">查看在线地图</span></span>
                         </a>
                     </div>
                 </div>
 
+                <section class="inquiry-card" aria-labelledby="inquiry-title" id="inquiry">
+                    <span class="inquiry-eyebrow">LET’S TALK</span>
+                    <h2 id="inquiry-title" data-inquiry="title">给我们留言</h2>
+                    <p class="inquiry-intro" data-inquiry="intro">无论是产品咨询、样品需求，还是合作意向，欢迎与我们联系。</p>
+                    <form id="inquiry-form">
+                        <div class="inquiry-fields">
+                            <label><span data-inquiry="name">姓名</span><input name="name" autocomplete="name" maxlength="100"></label>
+                            <label><span><span data-inquiry="email">邮箱</span> <b>*</b></span><input name="email" type="email" autocomplete="email" maxlength="254" required></label>
+                            <label><span data-inquiry="company">公司名称</span><input name="company" autocomplete="organization" maxlength="200"></label>
+                            <label><span data-inquiry="phone">联系电话</span><input name="phone" type="tel" autocomplete="tel" maxlength="50"></label>
+                            <label class="inquiry-message"><span><span data-inquiry="message">留言内容</span> <b>*</b></span><textarea name="message" rows="5" maxlength="5000" required></textarea></label>
+                        </div>
+                        <div class="inquiry-actions"><span data-inquiry="required">* 为必填项</span><button type="submit"><i class="far fa-envelope" aria-hidden="true"></i> <span data-inquiry="send">发送留言</span></button></div>
+                        <p class="inquiry-status" id="inquiry-status" role="status" hidden></p>
+                    </form>
+                </section>
+                </div>
             </div>
         </div>
     </section>
 
     <div id="platformQrModal" class="platform-qr-modal" aria-hidden="true" role="dialog" aria-modal="true">
-        <button class="platform-qr-modal-close" type="button" aria-label="关闭二维码预览">&times;</button>
+        <button class="platform-qr-modal-close" type="button" aria-label="关闭二维码预览" data-i18n-aria-label="ui.accessible_10"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true" focusable="false"><path d="M6 6l12 12M18 6L6 18" /></svg></button>
         <div class="platform-qr-modal-content">
             <img id="platformQrModalImage" src="" alt="" decoding="async">
             <p id="platformQrModalCaption"></p>
@@ -157,28 +198,28 @@
 
             try {
                 var map = new AMap.Map('amapContainer', {
-                    zoom: 16,
+                    zoom: 14,
                     center: myLngLat,
                     viewMode: '3D'
                 });
 
                 var myIcon = new AMap.Icon({
-                    image: 'images/logo.png',
-                    size: new AMap.Size(40, 40),
-                    imageSize: new AMap.Size(40, 40),
-                    offset: new AMap.Pixel(-20, -40)
+                    image: 'images/contact-map-pin.svg',
+                    size: new AMap.Size(40, 54),
+                    imageSize: new AMap.Size(40, 54)
                 });
 
                 var marker = new AMap.Marker({
                     position: myLngLat,
                     map: map,
                     icon: myIcon,
+                    anchor: 'bottom-center',
                     title: '浙江伟丰新材料有限公司'
                 });
 
                 var infoWindow = new AMap.InfoWindow({
                     content: '<div style="padding:10px; color:#333;"><b>浙江伟丰新材料有限公司</b><br>浙江省衢州市江山市上余镇兴工八二路一号</div>',
-                    offset: new AMap.Pixel(0, -30)
+                    offset: new AMap.Pixel(0, -54)
                 });
 
                 marker.on('click', function() {
@@ -234,6 +275,7 @@
                     <li><a href="about.html" data-i18n="nav.about"><i class="fas fa-chevron-right"></i> 关于我们</a></li>
                     <li><a href="products.html" data-i18n="nav.products"><i class="fas fa-chevron-right"></i> 产品中心</a></li>
                     <li><a href="news.html" data-i18n="nav.news"><i class="fas fa-chevron-right"></i> 新闻资讯</a></li>
+                    <li><a href="gallery.html" data-i18n="nav.gallery"><i class="fas fa-chevron-right"></i> 企业形象</a></li>
                     <li><a href="downloads.html" data-i18n="nav.downloads"><i class="fas fa-chevron-right"></i> 资料下载</a></li>
                     <li><a href="contact.html" data-i18n="nav.contact"><i class="fas fa-chevron-right"></i> 联系我们</a></li>
                     <li><a href="contact.html#wechat-official" class="footer-social-link" data-i18n="footer.wechat_official"><i class="fab fa-weixin"></i> 微信公众号</a></li>
@@ -266,7 +308,7 @@
         </div>
         <div class="footer-bottom">
             <div class="copyright">
-                &copy; 2025 Zhejiang Wei Feng New Material Co., Ltd. All Rights Reserved.
+                &copy; <span data-copyright-year>2026</span> Zhejiang Wei Feng New Material Co., Ltd. All Rights Reserved.
             </div>
             <div class="beian-info">
                     <a href="https://beian.miit.gov.cn/" target="_blank">ICP备案号：浙ICP备2021010917号-2</a>
@@ -348,7 +390,8 @@
             centerCurrentPlatform('auto');
         })();
     </script>
-    <script src="i18n.js?v=20260711-2"></script>
-    <script src="script.js?v=20260706-1"></script>
+    <script src="i18n.js"></script>
+    <script src="script.js"></script>
+<script src="contact-form.js"></script>
 </body>
 </html>

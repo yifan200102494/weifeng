@@ -1,10 +1,27 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-    <link rel="icon" href="images/favicon.svg?v=2" type="image/svg+xml">
+    <link rel="icon" href="images/favicon.svg" type="image/svg+xml">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script>
+        // Keep the top banner out of the first paint while restoring finder results.
+        try {
+            if (new URLSearchParams(location.search).get('restoreFinder') === '1') {
+                var finderReturn = JSON.parse(sessionStorage.getItem('weifeng.finder.return.v1') || 'null');
+                if (finderReturn && finderReturn.state && Array.isArray(finderReturn.state.effects)) {
+                    document.documentElement.style.visibility = 'hidden';
+                    window.finderReturnRevealTimer = setTimeout(function () {
+                        document.documentElement.style.removeProperty('visibility');
+                    }, 2000);
+                }
+            }
+        } catch (error) {}
+    </script>
+    <link rel="preload" as="image" href="images/hero-products-v3.webp" type="image/webp" fetchpriority="high">
     <title>浙江伟丰新材料有限公司</title>
+    <meta name="description" content="浙江伟丰新材料产品中心，提供端含氢硅油、端环氧硅油、聚醚环氧硅油、前处理助剂、染色助剂、防水整理剂、软片、增白剂及功能整理剂。">
+    <link rel="canonical" href="https://www.weifengxcl.com/products.html">
     <script>
         (function () {
             try {
@@ -16,8 +33,9 @@
             } catch (e) {}
         })();
     </script>
-    <link rel="stylesheet" href="style.css?v=20260714-2">
-    <link rel="stylesheet" href="performance.css?v=2">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="product-finder.css">
+    
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet" media="print" onload="this.media='all'">
     <noscript><link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet"></noscript>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
@@ -60,7 +78,7 @@
     <header class="page-header product-header-bg">
         <div class="overlay"></div>
         <div class="container header-content">
-            <h1 class="fade-in-up" data-i18n="prod.header_title">认真执着 精益求精</h1>
+            <h1 class="fade-in-up" data-i18n="prod.header_title">纺织印染助剂与有机硅产品中心</h1>
             <p class="fade-in-up delay-200" data-i18n="prod.header_desc">致力于纺织助剂产品研发、力求专业化、精细化</p>
         </div>
     </header>
@@ -77,11 +95,18 @@
             </div>
             <div class="product-search reveal">
                 <form class="product-search-form" id="productSearchForm" autocomplete="off">
+                    <div class="finder-search-top">
+                    <div class="finder-search-copy">
+                    <p class="finder-search-eyebrow">WEI FENG · PRODUCT FINDER</p>
                     <label for="productSearchInput" class="product-search-label">
                         <i class="fas fa-search"></i>
                         <span data-i18n="prod.search_label">产品搜索</span>
                     </label>
+                    <p class="product-search-hint" data-i18n="prod.search_hint">支持按产品型号、产品名称或系列名称搜索。</p>
+                    </div>
+                    <div class="finder-search-actions">
                     <div class="product-search-control">
+                        <div class="finder-input-wrap">
                         <input
                             type="search"
                             id="productSearchInput"
@@ -90,9 +115,13 @@
                             aria-controls="productSearchResults"
                             aria-expanded="false"
                         >
-                        <button type="submit" data-i18n="prod.search_button">搜索</button>
+                        <button type="button" class="finder-clear" id="productSearchClear" aria-label="清空搜索内容" title="清空搜索内容" hidden><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="m7 7 10 10M17 7 7 17"/></svg></button>
+                        </div>
+                        <button type="submit" class="finder-submit" data-i18n="prod.search_button">搜索</button>
                     </div>
-                    <p class="product-search-hint" data-i18n="prod.search_hint">支持按产品型号、产品名称或系列名称搜索。</p>
+                    <p class="finder-search-status" id="productSearchStatus" role="status" aria-live="polite"></p>
+                    </div>
+                    </div>
                 </form>
                 <div class="product-search-results" id="productSearchResults" aria-live="polite"></div>
             </div>
@@ -105,10 +134,10 @@
                 
                 <div class="cat-item reveal">
                     <a href="product-detail.html" class="cat-visual" style="display: block; text-decoration: none;">
-                        <img src="images/product-card-silicone-oil.webp?v=20260729-1" alt="硅油系列样品瓶" class="bg-img" decoding="async" loading="lazy" fetchpriority="low">
+                        <img src="images/gui_you_01-card.webp" alt="有机硅硅油系列样品瓶" class="bg-img" decoding="async" loading="lazy" fetchpriority="low">
                         <div class="cat-box">
-                            <h3 data-i18n="prod.cat1_title">端（含氢/环氧/聚醚环氧）硅油系列</h3>
-                            <span data-i18n="prod.silicone_sub">SILICONE OIL SERIES</span>
+                            <h3 data-i18n="prod.cat1_title">有机硅硅油系列</h3>
+                            <span data-i18n="prod.silicone_sub">ORGANOSILICONE OIL SERIES</span>
                             <div class="small-line"></div>
                             <span class="view-more" data-i18n="btn.view_more">view more</span>
                         </div>
@@ -116,7 +145,7 @@
                     <div class="cat-desc">
                         <h4>
                             <a href="product-detail.html" style="color: inherit; text-decoration: none;">
-                                <span data-i18n="prod.cat1_title">端（含氢/环氧/聚醚环氧）硅油系列</span> >>
+                                <span data-i18n="prod.cat1_title">有机硅硅油系列</span> >>
                             </a>
                         </h4>
                         <p data-i18n="prod.cat1_desc">各种端基反应性线性改性硅油；嵌段共聚反应的关键中间体；拥有极低的挥发份，满足出口要求。</p>
@@ -125,10 +154,10 @@
 
                 <div class="cat-item reveal">
                     <a href="product-silicone-products.html" class="cat-visual" style="display: block; text-decoration: none;">
-                        <img src="images/product-card-silicone-products.webp?v=20260729-1" alt="硅油产品系列样品瓶" class="bg-img" decoding="async" loading="lazy" fetchpriority="low">
+                        <img src="images/gui_you_chan_ping_01-card.webp" alt="纺织嵌段硅油系列样品瓶" class="bg-img" decoding="async" loading="lazy" fetchpriority="low">
                         <div class="cat-box">
-                            <h3 data-i18n="prod.cat8_title">硅油产品系列</h3>
-                            <span data-i18n="prod.silicone_product_sub">SILICONE OIL PRODUCT SERIES</span>
+                            <h3 data-i18n="prod.cat8_title">纺织嵌段硅油系列</h3>
+                            <span data-i18n="prod.silicone_product_sub">TEXTILE BLOCK SILICONE OIL SERIES</span>
                             <div class="small-line"></div>
                             <span class="view-more" data-i18n="btn.view_more">view more</span>
                         </div>
@@ -136,7 +165,7 @@
                     <div class="cat-desc">
                         <h4>
                             <a href="product-silicone-products.html" style="color: inherit; text-decoration: none;">
-                                <span data-i18n="prod.cat8_title">硅油产品系列</span> >>
+                                <span data-i18n="prod.cat8_title">纺织嵌段硅油系列</span> >>
                             </a>
                         </h4>
                         <p data-i18n="prod.cat8_desc">涵盖蓬松、平滑、功能及亲水硅油整理剂，适用于棉、涤纶、锦纶及多种混纺织物。</p>
@@ -145,7 +174,7 @@
 
                 <div class="cat-item reveal">
                     <a href="product-pretreatment.html" class="cat-visual" style="display: block; text-decoration: none;">
-                        <img src="images/qian_chu_li_01.jpg?v=20260731-1" alt="前处理系列样品瓶" class="bg-img" decoding="async" loading="lazy" fetchpriority="low">
+                        <img src="images/qian_chu_li_04-card.webp" alt="前处理系列样品瓶" class="bg-img" decoding="async" loading="lazy" fetchpriority="low">
                         <div class="cat-box">
                             <h3 data-i18n="prod.cat2_title">前处理系列</h3>
                             <span data-i18n="prod.pre_sub">Pre-treatment Chemicals</span>
@@ -165,7 +194,7 @@
 
                 <div class="cat-item reveal">
                     <a href="product-dyeing.html" class="cat-visual" style="display: block; text-decoration: none;">
-                        <img src="images/ran_se_01.jpg?v=20260731-1" alt="染色系列样品瓶" class="bg-img" decoding="async" loading="lazy" fetchpriority="low">
+                        <img src="images/ran_se_01-card.webp" alt="染色系列样品瓶" class="bg-img" decoding="async" loading="lazy" fetchpriority="low">
                         <div class="cat-box">
                             <h3 data-i18n="prod.cat3_title">染色系列</h3>
                             <span data-i18n="prod.dye_sub">Dyeing series</span>
@@ -185,7 +214,7 @@
 
                 <div class="cat-item reveal">
                     <a href="product-high-conc.html" class="cat-visual" style="display: block; text-decoration: none;">
-                        <img src="images/fang_shui_ji_01.jpg?v=20260731-1" alt="防水系列样品瓶" class="bg-img" decoding="async" loading="lazy" fetchpriority="low">
+                        <img src="images/fang_shui_ji_01-card.webp" alt="防水系列样品瓶" class="bg-img" decoding="async" loading="lazy" fetchpriority="low">
                         <div class="cat-box">
                             <h3 data-i18n="prod.cat4_title">防水系列</h3>
                             <span data-i18n="prod.waterproof_sub">Waterproof Series</span>
@@ -203,9 +232,9 @@
                     </div>
                 </div>
 
-                <div class="cat-item reveal">
+                <template data-paused-series="true"><div class="cat-item reveal">
                     <a href="product-softener.html" class="cat-visual" style="display: block; text-decoration: none;">
-                        <img src="images/product-card-softener.webp?v=20260729-1" alt="软片系列样品瓶" class="bg-img" decoding="async" loading="lazy" fetchpriority="low">
+                        <img src="images/product-card-softener.webp" alt="软片系列样品瓶" class="bg-img" decoding="async" loading="lazy" fetchpriority="low">
                         <div class="cat-box">
                             <h3 data-i18n="prod.cat5_title">软片系列</h3>
                             <span data-i18n="prod.soft_sub">Softener Flake Series</span>
@@ -221,11 +250,11 @@
                         </h4>
                         <p data-i18n="prod.cat5_desc">适用于全棉及其混纺针织物、机织物的柔软整理，尤其是对亲水及色光有高要求的柔软整理工艺。</p>
                     </div>
-                </div>
+                </div></template>
 
-                <div class="cat-item reveal">
+                <template data-paused-series="true"><div class="cat-item reveal">
                     <a href="product-brightener.html" class="cat-visual" style="display: block; text-decoration: none;">
-                        <img src="images/product-card-brightener.webp?v=20260729-1" alt="增白剂系列样品瓶" class="bg-img" decoding="async" loading="lazy" fetchpriority="low">
+                        <img src="images/product-card-brightener.webp" alt="增白剂系列样品瓶" class="bg-img" decoding="async" loading="lazy" fetchpriority="low">
                         <div class="cat-box">
                             <h3 data-i18n="prod.cat6_title">增白剂系列</h3>
                             <span data-i18n="prod.bright_sub">Brightening Series</span>
@@ -241,11 +270,11 @@
                         </h4>
                         <p data-i18n="prod.cat6_desc">增白剂是一类能提高纤维织物和纸张等白度的有机化合物。织物等常常由于含有色杂质而呈黄色。</p>
                     </div>
-                </div>
+                </div></template>
 
                 <div class="cat-item reveal">
                     <a href="product-functional.html" class="cat-visual" style="display: block; text-decoration: none;">
-                        <img src="images/gong_neng_02.jpg?v=20260731-1" alt="功能系列样品瓶" class="bg-img" decoding="async" loading="lazy" fetchpriority="low">
+                        <img src="images/gong_neng_02-card.webp" alt="功能系列样品瓶" class="bg-img" decoding="async" loading="lazy" fetchpriority="low">
                         <div class="cat-box">
                             <h3 data-i18n="prod.cat7_title">功能系列</h3>
                             <span data-i18n="prod.func_sub">FUNCTIONAL AGENT SERIES</span>
@@ -314,7 +343,7 @@
         </div>
         <div class="footer-bottom">
             <div class="copyright">
-                &copy; 2025 Zhejiang Wei Feng New Material Co., Ltd. All Rights Reserved.
+                &copy; <span data-copyright-year>2026</span> Zhejiang Wei Feng New Material Co., Ltd. All Rights Reserved.
             </div>
             <div class="beian-info">
                 <a href="https://beian.miit.gov.cn/" target="_blank" rel="noopener noreferrer">
@@ -328,9 +357,11 @@
         </div>
     </footer>
 
-    <script src="i18n.js?v=20260711-2"></script>
-    <script src="product-search-data.js?v=20260701-3"></script>
-    <script src="script.js?v=20260714-2"></script>
+    <script src="i18n.js"></script>
+    <script src="product-search-data.js"></script>
+    <script src="product-finder-data.js"></script>
+    <script src="script.js"></script>
+    <script src="product-finder.js"></script>
 </body>
 </html>
 

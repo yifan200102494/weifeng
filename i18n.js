@@ -1,6 +1,20 @@
 // 定义翻译字典
 const translations = {
     'zh': {
+        'home.services_title': "从产品选型到技术支持",
+        'home.services_desc': "快速找到您需要的产品、资料与服务。",
+        'home.service_find': "查找产品",
+        'home.service_find_desc': "按产品名称、型号或系列，找到适合的产品。",
+        'home.service_find_cta': "搜索产品",
+        'home.service_tds': "获取TDS",
+        'home.service_tds_desc': "了解产品性能、技术指标与使用建议。",
+        'home.service_tds_cta': "获取技术资料",
+        'home.service_sample': "索取样品",
+        'home.service_sample_desc': "联系业务经理，沟通样品需求与试样安排。",
+        'home.service_sample_cta': "咨询样品",
+        'home.service_technical': "联系技术人员",
+        'home.service_technical_desc': "告知面料与工艺需求，由客服协助对接技术支持。",
+        'home.service_technical_cta': "咨询技术支持",
         // --- 导航 & 页脚 ---
         'nav.home': '首页',
         'nav.about': '关于我们',
@@ -25,10 +39,14 @@ const translations = {
         'footer.legal': '法律声明',
 
         // --- 首页 (Home) ---
-        'home.hero_title': '专注纺织助剂<br>研发生产',
+        'home.hero_title': '浙江伟丰新材料有限公司',
         'home.hero_desc': '20+年行业经验 · 科技创新 · 品质保证 · 年产18000吨',
-        'home.btn_explore': '探索产品 <i class="fas fa-arrow-right"></i>',
+        'home.btn_explore': '探索产品',
         'home.btn_about': '了解伟丰',
+        'home.view_details': '查看详情',
+        'home.news_2_desc': '据不完全统计，我国纺织印染助剂行业持续发展，产品与技术不断创新...',
+        'home.news_3_desc': '纺织印染助剂用于改善染色品质并提高纺织品附加值，配方还原是产品开发的重要途径...',
+        'home.news_4_desc': '有机硅柔软剂起源于20世纪50年代，历经多代产品与改性技术发展...',
         'stats.unit_year': '年',
         'stats.unit_ton': '吨',
         'stats.unit_percent': '%',
@@ -39,6 +57,11 @@ const translations = {
         
         // --- 关于我们 (About) ---
         'sect.about_title': '公司简介',
+        'profile.company': '浙江伟丰新材料有限公司',
+        'profile.lead': '二十余年专注环保型纺织助剂与有机硅新材料',
+        'profile.research': '作为现代化高新技术企业，伟丰持续深耕环保型纺织印染助剂与有机硅新材料的研发、生产和销售，致力于前处理、后整理及防水系列等功能性产品开发。',
+        'profile.silicone': '在有机硅新材料领域，专注端氨硅油、低环体端环氧硅油及聚醚环氧硅油系列的创新研发，以持续创新满足客户个性化需求。',
+        'profile.vision': '精研产品，携手客户，共同追求高质量发展。',
         'sect.about_desc1': '浙江伟丰新材料有限公司是深耕环保型纺织印染助剂及有机硅新材料生产销售领域二十余年的现代化高新技术企业，一直致力于纺织印染的前处理、后整理，及防水系列等功能性产品开发、有机硅新材料的端氨硅油、低环体端环氧硅油和聚醚环氧硅油系列的产品创新研发。',
         'sect.about_desc2': '全力满足客户个性化需求，打造市场顶尖精品，与客户携手打造行业知名度，追求共同高质量发展是浙江伟丰一贯的追求！',
         'sect.about_list1': '<i class="fas fa-check-circle"></i> 环保型纺织印染助剂',
@@ -188,11 +211,11 @@ const translations = {
         'footprint.domestic': '国内主要城市',
         'footprint.overseas': '海外国家与地区',
         // --- 产品中心 (Products) ---
-        'prod.header_title': '认真执着 精益求精',
+        'prod.header_title': '纺织印染助剂与有机硅产品中心',
         'prod.header_desc': '致力于纺织助剂产品研发、力求专业化、精细化',
         'prod.intro_title': '致力于精细化工领域',
         'prod.intro_text': '我公司纺织助剂类产品主要涵盖纺织品的前处理、染色和印花、后整理、功能整理等多个环节，包括多个系列数十个品种。主要包括：各类新型有机硅柔软剂、平滑剂、羊绒羊毛用助剂、三元嵌段硅油、多功能整理剂、染色用助剂、生物酶酵素、固色剂、净洗剂、消泡剂、高浓硅油、二甲基硅油及部分精细化工产品。',
-        'prod.cat1_title': '端（含氢/环氧/聚醚环氧）硅油系列',
+        'prod.cat1_title': '有机硅硅油系列',
         'prod.cat1_desc': '各种端基反应性线性改性硅油；嵌段共聚反应的关键中间体；拥有极低的挥发份，满足出口要求。',
         'prod.cat2_title': '前处理系列',
         'prod.cat2_desc': '前处理助剂就是纺织品在印染处理前进行一系列处理的助剂，一般有精炼剂、洗净剂、除油剂等。',
@@ -206,10 +229,10 @@ const translations = {
         'prod.cat6_desc': '增白剂是一类能提高纤维织物和纸张等白度的有机化合物。织物等常常由于含有色杂质而呈黄色。',
         'prod.cat7_title': '功能系列',
         'prod.cat7_desc': '适用于棉、涤纶、羊毛及其混纺织物的抗静电、吸湿快干、抗紫外线、芳香、除硅、阻燃、抗菌防臭及APEO/NPEO去除等功能整理。',
-        'prod.cat8_title': '硅油产品系列',
+        'prod.cat8_title': '纺织嵌段硅油系列',
         'prod.cat8_desc': '涵盖蓬松、平滑、功能及亲水硅油整理剂，适用于棉、涤纶、锦纶及多种混纺织物。',
-        'prod.silicone_sub': 'SILICONE OIL SERIES',
-        'prod.silicone_product_sub': 'SILICONE OIL PRODUCT SERIES',
+        'prod.silicone_sub': 'ORGANOSILICONE OIL SERIES',
+        'prod.silicone_product_sub': 'TEXTILE BLOCK SILICONE OIL SERIES',
         'prod.search_label': '产品搜索',
         'prod.search_placeholder': '输入产品名称或型号，如 WF-4315C',
         'prod.search_button': '搜索',
@@ -222,7 +245,7 @@ const translations = {
         'prod.func_sub': 'FUNCTIONAL AGENT SERIES',
         'btn.view_more': 'view more',
         'sect.prod_title': '核心产品系列',
-        'prod.silicone': '端（含氢/环氧）硅油系列',
+        'prod.silicone': '有机硅硅油系列',
         'prod.pre': '前处理系列',
         'prod.dye': '染色系列',
         'prod.soft': '软片系列',
@@ -230,7 +253,7 @@ const translations = {
 
         // --- 新闻资讯 (News) ---
         'sect.news_title': '新闻资讯',
-        'news.header_title': '与世界联接',
+        'news.header_title': '新闻资讯与产品知识',
         'news.header_desc': '致力打造纺织助剂产品领袖品牌',
         'news.tab_industry': '行业资讯',
         'news.tab_company': '公司新闻',
@@ -851,7 +874,7 @@ const translations = {
         'article.epoxy_note': '挥发份：≤3%',
         'article.epoxy_app': '各种端基反应性线性改性硅油；有机硅嵌段共聚硅油柔软剂的关键中间体原料；其二元共聚硅油制成品克服了目前普通氨基硅油的黄变、不亲水和破乳粘辊三大缺点；与端基的环氧基反应，把硅氧烷链端及有机硅特性引入有机树脂中。',
         'article.epoxy_adv': '端环氧硅油中环氧基无任何破坏，环氧保持率高，挥发份低；SiH键加成反应较完全。',
-        'news.read_more': '查看更多 <i class="fas fa-long-arrow-alt-right"></i>',
+        'news.read_more': '查看更多',
 
         // --- 企业形象 (Gallery) ---
         'gallery.header_title': '因为专业，所以值得信赖',
@@ -875,6 +898,9 @@ const translations = {
         'gallery.cap_lab': '研发环境掠影',
         'gallery.cap_lab_bench': '研发实验一角',
         'gallery.cap_lab_samples': '样品展示一角',
+        'gallery.cap_lab_instruments': '研发仪器一角',
+        'gallery.cap_lab_equipment': '实验设备掠影',
+        'gallery.cap_lab_workspace': '实验室工作空间',
         'gallery.cap_event_booth': '展会现场剪影',
         'gallery.cap_event_team': '参展团队风采',
         'gallery.cap_event_exchange': '客户交流现场',
@@ -882,15 +908,50 @@ const translations = {
         'gallery.cap_event_display': '产品方案展示一角',
 
         // --- 资料下载 (Downloads) ---
+        'downloads.nav_label': "资料分类导航",
+        'downloads.tds': "产品 TDS",
+        'downloads.sds': "SDS",
+        'downloads.manuals': "产品手册",
+        'downloads.process': "应用工艺资料",
+        'downloads.credentials': "企业资质",
+        'downloads.tds_desc': "了解产品性能、技术指标与使用建议，为产品选型提供参考。",
+        'downloads.sds_desc': "查阅安全数据表，了解化学品操作、储存与防护信息。",
+        'downloads.manuals_desc': "浏览产品系列与应用方向，快速了解伟丰产品。",
+        'downloads.process_desc': "围绕实际应用，获取工艺条件、应用方法与技术支持。",
+        'downloads.credentials_desc': "集中查阅管理体系认证、企业荣誉、研发资质与化学品相关合规资料。",
+        'downloads.cert_file': "证书文件",
+        'downloads.cert_photo': "牌匾照片",
+        'downloads.cert_link': "查看及下载企业资质",
+        'downloads.cert_0': "质量管理体系认证证书 · ISO 9001:2015",
+        'downloads.cert_1': "环境管理体系认证证书 · ISO 14001:2015",
+        'downloads.cert_2': "OEKO-TEX ECO PASSPORT · 21.0.61626",
+        'downloads.cert_3': "浙江省专精特新中小企业荣誉证书",
+        'downloads.cert_4': "浙江省创新型中小企业荣誉证书",
+        'downloads.cert_5': "RSL Report · ChemCheck Summary (OEKO-TEX 2025)",
+        'downloads.cert_6': "衢州市博士创新站",
+        'downloads.cert_7': "衢州市工程技术研发中心",
+        'downloads.cert_8': "高新技术企业证书 · GR202333013119",
+        'downloads.on_request': "联系获取",
+        'downloads.tds_request': "按产品型号获取技术数据表",
+        'downloads.tds_note': "其他产品的 TDS，请告知产品名称或型号，联系我们获取对应资料。",
+        'downloads.sds_request': "获取对应产品的安全数据表",
+        'downloads.sds_note': "本页暂未提供 SDS 文件下载。请提供产品名称、型号及所需语言，联系我们获取对应资料。",
+        'downloads.process_request': "让技术资料贴合您的应用需求",
+        'downloads.process_note': "本页暂未提供应用工艺文件下载。请告知面料类型、工艺环节与预期效果，联系我们获取相关技术支持。",
+        'downloads.request_tds': "联系获取 TDS",
+        'downloads.request_sds': "联系获取 SDS",
+        'downloads.request_process': "咨询应用工艺",
         'downloads.header_title': '资料下载',
-        'downloads.header_desc': '产品手册 · 认证资料 · 技术文件',
-        'downloads.title': '下载中心',
-        'downloads.subtitle': '点击预览在线查看，或直接将资料保存到本地',
+        'downloads.header_desc': "产品 TDS · SDS · 产品手册 · 应用工艺资料 · 企业资质",
+        'downloads.title': "产品与技术资料中心",
+        'downloads.subtitle': "从产品选型、安全使用到工艺应用，按需求查找资料。",
         'downloads.type_manual': '产品资料',
         'downloads.type_certificate': '认证资料',
         'downloads.type_report': '检测报告',
         'downloads.type_cn': '中文资料',
-        'downloads.manual_title': '伟丰产品手册',
+        'downloads.manual_title': '伟丰产品手册（中文版）',
+        'downloads.manual_en_title': '伟丰产品手册（英文版）',
+        'downloads.manual_en_desc': '英文版产品手册，介绍主要产品系列、应用方向与技术信息。',
         'downloads.manual_desc': '了解公司主要产品系列、应用方向与技术信息。',
         'downloads.oeko_title': 'OEKO-TEX® ECO PASSPORT',
         'downloads.oeko_desc': '英文版认证文件，证书编号 21.0.61626。',
@@ -903,7 +964,7 @@ const translations = {
         'downloads.preview': '<i class="fas fa-eye"></i> 在线预览',
         'downloads.download': '<i class="fas fa-download"></i> 立即下载',
         'downloads.help': '如果您需要其他产品资料或技术支持，请联系我们获取。',
-        'downloads.contact': '联系我们 <i class="fas fa-arrow-right"></i>',
+        'downloads.contact': '联系我们',
 
         // --- 联系我们 (Contact) 页面专用 ---
         'contact.header_title': '真诚服务 客户至上',
@@ -949,6 +1010,20 @@ const translations = {
         'honor.tag3_en': 'SPECIALIZED AND INNOVATIVE SMALL AND MEDIUM-SIZED ENTERPRISES'
     },
     'en': {
+        'home.services_title': "From product selection to technical support",
+        'home.services_desc': "Find the products, information and support you need.",
+        'home.service_find': "Find Products",
+        'home.service_find_desc': "Search by product name, model or series.",
+        'home.service_find_cta': "Search products",
+        'home.service_tds': "Get TDS",
+        'home.service_tds_desc': "Explore product properties, specifications and usage guidance.",
+        'home.service_tds_cta': "Get technical data",
+        'home.service_sample': "Request Samples",
+        'home.service_sample_desc': "Discuss sample requirements and trial arrangements with our sales team.",
+        'home.service_sample_cta': "Discuss samples",
+        'home.service_technical': "Contact Technical Support",
+        'home.service_technical_desc': "Share your fabric and process needs so our service team can connect you with technical support.",
+        'home.service_technical_cta': "Get technical support",
         // --- Navigation & Footer ---
         'nav.home': 'Home',
         'nav.about': 'About Us',
@@ -973,10 +1048,14 @@ const translations = {
         'footer.legal': 'Legal Notice',
 
         // --- Home ---
-        'home.hero_title': 'Focus on Textile Auxiliaries<br>R&D and Production',
+        'home.hero_title': 'Zhejiang Wei Feng New Material Co., Ltd.',
         'home.hero_desc': '20+ Years Experience · Innovation · Quality · 18,000 Tons Annual Output',
-        'home.btn_explore': 'Explore Products <i class="fas fa-arrow-right"></i>',
+        'home.btn_explore': 'Explore Products',
         'home.btn_about': 'About Wei Feng',
+        'home.view_details': 'View Details',
+        'home.news_2_desc': 'China’s textile auxiliaries industry continues to grow through ongoing product and technology innovation...',
+        'home.news_3_desc': 'Textile auxiliaries improve dyeing quality and textile value, while formulation analysis supports product development...',
+        'home.news_4_desc': 'Silicone softeners have evolved through multiple generations of products and modification technologies since the 1950s...',
         'stats.unit_year': 'Years',
         'stats.unit_ton': 'Tons',
         'stats.unit_percent': '%',
@@ -987,6 +1066,11 @@ const translations = {
 
         // --- About ---
         'sect.about_title': 'Company Profile',
+        'profile.company': 'Zhejiang Wei Feng New Material Co., Ltd.',
+        'profile.lead': 'Over 20 years in eco-friendly textile auxiliaries and silicone materials',
+        'profile.research': 'As a modern high-tech enterprise, Wei Feng develops, manufactures and supplies eco-friendly textile printing and dyeing auxiliaries and silicone materials, with a focus on pretreatment, finishing and waterproof functional products.',
+        'profile.silicone': 'Our silicone innovation focuses on amino-terminated silicone oil, low-cyclic epoxy-terminated silicone oil and polyether epoxy silicone oil, responding to customers’ individual needs through continuous research and development.',
+        'profile.vision': 'Refining products and growing together with our customers.',
         'sect.about_desc1': 'Zhejiang Wei Feng New Material Co., Ltd. is a modern high-tech enterprise with more than 20 years of experience in eco-friendly textile printing and dyeing auxiliaries and new organic silicone materials. We focus on pretreatment, post-finishing and waterproof functional products for textile printing and dyeing, as well as innovative development of amino-terminated silicone oil, low-cyclic epoxy-terminated silicone oil, and polyether epoxy silicone oil series.',
         'sect.about_desc2': 'Fully meeting customers personalized needs, creating market-leading boutique products, building industry recognition together with customers, and pursuing shared high-quality development are Zhejiang Wei Feng’s consistent goals.',
         'sect.about_list1': '<i class="fas fa-check-circle"></i> Eco-friendly Auxiliaries',
@@ -1136,11 +1220,11 @@ const translations = {
         'footprint.domestic': 'Major Cities in China',
         'footprint.overseas': 'Overseas Markets',
         // --- Products ---
-        'prod.header_title': 'Diligent & Professional',
+        'prod.header_title': 'Textile Auxiliaries & Silicone Products',
         'prod.header_desc': 'Committed to R&D of textile auxiliaries, striving for specialization and refinement',
         'prod.intro_title': 'Committed to Fine Chemicals',
         'prod.intro_text': 'Our textile auxiliary products mainly cover multiple links such as pretreatment, dyeing and printing, post-finishing, and functional finishing. Main products include: various new organic silicone softeners, smoothing agents, wool auxiliaries, ternary block silicone oil, multifunctional finishing agents, dyeing auxiliaries, biological enzymes, fixing agents, detergents, defoamers, high-concentration silicone oil, and dimethyl silicone oil.',
-        'prod.cat1_title': 'Terminal Hydrogen / Epoxy / Polyether Epoxy Silicone Oil Series',
+        'prod.cat1_title': 'Organosilicone Oil Series',
         'prod.cat1_desc': 'Various end-group reactive linear modified silicone oils; key intermediates for block copolymerization; extremely low volatiles, meeting export requirements.',
         'prod.cat2_title': 'Pre-treatment Series',
         'prod.cat2_desc': 'Pre-treatment auxiliaries are used for a series of treatments before printing and dyeing, generally including scouring agents, detergents, and degreasers.',
@@ -1154,10 +1238,10 @@ const translations = {
         'prod.cat6_desc': 'Optical brighteners are organic compounds that improve the whiteness of fabrics and paper. Fabrics often appear yellow due to colored impurities.',
         'prod.cat7_title': 'Functional Series',
         'prod.cat7_desc': 'Suitable for antistatic, moisture wicking, UV-resistant, fragrance, silicone removal, flame retardant, antibacterial deodorizing, and APEO/NPEO removal finishing of cotton, polyester, wool and blends.',
-        'prod.cat8_title': 'Silicone Oil Product Series',
+        'prod.cat8_title': 'Textile Block Silicone Oil Series',
         'prod.cat8_desc': 'Covers fluffy, smooth, functional, and hydrophilic silicone oil finishing agents for cotton, polyester, nylon, and blended fabrics.',
-        'prod.silicone_sub': 'SILICONE OIL SERIES',
-        'prod.silicone_product_sub': 'SILICONE OIL PRODUCT SERIES',
+        'prod.silicone_sub': 'ORGANOSILICONE OIL SERIES',
+        'prod.silicone_product_sub': 'TEXTILE BLOCK SILICONE OIL SERIES',
         'prod.search_label': 'Product Search',
         'prod.search_placeholder': 'Enter product name or model, e.g. WF-4315C',
         'prod.search_button': 'Search',
@@ -1170,7 +1254,7 @@ const translations = {
         'prod.func_sub': 'FUNCTIONAL AGENT SERIES',
         'btn.view_more': 'view more',
         'sect.prod_title': 'Core Products',
-        'prod.silicone': 'Silicone Oil Series',
+        'prod.silicone': 'Organosilicone Oil Series',
         'prod.pre': 'Pre-treatment Series',
         'prod.dye': 'Dyeing Series',
         'prod.soft': 'Softener Flake Series',
@@ -1178,7 +1262,7 @@ const translations = {
 
         // --- News ---
         'sect.news_title': 'Latest News',
-        'news.header_title': 'Connect with the World',
+        'news.header_title': 'News & Product Knowledge',
         'news.header_desc': 'Committed to building a leading brand of textile auxiliaries',
         'news.tab_industry': 'Industry News',
         'news.tab_company': 'Company News',
@@ -1799,7 +1883,7 @@ const translations = {
         'article.epoxy_note': 'Volatile matter: ≤3%',
         'article.epoxy_app': 'Terminal reactive linear modified silicone oils; key intermediate raw materials for organic silicone block copolymer silicone oil softeners; the binary copolymer silicone oil products overcome the yellowing, poor hydrophilicity and emulsion-breaking roller sticking of common amino silicone oil; by reacting with terminal epoxy groups, siloxane chain ends and silicone characteristics can be introduced into organic resins.',
         'article.epoxy_adv': 'The epoxy groups in terminal epoxy silicone oil remain intact, with high epoxy retention and low volatile content; the Si-H addition reaction is relatively complete.',
-        'news.read_more': 'Read More <i class="fas fa-long-arrow-alt-right"></i>',
+        'news.read_more': 'Read More',
 
         // --- Gallery ---
         'gallery.header_title': 'Trust Built on Professionalism',
@@ -1823,6 +1907,9 @@ const translations = {
         'gallery.cap_lab': 'A Glimpse of Our R&D Environment',
         'gallery.cap_lab_bench': 'A Moment in the Laboratory',
         'gallery.cap_lab_samples': 'A Corner of the Sample Display',
+        'gallery.cap_lab_instruments': 'R&D Instruments',
+        'gallery.cap_lab_equipment': 'Laboratory Equipment',
+        'gallery.cap_lab_workspace': 'Laboratory Workspace',
         'gallery.cap_event_booth': 'A Moment from the Trade Show',
         'gallery.cap_event_team': 'Our Exhibition Team',
         'gallery.cap_event_exchange': 'Customer Exchange',
@@ -1830,15 +1917,50 @@ const translations = {
         'gallery.cap_event_display': 'A Glimpse of Our Product Solutions',
 
         // --- Downloads ---
+        'downloads.nav_label': "Resource categories",
+        'downloads.tds': "Product TDS",
+        'downloads.sds': "SDS",
+        'downloads.manuals': "Product Catalogues",
+        'downloads.process': "Application Guides",
+        'downloads.credentials': "Company Credentials",
+        'downloads.tds_desc': "Review product properties, technical specifications and usage recommendations.",
+        'downloads.sds_desc': "Access safety data sheets for chemical handling, storage and protection.",
+        'downloads.manuals_desc': "Explore Wei Feng product ranges and their applications.",
+        'downloads.process_desc': "Get process conditions, application methods and technical support.",
+        'downloads.credentials_desc': "Browse management system certifications, company honors, R&D credentials and chemical compliance documents.",
+        'downloads.cert_file': "Certificate document",
+        'downloads.cert_photo': "Plaque photograph",
+        'downloads.cert_link': "View and Download Company Credentials",
+        'downloads.cert_0': "Quality Management System Certificate · ISO 9001:2015",
+        'downloads.cert_1': "Environmental Management System Certificate · ISO 14001:2015",
+        'downloads.cert_2': "OEKO-TEX ECO PASSPORT · 21.0.61626",
+        'downloads.cert_3': "Zhejiang Specialized and Innovative SME Certificate",
+        'downloads.cert_4': "Zhejiang Innovative SME Certificate",
+        'downloads.cert_5': "RSL Report · ChemCheck Summary (OEKO-TEX 2025)",
+        'downloads.cert_6': "Quzhou Doctoral Innovation Station",
+        'downloads.cert_7': "Quzhou Engineering Technology R&D Center",
+        'downloads.cert_8': "High-tech Enterprise Certificate · GR202333013119",
+        'downloads.on_request': "Available on request",
+        'downloads.tds_request': "Request a TDS by product model",
+        'downloads.tds_note': "For other product TDS files, contact us with the product name or model.",
+        'downloads.sds_request': "Request a product safety data sheet",
+        'downloads.sds_note': "SDS files are not yet available for download here. Contact us with the product name, model and preferred language.",
+        'downloads.process_request': "Find guidance for your application",
+        'downloads.process_note': "Application guides are not yet available for download here. Tell us your fabric type, process stage and desired result for technical support.",
+        'downloads.request_tds': "Request TDS",
+        'downloads.request_sds': "Request SDS",
+        'downloads.request_process': "Discuss Your Application",
         'downloads.header_title': 'Downloads',
-        'downloads.header_desc': 'Product Catalogues · Certificates · Technical Documents',
-        'downloads.title': 'Download Center',
-        'downloads.subtitle': 'Preview documents online or save them directly to your device',
+        'downloads.header_desc': "Product TDS · SDS · Catalogues · Application Guides · Company Credentials",
+        'downloads.title': "Product & Technical Resources",
+        'downloads.subtitle': "Find resources for product selection, safe handling and process applications.",
         'downloads.type_manual': 'Product Catalogue',
         'downloads.type_certificate': 'Certificate',
         'downloads.type_report': 'Test Report',
         'downloads.type_cn': 'Chinese Document',
-        'downloads.manual_title': 'Wei Feng Product Catalogue',
+        'downloads.manual_title': 'Wei Feng Product Catalogue (Chinese)',
+        'downloads.manual_en_title': 'Wei Feng Product Catalogue (English)',
+        'downloads.manual_en_desc': 'English catalogue covering our main product ranges, applications and technical information.',
         'downloads.manual_desc': 'Explore our main product ranges, applications and technical information.',
         'downloads.oeko_title': 'OEKO-TEX® ECO PASSPORT',
         'downloads.oeko_desc': 'English certification document, certificate No. 21.0.61626.',
@@ -1851,7 +1973,7 @@ const translations = {
         'downloads.preview': '<i class="fas fa-eye"></i> Preview',
         'downloads.download': '<i class="fas fa-download"></i> Download',
         'downloads.help': 'Need another product document or technical support? Please contact us.',
-        'downloads.contact': 'Contact Us <i class="fas fa-arrow-right"></i>',
+        'downloads.contact': 'Contact Us',
 
         // --- Contact Page Specific ---
         'contact.header_title': 'Customer First Service',
@@ -1899,6 +2021,30 @@ const translations = {
 };
 
 const productPageExactTranslations = {
+'抗静电、吸湿导电、防污防尘，改善抗起毛起球性能': 'Antistatic, moisture-absorbing and conductive; resists soil, dust, fuzzing and pilling',
+'用量：10–40 g/L，一浸一轧，烘干或定型': 'Dosage: 10–40 g/L; one dip and one nip, followed by drying or heat setting',
+
+    '氨基松软原油': 'Amino silicone base oil for soft and fluffy finishing',
+    '淡黄液体': 'Pale yellow liquid',
+    '乳化后赋予织物耐洗的松软、挺弹细腻手感及毛感': 'After emulsification, imparts a wash-resistant soft, resilient and fine wool-like handle',
+    '乳液浸轧：10–40 g/L': 'Padding with emulsion: 10–40 g/L',
+    '乳液浸渍：1.0–3.0%（o.w.f.），20–30 分钟': 'Exhaust with emulsion: 1.0–3.0% (o.w.f.), 20–30 minutes',
+    '纯棉、涤纶、氨纶、涤粘仿毛、衬衫布及轻薄织物': 'Cotton, polyester, spandex, polyester/viscose wool-like fabrics, shirting and lightweight fabrics',
+
+    '涤腈、涤腈毛、涤纶': 'Polyester/acrylic, polyester/acrylic/wool, polyester',
+    '浅褐色粘稠液体': 'Light brown viscous liquid',
+    '柔软亲水，丝质柔滑，低黄变': 'Soft, hydrophilic and silky with low yellowing',
+    '乳化后浸渍：0.4–1.5%（o.w.f.）': 'After emulsification, exhaust dosage: 0.4–1.5% (o.w.f.)',
+    '乳化后浸轧：5–15 g/L': 'After emulsification, padding dosage: 5–15 g/L',
+    '棉、人棉、涤棉及其混纺织物': 'Cotton, viscose, polyester/cotton and their blended fabrics',
+    '人棉专用整理剂': 'Finishing agent for viscose',
+    '浅黄色透明液体': 'Pale yellow transparent liquid',
+    '亲水性好，柔软丰满，丝质手感，回弹性好，低黄变': 'Good hydrophilicity, soft and full silky handle, good resilience and low yellowing',
+    '使用前需配乳化剂，乳化工艺生产时提供': 'Add an emulsifier before use; the emulsification procedure is provided at production',
+    '棉、人棉及其混纺针织物；棉、麻、T/R、棉/锦梭织物': 'Cotton, viscose and blended knits; cotton, linen, polyester/viscose and cotton/nylon wovens',
+    '查看详情 →': 'View details →',
+    '产品详情': 'Product details',
+    '查看产品详情': 'View product details',
     '端（含氢/环氧/聚醚环氧）硅油 | 浙江伟丰新材料有限公司': 'Terminal (Hydrogen/Epoxy/Polyether Epoxy) Silicone Oil | Zhejiang Wei Feng New Material Co., Ltd.',
     '高浓缩三元嵌段硅油 | 浙江伟丰新材料有限公司': 'High-concentration Ternary Block Silicone Oil | Zhejiang Wei Feng New Material Co., Ltd.',
     '功能系列产品 | 浙江伟丰新材料有限公司': 'Functional Series Products | Zhejiang Wei Feng New Material Co., Ltd.',
@@ -1943,7 +2089,22 @@ const productPageExactTranslations = {
     '发布时间: 2025-01-22 17:39': 'Published: 2025-01-22 17:39',
 
     '端（含氢/环氧/聚醚环氧）硅油系列详情 | 浙江伟丰新材料有限公司': 'Silicone Oil Series Details | Zhejiang Wei Feng New Material Co., Ltd.',
-    '端（含氢/环氧/聚醚环氧）硅油系列': 'Terminal Hydrogen / Epoxy / Polyether Epoxy Silicone Oil Series',
+    '有机硅硅油系列': 'Organosilicone Oil Series',
+    '端乙烯基硅油系列': 'Vinyl-Terminated Silicone Oil Series',
+    '乙烯基含量 (%)': 'Vinyl Content (%)',
+    '挥发份 (150℃, 2h) %': 'Volatile Content (150°C, 2h) %',
+    '下载端乙烯基硅油 TDS': 'Download Vinyl-Terminated Silicone Oil TDS',
+    '无色透明液体，闪点 >200℃。': 'Colorless transparent liquid with a flash point above 200°C.',
+    '用于生产高温硫化硅橡胶（HTV），也可用于制作液体硅橡胶，是注射热成型硅橡胶的主要原料。': 'Used to produce high-temperature vulcanized silicone rubber (HTV) and liquid silicone rubber, and as a major raw material for injection heat-molded silicone rubber.',
+    '可与聚氨酯、丙烯酸等多种有机材料反应，制成具有耐候、耐老化、抗紫外及增强韧性等性能的新材料。': 'Can react with organic materials such as polyurethane and acrylic acid to produce materials with weathering, aging and UV resistance and improved toughness.',
+    '应用行业': 'Application Industries',
+    '液体胶：婴童用品、人体硅胶、移印硅胶、模具胶、硅胶油墨、商标胶等。': 'Liquid silicone: baby products, body-contact silicone, pad-printing silicone, mold rubber, silicone inks and label adhesives.',
+    '电子胶：电源、电器、LED 灯胶灌封等。': 'Electronic adhesives: potting for power supplies, electrical appliances and LED lights.',
+    '包装贮运': 'Packaging and Storage',
+    '950 公斤 IBC 桶或 190 公斤塑料桶包装。存放于通风、阴凉、干燥处，避免接触酸、碱等有害物质；自生产之日起贮存期为一年。': 'Packed in 950 kg IBC containers or 190 kg plastic drums. Store in a ventilated, cool, dry place, away from acids, alkalis and other harmful substances. Shelf life: one year from production.',
+    '产品概述': 'Product Overview',
+    '浙江伟丰新材料有限公司 | 有机硅硅油系列': 'Zhejiang Wei Feng New Material Co., Ltd. | Organosilicone Oil Series',
+
     '端含氢硅油系列': 'Terminal Hydrogen Silicone Oil Series',
     '端环氧硅油系列': 'Terminal Epoxy Silicone Oil Series',
     '聚醚环氧硅油系列': 'Polyether Epoxy Silicone Oil Series',
@@ -1955,7 +2116,7 @@ const productPageExactTranslations = {
     '可定制各种规格的聚醚环氧硅油，低环体含量的聚醚环氧硅油。': 'Polyether epoxy silicone oils in various specifications and low cyclic content are available.',
     '定制说明': 'Customization',
     '除现有规格外，可根据客户需求提供特殊规格及低环体含量的端含氢硅油定制服务，具体技术指标及交付要求可进一步沟通确认。': 'In addition to the listed grades, terminal hydrogen silicone oils with special specifications and low cyclic content can be customized to customer requirements. Technical specifications and delivery requirements can be confirmed upon consultation.',
-    '除现有规格外，可根据客户需求提供特殊规格及低环体含量的端环氧硅油定制服务，具体技术指标及交付要求可进一步沟通确认。': 'In addition to the listed grades, terminal epoxy silicone oils with special specifications and low cyclic content can be customized to customer requirements. Technical specifications and delivery requirements can be confirmed upon consultation.',
+    '除现有规格外，可根据客户需求提供特殊规格定制服务，具体技术指标及交付要求可进一步沟通确认。': 'In addition to the listed grades, special specifications can be customized to customer requirements. Technical specifications and delivery requirements can be confirmed upon consultation.',
     '除现有规格外，可根据客户需求提供不同规格及低环体含量的聚醚环氧硅油定制服务，具体技术指标及交付要求可进一步沟通确认。': 'In addition to the listed grades, polyether epoxy silicone oils in other specifications and with low cyclic content can be customized to customer requirements. Technical specifications and delivery requirements can be confirmed upon consultation.',
     '端含氢硅油是利用其端基上的Si-H键，通过硅氢化反应，在末链端引入硅氢键的聚硅氧烷。它是生产有机硅改性嵌段或接枝共聚物的关键起始原料和重要的有机硅中间体。': 'Terminal hydrogen silicone oil uses the Si-H bond at the terminal group to introduce silicone-hydrogen bonds at the chain end through hydrosilylation. It is a key starting material and important silicone intermediate for silicone-modified block or graft copolymers.',
     '本品采用1000L聚乙烯塑料新桶包装，包装规格950Kg。本产品应贮存在通风、阴凉、干燥的环境中，不允许同酸、碱等有害物质接触。自生产之日起，贮存期为一年。': 'Packed in new 1000L polyethylene plastic drums, 950 kg per package. Store in a ventilated, cool and dry place, away from acids, alkalis and other harmful substances. Shelf life is one year from the production date.',
@@ -2004,11 +2165,11 @@ const productPageExactTranslations = {
     '功能系列产品一览': 'Functional Product List',
     '功能系列产品覆盖防水、防油、抗静电、吸湿快干、抗紫外线、芳香、荧光剥除、除硅、阻燃、抗菌防臭及APEO/NPEO去除等应用场景，适用于棉、涤纶、锦纶、氨纶及多种混纺织物。': 'The functional series covers waterproofing, oil resistance, antistatic, moisture-wicking, UV resistance, fragrance, fluorescent stripping, silicone removal, flame retardancy, antibacterial/deodorizing and APEO/NPEO removal for cotton, polyester, nylon, spandex and many blends.',
 
-    '硅油产品系列详情 | 浙江伟丰新材料有限公司': 'Silicone Oil Product Series Details | Zhejiang Wei Feng New Material Co., Ltd.',
-    '硅油产品系列': 'Silicone Oil Product Series',
-    '硅油产品系列涵盖蓬松、平滑、功能及亲水整理等应用方向，适用于棉、涤纶、锦纶、氨纶、毛绒及多种混纺织物的柔软、滑爽、蓬松、亲水和特殊手感整理。': 'The silicone oil product series covers fluffy, smooth, functional and hydrophilic finishing for cotton, polyester, nylon, spandex, fleece and many blended fabrics.',
-    '硅油产品系列产品一览': 'Silicone Oil Product List',
-    '硅油产品系列包括嵌段硅油、氨基硅油、功能硅油及亲水硅油，适用于棉、涤纶、锦纶、氨纶、毛绒及混纺织物的蓬松、平滑、亲水和特殊手感整理，支持浸轧、浸渍及复配工艺。': 'The silicone oil series includes block, amino, functional and hydrophilic silicone oils for fluffy, smooth, hydrophilic and special hand-feel finishing of cotton, polyester, nylon, spandex, fleece and blended fabrics, supporting padding, exhaustion and compounding processes.',
+    '纺织嵌段硅油系列详情 | 浙江伟丰新材料有限公司': 'Textile Block Silicone Oil Series Details | Zhejiang Wei Feng New Material Co., Ltd.',
+    '纺织嵌段硅油系列': 'Textile Block Silicone Oil Series',
+    '纺织嵌段硅油系列涵盖蓬松、平滑、功能及亲水整理等应用方向，适用于棉、涤纶、锦纶、氨纶、毛绒及多种混纺织物的柔软、滑爽、蓬松、亲水和特殊手感整理。': 'The textile block silicone oil series covers fluffy, smooth, functional and hydrophilic finishing for cotton, polyester, nylon, spandex, fleece and many blended fabrics.',
+    '纺织嵌段硅油系列产品一览': 'Textile Block Silicone Oil Product List',
+    '纺织嵌段硅油系列包括嵌段硅油、氨基硅油、功能硅油及亲水硅油，适用于棉、涤纶、锦纶、氨纶、毛绒及混纺织物的蓬松、平滑、亲水和特殊手感整理，支持浸轧、浸渍及复配工艺。': 'The silicone oil series includes block, amino, functional and hydrophilic silicone oils for fluffy, smooth, hydrophilic and special hand-feel finishing of cotton, polyester, nylon, spandex, fleece and blended fabrics, supporting padding, exhaustion and compounding processes.',
     '嵌段硅油蓬松系列': 'Block Silicone Fluffy Series',
     '氨基硅油蓬松系列': 'Amino Silicone Fluffy Series',
     '嵌段硅油平滑系列': 'Block Silicone Smoothing Series',
@@ -2266,6 +2427,343 @@ Object.assign(productPageExactTranslations, {
 });
 
 const productPagePhraseTranslations = [
+["低气味平滑原油", "Low-odour smoothing silicone concentrate"],
+["淡黄至深黄粘稠液体", "Pale to deep yellow viscous liquid"],
+["弱阳", "Weakly cationic"],
+["嵌段型聚醚改性硅油，赋予织物超滑爽、柔软细腻的手感。", "Block-type polyether-modified silicone gives fabrics an exceptionally smooth, soft and fine handle."],
+["适用于涤、涤棉、棉及各种绒类织物。", "For polyester, polyester/cotton, cotton and various pile fabrics."],
+["超弹整理剂", "Super-resilient finishing agent"],
+["带蓝光透明液体", "Transparent liquid with a blue tint"],
+["弱阳", "Weakly cationic"],
+["新型嵌段结构，不同于普通氨基硅油，不粘辊、不漂油、不残留油垢。", "Novel block structure prevents roller sticking, oil floating and oily deposits."],
+["适用于刺毛布、涤纶、罗马布及其混纺织物的滑弹整理，在羊毛、不倒绒及涤纶小毛皮上呈现滑爽、丰满、有弹性的手感。", "For smooth and resilient finishing of brushed fabrics, polyester, ponte fabrics and their blends; gives wool, non-falling pile and polyester short-pile fabrics a smooth, full and elastic handle."],
+["超滑弹硅油", "Super-smooth resilient silicone oil"],
+["淡黄色透明液体", "Pale yellow transparent liquid"],
+["阳/非", "Cationic / nonionic"],
+["赋予织物爽滑、柔软、蓬松的手感。", "Imparts a smooth, soft and full handle."],
+["通用于棉、涤纶、锦纶及其混纺织物和刺毛品种的后整理，可用于浸轧法及浸渍法。", "For finishing cotton, polyester, nylon, their blends and brushed fabrics, by padding or exhaustion."],
+["超滑弹硅油", "Super-smooth resilient silicone oil"],
+["无色至淡黄色透明液体", "Colourless to pale yellow transparent liquid"],
+["阳/非", "Cationic / nonionic"],
+["赋予织物爽滑、松软、回弹好的手感。", "Imparts a smooth, full-soft handle with good resilience."],
+["通用于棉、涤纶、锦纶及其混纺织物和刺毛品种的后整理，可用于浸轧法及浸渍法。", "For finishing cotton, polyester, nylon, their blends and brushed fabrics, by padding or exhaustion."],
+["无氟防水剂", "Fluorine-free water repellent"],
+["乳白色至淡黄色乳液", "Milky white to pale yellow emulsion"],
+["弱阳", "Weakly cationic"],
+["无氟防水产品，不含 PFAS。", "Fluorine-free water repellent, free from PFAS."],
+["适用于天然纤维（毛、丝、棉）、涤棉混纺、锦棉混纺及合成纤维（涤纶、尼龙）等织物面料的防水、防油加工。", "For water- and oil-repellent treatment of natural fibres (wool, silk and cotton), polyester/cotton blends, nylon/cotton blends and synthetic fibres (polyester and nylon)."],
+
+["涤平滑剂", "Polyester smoothing agent"],
+["亚透明液体", "Translucent liquid"],
+["阳", "Cationic"],
+["滑爽型双基硅油，赋予纤维织物超滑爽、柔软而有弹性的风格。", "Smooth-handle dual-functional silicone oil imparts exceptional smoothness, softness and elasticity."],
+["适用于涤针织、涤梭织及涤棉混纺织物的爽滑细腻、柔软、垂感好、回弹强的手感整理。", "For a smooth, fine, soft handle with good drape and resilience on polyester knits, polyester wovens and polyester/cotton blends."],
+["蓬松整理剂", "Fluffy finishing agent"],
+["无色透明微乳液", "Colourless transparent microemulsion"],
+["弱阳", "Weakly cationic"],
+["透明有机硅微乳液，对织物渗透性好、亲和力强。", "Transparent silicone microemulsion with good fabric penetration and affinity."],
+["适用于各种纤维织物的蓬松、柔软及弹性后整理，特别是纯棉布、涤纶装饰布、氨纶布、涤粘仿毛及衬衫布等混纺织物。", "For full, soft and elastic finishing of various fibres, especially cotton, polyester furnishing fabrics, spandex fabrics, polyester/viscose wool-like fabrics and blended shirting."],
+["氨基蓬松原油", "Amino fluffy silicone concentrate"],
+["淡黄液体", "Pale yellow liquid"],
+["弱阳", "Weakly cationic"],
+["乳化后为透明蓝光有机硅微乳液，对织物渗透性好、亲和力强。", "After emulsification, forms a transparent silicone microemulsion with a blue tint, good penetration and strong fabric affinity."],
+["适用于各种纤维织物的蓬松、柔软及弹性后整理，特别是纯棉布、涤纶、氨纶布、涤粘仿毛、衬衫布及雪纺乱麻春亚纺等克重轻薄织物。", "For full, soft and elastic finishing of various fibres, especially cotton, polyester, spandex, polyester/viscose wool-like fabrics, shirting and lightweight fabrics such as chiffon, crepe and polyester pongee."],
+["氨基蓬松整理剂", "Amino fluffy finishing agent"],
+["无色透明微带蓝光乳液", "Colourless transparent emulsion with a slight blue tint"],
+["弱阳", "Weakly cationic"],
+["透明微带蓝光有机硅微乳液，对织物后整理有良好的辅助作用。", "Transparent silicone microemulsion with a slight blue tint supports fabric finishing."],
+["适用于各种纤维织物的蓬松、柔软及弹性后整理，特别是纯棉布、涤纶布、氨纶布及绒类混纺织物。", "For full, soft and elastic finishing of various fibres, especially cotton, polyester, spandex and blended pile fabrics."],
+["纱线平滑剂", "Yarn smoothing agent"],
+["微白半透明液体", "Slightly white translucent liquid"],
+["弱阳/非", "Weakly cationic / nonionic"],
+["赋予纱线丰满松软、丝滑的触感。", "Imparts a full, soft and silky handle to yarn."],
+["适用于人棉晴包芯纱线、晴纶纱线、涤仿棉纱线、涤仿晴等框式纱线。", "For viscose/acrylic core-spun yarn, acrylic yarn, cotton-like polyester yarn and acrylic-like polyester yarn in hank form."],
+["平滑整理剂", "Smoothing finishing agent"],
+["亚透明液体", "Translucent liquid"],
+["阳", "Cationic"],
+["滑爽型多元嵌段硅油，赋予各种纤维织物超滑爽、柔软的风格。", "Smooth-handle multicomponent block silicone oil imparts exceptional smoothness and softness to various fibre fabrics."],
+["适用于涤、涤棉混纺、棉及绒类织物，如北极绒等。", "For polyester, polyester/cotton blends, cotton and pile fabrics such as polar fleece."],
+["冰感硅油", "Cool-touch silicone oil"],
+["淡黄透明液体", "Pale yellow transparent liquid"],
+["弱阳", "Weakly cationic"],
+["手感柔软厚实、滑爽，冰凉丝质感明显。", "Soft, substantial and smooth handle with a pronounced cool, silky feel."],
+["适用于纯棉、棉拉架织物、丝光棉及涤棉混纺织物的冰感爽滑整理。", "For cool, smooth finishing of cotton, cotton/spandex and mercerised cotton and polyester/cotton blends."],
+["冰感硅油", "Cool-touch silicone oil"],
+["微黄透明液体", "Slightly yellow transparent liquid"],
+["弱阳", "Weakly cationic"],
+["亲水效果好，热稳定性好，耐剪切，可在缸中使用。", "Good hydrophilicity, thermal stability and shear resistance; suitable for use in dyeing machines."],
+["适用于纯棉、棉拉架织物、丝光棉的冰感爽滑整理。", "For cool, smooth finishing of cotton, cotton/spandex and mercerised cotton."],
+["棉平滑", "Cotton smoothing agent"],
+["亚透明液体", "Translucent liquid"],
+["弱阳/非", "Weakly cationic / nonionic"],
+["赋予织物柔软、柔滑、细腻、棉感强的整理效果。", "Imparts a soft, smooth, fine finish with a strong cotton-like handle."],
+["适用于棉、人棉、天丝织物的软滑亲水整理。", "For soft, smooth and hydrophilic finishing of cotton, viscose and lyocell fabrics."],
+["棉柔软", "Cotton softener"],
+["亚透明液体", "Translucent liquid"],
+["弱阳/非", "Weakly cationic / nonionic"],
+["赋予织物柔软、细腻、棉感强的整理效果。", "Imparts a soft, fine finish with a strong cotton-like handle."],
+["适用于棉、人棉、天丝织物的柔软亲水整理。", "For soft and hydrophilic finishing of cotton, viscose and lyocell fabrics."],
+["全棉滑软原油", "Cotton smooth-soft silicone concentrate"],
+["粘稠液体", "Viscous liquid"],
+["阳", "Cationic"],
+["赋予织物超滑软、亲肤细腻的手感。", "Imparts an exceptionally smooth, soft, fine and skin-friendly handle."],
+["适用于棉、涤棉混纺织物。", "For cotton and polyester/cotton blended fabrics."],
+["全棉松软原油", "Cotton full-soft silicone concentrate"],
+["粘稠液体", "Viscous liquid"],
+["阳", "Cationic"],
+["赋予织物蓬松、柔软、棉感强、亲肤细腻的手感。", "Imparts a full, soft, cotton-like, fine and skin-friendly handle."],
+["适用于天丝、涤及混纺织物。", "For lyocell, polyester and blended fabrics."],
+["柔软剂", "Softener"],
+["亚透明液体", "Translucent liquid"],
+["阳", "Cationic"],
+["松软细腻型多元嵌段共聚物硅油，赋予织物蓬松、细腻挺括的手感。", "Full-soft multicomponent block copolymer silicone oil gives fabrics a full, fine and crisp handle."],
+["适用于棉、涤棉、涤织物。", "For cotton, polyester/cotton and polyester fabrics."],
+["涤蓬松剂", "Polyester fluffy finishing agent"],
+["亚透明液体", "Translucent liquid"],
+["弱阳", "Weakly cationic"],
+["具有良好的化学稳定性和配伍性。", "Good chemical stability and compatibility."],
+["适用于涤针织、涤梭织及涤棉混纺织物的蓬松、柔软、垂感好、回弹强的手感整理。", "For a full, soft handle with good drape and resilience on polyester knits, polyester wovens and polyester/cotton blends."],
+["细滑整理剂", "Fine-smooth finishing agent"],
+["乳白液体", "Milky white liquid"],
+["弱阳", "Weakly cationic"],
+["赋予各种纤维织物超滑爽、柔软丰满的手感。", "Imparts an exceptionally smooth, soft and full handle to various fibre fabrics."],
+["适用于涤锦提花、混纺提花、锦纶、腈纶、涤、棉及各种毛类织物。", "For polyester/nylon jacquards, blended jacquards, nylon, acrylic, polyester, cotton and various wool fabrics."],
+["油滑硅油", "Silky silicone oil"],
+["淡黄色液体", "Pale yellow liquid"],
+["弱阳", "Weakly cationic"],
+["赋予各种纤维织物超滑爽、柔软丰满的手感。", "Imparts an exceptionally smooth, soft and full handle to various fibre fabrics."],
+["适用于涤锦提花、混纺提花、锦纶、腈纶、涤、棉及各种毛类织物。", "For polyester/nylon jacquards, blended jacquards, nylon, acrylic, polyester, cotton and various wool fabrics."],
+["低气味平滑硅油", "Low-odour smoothing silicone oil"],
+["蓝光透明液体", "Transparent liquid with a blue tint"],
+["弱阳", "Weakly cationic"],
+["嵌段型聚醚改性硅油，赋予织物超滑爽、柔软细腻的手感。", "Block-type polyether-modified silicone gives fabrics an exceptionally smooth, soft and fine handle."],
+["适用于涤、涤棉、棉及各种绒类织物。", "For polyester, polyester/cotton, cotton and various pile fabrics."],
+
+["松软硅油", "Full and soft silicone oil"],
+["无色至淡黄色透明液体", "Colourless to pale yellow transparent liquid"],
+["弱阳", "Weakly cationic"],
+["渗透柔软，适用厚重织物", "Penetrating softness, suitable for heavy fabrics"],
+["棉、涤、各类化纤及混纺织物", "Cotton, polyester, various synthetic fabrics and blends"],
+["松软硅油", "Full and soft silicone oil"],
+["淡黄色粘稠液体", "Pale yellow viscous liquid"],
+["弱阳", "Weakly cationic"],
+["渗透柔软，适用厚重织物，需乳化使用", "Penetrating softness for heavy fabrics; emulsify before use"],
+["棉、涤、皮革、粘胶及混纺材料", "Cotton, polyester, leather, viscose and blends"],
+["氨基滑弹整理剂", "Amino smooth and resilient finishing agent"],
+["略带蓝光透明微乳液", "Transparent microemulsion with a slight blue tint"],
+["", ""],
+["持久耐洗，柔滑挺弹，配伍性好", "Wash-durable soft, smooth and resilient handle with good compatibility"],
+["各种纤维织物；T/C、T/R 毛圈布及氨纶布", "Various fibre fabrics; T/C and T/R terry fabrics and spandex fabrics"],
+["氨基滑弹整理剂", "Amino smooth and resilient finishing agent"],
+["略带蓝光透明微乳液", "Transparent microemulsion with a slight blue tint"],
+["", ""],
+["持久耐洗，柔滑挺弹，配伍性好", "Wash-durable soft, smooth and resilient handle with good compatibility"],
+["各种纤维织物；T/C、T/R 毛圈布及氨纶布", "Various fibre fabrics; T/C and T/R terry fabrics and spandex fabrics"],
+["滑弹整理剂", "Smooth and resilient finishing agent"],
+["微黄粘稠液体", "Slightly yellow viscous liquid"],
+["阳/非", "Cationic / nonionic"],
+["柔滑挺弹，持久耐洗，适用珊瑚绒", "Soft, smooth and resilient with wash durability; suitable for coral fleece"],
+["化纤、混纺织物及珊瑚绒等绒毛织物", "Synthetic and blended fabrics, coral fleece and other pile fabrics"],
+["柔软剂", "Softener"],
+["微白液体", "Slightly white liquid"],
+["弱阳/非", "Weakly cationic / nonionic"],
+["柔软细腻，棉感强，亲水整理", "Soft, fine, cotton-like handle with hydrophilic finishing"],
+["棉、人棉及天丝织物", "Cotton, viscose and lyocell fabrics"],
+
+["蓬松硅油", "Fluffy silicone oil"],
+["淡黄色透明粘稠体", "Pale yellow transparent viscous material"],
+["阳/非", "Cationic / nonionic"],
+["细腻蓬松，可直接开稀，低黄变", "Fine, full handle; direct water dilution and low yellowing"],
+["棉、涤棉、人棉、麻、涤、腈及绒类织物", "Cotton, polyester/cotton, viscose, linen, polyester, acrylic and pile fabrics"],
+["蓬松硅油", "Fluffy silicone oil"],
+["无色至淡黄色透明液体", "Colourless to pale yellow transparent liquid"],
+["弱阳", "Weakly cationic"],
+["蓬松细腻，亲和力强，低黄变", "Full, fine handle with strong affinity and low yellowing"],
+["棉、涤棉混纺、破卡面料及涤纶织物", "Cotton, polyester/cotton blends, broken-twill fabrics and polyester"],
+["软、滑整理剂", "Soft and smooth finishing agent"],
+["无色透明蓝光液体", "Colourless transparent liquid with a blue tint"],
+["弱阳", "Weakly cationic"],
+["蓬松丰满，柔软细腻，同浴配伍性好", "Full, soft and fine handle with good bath compatibility"],
+["棉、涤纶、锦纶及混纺织物；羊毛、绒类、袜类及无缝内衣", "Cotton, polyester, nylon and blends; wool, pile fabrics, socks and seamless underwear"],
+["高浓超稳定弹滑硅油", "High-concentration ultra-stable resilient and smooth silicone oil"],
+["淡黄透明液体", "Pale yellow transparent liquid"],
+["阳/非", "Cationic / nonionic"],
+["高浓超稳定，柔滑挺弹，持久耐洗", "High concentration and ultra-stable, with a wash-durable soft, smooth and resilient handle"],
+["棉、人棉、涤纶、锦纶及混纺织物；羊毛、绒类、袜类及无缝内衣", "Cotton, viscose, polyester, nylon and blends; wool, pile fabrics, socks and seamless underwear"],
+["兔毛平滑剂", "Rabbit-fur smoothing agent"],
+["乳白液体", "Milky white liquid"],
+["弱阳", "Weakly cationic"],
+["柔软回弹，持久耐洗，可灵活复配", "Soft and resilient with wash durability and flexible blending"],
+["各类纤维织物；兔毛、双面呢、线类面料及假发", "Various fibre fabrics; rabbit-fur fabrics, double-faced woollen fabrics, yarn-based fabrics and wigs"],
+["兔毛蓬松剂", "Rabbit-fur full-handle agent"],
+["乳白液体", "Milky white liquid"],
+["弱阳", "Weakly cationic"],
+["柔软回弹，持久耐洗，可灵活复配", "Soft and resilient with wash durability and flexible blending"],
+["各类纤维织物；兔毛、双面呢、线类面料及假发", "Various fibre fabrics; rabbit-fur fabrics, double-faced woollen fabrics, yarn-based fabrics and wigs"],
+["涤绒柔软剂", "Polyester-pile softener"],
+["乳白液体", "Milky white liquid"],
+["弱阳", "Weakly cationic"],
+["柔软回弹，持久耐洗，可灵活复配", "Soft and resilient with wash durability and flexible blending"],
+["各类纤维织物；兔毛、双面呢及麂皮绒", "Various fibre fabrics; rabbit-fur fabrics, double-faced woollen fabrics and suede-like pile fabrics"],
+
+["滑软整理剂", "Smooth and soft finishing agent"],
+["淡黄色透明液体", "Pale yellow transparent liquid"],
+["弱阳", "Weakly cationic"],
+["丰满滑爽，弹性好，低泛黄", "Full, smooth and resilient handle with low yellowing"],
+["棉、涤棉、涤及毛绒类织物", "Cotton, polyester/cotton, polyester and pile fabrics"],
+["松软细腻硅油", "Full, soft and fine-handle silicone oil"],
+["无色至淡黄色透明液体", "Colourless to pale yellow transparent liquid"],
+["阳", "Cationic"],
+["蓬松细腻，耐洗，耐温耐剪切", "Full and fine handle with wash durability, temperature and shear resistance"],
+["涤锦提花、混纺提花、锦纶、腈纶、涤、棉及绒类织物", "Polyester/nylon and blended jacquards, nylon, acrylic, polyester, cotton and pile fabrics"],
+["松软细腻硅油", "Full, soft and fine-handle silicone oil"],
+["无色至淡黄色液体", "Colourless to pale yellow liquid"],
+["阳", "Cationic"],
+["蓬松细腻，耐洗，耐温耐剪切", "Full and fine handle with wash durability, temperature and shear resistance"],
+["涤锦提花、混纺提花、锦纶、腈纶、涤、棉及绒类织物", "Polyester/nylon and blended jacquards, nylon, acrylic, polyester, cotton and pile fabrics"],
+["特柔滑硅油", "Extra-soft and smooth silicone oil"],
+["无色至淡黄色透明液体", "Colourless to pale yellow transparent liquid"],
+["阳", "Cationic"],
+["超滑爽柔软，丝质手感，耐洗", "Exceptionally smooth, soft and silky with wash durability"],
+["涤锦提花、混纺提花、锦纶、腈纶、涤、棉及毛类织物", "Polyester/nylon and blended jacquards, nylon, acrylic, polyester, cotton and wool fabrics"],
+["多元共聚嵌段有机硅油", "Multicomponent block silicone copolymer oil"],
+["无色透明或淡黄色粘稠体", "Colourless transparent or pale yellow viscous material"],
+["弱阳", "Weakly cationic"],
+["丰满滑爽，弹性好，可直接加水开稀", "Full, smooth and resilient; dilutes directly with water"],
+["棉、涤棉、人棉、涤及涤腈织物", "Cotton, polyester/cotton, viscose, polyester and polyester/acrylic fabrics"],
+
+["高手感亲水整理剂", "Premium-handle hydrophilic finishing agent"],
+["略带蓝光液体", "Liquid with a slight blue tint"],
+["弱阳/非", "Weakly cationic / nonionic"],
+["柔软丝滑，亲水，低黄变", "Soft, silky and hydrophilic with low yellowing"],
+["适用于棉、人棉、涤及其混纺织物的滑软亲水整理。", "For smooth, soft and hydrophilic finishing of cotton, viscose, polyester and their blends."],
+["松滑整理剂", "Full and smooth finishing agent"],
+["无色透明蓝光液体", "Colourless transparent liquid with a blue tint"],
+["弱阳", "Weakly cationic"],
+["蓬松丰满，柔软细腻，渗透性好", "Full, soft and fine handle with good penetration"],
+["适用于涤纶、锦纶及其混纺织物的浸渍整理，尤其适用于羊毛、羊毛混纺、不倒绒、涤纶小毛皮、涤纶或尼龙短袜及锦纶无缝内衣，手感滑爽、蓬松、细腻。", "For exhaustion finishing of polyester, nylon and their blends, especially wool, wool blends, upright pile fabrics, polyester faux fur, polyester or nylon socks, and nylon seamless underwear; imparts a smooth, full and fine handle."],
+["松弹整理剂", "Full and resilient finishing agent"],
+["略带蓝光透明液体", "Transparent liquid with a slight blue tint"],
+["阳/非", "Cationic / nonionic"],
+["蓬松回弹，细腻带挺，低黄变", "Full, resilient, fine and firm handle with low yellowing"],
+["适用于锦棉、锦、一体裤、丝袜、涤、腈、涤腈毛及涤纶混纺织物的蓬松、细腻带挺的回弹性能整理。", "For a full, fine, firm and resilient finish on nylon/cotton, nylon, leggings, stockings, polyester, acrylic, polyester/acrylic/wool and polyester-blend fabrics."],
+["松软整理剂", "Full and soft finishing agent"],
+["略带蓝光透明液体", "Transparent liquid with a slight blue tint"],
+["阳/非", "Cationic / nonionic"],
+["持久耐洗，蓬松柔软", "Wash-durable fullness and softness"],
+["适用于棉、涤棉、罗马布、窗帘布及涤纶织物的蓬松、柔软整理。", "For full and soft finishing of cotton, polyester/cotton, ponte knit, curtain and polyester fabrics."],
+["超稳定蓬松、软型原油", "Ultra-stable full and soft silicone concentrate"],
+["微淡黄透明液体", "Very pale yellow transparent liquid"],
+["阳/非", "Cationic / nonionic"],
+["超稳定，耐洗蓬松，软型原油", "Ultra-stable concentrate for wash-durable fullness and softness"],
+["适用于棉、涤棉、罗马布、窗帘布及涤纶织物的蓬松、柔软整理。", "For full and soft finishing of cotton, polyester/cotton, ponte knit, curtain and polyester fabrics."],
+["高浓超稳定蓬松硅油", "High-concentration ultra-stable fluffy silicone oil"],
+["微淡黄透明液体", "Very pale yellow transparent liquid"],
+["阳/非", "Cationic / nonionic"],
+["高浓超稳定，耐洗蓬松柔软", "High concentration and ultra-stable, with wash-durable fullness and softness"],
+["适用于棉、人棉、涤腈、涤腈毛及涤纶织物的蓬松、柔软整理。", "For full and soft finishing of cotton, viscose, polyester/acrylic, polyester/acrylic/wool and polyester fabrics."],
+["特蓬松整理剂", "Extra-full finishing agent"],
+["亚透明液体", "Translucent liquid"],
+["弱阳", "Weakly cationic"],
+["特蓬松，渗透性好，低黄变", "Extra-full handle, good penetration and low yellowing"],
+["适用于棉、涤棉混纺、破卡面料及涤纶织物的蓬松整理。", "For full-handle finishing of cotton, polyester/cotton blends, broken-twill fabrics and polyester."],
+["特蓬松硅油", "Extra-full silicone oil"],
+["透明至微乳白液体", "Transparent to slightly milky white liquid"],
+["阳/非", "Cationic / nonionic"],
+["蓬松柔软，一般亲水，低黄变", "Full and soft with moderate hydrophilicity and low yellowing"],
+["适用于棉、涤纶织物的蓬松、柔软整理。", "For full and soft finishing of cotton and polyester fabrics."],
+["特蓬松整理剂", "Extra-full finishing agent"],
+["淡黄粘稠液体", "Pale yellow viscous liquid"],
+["阳/非", "Cationic / nonionic"],
+["特蓬松，低滑度，低黄变", "Extra-full handle with low slipperiness and low yellowing"],
+["适用于棉、涤棉混纺、涤腈及涤纶织物的蓬松整理。", "For full-handle finishing of cotton, polyester/cotton blends, polyester/acrylic and polyester fabrics."],
+
+["平滑嵌段整理剂", "Smooth block-copolymer finishing agent"],
+["无色至淡黄色透明液体", "Colourless to pale yellow transparent liquid"],
+["阳/非", "Cationic / nonionic"],
+["自乳化，平滑蓬松，低黄变", "Self-emulsifying, smooth and full handle, low yellowing"],
+["大部分纤维和织物，尤其合成纤维和蛋白质纤维", "Most fibres and fabrics, especially synthetic and protein fibres"],
+["蓬松整理剂", "Fluffy finishing agent"],
+["淡黄色透明液体", "Pale yellow transparent liquid"],
+["非/阳", "Nonionic / cationic"],
+["蓬松柔软，干爽不油腻，耐剪切", "Full and soft handle, dry non-greasy feel and shear stability"],
+["棉、涤等毛绒织物；涤纶、锦纶针织物", "Cotton, polyester and other pile fabrics; polyester and nylon knits"],
+
+["无氟防水剂", "Fluorine-free water repellent"],
+["乳白至淡乳黄色液体", "Milky white to pale creamy-yellow liquid"],
+["弱阳", "Weakly cationic"],
+["不含 PFAS，耐洗，硬防水", "PFAS-free, wash-durable water repellency with a firm handle"],
+["天然纤维、合成纤维及其混纺织物", "Natural fibres, synthetic fibres and their blends"],
+["无氟防水剂", "Fluorine-free water repellent"],
+["乳白色液体", "Milky white liquid"],
+["弱阳", "Weakly cationic"],
+["耐水喷淋，手感柔软，手抓白低", "Water-spray resistance, soft handle and low stress whitening"],
+["天然纤维、合成纤维及其混纺织物", "Natural fibres, synthetic fibres and their blends"],
+["无氟防水剂", "Fluorine-free water repellent"],
+["乳白色液体", "Milky white liquid"],
+["弱阳", "Weakly cationic"],
+["硬防水，色光影响小，加工稳定", "Firm-handle water repellency, little shade change and stable processing"],
+["天然纤维、合成纤维及其混纺织物", "Natural fibres, synthetic fibres and their blends"],
+["交联剂", "Crosslinking agent"],
+["乳白至淡黄色液体", "Milky white to pale yellow liquid"],
+["非离子", "Nonionic"],
+["提高初期防水性及耐水洗、干洗性能", "Improves initial water repellency and laundering and dry-cleaning durability"],
+["无氟防水整理织物", "Fabrics treated with fluorine-free water repellents"],
+
+    ["无氟防水剂", "Fluorine-free water repellent"],
+    ["乳白色至微黄色乳液", "Milky white to slightly yellow emulsion"],
+    ["聚氨酯改性，无氟防水，手感影响小", "Polyurethane-modified, fluorine-free water repellency with little effect on handle"],
+    ["毛、丝、棉、涤棉、锦棉、涤纶、尼龙", "Wool, silk, cotton, polyester/cotton, nylon/cotton, polyester and nylon"],
+    ["无氟防水剂", "Fluorine-free water repellent"],
+    ["淡棕黄色乳液", "Pale brownish-yellow emulsion"],
+    ["弹水效果好，耐水冲击，耐久防水", "Good water beading, resistance to water impact and durable water repellency"],
+    ["毛、丝、棉、涤棉、锦棉、涤纶、尼龙", "Wool, silk, cotton, polyester/cotton, nylon/cotton, polyester and nylon"],
+
+    ["无氟防水剂", "Fluorine-free water repellent"],
+    ["乳白至淡黄色液体", "Milky white to pale yellow liquid"],
+    ["无氟、无 PFAS，耐洗防水，赋予硬挺手感", "Fluorine-free and PFAS-free; wash-durable water repellency with a firm handle"],
+    ["化纤、棉及其混纺面料", "Synthetic fibres, cotton and their blends"],
+
+    ["无氟防水剂", "Fluorine-free water repellent"],
+    ["乳白色至淡黄色乳液", "Milky white to pale yellow emulsion"],
+    ["无氟、无 PFAS，内含交联剂，手感柔软", "Fluorine-free and PFAS-free; contains a crosslinking agent and gives a soft handle"],
+    ["毛、丝、棉、涤棉、锦棉、涤纶、尼龙", "Wool, silk, cotton, polyester/cotton, nylon/cotton, polyester and nylon"],
+
+    ["无氟防水剂", "Fluorine-free water repellent"],
+    ["乳白色液体", "Milky white liquid"],
+    ["无氟、无 PFAS，浸轧防水整理", "Fluorine-free and PFAS-free; water-repellent finishing by padding"],
+    ["天然纤维、合成纤维及其混纺织物", "Natural fibres, synthetic fibres and their blends"],
+
+    ["棉软滑亲水硅油", "Hydrophilic soft and smooth silicone oil for cotton"],
+    ["微淡黄液体", "Very pale yellow liquid"],
+    ["柔软柔滑、亲水性好，稳定性良好", "Soft, smooth and hydrophilic with good stability"],
+    ["棉、人棉、天丝织物", "Cotton, viscose and lyocell fabrics"],
+
+    ["抗起毛起球整理剂", "Anti-fuzzing and anti-pilling finishing agent"],
+    ["乳白色带蓝光液体", "Milky white liquid with a bluish tint"],
+    ["抗起毛起球、提高抗磨性，对手感影响小", "Anti-fuzzing, anti-pilling and improved abrasion resistance with little effect on handle"],
+    ["各种织物", "Various fabrics"],
+    ["亲水软滑硅油", "Hydrophilic soft and smooth silicone oil"],
+    ["淡黄色粘稠液体", "Pale yellow viscous liquid"],
+    ["柔软柔滑、亲水性好，可与非离子及阳离子助剂配伍", "Soft, smooth and hydrophilic; compatible with nonionic and cationic auxiliaries"],
+    ["棉、人棉、涤及其混纺织物", "Cotton, viscose, polyester and their blends"],
+    ["高浓亲水硅油", "High-concentration hydrophilic silicone oil"],
+    ["浅色透明粘稠液体", "Light-coloured transparent viscous liquid"],
+    ["柔软丰满、亲水抗静电，自乳化且低黄变", "Soft and full handle, hydrophilic and antistatic, self-emulsifying with low yellowing"],
+    ["棉、麻、涤及其混纺织物", "Cotton, linen, polyester and their blends"],
+
+    ['吸湿排汗整理剂（吸湿快干剂）', 'Moisture-wicking finishing agent (quick-drying agent)'],
+    ['吸湿排汗整理剂', 'Moisture-wicking finishing agent'],
+    ['吸湿快干、易去污、抗静电，手感蓬松柔软', 'Moisture wicking, quick drying, soil release and antistatic properties; fluffy, soft handle'],
+    ['同浴 0.5–3.0% o.w.f；染后浸渍 1.0–4.0% o.w.f；浸轧 10–40 g/L', 'In-bath 0.5–3.0% o.w.f; post-dyeing exhaust 1.0–4.0% o.w.f; padding 10–40 g/L'],
+    ['涤纶、锦纶、醋酯及其混纺织物', 'Polyester, nylon, acetate and their blends'],
+    ['无色至黄色液体', 'Colourless to yellow liquid'],
+    ['抗静电、导电、防污防尘，色变极小', 'Antistatic, conductive, soil and dust resistant; minimal colour change'],
+    ['用量：浸渍 2–3 g/L；浸轧 20–30 g/L', 'Dosage: exhaust 2–3 g/L; padding 20–30 g/L'],
+    ['浴中柔软剂', 'In-bath softener'],
+    ['柔软蓬松、吸湿排汗、易去污及抗静电', 'Soft, fluffy handle; moisture wicking, soil release and antistatic properties'],
+    ['原液用量：0.5–2.0%（o.w.f）', 'Dosage as supplied: 0.5–2.0% o.w.f'],
+    ['涤纶及涤纶混纺织物', 'Polyester and polyester blends'],
     ['浙江伟丰新材料有限公司', 'Zhejiang Wei Feng New Material Co., Ltd.'],
     ['详情', 'Details'],
     ['发布时间', 'Published'],
@@ -2571,6 +3069,95 @@ const sortedProductPagePhraseTranslations = productPagePhraseTranslations
 let productPageTextRecords = null;
 
 const staticPageTitleTranslations = {
+"WF-8715T 低气味平滑原油 | 浙江伟丰新材料有限公司": "WF-8715T Low-odour smoothing silicone concentrate | Zhejiang Weifeng New Materials Co., Ltd.",
+"WF-8804A 超弹整理剂 | 浙江伟丰新材料有限公司": "WF-8804A Super-resilient finishing agent | Zhejiang Weifeng New Materials Co., Ltd.",
+"WF-8804N 超滑弹硅油 | 浙江伟丰新材料有限公司": "WF-8804N Super-smooth resilient silicone oil | Zhejiang Weifeng New Materials Co., Ltd.",
+"WF-8804T 超滑弹硅油 | 浙江伟丰新材料有限公司": "WF-8804T Super-smooth resilient silicone oil | Zhejiang Weifeng New Materials Co., Ltd.",
+"WF-7121 无氟防水剂 | 浙江伟丰新材料有限公司": "WF-7121 Fluorine-free water repellent | Zhejiang Weifeng New Materials Co., Ltd.",
+
+"WF-8381B 涤平滑剂 | 浙江伟丰新材料有限公司": "WF-8381B Polyester smoothing agent | Zhejiang Weifeng New Materials Co., Ltd.",
+"WF-8406A 蓬松整理剂 | 浙江伟丰新材料有限公司": "WF-8406A Fluffy finishing agent | Zhejiang Weifeng New Materials Co., Ltd.",
+"WF-8406N 氨基蓬松原油 | 浙江伟丰新材料有限公司": "WF-8406N Amino fluffy silicone concentrate | Zhejiang Weifeng New Materials Co., Ltd.",
+"WF-8408B 氨基蓬松整理剂 | 浙江伟丰新材料有限公司": "WF-8408B Amino fluffy finishing agent | Zhejiang Weifeng New Materials Co., Ltd.",
+"WF-8431A 纱线平滑剂 | 浙江伟丰新材料有限公司": "WF-8431A Yarn smoothing agent | Zhejiang Weifeng New Materials Co., Ltd.",
+"WF-8473D 平滑整理剂 | 浙江伟丰新材料有限公司": "WF-8473D Smoothing finishing agent | Zhejiang Weifeng New Materials Co., Ltd.",
+"WF-8497D 冰感硅油 | 浙江伟丰新材料有限公司": "WF-8497D Cool-touch silicone oil | Zhejiang Weifeng New Materials Co., Ltd.",
+"WF-8497N 冰感硅油 | 浙江伟丰新材料有限公司": "WF-8497N Cool-touch silicone oil | Zhejiang Weifeng New Materials Co., Ltd.",
+"WF-8537A 棉平滑 | 浙江伟丰新材料有限公司": "WF-8537A Cotton smoothing agent | Zhejiang Weifeng New Materials Co., Ltd.",
+"WF-8538A 棉柔软 | 浙江伟丰新材料有限公司": "WF-8538A Cotton softener | Zhejiang Weifeng New Materials Co., Ltd.",
+"WF-8537N 全棉滑软原油 | 浙江伟丰新材料有限公司": "WF-8537N Cotton smooth-soft silicone concentrate | Zhejiang Weifeng New Materials Co., Ltd.",
+"WF-8568N 全棉松软原油 | 浙江伟丰新材料有限公司": "WF-8568N Cotton full-soft silicone concentrate | Zhejiang Weifeng New Materials Co., Ltd.",
+"WF-8568A 柔软剂 | 浙江伟丰新材料有限公司": "WF-8568A Softener | Zhejiang Weifeng New Materials Co., Ltd.",
+"WF-8582B 涤蓬松剂 | 浙江伟丰新材料有限公司": "WF-8582B Polyester fluffy finishing agent | Zhejiang Weifeng New Materials Co., Ltd.",
+"WF-8713A 细滑整理剂 | 浙江伟丰新材料有限公司": "WF-8713A Fine-smooth finishing agent | Zhejiang Weifeng New Materials Co., Ltd.",
+"WF-8713T 油滑硅油 | 浙江伟丰新材料有限公司": "WF-8713T Silky silicone oil | Zhejiang Weifeng New Materials Co., Ltd.",
+"WF-8715A 低气味平滑硅油 | 浙江伟丰新材料有限公司": "WF-8715A Low-odour smoothing silicone oil | Zhejiang Weifeng New Materials Co., Ltd.",
+
+"WF-8266A 松软硅油 | 浙江伟丰新材料有限公司": "WF-8266A Full and soft silicone oil | Zhejiang Weifeng New Materials Co., Ltd.",
+"WF-8266N 松软硅油 | 浙江伟丰新材料有限公司": "WF-8266N Full and soft silicone oil | Zhejiang Weifeng New Materials Co., Ltd.",
+"WF-8307B 氨基滑弹整理剂 | 浙江伟丰新材料有限公司": "WF-8307B Amino smooth and resilient finishing agent | Zhejiang Weifeng New Materials Co., Ltd.",
+"WF-8307C 氨基滑弹整理剂 | 浙江伟丰新材料有限公司": "WF-8307C Amino smooth and resilient finishing agent | Zhejiang Weifeng New Materials Co., Ltd.",
+"WF-8307N 滑弹整理剂 | 浙江伟丰新材料有限公司": "WF-8307N Smooth and resilient finishing agent | Zhejiang Weifeng New Materials Co., Ltd.",
+"WF-8344A 柔软剂 | 浙江伟丰新材料有限公司": "WF-8344A Softener | Zhejiang Weifeng New Materials Co., Ltd.",
+
+"WF-8228N 蓬松硅油 | 浙江伟丰新材料有限公司": "WF-8228N Fluffy silicone oil | Zhejiang Weifeng New Materials Co., Ltd.",
+"WF-8228NA 蓬松硅油 | 浙江伟丰新材料有限公司": "WF-8228NA Fluffy silicone oil | Zhejiang Weifeng New Materials Co., Ltd.",
+"WF-8233A 软、滑整理剂 | 浙江伟丰新材料有限公司": "WF-8233A Soft and smooth finishing agent | Zhejiang Weifeng New Materials Co., Ltd.",
+"WF-8233N 高浓超稳定弹滑硅油 | 浙江伟丰新材料有限公司": "WF-8233N High-concentration ultra-stable resilient and smooth silicone oil | Zhejiang Weifeng New Materials Co., Ltd.",
+"WF-8243A 兔毛平滑剂 | 浙江伟丰新材料有限公司": "WF-8243A Rabbit-fur smoothing agent | Zhejiang Weifeng New Materials Co., Ltd.",
+"WF-8244A 兔毛蓬松剂 | 浙江伟丰新材料有限公司": "WF-8244A Rabbit-fur full-handle agent | Zhejiang Weifeng New Materials Co., Ltd.",
+"WF-8247A 涤绒柔软剂 | 浙江伟丰新材料有限公司": "WF-8247A Polyester-pile softener | Zhejiang Weifeng New Materials Co., Ltd.",
+
+"WF-8211T 滑软整理剂 | 浙江伟丰新材料有限公司": "WF-8211T Smooth and soft finishing agent | Zhejiang Weifeng New Materials Co., Ltd.",
+"WF-8212A 松软细腻硅油 | 浙江伟丰新材料有限公司": "WF-8212A Full, soft and fine-handle silicone oil | Zhejiang Weifeng New Materials Co., Ltd.",
+"WF-8212N 松软细腻硅油 | 浙江伟丰新材料有限公司": "WF-8212N Full, soft and fine-handle silicone oil | Zhejiang Weifeng New Materials Co., Ltd.",
+"WF-8213A 特柔滑硅油 | 浙江伟丰新材料有限公司": "WF-8213A Extra-soft and smooth silicone oil | Zhejiang Weifeng New Materials Co., Ltd.",
+"WF-8217N 多元共聚嵌段有机硅油 | 浙江伟丰新材料有限公司": "WF-8217N Multicomponent block silicone copolymer oil | Zhejiang Weifeng New Materials Co., Ltd.",
+
+"WF-8204A 高手感亲水整理剂 | 浙江伟丰新材料有限公司": "WF-8204A Premium-handle hydrophilic finishing agent | Zhejiang Weifeng New Materials Co., Ltd.",
+"WF-8205A 松滑整理剂 | 浙江伟丰新材料有限公司": "WF-8205A Full and smooth finishing agent | Zhejiang Weifeng New Materials Co., Ltd.",
+"WF-8206A 松弹整理剂 | 浙江伟丰新材料有限公司": "WF-8206A Full and resilient finishing agent | Zhejiang Weifeng New Materials Co., Ltd.",
+"WF-8207F 松软整理剂 | 浙江伟丰新材料有限公司": "WF-8207F Full and soft finishing agent | Zhejiang Weifeng New Materials Co., Ltd.",
+"WF-8207FN 超稳定蓬松、软型原油 | 浙江伟丰新材料有限公司": "WF-8207FN Ultra-stable full and soft silicone concentrate | Zhejiang Weifeng New Materials Co., Ltd.",
+"WF-8207N 高浓超稳定蓬松硅油 | 浙江伟丰新材料有限公司": "WF-8207N High-concentration ultra-stable fluffy silicone oil | Zhejiang Weifeng New Materials Co., Ltd.",
+"WF-8208C 特蓬松整理剂 | 浙江伟丰新材料有限公司": "WF-8208C Extra-full finishing agent | Zhejiang Weifeng New Materials Co., Ltd.",
+"WF-8208NA 特蓬松硅油 | 浙江伟丰新材料有限公司": "WF-8208NA Extra-full silicone oil | Zhejiang Weifeng New Materials Co., Ltd.",
+"WF-8208T 特蓬松整理剂 | 浙江伟丰新材料有限公司": "WF-8208T Extra-full finishing agent | Zhejiang Weifeng New Materials Co., Ltd.",
+
+"WF-8101N 平滑嵌段整理剂 | 浙江伟丰新材料有限公司": "WF-8101N Smooth block-copolymer finishing agent | Zhejiang Weifeng New Materials Co., Ltd.",
+"WF-8104A 蓬松整理剂 | 浙江伟丰新材料有限公司": "WF-8104A Fluffy finishing agent | Zhejiang Weifeng New Materials Co., Ltd.",
+
+"WF-7125 无氟防水剂 | 浙江伟丰新材料有限公司": "WF-7125 Fluorine-free water repellent | Zhejiang Weifeng New Materials Co., Ltd.",
+"WF-7126A 无氟防水剂 | 浙江伟丰新材料有限公司": "WF-7126A Fluorine-free water repellent | Zhejiang Weifeng New Materials Co., Ltd.",
+"WF-7126S 无氟防水剂 | 浙江伟丰新材料有限公司": "WF-7126S Fluorine-free water repellent | Zhejiang Weifeng New Materials Co., Ltd.",
+"WF-7200 交联剂 | 浙江伟丰新材料有限公司": "WF-7200 Crosslinking agent | Zhejiang Weifeng New Materials Co., Ltd.",
+
+"WF-7122A 无氟防水剂 | 浙江伟丰新材料有限公司": "WF-7122A Fluorine-free water repellent | Zhejiang Weifeng New Materials Co., Ltd.",
+"WF-7122H 无氟防水剂 | 浙江伟丰新材料有限公司": "WF-7122H Fluorine-free water repellent | Zhejiang Weifeng New Materials Co., Ltd.",
+
+"WF-7121H 无氟防水剂 | 浙江伟丰新材料有限公司": "WF-7121H Fluorine-free water repellent | Zhejiang Weifeng New Materials Co., Ltd.",
+
+"WF-7120A 无氟防水剂 | 浙江伟丰新材料有限公司": "WF-7120A Fluorine-free water repellent | Zhejiang Weifeng New Materials Co., Ltd.",
+
+"WF-7120 无氟防水剂 | 浙江伟丰新材料有限公司": "WF-7120 Fluorine-free water repellent | Zhejiang Weifeng New Materials Co., Ltd.",
+
+"WF-6513A 棉软滑亲水硅油 | 浙江伟丰新材料有限公司": "WF-6513A Hydrophilic soft and smooth silicone oil for cotton | Zhejiang Weifeng New Materials Co., Ltd.",
+
+"WF-6505 抗起毛起球整理剂 | 浙江伟丰新材料有限公司": "WF-6505 Anti-fuzzing and anti-pilling finishing agent | Zhejiang Weifeng New Materials Co., Ltd.",
+"WF-6507N 亲水软滑硅油 | 浙江伟丰新材料有限公司": "WF-6507N Hydrophilic soft and smooth silicone oil | Zhejiang Weifeng New Materials Co., Ltd.",
+"WF-6508N 高浓亲水硅油 | 浙江伟丰新材料有限公司": "WF-6508N High-concentration hydrophilic silicone oil | Zhejiang Weifeng New Materials Co., Ltd.",
+
+    'WF-6502C 吸湿排汗整理剂 | 浙江伟丰新材料有限公司': 'WF-6502C Moisture-wicking Finishing Agent | Zhejiang Weifeng New Materials Co., Ltd.',
+    'WF-6418A 阳离子抗静电剂 | 浙江伟丰新材料有限公司': 'WF-6418A Cationic Antistatic Agent | Zhejiang Weifeng New Materials Co., Ltd.',
+    'WF-6409 浴中柔软剂 | 浙江伟丰新材料有限公司': 'WF-6409 In-bath Softener | Zhejiang Weifeng New Materials Co., Ltd.',
+    'WF-8408N 氨基松软原油 | 浙江伟丰新材料有限公司': 'WF-8408N Amino Silicone Base Oil | Zhejiang Weifeng New Materials Co., Ltd.',
+    'WF-6408N 非离子抗静电剂 | 浙江伟丰新材料有限公司': 'WF-6408N Nonionic Antistatic Agent | Zhejiang Weifeng New Materials Co., Ltd.',
+    'WF-8207A 松软整理剂 | 浙江伟丰新材料有限公司': 'WF-8207A Soft and Fluffy Finishing Agent | Zhejiang Weifeng New Materials Co., Ltd.',
+    'WF-8204N 高手感亲水整理剂 | 浙江伟丰新材料有限公司': 'WF-8204N Hydrophilic Finishing Agent | Zhejiang Weifeng New Materials Co., Ltd.',
+    'WF-8109N 人棉专用整理剂 | 浙江伟丰新材料有限公司': 'WF-8109N Finishing Agent for Viscose | Zhejiang Weifeng New Materials Co., Ltd.',
+    '浙江伟丰新材料有限公司': 'Zhejiang Wei Feng New Material Co., Ltd.',
+    '浙江伟丰新材料有限公司 | 纺织印染助剂与有机硅产品中心': 'Zhejiang Wei Feng New Material Co., Ltd. | Textile Auxiliaries & Silicone Products',
+    '浙江伟丰新材料有限公司 | 新闻资讯与产品知识': 'Zhejiang Wei Feng New Material Co., Ltd. | News & Product Knowledge',
     '浙江伟丰新材料有限公司 | 专注纺织助剂研发生产': 'Zhejiang Wei Feng New Material Co., Ltd. | Textile Auxiliaries R&D and Production',
     '首页 | 浙江伟丰新材料有限公司': 'Home | Zhejiang Wei Feng New Material Co., Ltd.',
     '关于我们 | 浙江伟丰新材料有限公司': 'About Us | Zhejiang Wei Feng New Material Co., Ltd.',
@@ -2581,6 +3168,70 @@ const staticPageTitleTranslations = {
     '资料下载 | 浙江伟丰新材料有限公司': 'Downloads | Zhejiang Wei Feng New Material Co., Ltd.',
     '联系我们 | 浙江伟丰新材料有限公司': 'Contact Us | Zhejiang Wei Feng New Material Co., Ltd.'
 };
+
+// Complete translations prevent mixed-language headings and browser titles.
+Object.assign(productPageExactTranslations, {
+    "纺织前处理助剂系列": "Textile Pretreatment Auxiliaries",
+    "纺织染色助剂系列": "Textile Dyeing Auxiliaries",
+    "纺织荧光增白剂系列": "Textile Optical Brighteners",
+    "纺织功能整理剂系列": "Textile Functional Finishing Agents",
+    "纺织防水整理剂系列": "Textile Water-Repellent Finishing Agents",
+    "纺织软片与柔软剂系列": "Textile Softener Flakes & Softening Agents",
+    "B2B隐私协议 | B2B Privacy Policy": "B2B Privacy Policy",
+    "法律声明 | Legal Notice": "Legal Notice",
+    "隐私政策 | Privacy Policy": "Privacy Policy",
+    "HD-5K 低环体端含氢硅油 | 浙江伟丰新材料有限公司": "HD-5K Low-Cyclic Terminal Hydrogen Silicone Oil | Zhejiang Wei Feng New Material Co., Ltd.",
+    "浙江伟丰新材料有限公司 | 纺织前处理助剂系列": "Zhejiang Wei Feng New Material Co., Ltd. | Textile Pretreatment Auxiliaries",
+    "浙江伟丰新材料有限公司 | 纺织染色助剂系列": "Zhejiang Wei Feng New Material Co., Ltd. | Textile Dyeing Auxiliaries",
+    "浙江伟丰新材料有限公司 | 纺织荧光增白剂系列": "Zhejiang Wei Feng New Material Co., Ltd. | Textile Optical Brighteners",
+    "浙江伟丰新材料有限公司 | 纺织功能整理剂系列": "Zhejiang Wei Feng New Material Co., Ltd. | Textile Functional Finishing Agents",
+    "浙江伟丰新材料有限公司 | 纺织防水整理剂系列": "Zhejiang Wei Feng New Material Co., Ltd. | Textile Water-Repellent Finishing Agents",
+    "浙江伟丰新材料有限公司 | 纺织软片与柔软剂系列": "Zhejiang Wei Feng New Material Co., Ltd. | Textile Softener Flakes & Softening Agents",
+    "浙江伟丰新材料有限公司 | 纺织嵌段硅油系列": "Zhejiang Wei Feng New Material Co., Ltd. | Textile Block Silicone Oil Series",
+    "浙江伟丰新材料有限公司 | 纺织品印染助剂不断创新": "Zhejiang Wei Feng New Material Co., Ltd. | Innovation in Textile Printing and Dyeing Auxiliaries",
+    "浙江伟丰新材料有限公司 | 印染助剂产品开发": "Zhejiang Wei Feng New Material Co., Ltd. | Textile Auxiliary Product Development",
+    "浙江伟丰新材料有限公司 | 纺织柔软剂的发展历程（公司新闻）": "Zhejiang Wei Feng New Material Co., Ltd. | Development of Textile Softeners (Company News)",
+    "浙江伟丰新材料有限公司 | 纺织品印染助剂行业创新": "Zhejiang Wei Feng New Material Co., Ltd. | Innovation in the Textile Auxiliaries Industry",
+    "浙江伟丰新材料有限公司 | 印染助剂配方还原": "Zhejiang Wei Feng New Material Co., Ltd. | Textile Auxiliary Formulation Analysis",
+    "浙江伟丰新材料有限公司 | 纺织柔软剂的发展历程（行业资讯）": "Zhejiang Wei Feng New Material Co., Ltd. | Development of Textile Softeners (Industry News)",
+    "浙江伟丰新材料有限公司 | 二甲基硅油的功能与应用": "Zhejiang Wei Feng New Material Co., Ltd. | Dimethyl Silicone Oil: Functions and Applications",
+    "浙江伟丰新材料有限公司 | 端含氢、端环氧与聚醚环氧硅油": "Zhejiang Wei Feng New Material Co., Ltd. | Terminal Hydrogen, Epoxy and Polyether Epoxy Silicone Oils",
+    "浙江伟丰新材料有限公司 | 端含氢、端环氧及聚醚环氧硅油": "Zhejiang Wei Feng New Material Co., Ltd. | Terminal Hydrogen, Epoxy and Polyether Epoxy Silicone Oils",
+    "浙江伟丰新材料有限公司 | 高浓缩三元嵌段硅油": "Zhejiang Wei Feng New Material Co., Ltd. | Highly Concentrated Ternary Block Silicone Oil",
+    "浙江伟丰新材料有限公司 | 纺织功能整理剂产品与应用": "Zhejiang Wei Feng New Material Co., Ltd. | Textile Functional Finishing Agents and Applications",
+    "浙江伟丰新材料有限公司 | 纺织前处理助剂产品与应用": "Zhejiang Wei Feng New Material Co., Ltd. | Textile Pretreatment Auxiliaries and Applications",
+    "浙江伟丰新材料有限公司 | 纺织染色助剂产品与应用": "Zhejiang Wei Feng New Material Co., Ltd. | Textile Dyeing Auxiliaries and Applications",
+    "浙江伟丰新材料有限公司 | 纺织软片与柔软剂产品应用": "Zhejiang Wei Feng New Material Co., Ltd. | Textile Softener Flakes and Softening Agent Applications",
+    "浙江伟丰新材料有限公司 | 纺织荧光增白剂产品与应用": "Zhejiang Wei Feng New Material Co., Ltd. | Textile Optical Brighteners and Applications"
+});
+Object.assign(staticPageTitleTranslations, {
+    "B2B隐私协议 | B2B Privacy Policy": "B2B Privacy Policy",
+    "法律声明 | Legal Notice": "Legal Notice",
+    "隐私政策 | Privacy Policy": "Privacy Policy",
+    "HD-5K 低环体端含氢硅油 | 浙江伟丰新材料有限公司": "HD-5K Low-Cyclic Terminal Hydrogen Silicone Oil | Zhejiang Wei Feng New Material Co., Ltd.",
+    "浙江伟丰新材料有限公司 | 纺织前处理助剂系列": "Zhejiang Wei Feng New Material Co., Ltd. | Textile Pretreatment Auxiliaries",
+    "浙江伟丰新材料有限公司 | 纺织染色助剂系列": "Zhejiang Wei Feng New Material Co., Ltd. | Textile Dyeing Auxiliaries",
+    "浙江伟丰新材料有限公司 | 纺织荧光增白剂系列": "Zhejiang Wei Feng New Material Co., Ltd. | Textile Optical Brighteners",
+    "浙江伟丰新材料有限公司 | 纺织功能整理剂系列": "Zhejiang Wei Feng New Material Co., Ltd. | Textile Functional Finishing Agents",
+    "浙江伟丰新材料有限公司 | 纺织防水整理剂系列": "Zhejiang Wei Feng New Material Co., Ltd. | Textile Water-Repellent Finishing Agents",
+    "浙江伟丰新材料有限公司 | 纺织软片与柔软剂系列": "Zhejiang Wei Feng New Material Co., Ltd. | Textile Softener Flakes & Softening Agents",
+    "浙江伟丰新材料有限公司 | 纺织嵌段硅油系列": "Zhejiang Wei Feng New Material Co., Ltd. | Textile Block Silicone Oil Series",
+    "浙江伟丰新材料有限公司 | 纺织品印染助剂不断创新": "Zhejiang Wei Feng New Material Co., Ltd. | Innovation in Textile Printing and Dyeing Auxiliaries",
+    "浙江伟丰新材料有限公司 | 印染助剂产品开发": "Zhejiang Wei Feng New Material Co., Ltd. | Textile Auxiliary Product Development",
+    "浙江伟丰新材料有限公司 | 纺织柔软剂的发展历程（公司新闻）": "Zhejiang Wei Feng New Material Co., Ltd. | Development of Textile Softeners (Company News)",
+    "浙江伟丰新材料有限公司 | 纺织品印染助剂行业创新": "Zhejiang Wei Feng New Material Co., Ltd. | Innovation in the Textile Auxiliaries Industry",
+    "浙江伟丰新材料有限公司 | 印染助剂配方还原": "Zhejiang Wei Feng New Material Co., Ltd. | Textile Auxiliary Formulation Analysis",
+    "浙江伟丰新材料有限公司 | 纺织柔软剂的发展历程（行业资讯）": "Zhejiang Wei Feng New Material Co., Ltd. | Development of Textile Softeners (Industry News)",
+    "浙江伟丰新材料有限公司 | 二甲基硅油的功能与应用": "Zhejiang Wei Feng New Material Co., Ltd. | Dimethyl Silicone Oil: Functions and Applications",
+    "浙江伟丰新材料有限公司 | 端含氢、端环氧与聚醚环氧硅油": "Zhejiang Wei Feng New Material Co., Ltd. | Terminal Hydrogen, Epoxy and Polyether Epoxy Silicone Oils",
+    "浙江伟丰新材料有限公司 | 端含氢、端环氧及聚醚环氧硅油": "Zhejiang Wei Feng New Material Co., Ltd. | Terminal Hydrogen, Epoxy and Polyether Epoxy Silicone Oils",
+    "浙江伟丰新材料有限公司 | 高浓缩三元嵌段硅油": "Zhejiang Wei Feng New Material Co., Ltd. | Highly Concentrated Ternary Block Silicone Oil",
+    "浙江伟丰新材料有限公司 | 纺织功能整理剂产品与应用": "Zhejiang Wei Feng New Material Co., Ltd. | Textile Functional Finishing Agents and Applications",
+    "浙江伟丰新材料有限公司 | 纺织前处理助剂产品与应用": "Zhejiang Wei Feng New Material Co., Ltd. | Textile Pretreatment Auxiliaries and Applications",
+    "浙江伟丰新材料有限公司 | 纺织染色助剂产品与应用": "Zhejiang Wei Feng New Material Co., Ltd. | Textile Dyeing Auxiliaries and Applications",
+    "浙江伟丰新材料有限公司 | 纺织软片与柔软剂产品应用": "Zhejiang Wei Feng New Material Co., Ltd. | Textile Softener Flakes and Softening Agent Applications",
+    "浙江伟丰新材料有限公司 | 纺织荧光增白剂产品与应用": "Zhejiang Wei Feng New Material Co., Ltd. | Textile Optical Brighteners and Applications"
+});
 
 function translateProductPageText(text) {
     if (!text || !/[\u4e00-\u9fff]/.test(text)) return text;
@@ -2685,7 +3336,51 @@ function applyStaticPageTitleLanguage(lang) {
         : originalTitle;
 }
 
+// Keep the original domestic contact markup so repeated language switches are reversible.
+const domesticContactMarkup = new Map();
+
+function restoreDomesticContacts() {
+    document.querySelectorAll('.footer-contact-block, .contact-info-box .info-list').forEach(element => {
+        if (!domesticContactMarkup.has(element)) {
+            domesticContactMarkup.set(element, element.innerHTML);
+        } else {
+            element.innerHTML = domesticContactMarkup.get(element);
+        }
+    });
+}
+
+function applyInternationalContacts(lang) {
+    if (lang !== 'en') return;
+    const phone = '<a href="tel:+8613588403789">+86 13588403789</a>';
+    const email = '<a href="mailto:admin@wfchemistry.com" style="overflow-wrap:anywhere">admin@wfchemistry.com</a>';
+    document.querySelectorAll('footer').forEach(footer => {
+        const blocks = footer.querySelectorAll('.footer-contact-block');
+        if (blocks[0]) {
+            blocks[0].innerHTML = '<i class="fas fa-phone"></i><span class="footer-contact-lines"><strong>Phone:</strong><span>' + phone + '</span><strong class="footer-fax-label"><i class="fas fa-fax" aria-hidden="true"></i>Fax:</strong><span>+86 13588403789</span></span>';
+        }
+        if (blocks[1]) {
+            blocks[1].innerHTML = '<i class="fas fa-envelope"></i><span class="footer-contact-lines"><strong>Email:</strong><span>' + email + '</span></span>';
+        }
+    });
+    const contactList = document.querySelector('.contact-info-box .info-list');
+    if (contactList) {
+        contactList.innerHTML = '<div class="info-group" id="sample-contact" style="scroll-margin-top:120px">' +
+            '<h3><i class="fas fa-building"></i> International Sales</h3><ul>' +
+            '<li><span class="label">Address:</span> <span class="value">' + translations.en['footer.addr_text'] + '</span></li>' +
+            '<li><span class="label">Phone:</span> <span class="value">' + phone + '</span></li>' +
+            '<li><span class="label">Email:</span> <span class="value">' + email + '</span></li>' +
+            '<li><span class="label">Fax:</span> <span class="value">+86 13588403789</span></li>' +
+            '</ul></div><hr class="divider"><div class="info-group hotline-group" id="technical-contact" style="scroll-margin-top:120px">' +
+            '<h3><i class="fas fa-headset"></i> Technical Support</h3>' +
+            '<p>For technical assistance, please contact our international sales team using the phone or email above.</p></div>';
+    }
+}
+
+Object.assign(translations.zh, {"ui.accessible_0":"公司视频","ui.accessible_1":"播放视频","ui.accessible_2":"地图图例","ui.accessible_3":"中国地图图例","ui.accessible_4":"关闭","ui.accessible_5":"上一张","ui.accessible_6":"下一张","ui.accessible_7":"地图缩放控制","ui.accessible_8":"B2B隐私协议目录","ui.accessible_9":"在高德地图中查看浙江伟丰新材料有限公司","ui.accessible_10":"关闭二维码预览","ui.accessible_11":"图片预览","ui.accessible_12":"关闭图片预览","ui.accessible_13":"上一张图片","ui.accessible_14":"下一张图片","ui.accessible_15":"法律声明目录","ui.accessible_16":"隐私政策目录"});
+Object.assign(translations.en, {"ui.accessible_0":"Company video","ui.accessible_1":"Play video","ui.accessible_2":"Map legend","ui.accessible_3":"China map legend","ui.accessible_4":"Close","ui.accessible_5":"Previous","ui.accessible_6":"Next","ui.accessible_7":"Map zoom controls","ui.accessible_8":"B2B privacy policy contents","ui.accessible_9":"View Zhejiang Wei Feng New Material Co., Ltd. on Amap","ui.accessible_10":"Close QR code preview","ui.accessible_11":"Image preview","ui.accessible_12":"Close image preview","ui.accessible_13":"Previous image","ui.accessible_14":"Next image","ui.accessible_15":"Legal notice contents","ui.accessible_16":"Privacy policy contents"});
+
 function setLanguage(lang) {
+    restoreDomesticContacts();
     localStorage.setItem('preferredLang', lang);
     const elements = document.querySelectorAll('[data-i18n]');
     elements.forEach(element => {
@@ -2706,9 +3401,11 @@ function setLanguage(lang) {
             element.setAttribute('aria-label', translations[lang][key]);
         }
     });
+    applyInternationalContacts(lang);
     applyProductPageLanguage(lang);
     applyStaticPageTitleLanguage(lang);
     document.documentElement.lang = lang === 'en' ? 'en' : 'zh-CN';
+    document.dispatchEvent(new CustomEvent('languagechange', { detail: { lang } }));
     document.querySelectorAll('.lang-btn').forEach(btn => {
         btn.classList.remove('active');
         const onclick = btn.getAttribute('onclick') || '';
@@ -2731,3 +3428,46 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 });
+
+Object.assign(translations.zh, {"product.back_series": "返回产品系列"});
+Object.assign(translations.en, {"product.back_series": "Back to product series"});
+
+Object.assign(translations.zh, {"hd5k.preview": "预览 TDS", "hd5k.47": "下载 TDS", "hd.downloadTitle": "HD 系列端含氢硅油"});
+Object.assign(translations.en, {"hd5k.preview": "Preview TDS", "hd5k.47": "Download TDS", "hd.downloadTitle": "HD Series Terminal Hydrogen Silicone Oil"});
+
+Object.assign(translations.zh, {"h.seriesTitle":"H 系列端含氢硅油"});
+Object.assign(translations.en, {"h.seriesTitle":"H Series Terminal Hydrogen Silicone Oil"});
+
+Object.assign(translations.zh, {"hydrogen.customNote": "除现有规格外，可根据客户需求提供定制服务，具体技术指标及交付要求可进一步沟通确认。"});
+Object.assign(translations.en, {"hydrogen.customNote": "In addition to standard specifications, customization is available to meet customer requirements. Technical specifications and delivery requirements can be discussed and confirmed."});
+
+Object.assign(translations.zh, {"downloads.tds_hd_title": "HD 系列端含氢硅油", "downloads.tds_h_title": "H 系列端含氢硅油", "downloads.tds_vinyl_title": "端乙烯基硅油系列"});
+
+Object.assign(translations.en, {"downloads.tds_hd_title": "HD Series Terminal Hydrogen Silicone Oil", "downloads.tds_h_title": "H Series Terminal Hydrogen Silicone Oil", "downloads.tds_vinyl_title": "Vinyl-Terminated Silicone Oil Series"});
+
+Object.assign(translations.zh, {"downloads.silicone_family":"有机硅硅油系列"});
+Object.assign(translations.en, {"downloads.silicone_family":"Organosilicone Oil Series"});
+
+Object.assign(translations.zh, {"downloads.tds_hdy_title":"HDY 系列低环体端环氧硅油"});
+Object.assign(translations.en, {"downloads.tds_hdy_title":"HDY Series Low-Cyclic Epoxy-Terminated Silicone Oil"});
+
+Object.assign(translations.zh, {"hy.seriesTitle":"端环氧硅油 HY 系列", "downloads.tds_hy_title":"HY 系列端环氧硅油"});
+Object.assign(translations.en, {"hy.seriesTitle":"HY Series Epoxy-Terminated Silicone Oil", "downloads.tds_hy_title":"HY Series Epoxy-Terminated Silicone Oil"});
+
+Object.assign(translations.zh, {"hd.seriesTitle":"低环体端含氢硅油HD系列","h.seriesTitle":"端含氢硅油H系列","hdy.seriesTitle":"低环体端环氧硅油HDY系列","hy.seriesTitle":"端环氧硅油HY系列","jm.seriesTitle":"聚醚环氧硅油JM系列","vinyl.seriesTitle":"端乙烯基硅油V系列"});
+Object.assign(translations.en, {"hd.seriesTitle":"Low-Cyclic Terminal Hydrogen Silicone Oil HD Series","h.seriesTitle":"Terminal Hydrogen Silicone Oil H Series","hdy.seriesTitle":"Low-Cyclic Epoxy-Terminated Silicone Oil HDY Series","hy.seriesTitle":"Epoxy-Terminated Silicone Oil HY Series","jm.seriesTitle":"Polyether Epoxy Silicone Oil JM Series","vinyl.seriesTitle":"Vinyl-Terminated Silicone Oil V Series"});
+
+Object.assign(translations.zh, {"downloads.tds_hd_title":"低环体端含氢硅油HD系列","downloads.tds_h_title":"端含氢硅油H系列","downloads.tds_vinyl_title":"端乙烯基硅油V系列","downloads.tds_hdy_title":"低环体端环氧硅油HDY系列","downloads.tds_hy_title":"端环氧硅油HY系列"});
+Object.assign(translations.en, {"downloads.tds_hd_title":"Low-Cyclic Terminal Hydrogen Silicone Oil HD Series","downloads.tds_h_title":"Terminal Hydrogen Silicone Oil H Series","downloads.tds_vinyl_title":"Vinyl-Terminated Silicone Oil V Series","downloads.tds_hdy_title":"Low-Cyclic Epoxy-Terminated Silicone Oil HDY Series","downloads.tds_hy_title":"Epoxy-Terminated Silicone Oil HY Series"});
+
+Object.assign(translations.zh, {"jm.seriesTitle": "聚醚环氧硅油JM系列", "jm.epoxy": "环氧值（mmol/g，约）", "downloads.tds_jm_title": "聚醚环氧硅油JM系列", "jm.use8C": "用于亲水、蓬松硅油合成", "jm.use9A": "用于柔软、蓬松硅油合成", "jm.use11A": "用于柔软、滑爽硅油合成", "jm.use14A": "用于超滑、柔软硅油合成", "jm.use22B": "用于棉特滑嵌段硅油的合成"});
+
+Object.assign(translations.en, {"jm.seriesTitle": "Polyether Epoxy Silicone Oil JM Series", "jm.epoxy": "Epoxy value (mmol/g, approx.)", "downloads.tds_jm_title": "Polyether Epoxy Silicone Oil JM Series", "jm.use8C": "For hydrophilic, fluffy silicone oil synthesis", "jm.use9A": "For soft, fluffy silicone oil synthesis", "jm.use11A": "For soft, smooth silicone oil synthesis", "jm.use14A": "For extra-smooth, soft silicone oil synthesis", "jm.use22B": "For extra-smooth block silicone oil synthesis for cotton"});
+
+Object.assign(translations.zh, {"hydrogen.series": "高低含氢硅油系列", "hydrogen.high-hydrogen": "高含氢硅油", "hydrogen.use-high-hydrogen": "用于防潮疏水处理、加成型硅橡胶交联及改性硅油合成。", "hydrogen.low-hydrogen": "低含氢硅油", "hydrogen.use-low-hydrogen": "用于硅橡胶交联、织物整理、防水处理及改性硅油合成。", "hydrogen.name": "产品名称", "hydrogen.vis": "粘度（25℃，mPa·s）", "hydrogen.h": "含氢量（wt%）", "hydrogen.vol": "挥发分（150℃，3 h，wt%）", "hydrogen.density": "密度（25℃，g/cm³）", "hydrogen.details": "产品详情"});
+
+Object.assign(translations.en, {"hydrogen.series": "High- & Low-Hydrogen Silicone Oils", "hydrogen.high-hydrogen": "High-Hydrogen Silicone Oil", "hydrogen.use-high-hydrogen": "For moisture-resistant and water-repellent treatments, addition-cure silicone rubber crosslinking and modified silicone oil synthesis.", "hydrogen.low-hydrogen": "Low-Hydrogen Silicone Oil", "hydrogen.use-low-hydrogen": "For silicone rubber crosslinking, textile finishing, waterproofing and modified silicone oil synthesis.", "hydrogen.name": "Product name", "hydrogen.vis": "Viscosity (25°C, mPa·s)", "hydrogen.h": "Hydrogen content (wt%)", "hydrogen.vol": "Volatile content (150°C, 3 h, wt%)", "hydrogen.density": "Density (25°C, g/cm³)", "hydrogen.details": "Product details"});
+
+Object.assign(translations.zh, {"hydrogen.conditions": "粘度和密度的测试温度为 25℃，密度单位为 g/cm³；挥发分测试条件为 150℃、3 h；含氢量和挥发分均为质量百分比。"});
+
+Object.assign(translations.en, {"hydrogen.conditions": "Viscosity and density are measured at 25°C; density is in g/cm³. Volatile content is measured at 150°C for 3 h. Hydrogen and volatile contents are weight percentages."});

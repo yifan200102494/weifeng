@@ -1,9 +1,10 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-    <link rel="icon" href="images/favicon.svg?v=2" type="image/svg+xml">
+    <link rel="icon" href="images/favicon.svg" type="image/svg+xml">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preload" as="image" href="images/hero-gallery-v3.webp" type="image/webp" fetchpriority="high">
     <title>浙江伟丰新材料有限公司</title>
     <script>
         (function () {
@@ -16,7 +17,7 @@
             } catch (e) {}
         })();
     </script>
-    <link rel="stylesheet" href="style.css?v=20260723-1">
+    <link rel="stylesheet" href="style.css">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet" media="print" onload="this.media='all'">
     <noscript><link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet"></noscript>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
@@ -204,6 +205,31 @@
                     <div class="gallery-caption" data-i18n="gallery.cap_lab_samples">样品展示一角</div>
                 </div>
 
+                <div class="gallery-item lab reveal">
+                    <div class="img-wrapper">
+                        <img data-src="images/thumbs/gallery-lab-01.webp" data-full-src="images/ShiYanShi_01.jpg" alt="实验室研发仪器与工作台" decoding="async" loading="lazy">
+                        <div class="hover-overlay"><i class="fas fa-search-plus"></i></div>
+                    </div>
+                    <div class="gallery-caption" data-i18n="gallery.cap_lab_instruments">研发仪器一角</div>
+                </div>
+
+                <div class="gallery-item lab reveal">
+                    <div class="img-wrapper">
+                        <img data-src="images/thumbs/gallery-lab-06.webp" data-full-src="images/ShiYanShi_06.jpg" alt="实验室设备与仪器展示" decoding="async" loading="lazy">
+                        <div class="hover-overlay"><i class="fas fa-search-plus"></i></div>
+                    </div>
+                    <div class="gallery-caption" data-i18n="gallery.cap_lab_equipment">实验设备掠影</div>
+                </div>
+
+                <div class="gallery-item lab reveal">
+                    <div class="img-wrapper">
+                        <img data-src="images/thumbs/gallery-lab-09.webp" data-full-src="images/ShiYanShi_09.jpg" alt="实验室工作台与整体环境" decoding="async" loading="lazy">
+                        <div class="hover-overlay"><i class="fas fa-search-plus"></i></div>
+                    </div>
+                    <div class="gallery-caption" data-i18n="gallery.cap_lab_workspace">实验室工作空间</div>
+                </div>
+
+
             </div>
         </div>
     </section>
@@ -255,7 +281,7 @@
         </div>
         <div class="footer-bottom">
     <div class="copyright">
-        &copy; 2025 Zhejiang Wei Feng New Material Co., Ltd. All Rights Reserved.
+        &copy; <span data-copyright-year>2026</span> Zhejiang Wei Feng New Material Co., Ltd. All Rights Reserved.
     </div>
     <div class="beian-info">
         <a href="https://beian.miit.gov.cn/" target="_blank" rel="noopener noreferrer">
@@ -269,18 +295,18 @@
     </div>
 </div>
     </footer>
-    <div id="lightbox" class="lightbox-modal" role="dialog" aria-modal="true" aria-label="图片预览" aria-hidden="true">
-        <button type="button" class="close-btn" aria-label="关闭图片预览">&times;</button>
-        <button type="button" class="gallery-lightbox-nav gallery-lightbox-prev" aria-label="上一张图片">
+    <div id="lightbox" class="lightbox-modal" role="dialog" aria-modal="true" aria-label="图片预览" data-i18n-aria-label="ui.accessible_11" aria-hidden="true">
+        <button type="button" class="close-btn" aria-label="关闭图片预览" data-i18n-aria-label="ui.accessible_12">&times;</button>
+        <button type="button" class="gallery-lightbox-nav gallery-lightbox-prev" aria-label="上一张图片" data-i18n-aria-label="ui.accessible_13">
             <i class="fas fa-chevron-left" aria-hidden="true"></i>
         </button>
         <img class="lightbox-content" id="lightbox-img" decoding="async" alt="">
-        <button type="button" class="gallery-lightbox-nav gallery-lightbox-next" aria-label="下一张图片">
+        <button type="button" class="gallery-lightbox-nav gallery-lightbox-next" aria-label="下一张图片" data-i18n-aria-label="ui.accessible_14">
             <i class="fas fa-chevron-right" aria-hidden="true"></i>
         </button>
         <div id="lightbox-caption"></div>
     </div>
-    <script src="i18n.js?v=20260711-2"></script>
-    <script src="script.js?v=20260723-3"></script>
+    <script src="i18n.js"></script>
+    <script src="script.js"></script>
 </body>
 </html>

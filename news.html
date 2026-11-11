@@ -1,10 +1,13 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-    <link rel="icon" href="images/favicon.svg?v=2" type="image/svg+xml">
+    <link rel="icon" href="images/favicon.svg" type="image/svg+xml">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preload" as="image" href="images/hero-news-v3.webp" type="image/webp" fetchpriority="high">
     <title>浙江伟丰新材料有限公司</title>
+    <meta name="description" content="浙江伟丰新材料新闻资讯中心，分享纺织印染助剂、有机硅材料、硅油、柔软剂及功能整理剂相关的公司动态、行业资讯和产品应用知识。">
+    <link rel="canonical" href="https://www.weifengxcl.com/news.html">
     <script>
         (function () {
             try {
@@ -16,8 +19,8 @@
             } catch (e) {}
         })();
     </script>
-    <link rel="stylesheet" href="style.css?v=20260711-6">
-    <link rel="stylesheet" href="performance.css?v=2">
+    <link rel="stylesheet" href="style.css">
+    
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet" media="print" onload="this.media='all'">
     <noscript><link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet"></noscript>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
@@ -60,7 +63,7 @@
     <header class="page-header news-header-bg">
         <div class="overlay"></div>
         <div class="container header-content">
-            <h1 class="fade-in-up" data-i18n="news.header_title">与世界联接</h1>
+            <h1 class="fade-in-up" data-i18n="news.header_title">新闻资讯与产品知识</h1>
             <p class="fade-in-up delay-200" data-i18n="news.header_desc">致力打造纺织助剂产品领袖品牌</p>
         </div>
     </header>
@@ -210,7 +213,7 @@
                     </div>
                 </a>
 
-                <a class="news-row reveal" href="news-question7.html">
+                <template data-paused-series="true"><a class="news-row reveal" href="news-question7.html">
                     <div class="news-date">
                         <span class="year">Q&A</span>
                         <span class="day">07</span>
@@ -219,9 +222,9 @@
                         <h3 data-i18n="news.faq_7_title">软片产品</h3>
                         <p data-i18n="news.faq_7_desc">软片系列适用于全棉及其混纺针织物、机织物的柔软整理，尤其适合对亲水及色光有要求的柔软整理工艺。</p>
                     </div>
-                </a>
+                </a></template>
 
-                <a class="news-row reveal" href="news-question8.html">
+                <template data-paused-series="true"><a class="news-row reveal" href="news-question8.html">
                     <div class="news-date">
                         <span class="year">Q&A</span>
                         <span class="day">08</span>
@@ -230,7 +233,7 @@
                         <h3 data-i18n="news.faq_8_title">增白剂系列产品</h3>
                         <p data-i18n="news.faq_8_desc">增白剂系列是一类能提高纤维织物和纸张等白度的有机化合物，适用于涤纶、棉、麻及混纺织物的增白增艳。</p>
                     </div>
-                </a>
+                </a></template>
                 </div>
 
             </div>
@@ -259,6 +262,7 @@
                     <li><a href="about.html" data-i18n="nav.about"><i class="fas fa-chevron-right"></i> 关于我们</a></li>
                     <li><a href="products.html" data-i18n="nav.products"><i class="fas fa-chevron-right"></i> 产品中心</a></li>
                     <li><a href="news.html" data-i18n="nav.news"><i class="fas fa-chevron-right"></i> 新闻资讯</a></li>
+                    <li><a href="gallery.html" data-i18n="nav.gallery"><i class="fas fa-chevron-right"></i> 企业形象</a></li>
                     <li><a href="downloads.html" data-i18n="nav.downloads"><i class="fas fa-chevron-right"></i> 资料下载</a></li>
                     <li><a href="contact.html" data-i18n="nav.contact"><i class="fas fa-chevron-right"></i> 联系我们</a></li>
                     <li><a href="contact.html#wechat-official" class="footer-social-link" data-i18n="footer.wechat_official"><i class="fab fa-weixin"></i> 微信公众号</a></li>
@@ -291,7 +295,7 @@
         </div>
         <div class="footer-bottom">
     <div class="copyright">
-        &copy; 2025 Zhejiang Wei Feng New Material Co., Ltd. All Rights Reserved.
+        &copy; <span data-copyright-year>2026</span> Zhejiang Wei Feng New Material Co., Ltd. All Rights Reserved.
     </div>
     <div class="beian-info">
         <a href="https://beian.miit.gov.cn/" target="_blank" rel="noopener noreferrer">
@@ -306,8 +310,8 @@
 </div>
     </footer>
 
-    <script src="i18n.js?v=20260711-2"></script>
-    <script src="script.js?v=20260709-3"></script>
+    <script src="i18n.js"></script>
+    <script src="script.js"></script>
 </body>
 </html>
 
